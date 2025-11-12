@@ -20,12 +20,12 @@
             <value>https://api.openconceptlab.org/orgs/PeruHCE/sources/sihsalus</value>
         </globalProperty>
 
-        <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
+        <!-- ENV VARIABLE: OMRS_OCL_TOKEN (PENDIENTE DE CORREGIR)
         <globalProperty>
             <property>openconceptlab.token</property>
             <value>${OMRS_OCL_TOKEN}</value>
         </globalProperty>
-
+        -->
         <!-- Queue Configuration -->
 
         <!--
