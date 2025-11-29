@@ -1,0 +1,777 @@
+{
+  "name": "Formulario Hoja de Referencia",
+  "description": "Formulario para registrar la hoja de referencia institucional del paciente.",
+  "version": "1.0",
+  "published": true,
+  "retired": false,
+  "encounter": "Referencia del Paciente HSC",
+  "processor": "EncounterFormProcessor",
+  "uuid": "2a0eb252-7230-475e-9f68-78490359c918",
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Datos del paciente y referencia",
+      "sections": [
+        {
+          "label": "Datos generales de la referencia",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Número de hoja de referencia",
+              "id": "numero-hoja-referencia",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0dd9c9fc-9f10-42cf-954e-9d10b8cb0f7c"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Fecha y hora de la referencia",
+              "id": "fecha-y-hora-referencia",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "0a39b49c-8fea-4002-a251-c6c032dbb76f"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Asegurado (Sí/No)",
+              "id": "asegurado",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7fd2a94a-ee99-491c-a4dc-f873eba59efa",
+                "answers": [
+                  {
+                    "concept": "08089f9b-f544-4aad-a3d8-c5f52b6901a5",
+                    "label": "Si"
+                  },
+                  {
+                    "concept": "5b2a0f81-22df-4ee1-ae2e-3c547cd7ec9f",
+                    "label": "No"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Tipo de seguro",
+              "id": "tipo-seguro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "6b932638-242e-49ef-8ba7-0ae87199835c"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "isEmpty(asegurado) || asegurado !== '08089f9b-f544-4aad-a3d8-c5f52b6901a5'"
+              }
+            },
+            {
+              "label": "Plan de atención SIS",
+              "id": "plan-atencion-sis",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "b76a9a24-4905-4132-a215-8a567281852a",
+                "answers": [
+                  {
+                    "concept": "e9225e6a-a4b4-489c-9658-1c37549f797b",
+                    "label": "A"
+                  },
+                  {
+                    "concept": "7ee9e92c-2aa5-4d19-89a1-9dcd9b1c8361",
+                    "label": "B"
+                  },
+                  {
+                    "concept": "bd5629af-ae7c-42ee-8962-8b40468143aa",
+                    "label": "C"
+                  },
+                  {
+                    "concept": "a663200e-648e-4dd5-99ec-3db9b2aeb910",
+                    "label": "D"
+                  },
+                  {
+                    "concept": "75288aae-4cf7-426e-aa97-a5152e3d1cbb",
+                    "label": "E"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Establecimiento de origen de la referencia",
+              "id": "establecimiento-origen-referencia",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "8fc6cc70-1009-4a55-b79c-89d658fb247e"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Establecimiento destino de la referencia",
+              "id": "establecimiento-destino-referencia",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "6a1e18c1-8874-45fe-92dd-26758d5d6ba7"
+              },
+              "type": "obs"
+            }
+          ]
+        },
+        {
+          "label": "Identificación del usuario",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Código de afiliación al SIS",
+              "id": "codigo-afiliacion-sis",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "ac725d18-6b70-4fbe-ad71-e7df8d6c08d3"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Número de historia clínica",
+              "id": "numero-historia-clinica",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "21be0829-69ff-4de0-a0dc-cc2ec84f4ece"
+              },
+              "type": "obs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Resumen clínico",
+      "sections": [
+        {
+          "label": "Historia clínica",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Anamnesis",
+              "id": "anamnesis",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Examen físico (descripción)",
+              "id": "examen-fisico-descripcion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "7b6a7d70-e6f1-4591-be1a-301a5aeb4ef7"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Temperatura (°C)",
+              "id": "temperatura",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f715a045-9c97-498f-99e0-8a9f86274667"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Presión arterial (P.A.)",
+              "id": "presion-arterial",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "567ff790-ef7e-4740-9fb3-d046e3024f64"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Frecuencia respiratoria (F.R.)",
+              "id": "frecuencia-respiratoria",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "54c7e500-2455-46ff-a994-03440d3a96e3"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Frecuencia cardiaca (F.C.)",
+              "id": "frecuencia-cardiaca",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "a3baae53-6f82-4ed9-847c-94ddfd724a3c"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Exámenes auxiliares",
+              "id": "examenes-auxiliares",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c099c045-7434-4d17-9dab-2a1a2637f31d"
+              },
+              "type": "obs"
+            }
+          ]
+        },
+        {
+          "label": "Diagnóstico y tratamiento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnóstico 1 (descripción)",
+              "id": "diagnostico-1-descripcion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "05e13652-908a-42ed-9ef0-a444bd11ce51"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 1 - Código CIE-10",
+              "id": "diagnostico-1-cie10",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "bdf63a89-fb2c-48c5-a670-8a0032aae816"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 1 - Tipo (D/P/R)",
+              "id": "diagnostico-1-tipo",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "6a6bd874-8749-4581-bf6f-5d8c48b27821"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 2 (descripción)",
+              "id": "diagnostico-2-descripcion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "aaf404eb-3e04-48b6-838d-799a351d1af6"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 2 - Código CIE-10",
+              "id": "diagnostico-2-cie10",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2123c2cf-7c72-4e4e-8636-a803ebefdc7d"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 2 - Tipo (D/P/R)",
+              "id": "diagnostico-2-tipo",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a3173d20-930c-4248-bdc2-2bb6456f2a44"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 3 (descripción)",
+              "id": "diagnostico-3-descripcion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "768c0ad4-68be-4f7b-a0c7-c4e8e4d92f3a"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 3 - Código CIE-10",
+              "id": "diagnostico-3-cie10",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "614cbe01-b602-492e-9297-2b7b16707d7f"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico 3 - Tipo (D/P/R)",
+              "id": "diagnostico-3-tipo",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d0f95a47-3a41-440e-b48d-fae01e3759cf"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Tratamiento",
+              "id": "tratamiento",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "b8723c0f-b7e5-4ab2-bda6-dc59616a428e"
+              },
+              "type": "obs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Datos de la referencia",
+      "sections": [
+        {
+          "label": "Coordinación y destino",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "UPS destino de la referencia",
+              "id": "upsDestinoReferencia",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "fc4f1f22-7529-4606-9e6a-af818f9f8dba",
+                "answers": [
+                  {
+                    "concept": "e724bdb6-2c75-4b6f-a00c-d43f2c372974",
+                    "label": "Emergencia"
+                  },
+                  {
+                    "concept": "69ede7d1-a5e8-4db8-9397-5887c9c4dfb0",
+                    "label": "Consulta Externa"
+                  },
+                  {
+                    "concept": "6f9fc7f1-ea68-4446-9cd4-a59e9cd8ba94",
+                    "label": "Apoyo al Diagnóstico (Adjuntar orden)"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Fecha y hora en que será atendido",
+              "id": "fecha-atencion-destino",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "1790d2db-5a6d-426d-ab33-4375294424a6"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "isEmpty(upsDestinoReferencia) || upsDestinoReferencia === 'e724bdb6-2c75-4b6f-a00c-d43f2c372974'"
+              }
+            },
+            {
+              "label": "Nombre de quien lo atenderá",
+              "id": "nombre-quien-atendera",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "6421aadb-1837-4b4b-a5e1-fdfa6f88c7fa"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "isEmpty(upsDestinoReferencia) || upsDestinoReferencia === 'e724bdb6-2c75-4b6f-a00c-d43f2c372974'"
+              }
+            },
+            {
+              "label": "Nombre con quien se coordinó la atención",
+              "id": "nombre-coordinacion-atencion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "cc136f5b-8957-49bb-840b-eefdb7353b83"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Especialidad de destino",
+              "id": "especialidadDestino",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "fd1a48d5-f1cf-42b7-9b8c-141c9817f7a3",
+                "answers": [
+                  {
+                    "concept": "3be31163-313b-46eb-af44-5f615ff4bf3d",
+                    "label": "Pediatría"
+                  },
+                  {
+                    "concept": "8411199d-5914-4285-a962-71a0199bc6b4",
+                    "label": "Medicina"
+                  },
+                  {
+                    "concept": "1825a78b-557d-42b8-829f-798aa45a1eb2",
+                    "label": "Cirugía"
+                  },
+                  {
+                    "concept": "8504de7b-31a1-4c21-8a0e-ce1e1cba895e",
+                    "label": "Gineco-Obs."
+                  },
+                  {
+                    "concept": "7a8a6770-15e5-442e-b2e3-c9d71e3d93f0",
+                    "label": "Laboratorio"
+                  },
+                  {
+                    "concept": "c8869ab4-7de8-4d55-900a-f7e2862a9329",
+                    "label": "Dx. Imag."
+                  },
+                  {
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Especialidad de destino (especificar)",
+              "id": "especialidadDestinoOtro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0344ee24-397e-47cb-8cb5-e5546b4da8db"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "especialidadDestino !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Condiciones al inicio del traslado y responsables",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Condición del paciente al inicio del traslado",
+              "id": "condicion-inicio-traslado",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e6106442-523e-4043-973d-f33330025777",
+                "answers": [
+                  {
+                    "concept": "0f0baaea-9613-45c3-8a39-c2f5e14f4bbf",
+                    "label": "Estable"
+                  },
+                  {
+                    "concept": "3176c0d4-e650-4454-9679-e3b989ecb140",
+                    "label": "Mal Estado"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable de la referencia - nombre",
+              "id": "responsable-referencia-nombre",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "be95e972-a370-48fc-bf58-0e1e7cbeef98"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable de la referencia - colegiatura",
+              "id": "responsable-referencia-colegiatura",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "cbb315d8-98c5-4a6a-ad14-d3bdeceac0f4"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable de la referencia - profesión",
+              "id": "responsableReferenciaProfesion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d14dbca9-34bb-498b-ab84-5e516ea6bfc1",
+                "answers": [
+                  {
+                    "concept": "815837e3-f1f7-428c-a482-5518bb0c2d2a",
+                    "label": "Médico"
+                  },
+                  {
+                    "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
+                    "label": "Enfermera"
+                  },
+                  {
+                    "concept": "abd1096a-2c43-4c74-a41c-3e5938e71b83",
+                    "label": "Obstetriz"
+                  },
+                  {
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable de la referencia - profesión (especificar)",
+              "id": "responsableReferenciaProfesionOtro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "692089b8-4d44-4e43-89ad-9af9b5df1ad9"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "responsableReferenciaProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+              }
+            },
+            {
+              "label": "Responsable del establecimiento - nombre",
+              "id": "responsable-establecimiento-nombre",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "50249561-4b9b-417c-8a8a-590fc436bd74"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable del establecimiento - colegiatura",
+              "id": "responsable-establecimiento-colegiatura",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "896575a1-fef6-4179-90ad-9840facbc4fb"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable del establecimiento - profesión",
+              "id": "responsableEstablecimientoProfesion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "42bb5b62-22be-4698-a635-2714ca16646f",
+                "answers": [
+                  {
+                    "concept": "815837e3-f1f7-428c-a482-5518bb0c2d2a",
+                    "label": "Médico"
+                  },
+                  {
+                    "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
+                    "label": "Enfermera"
+                  },
+                  {
+                    "concept": "abd1096a-2c43-4c74-a41c-3e5938e71b83",
+                    "label": "Obstetriz"
+                  },
+                  {
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Responsable del establecimiento - profesión (especificar)",
+              "id": "responsableEstablecimientoProfesionOtro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "58ca7f77-538f-4adf-a21c-2b3b9127636d"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "responsableEstablecimientoProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+              }
+            },
+            {
+              "label": "Personal que acompaña - nombre",
+              "id": "personal-acompana-nombre",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "861f902c-abb2-46dc-9a30-88424d984942"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que acompaña - colegiatura",
+              "id": "personal-acompana-colegiatura",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "59c8b7da-1d52-41c6-aa25-21d4b59abfcb"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que acompaña - profesión",
+              "id": "personalAcompanaProfesion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "8fedd424-aabb-4d1d-ada5-77b84a257009",
+                "answers": [
+                  {
+                    "concept": "815837e3-f1f7-428c-a482-5518bb0c2d2a",
+                    "label": "Médico"
+                  },
+                  {
+                    "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
+                    "label": "Enfermera"
+                  },
+                  {
+                    "concept": "abd1096a-2c43-4c74-a41c-3e5938e71b83",
+                    "label": "Obstetriz"
+                  },
+                  {
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que acompaña - profesión (especificar)",
+              "id": "personalAcompanaProfesionOtro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "418bb58d-7bbf-4b4c-9cea-c6b06dfbb10e"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "personalAcompanaProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Recepción en el establecimiento destino",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Personal que recibe - nombre",
+              "id": "personal-recibe-nombre",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "4200d581-053d-4055-a400-07e1ced43042"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que recibe - colegiatura",
+              "id": "personal-recibe-colegiatura",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "3c699742-ef03-40a7-b539-731be95ad75a"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que recibe - profesión",
+              "id": "personalRecibeProfesion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e705281e-5cab-413b-aeda-7f07e0f94dc6",
+                "answers": [
+                  {
+                    "concept": "815837e3-f1f7-428c-a482-5518bb0c2d2a",
+                    "label": "Médico"
+                  },
+                  {
+                    "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
+                    "label": "Enfermera"
+                  },
+                  {
+                    "concept": "abd1096a-2c43-4c74-a41c-3e5938e71b83",
+                    "label": "Obstetriz"
+                  },
+                  {
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Personal que recibe - profesión (especificar)",
+              "id": "personalRecibeProfesionOtro",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "09853143-ff95-40eb-859c-8949738fd0af"
+              },
+              "type": "obs",
+              "hide": {
+                "hideWhenExpression": "personalRecibeProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+              }
+            },
+            {
+              "label": "Fecha y hora de recepción",
+              "id": "fecha-hora-recepcion",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "b2c5bec3-fc6b-440e-866e-54ba6fe25567"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Condición del paciente a la llegada",
+              "id": "condicion-llegada-destino",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "0d66317f-4714-4443-9742-0d411c6233cc",
+                "answers": [
+                  {
+                    "concept": "0f0baaea-9613-45c3-8a39-c2f5e14f4bbf",
+                    "label": "Estable"
+                  },
+                  {
+                    "concept": "3176c0d4-e650-4454-9679-e3b989ecb140",
+                    "label": "Mal Estado"
+                  },
+                  {
+                    "concept": "1b3c9822-74ee-4ce5-a3b3-bac03ca44df5",
+                    "label": "Fallecido"
+                  }
+                ]
+              },
+              "type": "obs"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "encounterType": "46eef0fc-af43-4d26-b738-e6362dad0cc8"
+}
