@@ -1,0 +1,157 @@
+{
+  "name": "Formulario Epicrisis Médica",
+  "description": "Formulario para registrar la epicrisis médica del paciente hospitalizado.",
+  "version": "1.0",
+  "published": true,
+  "retired": false,
+  "encounter": "Epicrisis Médica HSC",
+  "processor": "EncounterFormProcessor",
+  "uuid": "aa8c79e5-41cd-4c5b-ae71-6de503038407",
+  "referencedForms": [],
+  "pages": [
+    {
+      "label": "Datos generales",
+      "sections": [
+        {
+          "label": "Datos del paciente",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Nombre y Apellidos",
+              "id": "nombre-apellidos",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "20e75ad1-f24d-49c0-93b7-62176e192815"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "DNI del paciente",
+              "id": "dni-paciente",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "663d30fb-fa0d-46e8-9e04-b1d8cccbeb47"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Edad",
+              "id": "edad-paciente",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0034f084-06e9-4f32-ab40-5c28f5d3cfad"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Fecha de ingreso",
+              "id": "fecha-ingreso",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f2178dcd-ee4e-4b2a-a4b2-dd857b6c96aa"
+              },
+              "type": "obs",
+              "datePickerFormat": "calendar"
+            },
+            {
+              "label": "Fecha y hora de alta",
+              "id": "hora-alta",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "832e4b4d-7c02-4cbd-bfda-270662838f3d"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Persona responsable (si es el caso)",
+              "id": "persona-responsable",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f039774c-b024-4378-b355-77cdc1d45fb1"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "DNI de la persona responsable",
+              "id": "dni-persona-responsable",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c840d588-0e67-4f57-a2e4-363801e6493b"
+              },
+              "type": "obs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Resumen clínico",
+      "sections": [
+        {
+          "label": "Epicrisis",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnóstico al ingreso",
+              "id": "diagnostico-ingreso",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "a1f469e6-b3bc-402c-9a25-dc108276f88f"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Exámenes complementarios",
+              "id": "examenes-complementarios",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c21bb6b0-83eb-4ab8-92b1-d8a4b501b320"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Tratamiento recibido",
+              "id": "tratamiento-recibido",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "b7e8d51b-c8ad-4cc3-ae4e-56b6bc6c1cb7"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Diagnóstico al egreso",
+              "id": "diagnostico-egreso",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "427bec34-c30b-4c23-b446-f4a3f5444314"
+              },
+              "type": "obs"
+            },
+            {
+              "label": "Observaciones y tratamiento de alta",
+              "id": "observaciones-tratamiento-alta",
+              "required": "false",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "35b822b0-6130-402a-9c5b-6fa3ee7c372d"
+              },
+              "type": "obs"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "encounterType": "dc8c79e5-41cd-4c5b-ae71-6de503038407"
+}
