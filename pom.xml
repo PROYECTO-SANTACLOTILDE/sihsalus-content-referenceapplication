@@ -203,14 +203,14 @@
     </pluginRepositories>
     <distributionManagement>
         <repository>
-            <id>openmrs-repo-modules</id>
-            <name>OpenMRS Nexus Modules</name>
-            <url>http://mavenrepo.openmrs.org/releases</url>
+            <id>github-sihsalus-content</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/PROYECTO-SANTACLOTILDE/sihsalus-content-referenceapplication</url>
         </repository>
         <snapshotRepository>
-            <id>openmrs-repo-snapshots</id>
-            <name>OpenMRS Nexus Snapshots</name>
-            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+            <id>github-sihsalus-content</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/PROYECTO-SANTACLOTILDE/sihsalus-content-referenceapplication</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
