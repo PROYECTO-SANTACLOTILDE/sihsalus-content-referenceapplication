@@ -5,7 +5,35 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.1.1] - 2026-01-13
+
+### 🔴 HOTFIX - Corregido
+
+**Problema Crítico:** Los archivos `programworkflows.csv` y `programworkflowstates.csv` agregados en v1.1.0 causaban errores de inicialización porque los conceptos referenciados no existen en la base de datos.
+
+**Errores generados:**
+```
+java.lang.IllegalArgumentException: Unable to find concept: Estado de Control CRED
+java.lang.IllegalArgumentException: Unable to find concept: Estado de Gestación
+```
+
+**Solución aplicada:**
+- Vaciados los archivos `programworkflows/peruHCE-programworkflows.csv` (solo headers)
+- Vaciados los archivos `programworkflowstates/peruHCE-programworkflowstates.csv` (solo headers)
+- Los 8 programas clínicos funcionan sin workflows hasta que se creen los conceptos necesarios en OCL
+
+### Archivos Modificados
+- `configuration/backend_configuration/programworkflows/peruHCE-programworkflows.csv` (revertido a solo headers)
+- `configuration/backend_configuration/programworkflowstates/peruHCE-programworkflowstates.csv` (revertido a solo headers)
+
+### Nota Importante
+Los workflows y estados agregados en v1.1.0 serán reimplementados en una versión futura una vez que se creen los conceptos apropiados en OpenConceptLab (OCL).
+
+---
+
 ## [1.1.0] - 2026-01-12
+
+**⚠️ ADVERTENCIA:** Esta versión contiene errores críticos. Use v1.1.1 en su lugar.
 
 ### Corregido
 - **Colas de Atención (peruHCE-queues.csv)**: Corregidos 16 registros de colas que generaban errores de duplicados
