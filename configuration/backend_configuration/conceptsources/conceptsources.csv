@@ -1,0 +1,4 @@
+Uuid,Name,Hl7 Code,Description
+,SNOMED-CT,SCT,SNOMED-CT from OCL/CIEL
+,LOINC,LN,Logical Observation Identifiers Names and Codes
+,UCUM,UCUM,Unified Code for Units of Measure
