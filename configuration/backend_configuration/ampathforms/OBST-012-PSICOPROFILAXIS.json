@@ -1,0 +1,157 @@
+{
+  "name": "OBST-012-PSICOPROFILAXIS",
+  "pages": [
+    {
+      "label": "Sesión de Psicoprofilaxis",
+      "sections": [
+        {
+          "label": "Datos de la Sesión",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la sesión",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSesion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Edad gestacional (semanas)",
+              "type": "obs",
+              "required": true,
+              "id": "edadGestacional",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "min": "0",
+                "max": "42",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Sesión de Psicoprofilaxis",
+              "type": "obs",
+              "required": true,
+              "id": "sesionPsicoprofilaxis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "400ebbfe-bdb6-42b8-a783-226e027e2e05",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sesión 1 — Cambios durante el embarazo y signos de alarma"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sesión 2 — Atención prenatal y autocuidado"
+                  },
+                  {
+                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
+                    "label": "Sesión 3 — Preparación física y técnicas de respiración"
+                  },
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Sesión 4 — El parto y sus períodos"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Sesión 5 — Puerperio y recién nacido"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Sesión 6 — Planificación familiar y visita al establecimiento"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Asistió acompañante",
+              "type": "obs",
+              "required": false,
+              "id": "asistioAcompanante",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Registro de sesiones de psicoprofilaxis obstétrica (6 sesiones) según RM 361-2011 MINSA.",
+  "version": "1.0.0"
+}

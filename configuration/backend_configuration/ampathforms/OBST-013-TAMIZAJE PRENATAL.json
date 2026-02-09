@@ -1,0 +1,247 @@
+{
+  "name": "OBST-013-TAMIZAJE PRENATAL",
+  "pages": [
+    {
+      "label": "Tamizaje Prenatal Obligatorio",
+      "sections": [
+        {
+          "label": "Prueba Rápida de VIH",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Resultado Prueba Rápida VIH",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoVIH",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "afc399df-0376-4e3a-a8f5-cac6aa2d4bb9",
+                "answers": [
+                  {
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
+                  },
+                  {
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No Reactivo"
+                  },
+                  {
+                    "concept": "6b2f3df1-6b77-4b81-8acc-d0a88bcb7a04",
+                    "label": "No Determinado"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Trimestre del tamizaje VIH",
+              "type": "obs",
+              "required": false,
+              "id": "trimestreVIH",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "answers": [
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Primer Trimestre (< 14 sem)"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Segundo Trimestre (14-27 sem)"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Tercer Trimestre (≥ 28 sem)"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Prueba de Sífilis (RPR/VDRL)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Resultado Prueba Sífilis RPR/VDRL",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoSifilis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "7218b021-712f-49d8-b733-76bf899c1bde",
+                "answers": [
+                  {
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
+                  },
+                  {
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No Reactivo"
+                  },
+                  {
+                    "concept": "6b2f3df1-6b77-4b81-8acc-d0a88bcb7a04",
+                    "label": "No Determinado"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Trimestre del tamizaje Sífilis",
+              "type": "obs",
+              "required": false,
+              "id": "trimestreSifilis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "answers": [
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Primer Trimestre (< 14 sem)"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Segundo Trimestre (14-27 sem)"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Tercer Trimestre (≥ 28 sem)"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Prueba Rápida de Hepatitis B (HBsAg)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Resultado Prueba Rápida Antígeno de Superficie Hepatitis B",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoHepB",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6d2eaa49-ea92-4404-a5be-5f7081e6c6d5",
+                "answers": [
+                  {
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
+                  },
+                  {
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No Reactivo"
+                  },
+                  {
+                    "concept": "6b2f3df1-6b77-4b81-8acc-d0a88bcb7a04",
+                    "label": "No Determinado"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Hemoglobina",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Hemoglobina (g/dL)",
+              "type": "obs",
+              "required": false,
+              "id": "hemoglobina",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "0ffe780c-a3ee-4c9c-b4dd-bf2e0f79dc7f",
+                "min": "3",
+                "max": "25",
+                "step": 0.1,
+                "disallowDecimals": false
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Clasificación de Anemia",
+              "type": "obs",
+              "required": false,
+              "id": "clasificacionAnemia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "82e4809f-801f-4fc8-8872-f180cf7fcb3c",
+                "answers": [
+                  {
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sin Anemia (≥ 11.0 g/dL)"
+                  },
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Anemia Leve (10.0 - 10.9 g/dL)"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Anemia Moderada (7.0 - 9.9 g/dL)"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Anemia Severa (< 7.0 g/dL)"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(hemoglobina)"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Tamizaje prenatal obligatorio: VIH, Sífilis (RPR/VDRL) y Hepatitis B (HBsAg) según NTS 159 MINSA.",
+  "version": "1.0.0"
+}

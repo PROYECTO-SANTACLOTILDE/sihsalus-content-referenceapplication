@@ -1,0 +1,147 @@
+{
+  "name": "CRED-002-SUPLEMENTACIÓN NIÑO",
+  "pages": [
+    {
+      "label": "Suplementación con Micronutrientes",
+      "sections": [
+        {
+          "label": "Entrega de Suplemento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Tipo de suplemento",
+              "type": "obs",
+              "required": true,
+              "id": "tipoSuplemento",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "answers": [
+                  {
+                    "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                    "label": "Multimicronutrientes (MMN)"
+                  },
+                  {
+                    "concept": "03a4f101-bf46-4923-97a1-759d926dee00",
+                    "label": "Sulfato Ferroso"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Cantidad de sobres MMN entregados",
+              "type": "obs",
+              "required": false,
+              "id": "cantidadMMN",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "min": "0",
+                "max": "90",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "tipoSuplemento !== 'd80c3551-2a6c-49ac-a541-0b17957f9657'"
+              },
+              "validators": []
+            },
+            {
+              "label": "Cantidad de Sulfato Ferroso entregado (frascos)",
+              "type": "obs",
+              "required": false,
+              "id": "cantidadHierro",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "03a4f101-bf46-4923-97a1-759d926dee00",
+                "min": "0",
+                "max": "30",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "tipoSuplemento !== '03a4f101-bf46-4923-97a1-759d926dee00'"
+              },
+              "validators": []
+            },
+            {
+              "label": "Consejería nutricional brindada",
+              "type": "obs",
+              "required": false,
+              "id": "consejeriaNutricional",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Registro de entrega de micronutrientes (MMN) o sulfato ferroso según Directiva 068 MINSA.",
+  "version": "1.0.0"
+}

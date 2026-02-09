@@ -1,0 +1,192 @@
+{
+  "name": "OBST-011-SUPLEMENTACIÓN GESTANTE",
+  "pages": [
+    {
+      "label": "Suplementación Prenatal",
+      "sections": [
+        {
+          "label": "Indicación de Suplementos",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Edad gestacional (semanas)",
+              "type": "obs",
+              "required": true,
+              "id": "edadGestacional",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "min": "0",
+                "max": "42",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Indicación Ácido Fólico (tabletas)",
+              "type": "obs",
+              "required": false,
+              "id": "indicacionAcidoFolico",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "7418c3a3-4c2a-4943-91db-ae2b561d6ded",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "alert": {
+                "alertWhenExpression": "edadGestacional < 14",
+                "message": "Antes de las 14 semanas se indica ácido fólico solo (400 mcg/día)"
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicación Fierro/Ácido Fólico (tabletas)",
+              "type": "obs",
+              "required": false,
+              "id": "indicacionFierroAcFolico",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "03a4f101-bf46-4923-97a1-759d926dee00",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "alert": {
+                "alertWhenExpression": "edadGestacional >= 14",
+                "message": "A partir de las 14 semanas se indica fierro + ácido fólico (60mg Fe + 400mcg AF/día)"
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicación Calcio (tabletas)",
+              "type": "obs",
+              "required": false,
+              "id": "indicacionCalcio",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "15df7b2b-ad43-410e-9edb-d1f40320faf4",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "alert": {
+                "alertWhenExpression": "edadGestacional >= 20",
+                "message": "A partir de las 20 semanas se indica calcio (2000 mg/día)"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Adherencia",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Indicador Ácido Fólico (% adherencia)",
+              "type": "obs",
+              "required": false,
+              "id": "indicadorAcidoFolico",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c4a30e3e-c181-457c-8ee6-beccb955b985",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Indicador Fierro/Ác. Fólico ≥16 sem (% adherencia)",
+              "type": "obs",
+              "required": false,
+              "id": "indicadorFierroAcFolico16",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "38192c90-b95b-4e68-b13d-28092566385e",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "edadGestacional < 16"
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicador Calcio (% adherencia)",
+              "type": "obs",
+              "required": false,
+              "id": "indicadorCalcio",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "892b26bd-007b-41dd-b976-42ff06592011",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "edadGestacional < 20"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Registro de suplementación prenatal (ácido fólico, fierro+ác. fólico, calcio) según Directiva 069 MINSA y NTS 105.",
+  "version": "1.0.0"
+}

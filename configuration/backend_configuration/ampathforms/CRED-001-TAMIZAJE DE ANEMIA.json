@@ -1,0 +1,154 @@
+{
+  "name": "CRED-001-TAMIZAJE DE ANEMIA",
+  "pages": [
+    {
+      "label": "Tamizaje de Anemia",
+      "sections": [
+        {
+          "label": "Resultado de Hemoglobina",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Hemoglobina (g/dL)",
+              "type": "obs",
+              "required": true,
+              "id": "hemoglobina",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "0ffe780c-a3ee-4c9c-b4dd-bf2e0f79dc7f",
+                "min": "3",
+                "max": "25",
+                "step": 0.1,
+                "disallowDecimals": false
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Altitud del establecimiento (m.s.n.m.)",
+              "type": "obs",
+              "required": false,
+              "id": "altitud",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "5000",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "alert": {
+                "alertWhenExpression": "altitud > 1000",
+                "message": "Se aplicará factor de corrección por altitud según tabla OMS"
+              },
+              "validators": []
+            },
+            {
+              "label": "Clasificación de Anemia",
+              "type": "obs",
+              "required": false,
+              "id": "clasificacionAnemia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "82e4809f-801f-4fc8-8872-f180cf7fcb3c",
+                "answers": [
+                  {
+                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sin Anemia (≥ 11.0 g/dL)"
+                  },
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Anemia Leve (10.0 - 10.9 g/dL)"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Anemia Moderada (7.0 - 9.9 g/dL)"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Anemia Severa (< 7.0 g/dL)"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Tratamiento Indicado",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Administración de Micronutriente (sobres)",
+              "type": "obs",
+              "required": false,
+              "id": "micronutriente",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "min": "0",
+                "max": "90",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Tamizaje de anemia en niños según NTS 137. Registra hemoglobina, clasificación y tratamiento.",
+  "version": "1.0.0"
+}
