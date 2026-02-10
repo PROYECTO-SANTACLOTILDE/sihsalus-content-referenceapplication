@@ -12,6 +12,24 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - **Formularios AMPATH**: 5 nuevos formularios clínicos para CRED y Madre Gestante
 - **Concept Sources**: Nuevos códigos y descripciones en `conceptsources.csv`
 
+### Programas clínicos obligatorios (normativa MINSA)
+- **Tuberculosis** (NTS 200-MINSA/DGIESP-2023, RM 339-2023)
+- **VIH/SIDA** (NTS 169-MINSA/2020, RM 1024-2020)
+- **Adulto Mayor** (NTS 207-MINSA/DGIESP-2023, RM 789-2023)
+- **Planificación Familiar** (NTS 124-MINSA/2016, RM 652-2016)
+- **Enfermedades No Transmisibles** (PP 0018, PP 0024)
+- **Enfermedades Metaxénicas y Zoonosis** (PP 0017)
+
+### Encounter types obligatorios (normativa MINSA)
+- **Diagnóstico y Seguimiento de Tuberculosis** (NTS 200)
+- **Tamizaje de VIH** (NTS 169)
+- **Manejo de Terapia Antirretroviral - TARGA** (NTS 169)
+- **Valoración Clínica del Adulto Mayor - VACAM** (NTS 207)
+- **Consejería en Planificación Familiar** (NTS 124)
+- **Tamizaje de Cáncer Cervical - PAP/IVAA** (PP 0024)
+- **Atención de Enfermedades Metaxénicas** (PP 0017)
+- **Atención Integral del Adolescente** (NTS 157)
+
 ### Corregido
 - **GitHub Actions**: Workflow CI ahora apunta a branch `master` en lugar de `main`
 
