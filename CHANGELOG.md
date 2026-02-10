@@ -5,6 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.2.0] - 2026-02-10
+
+### Agregado
+- **Encounter Type**: Sesión de Psicoprofilaxis (RM 361-2011)
+- **Formularios AMPATH**: 5 nuevos formularios clínicos para CRED y Madre Gestante
+- **Concept Sources**: Nuevos códigos y descripciones en `conceptsources.csv`
+
+### Corregido
+- **GitHub Actions**: Workflow CI ahora apunta a branch `master` en lugar de `main`
+
+---
+
 ## [1.1.1] - 2026-01-13
 
 ### 🔴 HOTFIX - Corregido
