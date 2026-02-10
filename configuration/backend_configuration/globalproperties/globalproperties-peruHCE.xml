@@ -1,5 +1,26 @@
 <config>
     <globalProperties>
+        <!-- Core OpenMRS properties (from reference application) -->
+        <globalProperty>
+            <property>concept.true</property>
+            <value>1</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>concept.false</property>
+            <value>2</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>visits.assignmentHandler</property>
+            <value>org.openmrs.api.handler.ExistingVisitAssignmentHandler</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>visits.allowOverlappingVisits</property>
+            <value>false</value>
+        </globalProperty>
+
         <globalProperty>
             <property>application.name</property>
             <value>SIH SALUS</value>

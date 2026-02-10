@@ -15,6 +15,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Corregido
 - **GitHub Actions**: Workflow CI ahora apunta a branch `master` en lugar de `main`
 
+### Metadata alineada con referenceapplication
+- **Cohort Types**: Agregado `cohorttypes/cohorttypes.csv` con System List y My List (faltaba completamente)
+- **Global Properties**: Agregadas 4 propiedades core: `concept.true`, `concept.false`, `visits.assignmentHandler`, `visits.allowOverlappingVisits`
+- **Privilegios**: Agregado privilegio `O3 Implementer Tools` (requerido para herramientas de implementador O3)
+
 ---
 
 ## [1.1.1] - 2026-01-13

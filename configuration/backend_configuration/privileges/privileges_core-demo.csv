@@ -1,4 +1,5 @@
 Uuid,Privilege name,Description,_order:1000
+226b62b1-deac-4e2a-8e89-4f66c9a19423,O3 Implementer Tools,Allows access to the O3 Implementer Tools features,
 079c1025-6892-469d-aa4d-6ad2003f07d4,Preview Forms,Allows user to preview Form Entry pages from files. This should be restricted to trusted users only.,,
 f47ac43d-2328-4f0e-948d-88062e0d6345,Manage Cohort Definitions,Add/Edit/Remove Cohort Definitions,
 35360a98-eebf-4cc0-812d-80b6025cfea3,Manage Order Set Attribute Types,Able to add/edit/retire order set attribute types,
