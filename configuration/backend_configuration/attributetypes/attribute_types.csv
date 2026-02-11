@@ -6,5 +6,5 @@ d6c9e7a5-8134-49e3-a2c5-b8f4c3d2e1a9,,Visit,Parent Visit Type,"UUID del tipo de 
 0da4d3db-4385-40de-a4b0-fd8d89c4ec10,,Provider,Número de Colegiatura,"Número de Colegiatura del médico",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 08b7f0cb-907f-437f-a8da-85236f7b924e,,Provider,Labor Desempeñado,"Labor que desempeña la persona",0,3,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 0d52f06d-6cfa-45ae-b197-015d85e9a438,,Provider,Profesión,"Profesión de la persona",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
-0d52f06d-6cfa-45ae-b197-015d85e9a438,,Provider,Colegio Médico,"Colegio Médico del Profesional de Salud",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,a8dd12f7-50bc-490a-8253-0fc5284d93df,,,
+eacb4514-31cb-4b76-9ecf-cf3c343d8000,,Provider,Colegio Médico,"Colegio Médico del Profesional de Salud",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,a8dd12f7-50bc-490a-8253-0fc5284d93df,,,
 0da4d3db-4385-40de-a4b0-fd8d89c4ec11,,Provider,Condición de Contrato,"Condición de contrato del provider",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,213303bf-eeff-41e8-87b7-daaceef77cd2,,,

@@ -152,7 +152,7 @@
         <!-- ESM Fast Data Entry Configuration -->
         <globalProperty>
             <property>@openmrs/esm-fast-data-entry-app.groupSessionVisitTypeUuid</property>
-            <value>123e4567-e89b-12d3-a456-426614174000</value>
+            <value>b1f0e8a1-9c5d-4f0e-8892-81f3140fbc09</value>
             <description>UUID of the visit type used by Fast Data Entry to create visits when in
                 'group sessions' entry workflow</description>
         </globalProperty>

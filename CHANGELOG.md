@@ -5,6 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.6.0] - 2026-02-11
+
+### Corregido
+- **UUIDs**: Regenerados 43 UUIDs inválidos (contenían caracteres no-hexadecimales) en encounter types, encounter roles, service definitions, visit types, programs, person attribute types, order frequencies y metadata term mappings
+- **Formularios AMPATH**: Actualizados 33 formularios JSON con los nuevos UUIDs de encounter types
+- **Cascading fixes**: Actualizadas colas de atención y metadata term mappings con los nuevos UUIDs referenciados
+- **HOSP-010**: Corregido `encounterType` vacío en Epicrisis Obstétrico-Postparto (ahora apunta a Epicrisis Médica HSC)
+- **Attribute Types**: Corregido UUID duplicado entre Profesión y Colegio Médico en provider attributes
+- **Global Properties**: Reemplazado UUID placeholder (RFC 4122 example) en Fast Data Entry por UUID real de Consulta Ambulatoria
+
+---
+
 ## [1.5.0] - 2026-02-11
 
 ### Agregado

@@ -450,7 +450,7 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "",
+  "encounterType": "dc8c79e5-41cd-4c5b-ae71-6de503038407",
   "encounter": "Hospitalización",
   "published": true,
   "retired": false,
