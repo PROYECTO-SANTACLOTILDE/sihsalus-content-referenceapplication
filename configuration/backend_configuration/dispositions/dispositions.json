@@ -1,0 +1,77 @@
+[
+  {
+    "uuid": "b37386de-b14d-4830-84b6-11324cd96aab",
+    "name": "Admitir al Hospital",
+    "conceptCode": "CIEL:1654",
+    "type": "ADMIT",
+    "careSettingType": "INPATIENT",
+    "actions": [
+      "admitToSpecificLocationAction"
+    ],
+    "additionalObs": [
+      {
+        "label": "Ubicación de Admisión",
+        "conceptCode": "CIEL:159791",
+        "params": {
+          "type": "org.openmrs.Location"
+        }
+      }
+    ]
+  },
+  {
+    "uuid": "16a8ef88-3590-4430-8f06-e19f18ef2e07",
+    "name": "Alta Hospitalaria",
+    "conceptCode": "CIEL:1657",
+    "type": "DISCHARGE",
+    "actions": [
+      "closeCurrentVisitAction"
+    ]
+  },
+  {
+    "uuid": "799820e5-834a-4269-9724-4e061e288ece",
+    "name": "Transferir a Otro Establecimiento",
+    "conceptCode": "CIEL:1655",
+    "type": "TRANSFER",
+    "actions": [
+      "transferToSpecificLocationAction"
+    ],
+    "additionalObs": [
+      {
+        "label": "Ubicación de Transferencia",
+        "conceptCode": "CIEL:160473",
+        "params": {
+          "type": "org.openmrs.Location"
+        }
+      }
+    ]
+  },
+  {
+    "uuid": "c94adab7-5534-45e1-b6d5-e1dd3a8dbc23",
+    "name": "Fallecido",
+    "conceptCode": "CIEL:1656",
+    "type": "DISCHARGE",
+    "actions": [
+      "markPatientDeadAction",
+      "closeCurrentVisitAction"
+    ]
+  },
+  {
+    "uuid": "ce4310fa-4453-41a0-8a8b-6a6f0bf2dcb6",
+    "name": "Observación",
+    "conceptCode": "CIEL:1654",
+    "type": "ADMIT",
+    "careSettingType": "INPATIENT",
+    "actions": [
+      "admitToSpecificLocationAction"
+    ],
+    "additionalObs": [
+      {
+        "label": "Ubicación de Observación",
+        "conceptCode": "CIEL:159791",
+        "params": {
+          "type": "org.openmrs.Location"
+        }
+      }
+    ]
+  }
+]

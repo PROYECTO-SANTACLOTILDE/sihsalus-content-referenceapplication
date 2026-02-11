@@ -5,6 +5,17 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.4.0] - 2026-02-11
+
+### Agregado
+- **FHIR Patient Identifier Systems**: URLs FHIR para todos los identificadores peruanos (DNI/RENIEC, CE, Pasaporte, CNV, Historia Clínica) - Requerido para interoperabilidad RENHICE (Ley 30024)
+- **Dispositions**: Configuración de disposiciones clínicas (Admitir, Alta, Transferir, Fallecido, Observación) para flujo hospitalario O3
+
+### Nota
+Las dispositions requieren conceptos CIEL que deben agregarse a la colección OCL: 164180 (Disposition set), 1654 (Admit), 1655 (Transfer), 1656 (Died), 1657 (Discharge), 159791 (Admission Location), 160473 (Transfer Location)
+
+---
+
 ## [1.3.0] - 2026-02-11
 
 ### Agregado
