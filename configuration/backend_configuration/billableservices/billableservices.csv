@@ -1,4 +1,4 @@
-Uuid,Void/Retire,Name,Description,Service Type,Service Status,Concept,Stockable,Price,_order:1000
+Uuid,Void/Retire,service name,Description,Service Type,Service Status,Concept,Stockable,Price,_order:1000
 5689a516-f9e4-4a88-b068-2ac0d132953e,,Consulta Ambulatoria - Medicina General,Consulta ambulatoria por médico general (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
 e89cec1e-b5d0-448c-b04e-33473719ac51,,Consulta Ambulatoria - Obstetricia,Consulta ambulatoria por obstetra,SERVICE,ENABLED,,false,,
 4b63bdcd-3c22-4c22-8c3e-877c95a0608b,,Consulta Ambulatoria - Psicología,Consulta ambulatoria por psicólogo(a),SERVICE,ENABLED,,false,,
