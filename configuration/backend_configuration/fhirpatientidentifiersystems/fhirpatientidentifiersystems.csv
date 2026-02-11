@@ -1,0 +1,7 @@
+Uuid,Void/Retire,Patient identifier type,Url,_order:1000
+6000e616-4af9-4631-841a-f96a441875bd,,N° Historia Clínica,https://santaclotilde.salud.gob.pe/fhir/sid/historia-clinica,
+34da7f93-8e77-4abe-a916-87876672a2aa,,DNI,https://www.reniec.gob.pe/fhir/sid/dni,
+18275b05-6aef-4130-8079-ff8ac6bdd18d,,CE,https://www.migraciones.gob.pe/fhir/sid/carnet-extranjeria,
+e7615aea-2079-41f8-be23-9d4cf41a5274,,PASS,http://hl7.org/fhir/sid/passport-PER,
+a2c45037-9169-43b5-af38-c1084622b5b8,,DIE,https://www.migraciones.gob.pe/fhir/sid/documento-identidad-extranjero,
+6b417eff-ba06-4ea8-8f04-ce3c9d9e561c,,CNV,https://www.reniec.gob.pe/fhir/sid/certificado-nacido-vivo,
