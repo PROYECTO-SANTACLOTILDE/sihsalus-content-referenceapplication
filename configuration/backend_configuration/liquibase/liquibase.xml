@@ -5,15 +5,9 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9 http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
     <changeSet id="increase-name-varchar-20250325" author="gonzalo g.">
-        <comment>Aumenta la longitud del campo name en concept_name de 255 a 973.
-        Se eliminan y recrean los índices con prefijo porque VARCHAR(973) con utf8mb4
-        excede el límite de 3072 bytes para claves de índice en InnoDB.</comment>
+        <comment>Aumenta la longitud del campo name en concept_name de 255 a 500</comment>
         <sql>
-            DROP INDEX name_of_concept ON concept_name;
-            DROP INDEX concept_name_duplicate ON concept_name;
-            ALTER TABLE concept_name MODIFY COLUMN name VARCHAR(973) NOT NULL DEFAULT '';
-            CREATE INDEX name_of_concept ON concept_name (name(255));
-            CREATE INDEX concept_name_duplicate ON concept_name (name(255), locale, voided);
+            ALTER TABLE concept_name MODIFY COLUMN name VARCHAR(500) NOT NULL DEFAULT '';
         </sql>
     </changeSet>
 
