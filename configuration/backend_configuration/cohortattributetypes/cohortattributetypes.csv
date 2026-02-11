@@ -1,0 +1,4 @@
+Uuid,Void/Retire,Name,Description,Datatype classname,Min occurs,Max occurs,Preferred handler classname,Handler config,_order:1000
+70d8be3c-3a3c-4c64-b394-cee994f60cbe,,Descripción de la Lista,Descripción textual del propósito de la lista de pacientes,org.openmrs.customdatatype.datatype.FreeTextDatatype,0,1,,
+8f8da69a-6b7b-4c24-9c5e-ebcb81c692f9,,Ubicación de la Lista,Ubicación (UPSS) asociada a esta lista de pacientes,org.openmrs.customdatatype.datatype.LocationDatatype,0,1,,
+ca938ca5-5253-4f09-8380-10ce88ecb2dc,,Programa Asociado,Programa clínico vinculado a esta cohorte de pacientes,org.openmrs.customdatatype.datatype.FreeTextDatatype,0,1,,

@@ -5,6 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.5.0] - 2026-02-11
+
+### Agregado
+- **Message Properties**: Traducciones i18n al español (`messages_es.properties`) con terminología MINSA
+- **Cash Points**: 3 puntos de caja (Admisión, Farmacia, Emergencia) para módulo de billing
+- **Billable Services**: 14 servicios facturables alineados con las UPSS del hospital (consultas, laboratorio, ecografía, cirugía, hemodiálisis, etc.)
+- **Cohort Attribute Types**: 3 atributos para listas de pacientes (descripción, ubicación, programa asociado)
+
+---
+
 ## [1.4.0] - 2026-02-11
 
 ### Agregado
