@@ -7,6 +7,10 @@ on:
     branches: [ master ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     strategy:
@@ -26,7 +30,16 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
+          server-id: github-sihsalus-content
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
       - name: Build with Maven
         id: build_with_maven
         run: |
           mvn clean verify --batch-mode --file pom.xml
+      - name: Deploy to GitHub Packages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: |
+          mvn deploy --batch-mode --file pom.xml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
