@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openmrs.content</groupId>
     <artifactId>sihsalus</artifactId>
-    <version>1.7.1</version>
+    <version>1.7.2</version>
     <packaging>pom</packaging>
     <name>Sih salus</name>
     <description>Content Package de SIH SALUS</description>
