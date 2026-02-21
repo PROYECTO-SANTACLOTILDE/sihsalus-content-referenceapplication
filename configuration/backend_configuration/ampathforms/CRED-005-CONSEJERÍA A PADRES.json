@@ -1,0 +1,182 @@
+{
+  "name": "CRED-005-CONSEJERÍA A PADRES",
+  "pages": [
+    {
+      "label": "Consejería a Padres / Cuidadores",
+      "sections": [
+        {
+          "label": "Datos de la Sesión",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la sesión",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSesion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Tema de consejería",
+              "type": "obs",
+              "required": true,
+              "id": "temaConsejeria",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Estimulación temprana en el hogar"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Lactancia materna"
+                  },
+                  {
+                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
+                    "label": "Alimentación complementaria"
+                  },
+                  {
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "label": "Higiene y cuidados del niño"
+                  },
+                  {
+                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "label": "Vínculo afectivo y crianza positiva"
+                  },
+                  {
+                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "label": "Prevención de accidentes"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Desarrollo de la Consejería",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Asistió cuidador principal",
+              "type": "obs",
+              "required": false,
+              "id": "asistioCuidador",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Se indicaron actividades para el hogar",
+              "type": "obs",
+              "required": false,
+              "id": "actividadesHogar",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Descripción de actividades indicadas",
+              "type": "obs",
+              "required": false,
+              "id": "descripcionActividades",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "hide": {
+                "hideWhenExpression": "actividadesHogar !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "3m4n5o6p-3234-5678-9101-abcdefghij13",
+  "encounter": "Educación Sanitaria y Consejería",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Registro de sesiones de consejería a padres/cuidadores sobre estimulación temprana, lactancia, alimentación y crianza según NTS 137 MINSA.",
+  "version": "1.0.0"
+}

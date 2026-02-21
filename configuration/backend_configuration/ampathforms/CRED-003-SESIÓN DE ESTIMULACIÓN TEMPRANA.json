@@ -1,0 +1,243 @@
+{
+  "name": "CRED-003-SESIÓN DE ESTIMULACIÓN TEMPRANA",
+  "pages": [
+    {
+      "label": "Sesión de Estimulación Temprana",
+      "sections": [
+        {
+          "label": "Datos de la Sesión",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la sesión",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSesion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Edad del niño (meses)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "60",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Número de sesión",
+              "type": "obs",
+              "required": true,
+              "id": "numeroSesion",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "1",
+                "max": "24",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Áreas de Desarrollo Trabajadas",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Área motora",
+              "type": "obs",
+              "required": false,
+              "id": "areaMotora",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Área de coordinación",
+              "type": "obs",
+              "required": false,
+              "id": "areaCoordinacion",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Área social",
+              "type": "obs",
+              "required": false,
+              "id": "areaSocial",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Área de lenguaje",
+              "type": "obs",
+              "required": false,
+              "id": "areaLenguaje",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Participación y Observaciones",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Participó el cuidador principal",
+              "type": "obs",
+              "required": false,
+              "id": "participoCuidador",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Actividades realizadas",
+              "type": "obs",
+              "required": false,
+              "id": "actividadesRealizadas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Registro de sesiones de estimulación temprana del desarrollo infantil según NTS 137 MINSA. Áreas: motora, coordinación, social, lenguaje.",
+  "version": "1.0.0"
+}

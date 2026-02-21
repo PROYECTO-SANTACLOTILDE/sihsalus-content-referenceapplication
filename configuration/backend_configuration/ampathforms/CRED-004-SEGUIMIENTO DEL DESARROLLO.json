@@ -1,0 +1,220 @@
+{
+  "name": "CRED-004-SEGUIMIENTO DEL DESARROLLO",
+  "pages": [
+    {
+      "label": "Seguimiento del Desarrollo",
+      "sections": [
+        {
+          "label": "Datos de la Evaluación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la evaluación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Edad del niño (meses)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "60",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Instrumento de evaluación utilizado",
+              "type": "obs",
+              "required": true,
+              "id": "instrumentoEvaluacion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "EEDP (0-24 meses)"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TEPSI (2-5 años)"
+                  },
+                  {
+                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
+                    "label": "Test abreviado peruano (TA)"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Resultado de la Evaluación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Resultado global",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoGlobal",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "114681AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "114682AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Retraso"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Puntaje obtenido",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeObtenido",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "100",
+                "step": 1,
+                "disallowDecimals": false
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Hitos alcanzados",
+              "type": "obs",
+              "required": false,
+              "id": "hitosAlcanzados",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Plan de Intervención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Requiere derivación a especialista",
+              "type": "obs",
+              "required": false,
+              "id": "requiereDerivacion",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de intervención",
+              "type": "obs",
+              "required": false,
+              "id": "planIntervencion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (EEDP/TEPSI/TA) según NTS 137 MINSA.",
+  "version": "1.0.0"
+}
