@@ -47,7 +47,7 @@
               "id": "numeroSesion",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010001-0000-4000-8000-000000000001",
                 "min": "1",
                 "max": "24",
                 "step": 1,
@@ -69,7 +69,7 @@
               "id": "areaMotora",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010002-0000-4000-8000-000000000002",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -90,7 +90,7 @@
               "id": "areaCoordinacion",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010003-0000-4000-8000-000000000003",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -111,7 +111,7 @@
               "id": "areaSocial",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010004-0000-4000-8000-000000000004",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -132,7 +132,7 @@
               "id": "areaLenguaje",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010005-0000-4000-8000-000000000005",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -159,7 +159,7 @@
               "id": "participoCuidador",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c3010006-0000-4000-8000-000000000006",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -180,7 +180,7 @@
               "id": "actividadesRealizadas",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "c3010007-0000-4000-8000-000000000007"
               },
               "validators": []
             },
@@ -232,12 +232,12 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
   "encounter": "Control de Niño Sano",
   "published": true,
   "retired": false,
   "referencedForms": [],
   "uuid": "",
   "description": "Registro de sesiones de estimulación temprana del desarrollo infantil según NTS 137 MINSA. Áreas: motora, coordinación, social, lenguaje.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

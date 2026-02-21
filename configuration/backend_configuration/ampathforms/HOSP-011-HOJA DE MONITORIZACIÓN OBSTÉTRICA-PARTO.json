@@ -25,7 +25,7 @@
               },
               "id": "monitorizacionObstetrica",
               "label": "Monitorización Obstétrica",
-              "questions":[
+              "questions": [
                 {
                   "type": "obs",
                   "questionOptions": {
@@ -127,7 +127,7 @@
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "ba6099d8-f7ce-41de-b9ec-6e8b42252911",
-                    "answers":[
+                    "answers": [
                       {
                         "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
                         "label": "Leve"
@@ -196,6 +196,37 @@
                   "label": "Observaciones"
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
             }
           ]
         }

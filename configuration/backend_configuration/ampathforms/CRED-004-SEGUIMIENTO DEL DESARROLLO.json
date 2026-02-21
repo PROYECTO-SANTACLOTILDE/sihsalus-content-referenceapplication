@@ -47,18 +47,18 @@
               "id": "instrumentoEvaluacion",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c4010001-0000-4000-8000-000000000001",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c4010011-0000-4000-8000-000000000011",
                     "label": "EEDP (0-24 meses)"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c4010012-0000-4000-8000-000000000012",
                     "label": "TEPSI (2-5 años)"
                   },
                   {
-                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
+                    "concept": "c4010013-0000-4000-8000-000000000013",
                     "label": "Test abreviado peruano (TA)"
                   }
                 ]
@@ -78,18 +78,18 @@
               "id": "resultadoGlobal",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c4010002-0000-4000-8000-000000000002",
                 "answers": [
                   {
                     "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Normal"
                   },
                   {
-                    "concept": "114681AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c4010021-0000-4000-8000-000000000021",
                     "label": "Riesgo"
                   },
                   {
-                    "concept": "114682AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c4010022-0000-4000-8000-000000000022",
                     "label": "Retraso"
                   }
                 ]
@@ -103,7 +103,7 @@
               "id": "puntajeObtenido",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c4010003-0000-4000-8000-000000000003",
                 "min": "0",
                 "max": "100",
                 "step": 1,
@@ -119,7 +119,7 @@
               "id": "hitosAlcanzados",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "c4010004-0000-4000-8000-000000000004"
               },
               "validators": []
             }
@@ -136,7 +136,7 @@
               "id": "requiereDerivacion",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c4010005-0000-4000-8000-000000000005",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -157,7 +157,7 @@
               "id": "planIntervencion",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "c4010006-0000-4000-8000-000000000006"
               },
               "validators": []
             },
@@ -209,12 +209,12 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "3w4x5y6z-3234-5678-9101-abcdefghij23",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
   "encounter": "Control de Niño Sano",
   "published": true,
   "retired": false,
   "referencedForms": [],
   "uuid": "",
   "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (EEDP/TEPSI/TA) según NTS 137 MINSA.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

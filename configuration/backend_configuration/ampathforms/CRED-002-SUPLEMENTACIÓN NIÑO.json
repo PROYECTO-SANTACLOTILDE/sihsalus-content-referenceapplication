@@ -5,6 +5,28 @@
       "label": "Suplementación con Micronutrientes",
       "sections": [
         {
+          "label": "Datos de la Entrega",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la entrega",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEntrega",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "Entrega de Suplemento",
           "isExpanded": "true",
           "questions": [
@@ -15,7 +37,7 @@
               "id": "tipoSuplemento",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "concept": "c2010001-0000-4000-8000-000000000001",
                 "answers": [
                   {
                     "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
@@ -36,7 +58,7 @@
               "id": "cantidadMMN",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "concept": "c2010002-0000-4000-8000-000000000002",
                 "min": "0",
                 "max": "90",
                 "step": 1,
@@ -55,7 +77,7 @@
               "id": "cantidadHierro",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "03a4f101-bf46-4923-97a1-759d926dee00",
+                "concept": "c2010003-0000-4000-8000-000000000003",
                 "min": "0",
                 "max": "30",
                 "step": 1,
@@ -74,7 +96,7 @@
               "id": "consejeriaNutricional",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c2010004-0000-4000-8000-000000000004",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -143,5 +165,5 @@
   "referencedForms": [],
   "uuid": "",
   "description": "Registro de entrega de micronutrientes (MMN) o sulfato ferroso según Directiva 068 MINSA.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

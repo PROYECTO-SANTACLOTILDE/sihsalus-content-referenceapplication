@@ -16,7 +16,7 @@
               },
               "id": "evolucionMedica",
               "label": "Evolución médica",
-              "questions":[
+              "questions": [
                 {
                   "type": "obs",
                   "questionOptions": {
@@ -53,7 +53,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "disallowDecimals": true,
-                "min": "0",						  
+                "min": "0",
                 "max": "100",
                 "concept": "104b6741-cf34-4805-875c-f475748092b3"
               },
@@ -69,6 +69,37 @@
               },
               "id": "servicio",
               "label": "Servicio"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "required": true,
+              "label": "Rol del responsable"
             }
           ]
         }

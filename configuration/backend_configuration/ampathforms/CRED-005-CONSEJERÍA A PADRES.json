@@ -31,30 +31,30 @@
               "id": "temaConsejeria",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "163530AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c5010001-0000-4000-8000-000000000001",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c5010011-0000-4000-8000-000000000011",
                     "label": "Estimulación temprana en el hogar"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c5010012-0000-4000-8000-000000000012",
                     "label": "Lactancia materna"
                   },
                   {
-                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
+                    "concept": "c5010013-0000-4000-8000-000000000013",
                     "label": "Alimentación complementaria"
                   },
                   {
-                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "concept": "c5010014-0000-4000-8000-000000000014",
                     "label": "Higiene y cuidados del niño"
                   },
                   {
-                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "concept": "c5010015-0000-4000-8000-000000000015",
                     "label": "Vínculo afectivo y crianza positiva"
                   },
                   {
-                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "concept": "c5010016-0000-4000-8000-000000000016",
                     "label": "Prevención de accidentes"
                   }
                 ]
@@ -74,7 +74,7 @@
               "id": "asistioCuidador",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c5010002-0000-4000-8000-000000000002",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -95,7 +95,7 @@
               "id": "actividadesHogar",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c5010003-0000-4000-8000-000000000003",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -116,7 +116,7 @@
               "id": "descripcionActividades",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "c5010004-0000-4000-8000-000000000004"
               },
               "hide": {
                 "hideWhenExpression": "actividadesHogar !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
@@ -171,12 +171,12 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounterType": "3m4n5o6p-3234-5678-9101-abcdefghij13",
-  "encounter": "Educación Sanitaria y Consejería",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
   "published": true,
   "retired": false,
   "referencedForms": [],
   "uuid": "",
   "description": "Registro de sesiones de consejería a padres/cuidadores sobre estimulación temprana, lactancia, alimentación y crianza según NTS 137 MINSA.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }
