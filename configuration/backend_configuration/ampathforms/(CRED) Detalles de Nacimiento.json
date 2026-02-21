@@ -51,7 +51,7 @@
                                 "concept": "c4d39248-c896-433a-bc69-e24d04b7f0e5",
                                 "step": 0.1,
                                 "min": "25",
-                                "max": "40"
+                                "max": "60"
                             },
                             "id": "perimetroCefalicoAlNacer",
                             "label": "Perímetro cefálico al nacer"
@@ -86,7 +86,7 @@
                                 "concept": "911eb398-e7de-4270-af63-e4c615ec22a9",
                                 "step": 0.1,
                                 "min": "25",
-                                "max": "40"
+                                "max": "65"
                             },
                             "id": "perimetroToracicoAlNacer",
                             "label": "Perímetro torácico al nacer"

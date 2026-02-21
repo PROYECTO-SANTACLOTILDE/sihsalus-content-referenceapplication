@@ -1,5 +1,9 @@
 {
     "@pucp-gidis-hiisc/esm-maternal-and-child-health-app": {
+        "vitals": {
+            "encounterTypeUuid": "9da40eb7-927e-44e6-a981-2480c1f5386b",
+            "formUuid": ""
+        },
         "extensionSlots": {
             "neonatal-vitals-slot": {
                 "add": [
