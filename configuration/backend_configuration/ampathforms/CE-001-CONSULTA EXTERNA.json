@@ -1,0 +1,339 @@
+{
+  "name": "CE-001-CONSULTA EXTERNA",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "186c1e78-a99f-4cd0-86de-b8c4ee27a2b5",
+  "encounter": "Consulta Externa",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "",
+  "description": "Formulario de Consulta Externa ambulatoria. Registra motivo de consulta, examen clínico (SOAP), diagnóstico CIE-10, plan de tratamiento, financiador y pertenencia étnica. Basado en el FUA y la NTS N° 029-MINSA.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Motivo de Consulta",
+      "sections": [
+        {
+          "label": "Motivo de Consulta",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la consulta",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaConsulta",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "medicoResponsable",
+              "label": "Médico responsable"
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "consultorio",
+              "label": "Consultorio / Servicio"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "motivoConsulta",
+              "label": "Motivo de consulta / Síntoma principal",
+              "required": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Notas SOAP",
+      "sections": [
+        {
+          "label": "Evaluación Clínica (SOAP)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapSubjetivo",
+              "label": "S — Subjetivo (relato del paciente)"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapObjetivo",
+              "label": "O — Objetivo (hallazgos del examen físico)"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapEvaluacion",
+              "label": "A — Evaluación (análisis / impresión diagnóstica)"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapPlan",
+              "label": "P — Plan (conducta terapéutica)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Diagnóstico",
+      "sections": [
+        {
+          "label": "Diagnóstico Clasificado (CIE-10)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "diagnosticoPrincipal",
+              "label": "Diagnóstico principal (texto)",
+              "required": true
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "159946AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Definitivo"
+                  },
+                  {
+                    "concept": "159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Presuntivo"
+                  }
+                ]
+              },
+              "id": "certezaDiagnostica",
+              "label": "Tipo de diagnóstico"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "159946AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nuevo"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Repetido"
+                  }
+                ]
+              },
+              "id": "ocurrenciaDiagnostico",
+              "label": "Ocurrencia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Plan de Tratamiento",
+      "sections": [
+        {
+          "label": "Plan de Tratamiento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "id": "ordenesLaboratorio",
+              "label": "Órdenes de laboratorio / Exámenes auxiliares"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "id": "procedimientos",
+              "label": "Procedimientos (CPMS)"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "id": "prescripciones",
+              "label": "Prescripciones / Medicamentos"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "id": "indicacionesTerapeuticas",
+              "label": "Indicaciones terapéuticas"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 2
+              },
+              "id": "referencia",
+              "label": "Referencia / Interconsulta"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "id": "proximaCita",
+              "label": "Fecha de próxima cita",
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Financiador y Etnicidad",
+      "sections": [
+        {
+          "label": "Financiador",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "SIS"
+                  },
+                  {
+                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "EsSalud"
+                  },
+                  {
+                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Privado"
+                  },
+                  {
+                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Particular"
+                  }
+                ]
+              },
+              "id": "financiador",
+              "label": "Financiador / Aseguradora"
+            }
+          ]
+        },
+        {
+          "label": "Pertenencia Étnica",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Quechua"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Aimara"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nativo o Indígena de la Amazonía"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Negro / Moreno / Zambo / Mulato / Afro-peruano"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Blanco"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mestizo"
+                  },
+                  {
+                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "id": "pertenenciaEtnica",
+              "label": "Pertenencia étnica (autoidentificación)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
