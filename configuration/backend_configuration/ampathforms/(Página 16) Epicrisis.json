@@ -251,7 +251,8 @@
               "required": false,
               "id": "líQuidoAmnióTico",
               "questionOptions": {
-                "rendering": "text"
+                "rendering": "text",
+                "concept": "1c1b9203-3152-46c1-aab1-27a311924f31"
               },
               "validators": []
             },

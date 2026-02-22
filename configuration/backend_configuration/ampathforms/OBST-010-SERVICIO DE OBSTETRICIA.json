@@ -674,7 +674,7 @@
                   "label": "Edad gestacional (semanas)",
                   "type": "obs",
                   "required": false,
-                  "id": "edadGestacional(Semanas)",
+                  "id": "edadGestacionalAntecedentes(Semanas)",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": false,

@@ -5,11 +5,6 @@
       "label": "EEDP",
       "sections": [
         {
-          "label": "PROTOCOLO DE LA ESCALA DE EVALUACIÓN DEL DESARROLLO DEL NINO DE 0 A 2 AÑOS",
-          "isExpanded": "true",
-          "questions": []
-        },
-        {
           "label": "1 Mes",
           "isExpanded": "true",
           "questions": [
