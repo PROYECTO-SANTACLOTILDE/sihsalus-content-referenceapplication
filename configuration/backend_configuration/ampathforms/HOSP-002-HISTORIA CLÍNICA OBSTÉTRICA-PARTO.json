@@ -34,7 +34,7 @@
                     "concept": "76cdbe4d-d325-475a-90ec-3a77c8a48a38",
                     "answers": [
                       {
-                        "concept": "00044800-eb0c-4557-9eb7-c6adc99f7c92",
+                        "concept": "e724bdb6-2c75-4b6f-a00c-d43f2c372974",
                         "label": "Emergencia"
                       },
                       {
@@ -58,7 +58,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "7bb8eefc-929b-441b-80ba-80e0b18b504f"
+                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
               },
               "id": "anamnesisGroup",
               "label": "Anamnesis",
@@ -67,7 +67,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "textarea",
-                    "concept": "7bb8eefc-929b-441b-80ba-80e0b18b504f",
+                    "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9",
                     "rows": 3
                   },
                   "id": "anamnesis",

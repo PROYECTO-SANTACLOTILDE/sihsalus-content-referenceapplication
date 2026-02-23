@@ -134,7 +134,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "7bb8eefc-929b-441b-80ba-80e0b18b504f"
+                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
               },
               "id": "anamnesisGroup",
               "label": "Anamnesis",
@@ -143,7 +143,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "textarea",
-                    "concept": "7bb8eefc-929b-441b-80ba-80e0b18b504f",
+                    "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9",
                     "rows": 4
                   },
                   "id": "anamnesis",

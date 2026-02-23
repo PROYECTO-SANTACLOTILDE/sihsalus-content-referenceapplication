@@ -162,7 +162,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "3d7124e8-57e3-49c3-8ba6-eac083708dcc"
+                "concept": "1114AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "id": "funcionesVitalesGroup",
               "label": "Funciones Vitales",
@@ -1162,7 +1162,7 @@
                         "label": "Médico"
                       },
                       {
-                        "concept": "8fda9373-2c4f-4eb7-b71e-23ffafc39c66",
+                        "concept": "bf67e360-084c-4bf5-bd98-4c698c15007f",
                         "label": "Residente Médico"
                       },
                       {
@@ -1170,11 +1170,11 @@
                         "label": "Obstetriz"
                       },
                       {
-                        "concept": "0061df9a-dbe1-43e3-9ed6-063c0da1faa7",
+                        "concept": "c1200bea-2db3-4c37-a1bd-6f8aed5b6e2e",
                         "label": "Interno"
                       },
                       {
-                        "concept": "2e6e4a8a-39e7-48fe-a6d0-353c14d51e14",
+                        "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
                         "label": "Enfermera"
                       },
                       {
@@ -1242,7 +1242,7 @@
                         "label": "Médico"
                       },
                       {
-                        "concept": "8fda9373-2c4f-4eb7-b71e-23ffafc39c66",
+                        "concept": "bf67e360-084c-4bf5-bd98-4c698c15007f",
                         "label": "Residente Médico"
                       },
                       {
@@ -1250,11 +1250,11 @@
                         "label": "Obstetriz"
                       },
                       {
-                        "concept": "0061df9a-dbe1-43e3-9ed6-063c0da1faa7",
+                        "concept": "c1200bea-2db3-4c37-a1bd-6f8aed5b6e2e",
                         "label": "Interno"
                       },
                       {
-                        "concept": "2e6e4a8a-39e7-48fe-a6d0-353c14d51e14",
+                        "concept": "c685dec2-800d-4b5e-9d1c-ae5ad6776fce",
                         "label": "Enfermera"
                       },
                       {

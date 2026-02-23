@@ -37,7 +37,7 @@
               "id": "tipoSuplemento",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "c2010001-0000-4000-8000-000000000001",
+                "concept": "34821d6e-9021-4479-bfc0-03135cf00625",
                 "answers": [
                   {
                     "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
