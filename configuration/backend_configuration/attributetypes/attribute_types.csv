@@ -1,7 +1,7 @@
 Uuid,Void/Retire,Entity name,Name,Description,Min occurs,Max occurs,Datatype classname,Datatype config,Preferred handler classname,Handler config,_order:1000
-3a988e33-a6c0-4b76-b924-01abb998944b,,Visit,Financiador,"El esquema de seguro que el paciente usa para cubrir los servicios de salud (se espera un UUID).",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype, 355ee63a-a773-47ab-9841-2505b71dec13,,,
+3a988e33-a6c0-4b76-b924-01abb998944b,,Visit,Financiador,"El esquema de seguro que el paciente usa para cubrir los servicios de salud (se espera un UUID).",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,355ee63a-a773-47ab-9841-2505b71dec13,,,
 aac48226-d143-4274-80e0-264db4e368ee,,Visit,Número de Seguro,"Número de la póliza de seguro de salud del paciente.",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
-d6c9e7a5-8134-49e3-a2c5-123456789abc,,Visit,Referencia de Establecimiento,"Código o nombre del establecimiento de salud que refirió al paciente a esta visita.",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
+b3edab1d-9d01-4375-9ef4-f495bfe95ccf,,Visit,Referencia de Establecimiento,"Código o nombre del establecimiento de salud que refirió al paciente a esta visita.",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 d6c9e7a5-8134-49e3-a2c5-b8f4c3d2e1a9,,Visit,Parent Visit Type,"UUID del tipo de visita padre para establecer jerarquía entre tipos de consulta",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 0da4d3db-4385-40de-a4b0-fd8d89c4ec10,,Provider,Número de Colegiatura,"Número de Colegiatura del médico",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 08b7f0cb-907f-437f-a8da-85236f7b924e,,Provider,Labor Desempeñado,"Labor que desempeña la persona",0,3,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,

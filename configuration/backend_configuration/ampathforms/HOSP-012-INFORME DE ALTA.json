@@ -160,7 +160,7 @@
   "published": true,
   "retired": false,
   "referencedForms": [],
-  "uuid": "",
+  "uuid": "fe4de069-14c0-414c-8929-1e27956aba46",
   "description": "El informe de alta es un documento médico que se entrega al paciente al momento de ser dado de alta de un hospital. Contiene información detallada sobre el diagnóstico, tratamiento recibido y recomendaciones para el cuidado posterior.",
   "version": "1.0.0"
 }
