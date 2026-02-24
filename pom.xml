@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openmrs.content</groupId>
     <artifactId>sihsalus</artifactId>
-    <version>1.8.7</version>
+    <version>1.8.8</version>
     <packaging>pom</packaging>
     <name>Sih salus</name>
     <description>Content Package de SIH SALUS</description>
@@ -16,9 +16,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:openmrs/openmrs-content-sihsalus.git</connection>
-        <developerConnection>scm:git:git@github.com:openmrs/openmrs-content-sihsalus.git</developerConnection>
-        <url>https://github.com/openmrs/openmrs-content-sihsalus.git</url>
+        <connection>scm:git:git@github.com:PROYECTO-SANTACLOTILDE/sihsalus-content-referenceapplication.git</connection>
+        <developerConnection>scm:git:git@github.com:PROYECTO-SANTACLOTILDE/sihsalus-content-referenceapplication.git</developerConnection>
+        <url>https://github.com/PROYECTO-SANTACLOTILDE/sihsalus-content-referenceapplication.git</url>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
