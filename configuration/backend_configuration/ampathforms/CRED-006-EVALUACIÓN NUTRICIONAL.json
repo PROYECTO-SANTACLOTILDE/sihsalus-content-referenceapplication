@@ -1,0 +1,99 @@
+{
+  "name": "CRED-006-EVALUACIÓN NUTRICIONAL",
+  "pages": [
+    {
+      "label": "Evaluación nutricional infantil",
+      "sections": [
+        {
+          "label": "Antropometría y clasificación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de evaluación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": { "rendering": "datetime" },
+              "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }]
+            },
+            {
+              "label": "Edad del niño (meses)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": { "rendering": "number", "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "min": "0", "max": "143", "step": 1, "disallowDecimals": true },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Peso (kg)",
+              "type": "obs",
+              "required": true,
+              "id": "peso",
+              "questionOptions": { "rendering": "number", "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "min": "0", "max": "120", "step": 0.1 },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Talla o longitud (cm)",
+              "type": "obs",
+              "required": true,
+              "id": "talla",
+              "questionOptions": { "rendering": "number", "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "min": "20", "max": "200", "step": 0.1 },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Clasificación nutricional",
+              "type": "obs",
+              "required": true,
+              "id": "clasificacionNutricional",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000009-0000-4000-8000-000000000009",
+                "answers": [
+                  { "concept": "f0000121-0000-4000-8000-000000000121", "label": "Crecimiento adecuado" },
+                  { "concept": "f0000122-0000-4000-8000-000000000122", "label": "Riesgo de crecimiento" },
+                  { "concept": "f0000123-0000-4000-8000-000000000123", "label": "Desnutrición aguda" },
+                  { "concept": "f0000124-0000-4000-8000-000000000124", "label": "Desnutrición crónica" },
+                  { "concept": "f0000125-0000-4000-8000-000000000125", "label": "Sobrepeso u obesidad" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de manejo nutricional",
+              "type": "obs",
+              "required": false,
+              "id": "planManejo",
+              "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
+            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1060000-0000-4000-8000-000000000006",
+  "description": "Evaluación nutricional infantil para CRED según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.0.0"
+}

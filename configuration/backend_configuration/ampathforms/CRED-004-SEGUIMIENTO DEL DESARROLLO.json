@@ -60,6 +60,14 @@
                   {
                     "concept": "c4010013-0000-4000-8000-000000000013",
                     "label": "Test abreviado peruano (TA)"
+                  },
+                  {
+                    "concept": "f0000111-0000-4000-8000-000000000111",
+                    "label": "EDI"
+                  },
+                  {
+                    "concept": "f0000112-0000-4000-8000-000000000112",
+                    "label": "Tamizaje TEA"
                   }
                 ]
               },
@@ -215,6 +223,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "6de41002-6b38-4fdc-9551-c78642256040",
-  "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (EEDP/TEPSI/TA) según NTS 137 MINSA.",
+  "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (EEDP/TEPSI/TA/EDI/TEA) según NTS 238-MINSA/DGIESP-2025.",
   "version": "1.1.0"
 }

@@ -1,0 +1,32 @@
+{
+  "name": "CANCER-002-TAMIZAJE MAMA",
+  "pages": [
+    {
+      "label": "Tamizaje de cáncer de mama",
+      "sections": [
+        {
+          "label": "Resultado de tamizaje",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaTamizaje", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Método de tamizaje", "type": "obs", "required": true, "id": "metodo", "questionOptions": { "rendering": "select", "concept": "f0000020-0000-4000-8000-000000000020", "answers": [{ "concept": "f0000117-0000-4000-8000-000000000117", "label": "Examen clínico de mama" }] }, "validators": [] },
+            { "label": "Resultado", "type": "obs", "required": true, "id": "resultado", "questionOptions": { "rendering": "select", "concept": "f0000001-0000-4000-8000-000000000001", "answers": [{ "concept": "f0000101-0000-4000-8000-000000000101", "label": "Normal" }, { "concept": "f0000102-0000-4000-8000-000000000102", "label": "Riesgo" }, { "concept": "f0000103-0000-4000-8000-000000000103", "label": "Anormal" }, { "concept": "f0000104-0000-4000-8000-000000000104", "label": "Referido" }] }, "validators": [] },
+            { "label": "Educación o consejería brindada", "type": "obs", "required": false, "id": "consejeria", "questionOptions": { "rendering": "radio", "concept": "f0000011-0000-4000-8000-000000000011", "answers": [{ "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" }, { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }] }, "validators": [] },
+            { "label": "Observaciones", "type": "obs", "required": false, "id": "observaciones", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
+            { "label": "Plan o referencia", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] },
+            { "label": "Próximo tamizaje", "type": "obs", "required": false, "id": "proximoTamizaje", "questionOptions": { "rendering": "date", "concept": "f0000004-0000-4000-8000-000000000004" }, "validators": [] }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "2f2a0a11-6ec9-4d01-96bd-11c3188d4a9d",
+  "encounter": "Tamizaje de Cáncer de Mama",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b1190000-0000-4000-8000-000000000019",
+  "description": "Registro de tamizaje y seguimiento preventivo de cáncer de mama.",
+  "version": "1.0.0"
+}
