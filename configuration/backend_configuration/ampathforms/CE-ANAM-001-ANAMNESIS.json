@@ -106,6 +106,66 @@
               "label": "Relato cronológico de la enfermedad actual"
             }
           ]
+        },
+        {
+          "label": "Funciones biológicas",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000182-0000-4000-8000-000000000182"
+              },
+              "id": "apetito",
+              "label": "Apetito"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000183-0000-4000-8000-000000000183"
+              },
+              "id": "sed",
+              "label": "Sed"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000184-0000-4000-8000-000000000184"
+              },
+              "id": "sueno",
+              "label": "Sueño"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000185-0000-4000-8000-000000000185"
+              },
+              "id": "estadoAnimo",
+              "label": "Estado de ánimo"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000186-0000-4000-8000-000000000186"
+              },
+              "id": "orina",
+              "label": "Orina"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000187-0000-4000-8000-000000000187"
+              },
+              "id": "deposiciones",
+              "label": "Deposiciones"
+            }
+          ]
         }
       ]
     }
