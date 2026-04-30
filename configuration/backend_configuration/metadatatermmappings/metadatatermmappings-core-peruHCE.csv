@@ -1,5 +1,5 @@
 Uuid,Void/Retire,Mapping code,Mapping source,Metadata class name,Metadata Uuid,_order:2000
-b7c8adf5-c875-4e78-bb4b-fea391b1de55,,emr.primaryIdentifierType,org.openmrs.module.emrapi,org.openmrs.PatientIdentifierType,550e8400-e29b-41d4-a716-446655440001,
+b7c8adf5-c875-4e78-bb4b-fea391b1de55,,emr.primaryIdentifierType,org.openmrs.module.emrapi,org.openmrs.PatientIdentifierType,05a29f94-c0ed-11e2-94be-8c13b969e334,
 d5b1abfd-3f1c-4489-bc48-318018407b47,,emr.extraPatientIdentifierTypes,org.openmrs.module.emrapi,org.openmrs.module.metadatamapping.MetadataSet,f0ebcb99-7618-41b7-b0bf-8ff93de67b9e,
 3045d8ee-9886-41d3-ac85-1b348732c68f,,emr.admissionEncounterType,org.openmrs.module.emrapi,org.openmrs.EncounterType,8993b43c-7878-4e80-9257-1da45e84a904,
 055c67bf-a01a-4a46-a561-036b68370ed5,,emr.exitFromInpatientEncounterType,org.openmrs.module.emrapi,org.openmrs.EncounterType,23bcca89-6dad-4a50-bed2-0ca224a9603f,
