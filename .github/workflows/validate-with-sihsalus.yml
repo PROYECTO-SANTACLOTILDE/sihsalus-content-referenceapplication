@@ -56,24 +56,54 @@ jobs:
           sed -i "s|<sihsalus-content.version>.*</sihsalus-content.version>|<sihsalus-content.version>${CONTENT_VERSION}</sihsalus-content.version>|" backend/pom.xml
           grep -n "<sihsalus-content.version>" backend/pom.xml
 
-      - name: Build and validate SIHSALUS backend configuration
+      - name: Make local content package available to the backend image build
         working-directory: sihsalus
         run: |
-          set -o pipefail
-          mvn --batch-mode \
-            -s backend/credentials/settings.xml.template \
-            -Pbackend,validator \
-            clean verify \
-            2>&1 | tee sihsalus-content-validation.log
+          mkdir -p .github-content-m2/org/openmrs/content/sihsalus
+          cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
+          sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
+
+      - name: Build SIHSALUS backend image with current content package
+        working-directory: sihsalus
+        run: |
+          docker build \
+            --build-arg GHP_USERNAME="${GHP_USERNAME}" \
+            --build-arg GHP_PASSWORD="${GHP_PASSWORD}" \
+            -t openmrs/openmrs-reference-application-3-backend:content-validation \
+            -f backend/Dockerfile \
+            .
+
+      - name: Start SIHSALUS backend
+        working-directory: sihsalus
+        env:
+          TAG: content-validation
+          MYSQL_OPENMRS_PASSWORD: openmrs
+          MYSQL_ROOT_PASSWORD: openmrs
+          OMRS_OCL_TOKEN: ""
+        run: docker compose -f docker-compose-no-volumes.yml up -d db backend
+
+      - name: Wait for backend startup
+        run: |
+          timeout 30m bash -c 'until curl -fsS http://localhost:8080/openmrs/health/started; do docker ps; sleep 20; done'
+
+      - name: Capture backend logs
+        if: always()
+        working-directory: sihsalus
+        run: docker compose -f docker-compose-no-volumes.yml logs backend | tee sihsalus-content-validation.log
 
       - name: Assert zero CSV or Initializer errors
         working-directory: sihsalus
         run: |
-          if grep -E "(\.csv|CSV|Initializer|initializer).*(ERROR|Error|Exception|Failed|failed)|((ERROR|Error|Exception|Failed|failed).*(\.csv|CSV|Initializer|initializer))" sihsalus-content-validation.log; then
+          if grep -Ei "(\.csv|csv|initializer|content package).*(error|exception|failed|unable)|((error|exception|failed|unable).*(\.csv|csv|initializer|content package))" sihsalus-content-validation.log; then
             echo "Found CSV or Initializer errors in SIHSALUS validation log"
             exit 1
           fi
           echo "CSV/Initializer validation errors: 0"
+
+      - name: Stop SIHSALUS backend
+        if: always()
+        working-directory: sihsalus
+        run: docker compose -f docker-compose-no-volumes.yml down -v
 
       - name: Upload validation log
         if: always()
