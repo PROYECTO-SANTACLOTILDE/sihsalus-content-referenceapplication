@@ -5,6 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.20] - 2026-04-30
+
+### Cambiado
+- Publicacion del content package con las correcciones recientes de metadata y limpieza de configuracion frontend obsoleta.
+
+### Agregado
+- Workflow de GitHub Actions para validar el content package contra la distro SIHSALUS y exigir 0 errores de CSV/Initializer.
+
+---
+
 ## [1.6.0] - 2026-02-11
 
 ### Corregido

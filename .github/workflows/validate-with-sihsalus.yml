@@ -1,0 +1,114 @@
+name: Validate with SIHSALUS
+
+on:
+  push:
+    branches: [master, nuevo]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      sihsalus_ref:
+        description: SIHSALUS branch, tag, or SHA to validate against
+        required: false
+        default: main
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CONTENT_VERSION: 1.8.20
+      GHP_USERNAME: ${{ github.actor }}
+      GHP_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout content package
+        uses: actions/checkout@v4
+        with:
+          path: content-package
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+          server-id: github-sihsalus-content
+          server-username: GHP_USERNAME
+          server-password: GHP_PASSWORD
+
+      - name: Install content package locally
+        working-directory: content-package
+        run: mvn --batch-mode clean install --file pom.xml
+
+      - name: Checkout SIHSALUS
+        uses: actions/checkout@v4
+        with:
+          repository: sihsalus/sihsalus
+          ref: ${{ inputs.sihsalus_ref || 'main' }}
+          path: sihsalus
+
+      - name: Use current content package in SIHSALUS backend
+        working-directory: sihsalus
+        run: |
+          sed -i "s|<sihsalus-content.version>.*</sihsalus-content.version>|<sihsalus-content.version>${CONTENT_VERSION}</sihsalus-content.version>|" backend/pom.xml
+          grep -n "<sihsalus-content.version>" backend/pom.xml
+
+      - name: Make local content package available to the backend image build
+        working-directory: sihsalus
+        run: |
+          mkdir -p .github-content-m2/org/openmrs/content/sihsalus
+          cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
+          sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
+
+      - name: Build SIHSALUS backend image with current content package
+        working-directory: sihsalus
+        run: |
+          docker build \
+            --build-arg GHP_USERNAME="${GHP_USERNAME}" \
+            --build-arg GHP_PASSWORD="${GHP_PASSWORD}" \
+            -t openmrs/openmrs-reference-application-3-backend:content-validation \
+            -f backend/Dockerfile \
+            .
+
+      - name: Start SIHSALUS backend
+        working-directory: sihsalus
+        env:
+          TAG: content-validation
+          MYSQL_OPENMRS_PASSWORD: openmrs
+          MYSQL_ROOT_PASSWORD: openmrs
+          OMRS_OCL_TOKEN: ""
+        run: docker compose -f docker-compose-no-volumes.yml up -d db backend
+
+      - name: Wait for backend startup
+        run: |
+          timeout 30m bash -c 'until curl -fsS http://localhost:8080/openmrs/health/started; do docker ps; sleep 20; done'
+
+      - name: Capture backend logs
+        if: always()
+        working-directory: sihsalus
+        run: docker compose -f docker-compose-no-volumes.yml logs backend | tee sihsalus-content-validation.log
+
+      - name: Assert zero CSV or Initializer errors
+        working-directory: sihsalus
+        run: |
+          if grep -Ei "(\.csv|csv|initializer|content package).*(error|exception|failed|unable)|((error|exception|failed|unable).*(\.csv|csv|initializer|content package))" sihsalus-content-validation.log; then
+            echo "Found CSV or Initializer errors in SIHSALUS validation log"
+            exit 1
+          fi
+          echo "CSV/Initializer validation errors: 0"
+
+      - name: Stop SIHSALUS backend
+        if: always()
+        working-directory: sihsalus
+        run: docker compose -f docker-compose-no-volumes.yml down -v
+
+      - name: Upload validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sihsalus-content-validation-log
+          path: sihsalus/sihsalus-content-validation.log
+          retention-days: 14
