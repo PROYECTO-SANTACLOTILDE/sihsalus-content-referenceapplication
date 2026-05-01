@@ -83,8 +83,18 @@ jobs:
         run: docker compose -f docker-compose-no-volumes.yml up -d db backend
 
       - name: Wait for backend startup
+        working-directory: sihsalus
         run: |
-          timeout 30m bash -c 'until curl -fsS http://localhost:8080/openmrs/health/started; do docker ps; sleep 20; done'
+          timeout 30m bash -c '
+            until curl -fsS http://localhost:8080/openmrs/health/started; do
+              docker compose -f docker-compose-no-volumes.yml ps
+              if ! docker compose -f docker-compose-no-volumes.yml ps --status running --services | grep -qx backend; then
+                docker compose -f docker-compose-no-volumes.yml logs backend
+                exit 1
+              fi
+              sleep 20
+            done
+          '
 
       - name: Capture backend logs
         if: always()
