@@ -1,0 +1,105 @@
+{
+  "name": "CE-SOAP-001-NOTA SOAP",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "186c1e78-a99f-4cd0-86de-b8c4ee27a2b5",
+  "encounter": "Consulta Externa",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "92b9a6f7-0c70-4fb1-9b31-678226d5ce02",
+  "description": "Formulario de nota SOAP para consulta externa. Registra subjetivo, objetivo, apreciación y plan como nota de evaluación o evolución clínica.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Nota SOAP",
+      "sections": [
+        {
+          "label": "Datos de la atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la consulta",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaConsulta",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "profesionalResponsable",
+              "label": "Profesional responsable"
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "consultorio",
+              "label": "Consultorio / Servicio"
+            }
+          ]
+        },
+        {
+          "label": "Evaluación Clínica (SOAP)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapSubjetivo",
+              "label": "S — Subjetivo"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapObjetivo",
+              "label": "O — Objetivo"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapEvaluacion",
+              "label": "A — Apreciación"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 4
+              },
+              "id": "soapPlan",
+              "label": "P — Plan"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

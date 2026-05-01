@@ -1,0 +1,39 @@
+{
+  "name": "CRED-010-TAMIZAJE TEA",
+  "pages": [
+    {
+      "label": "Tamizaje TEA",
+      "sections": [
+        {
+          "label": "Resultado del tamizaje",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaTamizaje", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Instrumento o método utilizado", "type": "obs", "required": true, "id": "instrumento", "questionOptions": { "rendering": "select", "concept": "f0000006-0000-4000-8000-000000000006", "answers": [{ "concept": "f0000112-0000-4000-8000-000000000112", "label": "Tamizaje TEA" }] }, "validators": [] },
+            { "label": "Puntaje registrado", "type": "obs", "required": false, "id": "puntaje", "questionOptions": { "rendering": "number", "concept": "f0000007-0000-4000-8000-000000000007", "min": "0", "max": "100", "step": 1 }, "hideSteppers": true, "validators": [] },
+            { "label": "Resultado global", "type": "obs", "required": true, "id": "resultadoGlobal", "questionOptions": { "rendering": "select", "concept": "f0000001-0000-4000-8000-000000000001", "answers": [{ "concept": "f0000101-0000-4000-8000-000000000101", "label": "Normal" }, { "concept": "f0000102-0000-4000-8000-000000000102", "label": "Riesgo" }, { "concept": "f0000103-0000-4000-8000-000000000103", "label": "Anormal" }, { "concept": "f0000104-0000-4000-8000-000000000104", "label": "Referido" }] }, "validators": [] },
+            { "label": "Señales de alerta observadas", "type": "obs", "required": false, "id": "senalesAlerta", "questionOptions": { "rendering": "textarea", "concept": "f0000008-0000-4000-8000-000000000008" }, "validators": [] },
+            { "label": "Plan, interconsulta o referencia", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
+            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1100000-0000-4000-8000-000000000010",
+  "description": "Registro estructurado de tamizaje de señales de TEA en CRED según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.0.0"
+}

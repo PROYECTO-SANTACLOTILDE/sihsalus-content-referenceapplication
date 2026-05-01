@@ -1,0 +1,38 @@
+{
+  "name": "CRED-007-CONSEJERÍA ALIMENTARIA",
+  "pages": [
+    {
+      "label": "Consejería alimentaria",
+      "sections": [
+        {
+          "label": "Registro de consejería",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaConsejeria", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Práctica alimentaria revisada", "type": "obs", "required": true, "id": "practicaAlimentaria", "questionOptions": { "rendering": "textarea", "concept": "f0000010-0000-4000-8000-000000000010" }, "validators": [] },
+            { "label": "Consejería brindada", "type": "obs", "required": true, "id": "consejeriaBrindada", "questionOptions": { "rendering": "radio", "concept": "f0000011-0000-4000-8000-000000000011", "answers": [{ "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" }, { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }] }, "validators": [] },
+            { "label": "Acuerdos con madre, padre o cuidador", "type": "obs", "required": false, "id": "acuerdosCuidador", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] },
+            { "label": "Próxima cita", "type": "obs", "required": false, "id": "proximaCita", "questionOptions": { "rendering": "date", "concept": "f0000004-0000-4000-8000-000000000004" }, "validators": [] }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
+            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "54e3e45d-b7d7-4259-b64a-334e17b98c40",
+  "encounter": "Educación y Consejería en Salud",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1070000-0000-4000-8000-000000000007",
+  "description": "Consejería alimentaria del niño para CRED según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.0.0"
+}

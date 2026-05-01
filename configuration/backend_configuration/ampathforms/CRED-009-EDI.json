@@ -1,0 +1,39 @@
+{
+  "name": "CRED-009-EDI",
+  "pages": [
+    {
+      "label": "Evaluación del Desarrollo Infantil",
+      "sections": [
+        {
+          "label": "Resultado EDI",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaEvaluacion", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Instrumento utilizado", "type": "obs", "required": true, "id": "instrumento", "questionOptions": { "rendering": "select", "concept": "f0000006-0000-4000-8000-000000000006", "answers": [{ "concept": "f0000111-0000-4000-8000-000000000111", "label": "EDI" }] }, "validators": [] },
+            { "label": "Puntaje o resultado registrado", "type": "obs", "required": false, "id": "puntaje", "questionOptions": { "rendering": "number", "concept": "f0000007-0000-4000-8000-000000000007", "min": "0", "max": "100", "step": 1 }, "hideSteppers": true, "validators": [] },
+            { "label": "Resultado global", "type": "obs", "required": true, "id": "resultadoGlobal", "questionOptions": { "rendering": "select", "concept": "f0000001-0000-4000-8000-000000000001", "answers": [{ "concept": "f0000101-0000-4000-8000-000000000101", "label": "Normal" }, { "concept": "f0000102-0000-4000-8000-000000000102", "label": "Riesgo" }, { "concept": "f0000103-0000-4000-8000-000000000103", "label": "Anormal" }, { "concept": "f0000104-0000-4000-8000-000000000104", "label": "Referido" }] }, "validators": [] },
+            { "label": "Hallazgos y observaciones", "type": "obs", "required": false, "id": "observaciones", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
+            { "label": "Plan de seguimiento", "type": "obs", "required": false, "id": "planSeguimiento", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
+            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1090000-0000-4000-8000-000000000009",
+  "description": "Registro estructurado del EDI dentro de CRED. No reemplaza la aplicación clínica completa del instrumento oficial.",
+  "version": "1.0.0"
+}
