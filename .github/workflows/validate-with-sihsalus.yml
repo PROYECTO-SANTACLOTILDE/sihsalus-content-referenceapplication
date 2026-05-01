@@ -62,6 +62,7 @@ jobs:
           mkdir -p .github-content-m2/org/openmrs/content/sihsalus
           cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
           sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
+          sed -i 's/RUN --mount=type=cache,target=\/root\/.m2\/repository/RUN/' backend/Dockerfile
 
       - name: Build SIHSALUS backend image with current content package
         working-directory: sihsalus
