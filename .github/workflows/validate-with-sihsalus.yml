@@ -62,6 +62,7 @@ jobs:
           mkdir -p .github-content-m2/org/openmrs/content/sihsalus
           cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
           sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
+          sed -i 's/RUN --mount=type=cache,target=\/root\/.m2\/repository/RUN/' backend/Dockerfile
 
       - name: Build SIHSALUS backend image with current content package
         working-directory: sihsalus
@@ -83,8 +84,18 @@ jobs:
         run: docker compose -f docker-compose-no-volumes.yml up -d db backend
 
       - name: Wait for backend startup
+        working-directory: sihsalus
         run: |
-          timeout 30m bash -c 'until curl -fsS http://localhost:8080/openmrs/health/started; do docker ps; sleep 20; done'
+          timeout 30m bash -c '
+            until curl -fsS http://localhost:8080/openmrs/health/started; do
+              docker compose -f docker-compose-no-volumes.yml ps
+              if ! docker compose -f docker-compose-no-volumes.yml ps --status running --services | grep -qx backend; then
+                docker compose -f docker-compose-no-volumes.yml logs backend
+                exit 1
+              fi
+              sleep 20
+            done
+          '
 
       - name: Capture backend logs
         if: always()
