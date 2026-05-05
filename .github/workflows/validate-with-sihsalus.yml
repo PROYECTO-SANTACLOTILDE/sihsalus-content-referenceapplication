@@ -21,7 +21,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      CONTENT_VERSION: 1.8.20
       GHP_USERNAME: ${{ github.actor }}
       GHP_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -41,7 +40,10 @@ jobs:
 
       - name: Install content package locally
         working-directory: content-package
-        run: mvn --batch-mode clean install --file pom.xml
+        run: |
+          CONTENT_VERSION="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+          echo "CONTENT_VERSION=${CONTENT_VERSION}" >> "$GITHUB_ENV"
+          mvn --batch-mode clean install --file pom.xml
 
       - name: Checkout SIHSALUS
         uses: actions/checkout@v4
@@ -63,6 +65,30 @@ jobs:
           cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
           sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
           sed -i 's/RUN --mount=type=cache,target=\/root\/.m2\/repository/RUN/' backend/Dockerfile
+          if ! grep -q "mkdir -p /openmrs/data" backend/Dockerfile; then
+            awk '
+              /^FROM / { last_from = NR }
+              { lines[NR] = $0 }
+              END {
+                for (i = 1; i <= NR; i++) {
+                  print lines[i]
+                  if (i == last_from) {
+                    print "RUN mkdir -p /openmrs/data"
+                  }
+                }
+              }
+            ' backend/Dockerfile > backend/Dockerfile.tmp
+            mv backend/Dockerfile.tmp backend/Dockerfile
+          fi
+
+      - name: Configure SIHSALUS validation runtime
+        working-directory: sihsalus
+        run: |
+          cat > .env <<'EOF'
+          MYSQL_OPENMRS_PASSWORD=openmrs
+          MYSQL_ROOT_PASSWORD=openmrs
+          OMRS_OCL_TOKEN=
+          EOF
 
       - name: Build SIHSALUS backend image with current content package
         working-directory: sihsalus
@@ -78,9 +104,6 @@ jobs:
         working-directory: sihsalus
         env:
           TAG: content-validation
-          MYSQL_OPENMRS_PASSWORD: openmrs
-          MYSQL_ROOT_PASSWORD: openmrs
-          OMRS_OCL_TOKEN: ""
         run: docker compose -f docker-compose-no-volumes.yml up -d db backend
 
       - name: Wait for backend startup
