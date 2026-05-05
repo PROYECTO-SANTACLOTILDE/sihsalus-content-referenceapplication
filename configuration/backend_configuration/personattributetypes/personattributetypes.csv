@@ -2,6 +2,7 @@ Uuid,Void/Retire,Name,Description,Format,Foreign,Searchable
 14d4f066-15f5-102d-96e4-000c29c2a5d7,,Número de Teléfono,"Número de telefono de contacto de la persona",java.lang.String,,,
 fee4e8ef-aef8-4bb9-8ed0-7ded6055c61f,,Número de Celular,"Número de celular de contacto de la persona",java.lang.String,,,
 4bdf3a33-2f63-11f0-8ab4-1a7535b1b3e8,,Correo Electrónico,"Dirección de Correo Electrónico de la persona",java.lang.String,,,
+8d8718c2-c2cc-11de-8d13-0010c6dffd0f,,Lugar de Nacimiento,"Lugar de nacimiento de la persona",java.lang.String,,,
 8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47,,Paciente No Identificado,"Indicador para pacientes cuya identidad no puede ser verificada en el proceso de admisión",java.lang.String,,,
 77bbb234-2312-4644-99d0-fa894d438817,,Religión,"Religión del paciente",org.openmrs.Concept,6de6d87e-5af8-41d9-98d2-b660fabf25d9,true
 8d871386-c2cc-11de-8d13-0010c6dffd0f,,Etnia,"Grupo étnico al que el paciente se identifica (Ej. Quechua, Aimara, Asháninka, Afroperuano)",org.openmrs.Concept,70482c1e-181e-416d-a0c4-a93919f9f2ef,true
@@ -10,4 +11,10 @@ fee4e8ef-aef8-4bb9-8ed0-7ded6055c61f,,Número de Celular,"Número de celular de 
 8d871afc-c2cc-11de-8d13-0010c6dffd0f,,Ocupación,"Profesión o actividad principal del paciente (Ej. Agricultor, Comerciante, Ama de Casa)",java.lang.String,,true
 8d87236c-c2cc-11de-8d13-0010c6dffd0f,,Grado de Instrucción,"Nivel de educación alcanzado por el paciente (Ej. Primaria, Secundaria, Superior)",org.openmrs.Concept,2d790984-f088-4d68-984d-efab9db8c889,true
 8d871f2a-c2cc-11de-8d13-0010c6dffd0f,,Estado Civil,"Estado civil del paciente (Ej. Soltero, Casado, Viudo, Divorciado, Unión Libre)",org.openmrs.Concept,aa345a81-3811-4e9c-be18-d6be727623e0,true
-b3b2aecf-b367-4e45-b22c-b27fe57a1068,,Tipo de Sangre,"Tipo de sangre del paciente (Ej. A+, A-, B+, B-, AB+, AB-, O+, O-)",org.openmrs.Concept,3f6056ed-17e9-4b3b-98a7-18dc431a7e99,true
+b4c7d8e9-f0a1-4b2c-8d3e-5f6789abcdef,,Tipo de Sangre,"Tipo de sangre del paciente (Ej. A+, A-, B+, B-, AB+, AB-, O+, O-)",org.openmrs.Concept,3f6056ed-17e9-4b3b-98a7-18dc431a7e99,true
+374b130f-7457-476f-87b1-f182aa77c434,,Código de Seguro,"Código de afiliación o seguro del paciente",java.lang.String,,,
+8d871d18-c2cc-11de-8d13-0010c6dffd0f,,Nombre de la Madre,"Nombre de la madre del paciente",java.lang.String,,,
+2f43955c-3205-47ef-96e8-df2f0b89c001,,Nombre del Padre,"Nombre del padre del paciente",java.lang.String,,,
+4697d0e6-5b24-416b-aee6-708cd9a3a1db,,Nombre del Acompañante,"Nombre del acompañante o responsable del paciente",java.lang.String,,,
+70ce4571-2e2e-44da-a39f-9dae2a658606,,Edad del Acompañante,"Edad del acompañante o responsable del paciente",java.lang.String,,,
+a180fa5f-c44e-4490-a981-d7196b70c6ac,,Parentesco del Acompañante,"Parentesco o vínculo del acompañante o responsable del paciente",java.lang.String,,,

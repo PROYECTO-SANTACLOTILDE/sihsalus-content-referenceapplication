@@ -1,0 +1,31 @@
+{
+  "name": "INMU-002-REPORTE ESAVI",
+  "pages": [
+    {
+      "label": "Reporte ESAVI",
+      "sections": [
+        {
+          "label": "Evento supuestamente atribuido a vacunación o inmunización",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora del reporte", "type": "encounterDatetime", "required": true, "id": "fechaReporte", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Vacuna relacionada", "type": "obs", "required": true, "id": "vacuna", "questionOptions": { "rendering": "text", "concept": "f0000017-0000-4000-8000-000000000017" }, "validators": [] },
+            { "label": "Lote", "type": "obs", "required": false, "id": "lote", "questionOptions": { "rendering": "text", "concept": "f0000018-0000-4000-8000-000000000018" }, "validators": [] },
+            { "label": "Severidad", "type": "obs", "required": true, "id": "severidad", "questionOptions": { "rendering": "select", "concept": "f0000019-0000-4000-8000-000000000019", "answers": [{ "concept": "f0000161-0000-4000-8000-000000000161", "label": "Leve" }, { "concept": "f0000162-0000-4000-8000-000000000162", "label": "Moderado" }, { "concept": "f0000163-0000-4000-8000-000000000163", "label": "Severo" }] }, "validators": [] },
+            { "label": "Síntomas y conducta tomada", "type": "obs", "required": true, "id": "descripcionEvento", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
+            { "label": "Plan o notificación", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "29c02aff-9a93-46c9-bf6f-48b552fcb1fa",
+  "encounter": "Administración de Vacunas",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1120000-0000-4000-8000-000000000012",
+  "description": "Registro operativo de ESAVI para integración con vacunación. No reemplaza la notificación epidemiológica oficial.",
+  "version": "1.0.0"
+}

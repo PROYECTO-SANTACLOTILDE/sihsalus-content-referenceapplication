@@ -1,0 +1,173 @@
+{
+  "name": "CE-ANAM-001-ANAMNESIS",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "186c1e78-a99f-4cd0-86de-b8c4ee27a2b5",
+  "encounter": "Consulta Externa",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b0446b4e-1f2b-4e22-9a1a-79d797d4ce01",
+  "description": "Formulario de anamnesis para consulta externa. Registra motivo de consulta, tiempo de enfermedad, forma de inicio, curso y relato cronológico de la enfermedad actual según NTS 139-MINSA/2018/DGAIN y NTS 229-MINSA/DGIESP-2025.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Anamnesis",
+      "sections": [
+        {
+          "label": "Datos de la atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de la consulta",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaConsulta",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "profesionalResponsable",
+              "label": "Profesional responsable"
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "consultorio",
+              "label": "Consultorio / Servicio"
+            }
+          ]
+        },
+        {
+          "label": "Motivo de consulta y enfermedad actual",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "id": "motivoConsulta",
+              "label": "Motivo de consulta / Síntoma principal",
+              "required": true
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "577876b1-0b6e-4c57-b4c3-7af969a1d501"
+              },
+              "id": "tiempoEnfermedad",
+              "label": "Tiempo de enfermedad"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "34e03399-cb72-484b-85b8-616ef19919c1"
+              },
+              "id": "formaInicio",
+              "label": "Forma de inicio"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e7d98188-16ba-4ef3-aed9-e891680bacf9"
+              },
+              "id": "cursoEnfermedad",
+              "label": "Curso"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9",
+                "rows": 5
+              },
+              "id": "relatoEnfermedadActual",
+              "label": "Relato cronológico de la enfermedad actual"
+            }
+          ]
+        },
+        {
+          "label": "Funciones biológicas",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000182-0000-4000-8000-000000000182"
+              },
+              "id": "apetito",
+              "label": "Apetito"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000183-0000-4000-8000-000000000183"
+              },
+              "id": "sed",
+              "label": "Sed"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000184-0000-4000-8000-000000000184"
+              },
+              "id": "sueno",
+              "label": "Sueño"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000185-0000-4000-8000-000000000185"
+              },
+              "id": "estadoAnimo",
+              "label": "Estado de ánimo"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000186-0000-4000-8000-000000000186"
+              },
+              "id": "orina",
+              "label": "Orina"
+            },
+            {
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000187-0000-4000-8000-000000000187"
+              },
+              "id": "deposiciones",
+              "label": "Deposiciones"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

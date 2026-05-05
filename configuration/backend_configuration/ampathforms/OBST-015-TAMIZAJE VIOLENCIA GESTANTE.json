@@ -1,0 +1,29 @@
+{
+  "name": "OBST-015-TAMIZAJE VIOLENCIA GESTANTE",
+  "pages": [
+    {
+      "label": "Tamizaje de violencia en gestante",
+      "sections": [
+        {
+          "label": "Resultado y conducta",
+          "isExpanded": "true",
+          "questions": [
+            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaTamizaje", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
+            { "label": "Resultado del tamizaje de violencia", "type": "obs", "required": true, "id": "resultadoViolencia", "questionOptions": { "rendering": "select", "concept": "f0000012-0000-4000-8000-000000000012", "answers": [{ "concept": "f0000131-0000-4000-8000-000000000131", "label": "Sin evidencia" }, { "concept": "f0000132-0000-4000-8000-000000000132", "label": "Caso sospechoso" }, { "concept": "f0000133-0000-4000-8000-000000000133", "label": "Caso confirmado o referido" }] }, "validators": [] },
+            { "label": "Signos de alarma o relato relevante", "type": "obs", "required": false, "id": "signosAlarma", "questionOptions": { "rendering": "textarea", "concept": "f0000008-0000-4000-8000-000000000008" }, "validators": [] },
+            { "label": "Plan de seguridad, referencia o notificación", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b1150000-0000-4000-8000-000000000015",
+  "description": "Tamizaje operativo de violencia en gestante o puérpera según enfoque de atención integral.",
+  "version": "1.0.0"
+}
