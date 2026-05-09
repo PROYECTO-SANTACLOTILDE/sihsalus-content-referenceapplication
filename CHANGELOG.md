@@ -96,13 +96,13 @@ java.lang.IllegalArgumentException: Unable to find concept: Estado de Gestación
 ```
 
 **Solución aplicada:**
-- Vaciados los archivos `programworkflows/peruHCE-programworkflows.csv` (solo headers)
-- Vaciados los archivos `programworkflowstates/peruHCE-programworkflowstates.csv` (solo headers)
+- Vaciados los archivos `programworkflows/sihsalus-programworkflows.csv` (solo headers)
+- Vaciados los archivos `programworkflowstates/sihsalus-programworkflowstates.csv` (solo headers)
 - Los 8 programas clínicos funcionan sin workflows hasta que se creen los conceptos necesarios en OCL
 
 ### Archivos Modificados
-- `configuration/backend_configuration/programworkflows/peruHCE-programworkflows.csv` (revertido a solo headers)
-- `configuration/backend_configuration/programworkflowstates/peruHCE-programworkflowstates.csv` (revertido a solo headers)
+- `configuration/backend_configuration/programworkflows/sihsalus-programworkflows.csv` (revertido a solo headers)
+- `configuration/backend_configuration/programworkflowstates/sihsalus-programworkflowstates.csv` (revertido a solo headers)
 
 ### Nota Importante
 Los workflows y estados agregados en v1.1.0 serán reimplementados en una versión futura una vez que se creen los conceptos apropiados en OpenConceptLab (OCL).
@@ -114,18 +114,18 @@ Los workflows y estados agregados en v1.1.0 serán reimplementados en una versi�
 **⚠️ ADVERTENCIA:** Esta versión contiene errores críticos. Use v1.1.1 en su lugar.
 
 ### Corregido
-- **Colas de Atención (peruHCE-queues.csv)**: Corregidos 16 registros de colas que generaban errores de duplicados
+- **Colas de Atención (sihsalus-queues.csv)**: Corregidos 16 registros de colas que generaban errores de duplicados
   - Generados nuevos UUIDs únicos para cada cola
   - Vinculadas correctamente a servicios existentes en `appointmentservicedefinitions`
   - Eliminados errores "Queue with UUID already exists" en la inicialización
 
 ### Agregado
-- **Program Workflows (peruHCE-programworkflows.csv)**: Agregados 3 workflows para programas clínicos activos
+- **Program Workflows (sihsalus-programworkflows.csv)**: Agregados 3 workflows para programas clínicos activos
   - Workflow "Estado de Control CRED" para programa Control de Niño Sano
   - Workflow "Estado de Gestación" para programa Madre Gestante
   - Workflow "Estado de Vacunación Infantil" para programa de Vacunación Infantil
 
-- **Program Workflow States (peruHCE-programworkflowstates.csv)**: Agregados 11 estados de workflow
+- **Program Workflow States (sihsalus-programworkflowstates.csv)**: Agregados 11 estados de workflow
   - **Control CRED**: Activo, Completado, Abandonado
   - **Gestación**: Primer Trimestre, Segundo Trimestre, Tercer Trimestre, Parto, Post-Parto
   - **Vacunación Infantil**: En Proceso, Completo, Incompleto
@@ -152,16 +152,16 @@ Los workflows y estados agregados en v1.1.0 serán reimplementados en una versi�
 | Cola de Nutrición y Dietética | Atención ambulatoria por enfermera(o) |
 
 ### Archivos Modificados
-- `configuration/backend_configuration/queues/peruHCE-queues.csv`
-- `configuration/backend_configuration/programworkflows/peruHCE-programworkflows.csv`
-- `configuration/backend_configuration/programworkflowstates/peruHCE-programworkflowstates.csv`
+- `configuration/backend_configuration/queues/sihsalus-queues.csv`
+- `configuration/backend_configuration/programworkflows/sihsalus-programworkflows.csv`
+- `configuration/backend_configuration/programworkflowstates/sihsalus-programworkflowstates.csv`
 
 ---
 
 ## [1.0.0] - 2025-XX-XX
 
 ### Agregado
-- Configuración inicial del content package para SIH SALUS PeruHCE
+- Configuración inicial del content package para SIH SALUS SIHSALUS
 - 38 módulos de configuración OpenMRS
 - 56 formularios clínicos (Ampath Forms)
 - Base de datos geográfica de Perú (94,924 registros)

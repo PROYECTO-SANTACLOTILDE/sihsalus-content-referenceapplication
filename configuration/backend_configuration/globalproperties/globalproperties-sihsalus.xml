@@ -38,7 +38,7 @@
 
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
-            <value>https://api.openconceptlab.org/orgs/PeruHCE/sources/SIHSALUS-v4/</value>
+            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/SIHSALUS-v4/</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN (PENDIENTE DE CORREGIR)
