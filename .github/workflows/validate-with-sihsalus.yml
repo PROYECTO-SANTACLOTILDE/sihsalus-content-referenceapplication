@@ -2,9 +2,9 @@ name: Validate with SIHSALUS
 
 on:
   push:
-    branches: [master, nuevo]
+    branches: [main, pre-release]
   pull_request:
-    branches: [master]
+    branches: [main, pre-release]
   workflow_dispatch:
     inputs:
       sihsalus_ref:

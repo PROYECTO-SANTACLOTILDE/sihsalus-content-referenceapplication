@@ -2,9 +2,9 @@ name: Build with Maven
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, pre-release ]
   pull_request:
-    branches: [ master ]
+    branches: [ main, pre-release ]
   workflow_dispatch:
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
         run: |
           mvn clean verify --batch-mode --file pom.xml
       - name: Deploy to GitHub Packages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           mvn deploy --batch-mode --file pom.xml
         env:

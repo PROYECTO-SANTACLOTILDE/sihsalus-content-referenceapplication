@@ -81,7 +81,7 @@ Las dispositions requieren conceptos CIEL que deben agregarse a la colección OC
 - **Atención Integral del Adolescente** (NTS 157)
 
 ### Corregido
-- **GitHub Actions**: Workflow CI ahora apunta a branch `master` en lugar de `main`
+- **GitHub Actions**: Workflow CI ahora apunta a las ramas `main` y `pre-release`
 
 ### Metadata alineada con referenceapplication
 - **Cohort Types**: Agregado `cohorttypes/cohorttypes.csv` con System List y My List (faltaba completamente)
