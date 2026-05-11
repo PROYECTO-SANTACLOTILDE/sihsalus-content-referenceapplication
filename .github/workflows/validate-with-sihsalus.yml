@@ -125,14 +125,10 @@ jobs:
         working-directory: sihsalus
         run: docker compose -f docker-compose-no-volumes.yml logs backend | tee sihsalus-content-validation.log
 
-      - name: Assert zero CSV or Initializer errors
+      - name: Classify validation log severity
         working-directory: sihsalus
         run: |
-          if grep -Ei "(\.csv|csv|initializer|content package).*(error|exception|failed|unable)|((error|exception|failed|unable).*(\.csv|csv|initializer|content package))" sihsalus-content-validation.log; then
-            echo "Found CSV or Initializer errors in SIHSALUS validation log"
-            exit 1
-          fi
-          echo "CSV/Initializer validation errors: 0"
+          bash ../content-package/.github/scripts/classify_validation_log.sh sihsalus-content-validation.log
 
       - name: Stop SIHSALUS backend
         if: always()
