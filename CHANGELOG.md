@@ -168,7 +168,7 @@ Los workflows y estados agregados en v1.1.0 serán reimplementados en una versi�
 ## [1.0.0] - 2025-XX-XX
 
 ### Agregado
-- Configuración inicial del content package para SIH SALUS PeruHCE
+- Configuración inicial del content package para SIHSALUS
 - 38 módulos de configuración OpenMRS
 - 56 formularios clínicos (Ampath Forms)
 - Base de datos geográfica de Perú (94,924 registros)
