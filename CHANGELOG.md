@@ -5,6 +5,13 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.24] - 2026-05-11
+
+### Cambiado
+- Publicacion estable con carga controlada de conceptos SIH.SALUS en OCL y alineacion de configuracion frontend/CI.
+
+---
+
 ## [1.8.20] - 2026-04-30
 
 ### Cambiado
