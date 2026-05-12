@@ -39,7 +39,15 @@ jobs:
       - name: Verify content package is published
         run: |
           URL="https://repo1.maven.org/maven2/io/github/proyecto-santaclotilde/sihsalus-content/${{ steps.content.outputs.version }}/sihsalus-content-${{ steps.content.outputs.version }}.zip"
-          curl -fsI "$URL"
+          for attempt in $(seq 1 30); do
+            if curl -fsI "$URL"; then
+              exit 0
+            fi
+            echo "Content package is not available yet in Maven Central; retry ${attempt}/30."
+            sleep 30
+          done
+          echo "Content package did not become available in Maven Central: $URL"
+          exit 1
 
       - name: Checkout SIHSALUS
         uses: actions/checkout@v4
@@ -91,9 +99,8 @@ jobs:
           '
 
       - name: Capture backend logs
-        if: always()
-        working-directory: sihsalus
-        run: docker compose -f docker-compose-no-volumes.yml logs backend | tee sihsalus-content-validation.log
+        if: always() && hashFiles('sihsalus/docker-compose-no-volumes.yml') != ''
+        run: docker compose -f sihsalus/docker-compose-no-volumes.yml logs backend | tee sihsalus/sihsalus-content-validation.log
 
       - name: Classify validation log errors
         working-directory: sihsalus
@@ -101,9 +108,8 @@ jobs:
           bash ../content-package/.github/scripts/classify_validation_log.sh sihsalus-content-validation.log
 
       - name: Stop SIHSALUS backend
-        if: always()
-        working-directory: sihsalus
-        run: docker compose -f docker-compose-no-volumes.yml down -v
+        if: always() && hashFiles('sihsalus/docker-compose-no-volumes.yml') != ''
+        run: docker compose -f sihsalus/docker-compose-no-volumes.yml down -v
 
       - name: Upload validation log
         if: always()
