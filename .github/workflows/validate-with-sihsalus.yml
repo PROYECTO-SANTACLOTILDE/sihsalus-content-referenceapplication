@@ -2,7 +2,7 @@ name: Validate with SIHSALUS
 
 on:
   push:
-    branches: [main, pre-release]
+    branches: [main]
   pull_request:
     branches: [main, pre-release]
   workflow_dispatch:
