@@ -50,24 +50,24 @@
         <!-- Queue Configuration -->
 
         <!--
-        https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Service/ -->
+        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2724/ -->
         <globalProperty>
             <property>queue.serviceConceptSetName</property>
-            <value>2724</value>
+            <value>4bf3f465-ac91-44fa-9b1f-173daf0c89a0</value>
         </globalProperty>
 
         <!--
-        https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Priority/ -->
+        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2726/ -->
         <globalProperty>
             <property>queue.priorityConceptSetName</property>
-            <value>2837</value>
+            <value>d736c954-601f-4d8b-b778-6df7f3ed3767</value>
         </globalProperty>
 
         <!--
-        https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Status/ -->
+        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2720/ -->
         <globalProperty>
             <property>queue.statusConceptSetName</property>
-            <value>2720</value>
+            <value>a10612bc-373d-44cf-8a1a-277e65f7fcf9</value>
         </globalProperty>
 
         <!-- This requires that the sort weight for priority concepts be maintained in order of

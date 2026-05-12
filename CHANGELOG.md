@@ -5,6 +5,15 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.28] - 2026-05-12
+
+### Corregido
+- Alinea el export OCL SIHSALUS-v4 con los servicios de Queue consumidos por el content package.
+- Reemplaza codigos numericos OCL por UUIDs OpenMRS estables en queues y propiedades globales.
+- Espera publicacion completa en Maven Central antes de considerar exitoso el deploy.
+
+---
+
 ## [1.8.27] - 2026-05-12
 
 ### Corregido
