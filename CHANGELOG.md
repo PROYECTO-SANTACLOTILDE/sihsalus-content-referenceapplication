@@ -5,6 +5,13 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.25] - 2026-05-12
+
+### Corregido
+- Alineadas las colas de atencion con los conceptos importados desde OCL para evitar errores de Initializer en el dominio `queues`.
+
+---
+
 ## [1.8.24] - 2026-05-11
 
 ### Cambiado
