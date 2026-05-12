@@ -2,14 +2,12 @@ name: Build with Maven
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, "**" ]
   pull_request:
     branches: [ main, pre-release ]
-  workflow_dispatch:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   build:
@@ -30,16 +28,47 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
-          server-id: github-sihsalus-content
-          server-username: GITHUB_ACTOR
-          server-password: GITHUB_TOKEN
       - name: Build with Maven
         id: build_with_maven
         run: |
           mvn clean verify --batch-mode --file pom.xml
-      - name: Deploy to GitHub Packages
+
+      - name: Check Maven Central version
+        id: central-version
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          mvn deploy --batch-mode --file pom.xml
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout --file pom.xml)
+          URL="https://repo1.maven.org/maven2/io/github/proyecto-santaclotilde/sihsalus-content/${VERSION}/sihsalus-content-${VERSION}.pom"
+          if curl -fsI "$URL" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Version ${VERSION} already exists in Maven Central; skipping publish."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Version ${VERSION} is not in Maven Central; publishing."
+          fi
+
+      - name: Set up Maven Central credentials
+        if: >-
+          github.event_name == 'push' &&
+          github.ref == 'refs/heads/main' &&
+          steps.central-version.outputs.exists == 'false'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: ${{ matrix.java-version }}
+          server-id: central
+          server-username: CENTRAL_USERNAME
+          server-password: CENTRAL_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: GPG_PASSPHRASE
+
+      - name: Deploy to Maven Central
+        if: >-
+          github.event_name == 'push' &&
+          github.ref == 'refs/heads/main' &&
+          steps.central-version.outputs.exists == 'false'
+        run: mvn -B -P release deploy --file pom.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+          CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
