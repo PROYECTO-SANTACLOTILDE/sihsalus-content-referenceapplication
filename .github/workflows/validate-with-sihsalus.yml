@@ -3,8 +3,6 @@ name: Validate with SIHSALUS
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main, pre-release]
   workflow_dispatch:
     inputs:
       sihsalus_ref:
@@ -14,15 +12,11 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      GHP_USERNAME: ${{ github.actor }}
-      GHP_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout content package
         uses: actions/checkout@v4
@@ -34,16 +28,18 @@ jobs:
         with:
           distribution: temurin
           java-version: 8
-          server-id: github-sihsalus-content
-          server-username: GHP_USERNAME
-          server-password: GHP_PASSWORD
 
-      - name: Install content package locally
+      - name: Read content package version
+        id: content
         working-directory: content-package
         run: |
           CONTENT_VERSION="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
-          echo "CONTENT_VERSION=${CONTENT_VERSION}" >> "$GITHUB_ENV"
-          mvn --batch-mode clean install --file pom.xml
+          echo "version=${CONTENT_VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify content package is published
+        run: |
+          URL="https://repo1.maven.org/maven2/io/github/proyecto-santaclotilde/sihsalus-content/${{ steps.content.outputs.version }}/sihsalus-content-${{ steps.content.outputs.version }}.zip"
+          curl -fsI "$URL"
 
       - name: Checkout SIHSALUS
         uses: actions/checkout@v4
@@ -55,31 +51,11 @@ jobs:
       - name: Use current content package in SIHSALUS backend
         working-directory: sihsalus
         run: |
-          sed -i "s|<sihsalus-content.version>.*</sihsalus-content.version>|<sihsalus-content.version>${CONTENT_VERSION}</sihsalus-content.version>|" backend/pom.xml
+          sed -i "s|<sihsalus-content.version>.*</sihsalus-content.version>|<sihsalus-content.version>${{ steps.content.outputs.version }}</sihsalus-content.version>|" backend/pom.xml
+          sed -i "s|content.sihsalus=|content.sihsalus-content=|" backend/distro.properties
+          sed -i "s|content.sihsalus.namespace=|content.sihsalus-content.groupId=io.github.proyecto-santaclotilde\\ncontent.sihsalus-content.namespace=|" backend/distro.properties
           grep -n "<sihsalus-content.version>" backend/pom.xml
-
-      - name: Make local content package available to the backend image build
-        working-directory: sihsalus
-        run: |
-          mkdir -p .github-content-m2/org/openmrs/content/sihsalus
-          cp -R ~/.m2/repository/org/openmrs/content/sihsalus/* .github-content-m2/org/openmrs/content/sihsalus/
-          sed -i '/COPY backend\/pom.xml .\/backend\//a COPY .github-content-m2/ /root/.m2/repository/' backend/Dockerfile
-          sed -i 's/RUN --mount=type=cache,target=\/root\/.m2\/repository/RUN/' backend/Dockerfile
-          if ! grep -q "mkdir -p /openmrs/data" backend/Dockerfile; then
-            awk '
-              /^FROM / { last_from = NR }
-              { lines[NR] = $0 }
-              END {
-                for (i = 1; i <= NR; i++) {
-                  print lines[i]
-                  if (i == last_from) {
-                    print "RUN mkdir -p /openmrs/data"
-                  }
-                }
-              }
-            ' backend/Dockerfile > backend/Dockerfile.tmp
-            mv backend/Dockerfile.tmp backend/Dockerfile
-          fi
+          grep -n "content.sihsalus-content" backend/distro.properties
 
       - name: Configure SIHSALUS validation runtime
         working-directory: sihsalus
@@ -92,13 +68,7 @@ jobs:
 
       - name: Build SIHSALUS backend image with current content package
         working-directory: sihsalus
-        run: |
-          docker build \
-            --build-arg GHP_USERNAME="${GHP_USERNAME}" \
-            --build-arg GHP_PASSWORD="${GHP_PASSWORD}" \
-            -t openmrs/openmrs-reference-application-3-backend:content-validation \
-            -f backend/Dockerfile \
-            .
+        run: docker build -t openmrs/openmrs-reference-application-3-backend:content-validation -f backend/Dockerfile .
 
       - name: Start SIHSALUS backend
         working-directory: sihsalus

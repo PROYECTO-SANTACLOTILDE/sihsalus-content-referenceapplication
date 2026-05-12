@@ -2,23 +2,32 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.openmrs.content</groupId>
-    <artifactId>sihsalus</artifactId>
+    <groupId>io.github.proyecto-santaclotilde</groupId>
+    <artifactId>sihsalus-content</artifactId>
     <version>1.8.24</version>
     <packaging>pom</packaging>
-    <name>Sih salus</name>
-    <description>Content Package de SIH SALUS</description>
+    <name>SIHSALUS Content Package</name>
+    <description>OpenMRS content package for the SIHSALUS distribution.</description>
+    <url>https://github.com/sihsalus/sihsalus-content-referenceapplication</url>
+    <licenses>
+        <license>
+            <name>Mozilla Public License 2.0</name>
+            <url>https://www.mozilla.org/en-US/MPL/2.0/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <developers>
         <developer>
-            <name>OpenMRS</name>
-            <organization>OpenMRS</organization>
-            <organizationUrl>http://openmrs.org</organizationUrl>
+            <id>sihsalus</id>
+            <name>SIHSALUS</name>
+            <organization>Proyecto Santa Clotilde</organization>
+            <organizationUrl>https://github.com/sihsalus</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:sihsalus/sihsalus-content-referenceapplication.git</connection>
-        <developerConnection>scm:git:git@github.com:sihsalus/sihsalus-content-referenceapplication.git</developerConnection>
-        <url>https://github.com/sihsalus/sihsalus-content-referenceapplication.git</url>
+        <connection>scm:git:https://github.com/sihsalus/sihsalus-content-referenceapplication.git</connection>
+        <developerConnection>scm:git:https://github.com/sihsalus/sihsalus-content-referenceapplication.git</developerConnection>
+        <url>https://github.com/sihsalus/sihsalus-content-referenceapplication</url>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -93,6 +102,14 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
                 <executions>
@@ -159,6 +176,40 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.7</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.10.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                            <waitUntil>validated</waitUntil>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
     <repositories>
         <repository>
             <id>openmrs-repo</id>
@@ -203,16 +254,4 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
-    <distributionManagement>
-        <repository>
-            <id>github-sihsalus-content</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/sihsalus/sihsalus-content-referenceapplication</url>
-        </repository>
-        <snapshotRepository>
-            <id>github-sihsalus-content</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/sihsalus/sihsalus-content-referenceapplication</url>
-        </snapshotRepository>
-    </distributionManagement>
 </project>
