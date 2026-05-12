@@ -53,21 +53,21 @@
         https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Service/ -->
         <globalProperty>
             <property>queue.serviceConceptSetName</property>
-            <value>4bf3f465-ac91-44fa-9b1f-173daf0c89a0</value>
+            <value>2724</value>
         </globalProperty>
 
         <!--
         https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Priority/ -->
         <globalProperty>
             <property>queue.priorityConceptSetName</property>
-            <value>933e6d55-d64a-498d-b1b2-b3d5242e4199</value>
+            <value>2837</value>
         </globalProperty>
 
         <!--
         https://app.openconceptlab.org/#/orgs/openmrs/sources/DemoQueueConcepts/concepts/DemoQueue-Status/ -->
         <globalProperty>
             <property>queue.statusConceptSetName</property>
-            <value>a10612bc-373d-44cf-8a1a-277e65f7fcf9</value>
+            <value>2720</value>
         </globalProperty>
 
         <!-- This requires that the sort weight for priority concepts be maintained in order of
