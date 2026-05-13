@@ -23,17 +23,11 @@ jobs:
         with:
           path: content-package
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 8
-
       - name: Read content package version
         id: content
         working-directory: content-package
         run: |
-          CONTENT_VERSION="$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+          CONTENT_VERSION="$(sed -n 's:.*<version>\\([^<]*\\)</version>.*:\\1:p' pom.xml | head -1)"
           echo "version=${CONTENT_VERSION}" >> "$GITHUB_OUTPUT"
 
       - name: Verify content package is published
