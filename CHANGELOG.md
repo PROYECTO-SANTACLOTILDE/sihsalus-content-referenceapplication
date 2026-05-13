@@ -5,6 +5,38 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.30] - 2026-05-12
+
+### Cambiado
+- Actualiza el export OCL SIHSALUS-v4 a la version `12-05-2026-1`.
+- Alinea el programa Tuberculosis para usar el concepto OCL `Programa de Tuberculosis` de clase `Program`.
+
+---
+
+## [1.8.29] - 2026-05-12
+
+### Corregido
+- Corrige filas mal escapadas en rangos de referencia de laboratorio que rompian el dominio `conceptreferencerange`.
+
+---
+
+## [1.8.28] - 2026-05-12
+
+### Corregido
+- Alinea el export OCL SIHSALUS-v4 con los servicios de Queue consumidos por el content package.
+- Reemplaza codigos numericos OCL por UUIDs OpenMRS estables en queues y propiedades globales.
+- Espera publicacion completa en Maven Central antes de considerar exitoso el deploy.
+
+---
+
+## [1.8.27] - 2026-05-12
+
+### Corregido
+- Nueva publicacion requerida porque `1.8.25` y `1.8.26` ya existen en Maven Central con configuracion de Queue no reproducible.
+- Mantiene las colas y propiedades globales de Queue alineadas con UUIDs estables importados desde OCL.
+
+---
+
 ## [1.8.25] - 2026-05-12
 
 ### Corregido
