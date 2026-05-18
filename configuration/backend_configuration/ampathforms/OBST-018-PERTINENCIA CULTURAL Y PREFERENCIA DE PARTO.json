@@ -1,0 +1,183 @@
+{
+  "name": "OBST-018-PERTINENCIA CULTURAL Y PREFERENCIA DE PARTO",
+  "pages": [
+    {
+      "label": "Pertinencia cultural y preferencia de parto",
+      "sections": [
+        {
+          "label": "Preferencias y adecuación cultural",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaRegistro",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "id": "idiomaPreferido",
+              "label": "Idioma preferido para la atención",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "id": "acompananteParto",
+              "label": "Acompañante elegido para el parto",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "id": "lugarPartoPreferido",
+              "label": "Lugar planificado o preferido para el parto",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ca5e5cb7-0f56-4f46-a93a-ff78396dd612",
+                "answers": [
+                  {
+                    "concept": "53cf05ea-a050-4f3a-8c96-639768a55a76",
+                    "label": "Hospital"
+                  },
+                  {
+                    "concept": "c7f98187-20f6-4f94-bbb5-92c26ff29275",
+                    "label": "Centro de Salud"
+                  },
+                  {
+                    "concept": "c28d57f6-55ef-4209-80a2-a242981c14b3",
+                    "label": "Puesto de Salud"
+                  },
+                  {
+                    "concept": "4c43824f-3322-4c44-b90f-13b54a8ade9c",
+                    "label": "Domicilio"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "posicionPartoPreferida",
+              "label": "Posición preferida para el parto",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3b919a5e-24fc-429a-8ae2-6cf991c0bffd",
+                "answers": [
+                  {
+                    "concept": "9d851012-56d3-43d3-88a1-a522cf5cbb40",
+                    "label": "Echada"
+                  },
+                  {
+                    "concept": "4df09b3d-a18a-4668-b4ff-3839984c305b",
+                    "label": "Cuclillas"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "practicasCulturales",
+              "label": "Prácticas culturales relevantes o restricciones informadas",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "id": "adecuacionesAcordadas",
+              "label": "Adecuaciones acordadas con la gestante y familia",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "id": "barrerasComunicacion",
+              "label": "Barreras de comunicación, traslado o soporte identificadas",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002",
+                "rows": 3
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b1180000-0000-4000-8000-000000000018",
+  "description": "Registro de pertinencia cultural, preferencias y adecuaciones acordadas para el parto.",
+  "version": "1.0.0"
+}
