@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.31] - 2026-05-13
+
+### Corregido
+- Agrega membresias `conceptsets` para los conceptos de colas (`Tipo de Servicio`, `Estado de la Cola` y `Prioridad`) antes del dominio `queues`.
+- Corrige el rechazo de las 16 colas por no tener sus servicios como miembros de `queue.serviceConceptSetName`.
+
+---
+
 ## [1.8.30] - 2026-05-12
 
 ### Cambiado
