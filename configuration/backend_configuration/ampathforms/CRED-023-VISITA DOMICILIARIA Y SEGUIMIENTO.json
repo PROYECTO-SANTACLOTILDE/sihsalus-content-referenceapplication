@@ -1,0 +1,178 @@
+{
+  "name": "CRED-023-VISITA DOMICILIARIA Y SEGUIMIENTO",
+  "pages": [
+    {
+      "label": "VISITA DOMICILIARIA Y SEGUIMIENTO",
+      "sections": [
+        {
+          "label": "Motivo y programación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaRegistro",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Motivo de seguimiento o visita domiciliaria",
+              "type": "obs",
+              "required": true,
+              "id": "motivoSeguimiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha programada de visita o seguimiento",
+              "type": "obs",
+              "required": false,
+              "id": "fechaProgramada",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Visita o seguimiento realizado",
+              "type": "obs",
+              "required": false,
+              "id": "visitaRealizada",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000006-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Resultado",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Hallazgos en domicilio o contacto",
+              "type": "obs",
+              "required": false,
+              "id": "hallazgosDomicilio",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Acciones realizadas",
+              "type": "obs",
+              "required": false,
+              "id": "accionesRealizadas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Riesgo persiste",
+              "type": "obs",
+              "required": false,
+              "id": "riesgoPersistente",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de continuidad",
+              "type": "obs",
+              "required": false,
+              "id": "planContinuidad",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2230000-0000-4000-8000-000000000023",
+  "description": "Plan y resultado de visita domiciliaria o seguimiento por riesgo CRED.",
+  "version": "1.0.0"
+}

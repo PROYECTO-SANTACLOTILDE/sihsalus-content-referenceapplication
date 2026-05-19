@@ -1,0 +1,233 @@
+{
+  "name": "CRED-014-EXAMEN FÍSICO INTEGRAL",
+  "pages": [
+    {
+      "label": "EXAMEN FÍSICO INTEGRAL",
+      "sections": [
+        {
+          "label": "Examen general",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaExamen",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Estado general",
+              "type": "obs",
+              "required": true,
+              "id": "estadoGeneral",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Piel, faneras y mucosas",
+              "type": "obs",
+              "required": false,
+              "id": "pielFaneras",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Cabeza, cuello y fontanelas",
+              "type": "obs",
+              "required": false,
+              "id": "cabezaCuello",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Ojos, oídos, nariz y garganta",
+              "type": "obs",
+              "required": false,
+              "id": "ojosOidosNarizGarganta",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Tórax, corazón y respiratorio",
+              "type": "obs",
+              "required": false,
+              "id": "toraxCardiorespiratorio",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Abdomen",
+              "type": "obs",
+              "required": false,
+              "id": "abdomen",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Genitourinario",
+              "type": "obs",
+              "required": false,
+              "id": "genitourinario",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Osteomuscular y columna",
+              "type": "obs",
+              "required": false,
+              "id": "osteomuscular",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Neurológico",
+              "type": "obs",
+              "required": false,
+              "id": "neurologico",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Conclusión",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Signos de alarma presentes",
+              "type": "obs",
+              "required": false,
+              "id": "signosAlarma",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hallazgos relevantes",
+              "type": "obs",
+              "required": false,
+              "id": "hallazgosRelevantes",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan, consejería o referencia",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2140000-0000-4000-8000-000000000014",
+  "description": "Examen físico integral por dominios para controles CRED NTS 238.",
+  "version": "1.0.0"
+}

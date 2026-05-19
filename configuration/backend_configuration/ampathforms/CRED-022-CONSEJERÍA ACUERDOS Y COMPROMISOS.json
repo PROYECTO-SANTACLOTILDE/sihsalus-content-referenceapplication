@@ -1,0 +1,122 @@
+{
+  "name": "CRED-022-CONSEJERÍA ACUERDOS Y COMPROMISOS",
+  "pages": [
+    {
+      "label": "CONSEJERÍA ACUERDOS Y COMPROMISOS",
+      "sections": [
+        {
+          "label": "Consejería",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaConsejeria",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Temas tratados durante la consejería",
+              "type": "obs",
+              "required": true,
+              "id": "temasTratados",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Acuerdos con la familia o cuidador",
+              "type": "obs",
+              "required": true,
+              "id": "acuerdosFamilia",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Prácticas priorizadas en casa",
+              "type": "obs",
+              "required": false,
+              "id": "practicasPriorizadas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Señales de alarma explicadas",
+              "type": "obs",
+              "required": false,
+              "id": "senalesAlarmaExplicadas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Próximo control o seguimiento indicado",
+              "type": "obs",
+              "required": false,
+              "id": "fechaProximoControl",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2220000-0000-4000-8000-000000000022",
+  "description": "Registro de consejería integral, acuerdos y compromisos familiares al cierre del control CRED.",
+  "version": "1.0.0"
+}
