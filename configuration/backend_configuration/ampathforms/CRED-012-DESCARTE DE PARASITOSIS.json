@@ -1,0 +1,188 @@
+{
+  "name": "CRED-012-DESCARTE DE PARASITOSIS",
+  "pages": [
+    {
+      "label": "DESCARTE DE PARASITOSIS",
+      "sections": [
+        {
+          "label": "Evaluación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Síntomas digestivos o prurito anal",
+              "type": "obs",
+              "required": false,
+              "id": "sintomasDigestivos",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Examen seriado de heces o test de Graham solicitado",
+              "type": "obs",
+              "required": false,
+              "id": "examenSolicitado",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000006-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Resultado del descarte",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoParasitosis",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hallazgos relevantes",
+              "type": "obs",
+              "required": false,
+              "id": "hallazgos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Intervención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Tratamiento indicado",
+              "type": "obs",
+              "required": false,
+              "id": "tratamientoIndicado",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Medidas familiares, higiene y saneamiento",
+              "type": "obs",
+              "required": false,
+              "id": "medidasFamiliares",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de seguimiento",
+              "type": "obs",
+              "required": false,
+              "id": "seguimiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2120000-0000-4000-8000-000000000012",
+  "description": "Descarte, tratamiento y seguimiento de parasitosis en CRED según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.0.0"
+}

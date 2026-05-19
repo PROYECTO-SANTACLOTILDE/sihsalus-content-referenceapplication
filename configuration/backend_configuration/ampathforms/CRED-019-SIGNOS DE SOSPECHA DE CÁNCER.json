@@ -1,0 +1,191 @@
+{
+  "name": "CRED-019-SIGNOS DE SOSPECHA DE CÁNCER",
+  "pages": [
+    {
+      "label": "SIGNOS DE SOSPECHA DE CÁNCER",
+      "sections": [
+        {
+          "label": "Signos de alarma",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Fiebre persistente, pérdida de peso, palidez o fatiga",
+              "type": "obs",
+              "required": false,
+              "id": "sintomasConstitucionales",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Masas, adenopatías o aumento abdominal",
+              "type": "obs",
+              "required": false,
+              "id": "masasAdenopatias",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Sangrado, moretones o petequias sin causa clara",
+              "type": "obs",
+              "required": false,
+              "id": "sangradoMoretones",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Dolor óseo persistente o signos neurológicos",
+              "type": "obs",
+              "required": false,
+              "id": "dolorOseoNeurologico",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Resultado de sospecha",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoSospecha",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Conducta, urgencia o referencia",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2190000-0000-4000-8000-000000000019",
+  "description": "Búsqueda de signos de sospecha de cáncer infantil en controles CRED.",
+  "version": "1.0.0"
+}
