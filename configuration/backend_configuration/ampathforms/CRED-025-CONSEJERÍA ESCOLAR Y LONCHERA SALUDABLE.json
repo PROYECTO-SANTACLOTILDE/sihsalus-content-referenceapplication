@@ -1,0 +1,133 @@
+{
+  "name": "CRED-025-CONSEJERÍA ESCOLAR Y LONCHERA SALUDABLE",
+  "pages": [
+    {
+      "label": "CONSEJERÍA ESCOLAR Y LONCHERA SALUDABLE",
+      "sections": [
+        {
+          "label": "Hábitos escolares",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaConsejeria",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Lonchera saludable y alimentación diaria",
+              "type": "obs",
+              "required": false,
+              "id": "loncheraAlimentacion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Actividad física y juego activo",
+              "type": "obs",
+              "required": false,
+              "id": "actividadFisica",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Sueño, descanso y tiempo de pantallas",
+              "type": "obs",
+              "required": false,
+              "id": "suenoPantallas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Higiene, lavado de manos y salud oral",
+              "type": "obs",
+              "required": false,
+              "id": "higieneSaludOral",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Seguridad, buen trato y convivencia escolar",
+              "type": "obs",
+              "required": false,
+              "id": "seguridadBuenTrato",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Acuerdos con niña/niño y cuidador",
+              "type": "obs",
+              "required": true,
+              "id": "acuerdos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2250000-0000-4000-8000-000000000025",
+  "description": "Consejería escolar para niñas y niños de 5 a 11 años: alimentación, actividad física, sueño, pantallas e higiene.",
+  "version": "1.0.0"
+}

@@ -1,0 +1,150 @@
+{
+  "name": "CRED-018-EVALUACIÓN AUDITIVA",
+  "pages": [
+    {
+      "label": "EVALUACIÓN AUDITIVA",
+      "sections": [
+        {
+          "label": "Evaluación auditiva",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Método utilizado",
+              "type": "obs",
+              "required": false,
+              "id": "metodo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000006-0000-4000-8000-000000000006"
+              },
+              "validators": []
+            },
+            {
+              "label": "Factores de riesgo auditivo",
+              "type": "obs",
+              "required": false,
+              "id": "factoresRiesgoAuditivo",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Respuesta auditiva esperada para edad",
+              "type": "obs",
+              "required": true,
+              "id": "respuestaAuditiva",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hallazgos relevantes",
+              "type": "obs",
+              "required": false,
+              "id": "hallazgos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan, seguimiento o referencia a audiología/ORL",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2180000-0000-4000-8000-000000000018",
+  "description": "Evaluación auditiva, factores de riesgo y referencia durante CRED.",
+  "version": "1.0.0"
+}

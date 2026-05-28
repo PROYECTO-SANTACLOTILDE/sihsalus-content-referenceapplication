@@ -1,0 +1,164 @@
+{
+  "name": "CRED-013-ADMINISTRACIÓN DE VITAMINA A",
+  "pages": [
+    {
+      "label": "ADMINISTRACIÓN DE VITAMINA A",
+      "sections": [
+        {
+          "label": "Administración",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaAdministracion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Vitamina A administrada",
+              "type": "obs",
+              "required": true,
+              "id": "vitaminaAAdministrada",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000006-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Dosis administrada (UI)",
+              "type": "obs",
+              "required": false,
+              "id": "dosisUi",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f0000007-0000-4000-8000-000000000007",
+                "min": "0",
+                "max": "200000",
+                "step": 1000,
+                "disallowDecimals": false
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Lote o presentación",
+              "type": "obs",
+              "required": false,
+              "id": "lote",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Evento adverso inmediato",
+              "type": "obs",
+              "required": false,
+              "id": "eventoAdverso",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000008-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Continuidad",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Indicación de próxima dosis o seguimiento",
+              "type": "obs",
+              "required": false,
+              "id": "proximaDosis",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2130000-0000-4000-8000-000000000013",
+  "description": "Registro de administración preventiva de vitamina A durante controles CRED.",
+  "version": "1.0.0"
+}

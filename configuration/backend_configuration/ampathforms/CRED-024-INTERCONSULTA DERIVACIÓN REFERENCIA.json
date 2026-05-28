@@ -1,0 +1,174 @@
+{
+  "name": "CRED-024-INTERCONSULTA DERIVACIÓN REFERENCIA",
+  "pages": [
+    {
+      "label": "INTERCONSULTA DERIVACIÓN REFERENCIA",
+      "sections": [
+        {
+          "label": "Solicitud",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSolicitud",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Motivo de interconsulta, derivación o referencia",
+              "type": "obs",
+              "required": true,
+              "id": "motivo",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Servicio o especialidad destino",
+              "type": "obs",
+              "required": true,
+              "id": "servicioDestino",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Prioridad",
+              "type": "obs",
+              "required": true,
+              "id": "prioridad",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000161-0000-4000-8000-000000000161",
+                    "label": "Leve"
+                  },
+                  {
+                    "concept": "f0000162-0000-4000-8000-000000000162",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f0000163-0000-4000-8000-000000000163",
+                    "label": "Severo"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Establecimiento destino",
+              "type": "obs",
+              "required": false,
+              "id": "establecimientoDestino",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicaciones entregadas a la familia",
+              "type": "obs",
+              "required": false,
+              "id": "indicaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Seguimiento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Referencia/interconsulta efectivizada",
+              "type": "obs",
+              "required": false,
+              "id": "referenciaEfectivizada",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000006-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de seguimiento del caso",
+              "type": "obs",
+              "required": false,
+              "id": "planSeguimiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2240000-0000-4000-8000-000000000024",
+  "description": "Registro CRED de interconsulta, derivación o referencia por hallazgos positivos.",
+  "version": "1.0.0"
+}

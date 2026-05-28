@@ -1,0 +1,204 @@
+{
+  "name": "OBST-016-ATENCIÓN DIFERENCIADA GESTANTE ADOLESCENTE",
+  "pages": [
+    {
+      "label": "Gestante adolescente",
+      "sections": [
+        {
+          "label": "Evaluación diferenciada",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaAtencion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "id": "semanasGestacion",
+              "label": "Semanas de gestación",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f0000021-0000-4000-8000-000000000021",
+                "min": "0",
+                "max": "43",
+                "step": 1
+              },
+              "validators": []
+            },
+            {
+              "id": "resultadoIntegral",
+              "label": "Resultado de la evaluación integral",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Sin hallazgos"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Alto riesgo"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "acompananteConfianza",
+              "label": "Cuenta con acompañante o adulto de confianza",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f0000005-0000-4000-8000-000000000005",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "riesgoPsicosocial",
+              "label": "Riesgo psicosocial, familiar, escolar o de soporte",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "id": "saludSexualReproductiva",
+              "label": "Consejería en salud sexual y reproductiva brindada",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "id": "tamizajeViolencia",
+              "label": "Tamizaje de violencia",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000012-0000-4000-8000-000000000012",
+                "answers": [
+                  {
+                    "concept": "f0000131-0000-4000-8000-000000000131",
+                    "label": "Sin evidencia"
+                  },
+                  {
+                    "concept": "f0000132-0000-4000-8000-000000000132",
+                    "label": "Caso sospechoso"
+                  },
+                  {
+                    "concept": "f0000133-0000-4000-8000-000000000133",
+                    "label": "Caso confirmado o referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "id": "consentimientoConfidencialidad",
+              "label": "Consentimiento, confidencialidad y derechos explicados",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "id": "planSeguimiento",
+              "label": "Plan diferenciado, interconsulta o referencia",
+              "type": "obs",
+              "required": false,
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003",
+                "rows": 4
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "58a87b85-cb6c-4a4c-bc5f-0a2d1e0ff8ba",
+  "encounter": "Control Prenatal",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b1160000-0000-4000-8000-000000000016",
+  "description": "Atención integral y diferenciada de la gestante adolescente según NTS 130-MINSA.",
+  "version": "1.0.0"
+}

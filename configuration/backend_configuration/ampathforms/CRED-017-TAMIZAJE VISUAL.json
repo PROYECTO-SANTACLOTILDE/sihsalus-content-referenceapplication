@@ -1,0 +1,151 @@
+{
+  "name": "CRED-017-TAMIZAJE VISUAL",
+  "pages": [
+    {
+      "label": "TAMIZAJE VISUAL",
+      "sections": [
+        {
+          "label": "Tamizaje visual",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaTamizaje",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Método o cartilla utilizada",
+              "type": "obs",
+              "required": false,
+              "id": "metodo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000006-0000-4000-8000-000000000006"
+              },
+              "validators": []
+            },
+            {
+              "label": "Agudeza visual ojo derecho",
+              "type": "obs",
+              "required": false,
+              "id": "agudezaOjoDerecho",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Agudeza visual ojo izquierdo",
+              "type": "obs",
+              "required": false,
+              "id": "agudezaOjoIzquierdo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Resultado global",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoVisual",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  },
+                  {
+                    "concept": "f0000104-0000-4000-8000-000000000104",
+                    "label": "Referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hallazgos o signos de alarma",
+              "type": "obs",
+              "required": false,
+              "id": "hallazgos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan, control o referencia a oftalmología",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2170000-0000-4000-8000-000000000017",
+  "description": "Tamizaje visual y derivación por hallazgos durante CRED.",
+  "version": "1.0.0"
+}
