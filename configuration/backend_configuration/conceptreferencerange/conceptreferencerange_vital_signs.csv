@@ -92,6 +92,8 @@ c5624243-f637-434d-b496-82fec6075e53,11033072,Talla 1 - <2 yrs,71,74,76,85,87,90
 5108bad1-0db1-47b8-bc5a-3173d935d466,11033072,Talla 6 - <13 yrs,105,108,110,145,147,150,$patient.getAge() >= 6 && $patient.getAge() < 13
 1bddeced-a848-4df9-bd1e-d3c15bf982e8,11033072,Talla 13 - <16 yrs,140,143,145,160,162,185,$patient.getAge() >= 13 && $patient.getAge() < 16
 1f15a88a-fda4-4d51-a095-cb4f21d9e2fa,11033072,Talla 16 - <18 yrs,155,158,160,180,182,200,$patient.getAge() >= 16 && $patient.getAge() < 18
+c4277e54-49fe-4cee-b0a8-faaa155e6af3,11032370,Perimetro abdominal adulto mujer >=18 yrs,0,0,0,79.9,88,200,"$patient.getAge() >= 18 && $patient.getGender().equals(""F"")"
+b19fb28d-deb2-4b5a-baa1-67844db3f9a5,11032370,Perimetro abdominal adulto hombre >=18 yrs,0,0,0,93.9,102,200,"$patient.getAge() >= 18 && $patient.getGender().equals(""M"")"
 4ca84a60-ecf0-4d83-9d7f-e668fbc33b34,11033054,Perimetro cefalico 0 - <6 wks,31,33,34,38,39,41,$patient.getAgeInWeeks() < 6
 fbff6085-bf48-4f3e-8523-4735c952adef,11033054,Perimetro cefalico 6 - <1 yrs,39,41,42,46,47,49,$patient.getAgeInWeeks() >= 6 && $patient.getAge() < 1
 9abe5a84-1216-4e7f-b73b-ab3baf95e9dd,11033054,Perimetro cefalico 1 - <2 yrs,44,46,47,49,50,52,$patient.getAge() >= 1 && $patient.getAge() < 2
