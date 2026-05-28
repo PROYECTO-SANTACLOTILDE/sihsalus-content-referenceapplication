@@ -163,6 +163,11 @@
             <value>a0b03050-c99b-11e0-9572-0800200c9a66</value>
         </globalProperty>
 
+        <globalProperty>
+            <property>fhir2.immunizationsEncounterTypeUuid</property>
+            <value>29c02aff-9a93-46c9-bf6f-48b552fcb1fa</value>
+        </globalProperty>
+
         <!-- Dyaku / RENHICE Interoperability Configuration -->
         <globalProperty>
             <property>sihsalusinterop.renhice.endpoint</property>
