@@ -1,0 +1,74 @@
+{
+  "name": "ODONT-001-ODONTOGRAMA",
+  "pages": [
+    {
+      "label": "Odontograma",
+      "sections": [
+        {
+          "label": "Contrato de persistencia",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora del registro",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaRegistro",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Snapshot de odontograma",
+              "type": "obs",
+              "required": true,
+              "id": "snapshotOdontograma",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c1130000-0000-4000-8000-000000000101"
+              },
+              "validators": []
+            },
+            {
+              "label": "Tipo de registro",
+              "type": "obs",
+              "required": true,
+              "id": "tipoRegistro",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c1130000-0000-4000-8000-000000000102"
+              },
+              "validators": []
+            },
+            {
+              "label": "Odontograma base relacionado",
+              "type": "obs",
+              "required": false,
+              "id": "odontogramaBaseRelacionado",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c1130000-0000-4000-8000-000000000103"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "6d6a8f9f-6e0a-4e41-bb8f-11f65d6b4bb0",
+  "encounter": "Odontograma Base",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1130000-0000-4000-8000-000000000001",
+  "description": "Contrato AMPATH usado por la UI especializada del odontograma para persistir el estado visual del diagrama.",
+  "version": "1.0.0"
+}

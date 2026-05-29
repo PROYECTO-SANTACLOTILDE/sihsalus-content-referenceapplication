@@ -1,0 +1,348 @@
+{
+  "name": "PSIC-004-TAMIZAJE DE SALUD MENTAL",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "d55108da-4ec7-4042-af62-027c282fa588",
+  "encounter": "Tamizaje de Salud Mental",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "f0703edb-cb58-4cf4-976a-755bd9e15c95",
+  "description": "Tamizaje de salud mental, riesgo psicosocial, consumo de sustancias o violencia para detección y referencia oportuna. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Tamizaje",
+      "sections": [
+        {
+          "label": "Datos de atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaTamizaje",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "responsableTamizaje",
+              "label": "Responsable del tamizaje",
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "required": true
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "servicio",
+              "label": "Servicio"
+            }
+          ]
+        },
+        {
+          "label": "Resultado",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Instrumento de tamizaje",
+              "type": "obs",
+              "required": true,
+              "id": "instrumentoTamizaje",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000028",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000181",
+                    "label": "SRQ"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000182",
+                    "label": "PHQ-9"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000183",
+                    "label": "GAD-7"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000184",
+                    "label": "AUDIT"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000185",
+                    "label": "ASSIST"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000186",
+                    "label": "PSC"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000187",
+                    "label": "APGAR familiar"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000188",
+                    "label": "Ficha de valoración de riesgo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000189",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Puntaje",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeTamizaje",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1000000-0000-4000-8000-000000000029",
+                "min": "0",
+                "max": "200",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Resultado del tamizaje",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoTamizaje",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000030",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000191",
+                    "label": "Negativo / sin hallazgos"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000192",
+                    "label": "Positivo / en riesgo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000193",
+                    "label": "Sospecha diagnóstica"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000194",
+                    "label": "Requiere atención urgente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Problema priorizado",
+              "type": "obs",
+              "required": false,
+              "id": "problemaPriorizado",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000009",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000131",
+                    "label": "Problema psicosocial"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000132",
+                    "label": "Ansiedad"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000133",
+                    "label": "Depresión"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000135",
+                    "label": "Consumo de sustancias"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000136",
+                    "label": "Violencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000138",
+                    "label": "Conducta suicida"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000139",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Riesgo y conducta",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Riesgo suicida o autolesivo",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoSuicida",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Riesgo de violencia o desprotección",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoViolencia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000007",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Consumo de alcohol u otras sustancias",
+              "type": "obs",
+              "required": false,
+              "id": "consumoSustancias",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000121",
+                    "label": "No reportado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000122",
+                    "label": "Sospecha"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000123",
+                    "label": "Confirmado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000124",
+                    "label": "En tratamiento"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000031",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima acción",
+              "type": "obs",
+              "required": true,
+              "id": "proximaAccion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000027",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000171",
+                    "label": "Continuar tratamiento"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000172",
+                    "label": "Referir a CSMC"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000173",
+                    "label": "Interconsulta a psiquiatría"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000174",
+                    "label": "Activar red de protección o emergencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000175",
+                    "label": "Alta o contrarreferencia"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

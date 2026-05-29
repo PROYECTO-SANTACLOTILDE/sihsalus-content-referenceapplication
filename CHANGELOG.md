@@ -5,6 +5,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.8.32] - 2026-05-28
+
+### Agregado
+- Formulario `ODONT-003-ATENCIÓN ODONTOLÓGICA` para el registro clínico de la atención odontológica (motivo de consulta, índices CPO-D/ceo-d e IHOS, riesgo estomatológico, diagnóstico CIE-10, actividades preventivas y recuperativas, plan de tratamiento y disposición), usando el encounter type existente `Atención de Odontología`. Complementa el odontograma, que registra los hallazgos por pieza.
+- Conceptos de odontología en `concepts-odontology.csv` para la atención clínica: tipo de atención, antecedentes estomatológicos, índices CPO-D/ceo-d, IHOS, riesgo estomatológico, actividades preventivas, procedimientos recuperativos, detalle de procedimientos, piezas tratadas y disposición.
+
+---
+
 ## [1.8.31] - 2026-05-13
 
 ### Corregido
