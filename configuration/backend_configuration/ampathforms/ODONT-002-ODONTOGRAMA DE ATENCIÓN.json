@@ -1,0 +1,74 @@
+{
+  "name": "ODONT-002-ODONTOGRAMA DE ATENCIÓN",
+  "pages": [
+    {
+      "label": "Odontograma",
+      "sections": [
+        {
+          "label": "Contrato de persistencia",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora del registro",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaRegistro",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Snapshot de odontograma",
+              "type": "obs",
+              "required": true,
+              "id": "snapshotOdontograma",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c1130000-0000-4000-8000-000000000101"
+              },
+              "validators": []
+            },
+            {
+              "label": "Tipo de registro",
+              "type": "obs",
+              "required": true,
+              "id": "tipoRegistro",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c1130000-0000-4000-8000-000000000102"
+              },
+              "validators": []
+            },
+            {
+              "label": "Odontograma base relacionado",
+              "type": "obs",
+              "required": false,
+              "id": "odontogramaBaseRelacionado",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c1130000-0000-4000-8000-000000000103"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "bfc5b59b-9a8b-4d95-a8f1-2c9b1fb6f9bb",
+  "encounter": "Odontograma de Atención",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1130000-0000-4000-8000-000000000002",
+  "description": "Contrato AMPATH usado por la UI especializada del odontograma para persistir atenciones vinculadas a un odontograma base.",
+  "version": "1.0.0"
+}

@@ -1,0 +1,4 @@
+Uuid,Void/Retire,Fully specified name:es,Description:es,Data class,Data type,Mappings|SAME-AS,_version:1,_order:3100
+c1130000-0000-4000-8000-000000000101,,Snapshot de odontograma,Representación JSON del estado visual del odontograma capturado por la UI especializada de SIH.SALUS.,Question,Text,SIHSALUS:ODONTOGRAM_SNAPSHOT,,
+c1130000-0000-4000-8000-000000000102,,Tipo de registro de odontograma,Tipo operativo del registro de odontograma: base o atención.,Question,Text,SIHSALUS:ODONTOGRAM_RECORD_TYPE,,
+c1130000-0000-4000-8000-000000000103,,Odontograma base relacionado,UUID del encounter del odontograma base relacionado con una atención odontológica.,Question,Text,SIHSALUS:ODONTOGRAM_PARENT_BASE,,

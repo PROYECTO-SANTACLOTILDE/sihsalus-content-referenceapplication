@@ -11,6 +11,8 @@ b212032f-9903-4696-ab31-173d432d1d3d,,Atención en Sala de Partos,"Atención del
 79488027-0292-4807-afe4-9c037052be40,,Prescripción y Dispensación de Medicamentos,"Registro de indicación y entrega de medicamentos en farmacia hospitalaria o comunitaria. Basado en la NTS N° 042-MINSA.",,,
 328f6f79-4a85-4ff8-9fb8-6b2c839c7649,,Resultados de Laboratorio,"Registro de resultados de pruebas de laboratorio clínico. Basado en la NTS N° 090-MINSA.",,,
 29c02aff-9a93-46c9-bf6f-48b552fcb1fa,,Administración de Vacunas,"Registro de administración de vacunas del Esquema Nacional de Inmunización. Basado en la NTS N° 123-MINSA.",,,
+6d6a8f9f-6e0a-4e41-bb8f-11f65d6b4bb0,,Odontograma Base,"Registro del odontograma base del paciente, usado como referencia longitudinal para hallazgos odontológicos.",,,
+bfc5b59b-9a8b-4d95-a8f1-2c9b1fb6f9bb,,Odontograma de Atención,"Registro de soluciones o intervenciones odontológicas asociadas a una atención y vinculadas al odontograma base.",,,
 54e3e45d-b7d7-4259-b64a-334e17b98c40,,Educación y Consejería en Salud,"Orientación en hábitos saludables, prevención de enfermedades y lactancia materna. Basado en la NTS N° 050-MINSA.",,,
 e4834799-7f43-4552-a6f3-2656880ca52f,,Interconsulta,"Consulta solicitada por un médico a otra especialidad. Basado en la NTS N° 102-MINSA.",,,
 16bec8b6-4a2d-4cf9-8e66-9bb6e1c5d1da,,Referencia y Contrarreferencia,"Registro de derivación de pacientes a otro nivel de atención o su retorno con informe médico. Basado en la NTS N° 102-MINSA.",,,

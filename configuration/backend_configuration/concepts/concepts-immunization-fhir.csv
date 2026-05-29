@@ -8,3 +8,6 @@ f1420000-0000-4000-8000-000000001420,,Número de lote de vacuna,Número de lote 
 f1659070-0000-4000-8000-000000165907,,Fecha de vencimiento de vacuna,Fecha de vencimiento de la vacuna registrada mediante FHIR Immunization.,Question,Date,CIEL:165907,,
 f1610110-0000-4000-8000-000000161011,,Comentario de vacunación,Comentario de vacunación registrado mediante FHIR Immunization.,Question,Text,CIEL:161011,,
 f1700000-0000-4000-8000-000000170000,,Fecha de próxima dosis,Fecha de próxima dosis registrada mediante FHIR Immunization.,Question,Datetime,CIEL:170000,,
+f0000182-0000-4000-8000-000000000182,,Estado de aplicación de vacuna,Estado operativo de aplicación de una vacuna registrado desde calendario SIH.SALUS.,Question,Text,SIHSALUS:IMMUNIZATION_STATUS,,
+f0000183-0000-4000-8000-000000000183,,Motivo de no aplicación o diferimiento de vacuna,Motivo operativo cuando una dosis no fue aplicada o quedó diferida.,Question,Text,SIHSALUS:IMMUNIZATION_STATUS_REASON,,
+f0000184-0000-4000-8000-000000000184,,Contexto del programa de vacunación,"Contexto MINSA del registro de vacunación: esquema regular, rescate, campaña o indicación especial.",Question,Text,SIHSALUS:IMMUNIZATION_PROGRAM_CONTEXT,,

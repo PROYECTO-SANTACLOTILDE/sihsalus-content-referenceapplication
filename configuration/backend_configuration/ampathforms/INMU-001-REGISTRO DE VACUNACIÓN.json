@@ -1,0 +1,161 @@
+{
+  "name": "INMU-001-REGISTRO DE VACUNACIÓN",
+  "pages": [
+    {
+      "label": "Registro de vacunación",
+      "sections": [
+        {
+          "label": "Datos de la vacuna",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de vacunación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaVacunacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Vacuna administrada",
+              "type": "obs",
+              "required": true,
+              "id": "vacunaAdministrada",
+              "questionOptions": {
+                "rendering": "select-concept-answers",
+                "concept": "f9840000-0000-4000-8000-000000000984"
+              },
+              "validators": []
+            },
+            {
+              "label": "Número de dosis",
+              "type": "obs",
+              "required": false,
+              "id": "numeroDosis",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1418000-0000-4000-8000-000000001418",
+                "min": "1",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Estado de aplicación",
+              "type": "obs",
+              "required": true,
+              "id": "estadoAplicacion",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000182-0000-4000-8000-000000000182"
+              },
+              "validators": []
+            },
+            {
+              "label": "Motivo de no aplicación o diferimiento",
+              "type": "obs",
+              "required": false,
+              "id": "motivoNoAplicacion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000183-0000-4000-8000-000000000183"
+              },
+              "validators": []
+            },
+            {
+              "label": "Contexto MINSA",
+              "type": "obs",
+              "required": false,
+              "id": "contextoMinsa",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f0000184-0000-4000-8000-000000000184"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Lote y seguimiento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fabricante",
+              "type": "obs",
+              "required": false,
+              "id": "fabricante",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f1419000-0000-4000-8000-000000001419"
+              },
+              "validators": []
+            },
+            {
+              "label": "Número de lote",
+              "type": "obs",
+              "required": false,
+              "id": "lote",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f1420000-0000-4000-8000-000000001420"
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de vencimiento",
+              "type": "obs",
+              "required": false,
+              "id": "fechaVencimiento",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f1659070-0000-4000-8000-000000165907"
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de próxima dosis",
+              "type": "obs",
+              "required": false,
+              "id": "fechaProximaDosis",
+              "questionOptions": {
+                "rendering": "datetime",
+                "concept": "f1700000-0000-4000-8000-000000170000"
+              },
+              "validators": []
+            },
+            {
+              "label": "Comentario",
+              "type": "obs",
+              "required": false,
+              "id": "comentarioVacunacion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1610110-0000-4000-8000-000000161011"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "29c02aff-9a93-46c9-bf6f-48b552fcb1fa",
+  "encounter": "Administración de Vacunas",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1120000-0000-4000-8000-000000000011",
+  "description": "Contrato AMPATH usado por la UI especializada del calendario de vacunación para persistir dosis, lotes, estado y próxima dosis.",
+  "version": "1.0.0"
+}
