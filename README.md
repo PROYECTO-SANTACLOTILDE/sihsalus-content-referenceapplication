@@ -38,3 +38,43 @@ To check if your code adheres to the style guidelines without making any changes
 If this command reports any violations, you can then run `mvn spotless:apply` to fix them.
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
+
+## Cobertura MINSA (Categoría II)
+
+Este paquete ya incluye formularios para consulta externa, obstetricia, salud mental, laboratorio básico de resultados, vacunación, odontología y hospitalización básica. Varios procesos de MINSA pueden quedar cubiertos por módulos nativos de OpenMRS (por ejemplo, triaje/laboratorios/medicación según configuración), pero se dejó esta lista para identificar brechas de documentación clínica en formularios SIH-SALUS.
+
+Cobertura estimada (categoría II-1 / II-2):
+
+1. Cubierto en el paquete de formularios
+   - Atención ambulatoria y consulta externa: `CE-*`, `PSIC-*`
+   - Urgencia: en tipos de encuentro existe en `encountertypes`, pero no hay formulario específico de triaje y atención en `/ampathforms`
+   - Obstetricia y neonatal: `OBST-*`, partograma, RN y puerperio
+   - Hospitalización: `HOSP-001`, `HOSP-004`, `HOSP-008`, `HOSP-009`, `HOSP-012`, `FormularioEpicrisisMédica`
+   - Referencia/contrarreferencia: `CE-REF-*`
+   - CRED y programas de continuidad: `CRED-*`
+   - Salud mental: `PSIC-001` a `PSIC-004`
+   - Odontología: `ODONT-*`
+   - Inmunizaciones: `INMU-001`
+
+1. Parcial o soportado por OpenMRS nativo (requiere validación local)
+   - Prescripción médica: formulario de prescripción + módulos de med list/order
+   - Laboratorio: resultados presentes; revisar si el flujo de solicitud/muestra está cubierto nativamente
+   - Farmacia: prescripción cubre parte del proceso; validar dispensación y conciliación con flujo nativo
+   - Radiología/imagen y patología: validar módulos instalados antes de crear formularios
+   - UCI y cirugía/electiva: revisar visittypes y módulos de urgencia/cirugía habilitados
+
+1. Pendientes prioritarios para documentación MIINSA por categoría II
+   - Formularios de urgencia (triaje, atención inicial, observación/evolución, reanimación)
+   - Formularios quirúrgicos y anestésicos (pre-operatorio, consentimiento, nota operatoria, anestesia, recuperación)
+   - Solicitud de laboratorio + toma y trazabilidad de muestra
+   - Solicitud e informe de imagen diagnóstica
+   - Solicitud/compatibilidad/administración transfusional
+   - Interconsulta y admisión hospitalaria no obstétrica (si aplica)
+   - Nutrición clínica y plan hospitalario
+   - Farmacia: dispensación y seguimiento farmacéutico en hospitalización
+   - Documentos de esterilización de material/central de esterilización
+   - II-2: ingreso y monitorización UCI, y soporte crítico (si aplica)
+
+Referencias mínimas
+- NTS 021-MINSA/DGSP-V.03 (categorías de establecimientos): https://spij.minjus.gob.pe/Graficos/Peru/2011/Julio/16/RM-546-2011-MINSA.pdf
+- NTS 139-MINSA/2018/DGAIN (gestión de historia clínica): https://spij.minjus.gob.pe/Graficos/Peru/2018/Marzo/15/RM-214-2018-MINSA.pdf
