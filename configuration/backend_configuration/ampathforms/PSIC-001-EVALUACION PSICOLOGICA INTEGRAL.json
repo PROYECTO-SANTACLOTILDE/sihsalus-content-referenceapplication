@@ -1,0 +1,437 @@
+{
+  "name": "PSIC-001-EVALUACION PSICOLOGICA INTEGRAL",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "1b9f21c5-928c-4077-bc95-dcd4b1a5a366",
+  "encounter": "Evaluación de Salud Mental",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "8015414e-6f0c-46b8-9845-42cd48431cd2",
+  "description": "Evaluación psicológica integral para consulta ambulatoria de salud mental. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Datos y motivo",
+      "sections": [
+        {
+          "label": "Datos de la atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaAtencion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "psicologoResponsable",
+              "label": "Psicólogo responsable",
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "required": true
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "consultorio",
+              "label": "Consultorio / servicio"
+            }
+          ]
+        },
+        {
+          "label": "Motivo de atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Modalidad de ingreso",
+              "type": "obs",
+              "required": true,
+              "id": "modalidadIngreso",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000101",
+                    "label": "Demanda espontánea"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000102",
+                    "label": "Referencia o interconsulta"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000103",
+                    "label": "Seguimiento programado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000104",
+                    "label": "Emergencia o riesgo"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Motivo de atención psicológica",
+              "type": "obs",
+              "required": true,
+              "id": "motivoAtencion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000002",
+                "rows": 4
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Evaluación",
+      "sections": [
+        {
+          "label": "Historia y contexto",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Antecedentes de salud mental",
+              "type": "obs",
+              "required": false,
+              "id": "antecedentesSaludMental",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000003",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Contexto familiar, social y comunitario",
+              "type": "obs",
+              "required": false,
+              "id": "contextoFamiliarSocial",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000004",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Examen mental",
+              "type": "obs",
+              "required": false,
+              "id": "examenMental",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000005",
+                "rows": 5
+              },
+              "validators": []
+            },
+            {
+              "label": "Formulación psicológica",
+              "type": "obs",
+              "required": false,
+              "id": "formulacionPsicologica",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000012",
+                "rows": 5
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Riesgo y diagnóstico",
+      "sections": [
+        {
+          "label": "Riesgos",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Riesgo suicida o autolesivo",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoSuicida",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Riesgo de violencia o desprotección",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoViolencia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000007",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Consumo de alcohol u otras sustancias",
+              "type": "obs",
+              "required": false,
+              "id": "consumoSustancias",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000008",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000121",
+                    "label": "No reportado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000122",
+                    "label": "Sospecha"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000123",
+                    "label": "Confirmado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000124",
+                    "label": "En tratamiento"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Impresión diagnóstica",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Problema priorizado",
+              "type": "obs",
+              "required": true,
+              "id": "problemaPriorizado",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000009",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000131",
+                    "label": "Problema psicosocial"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000132",
+                    "label": "Ansiedad"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000133",
+                    "label": "Depresión"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000134",
+                    "label": "Psicosis"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000135",
+                    "label": "Consumo de sustancias"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000136",
+                    "label": "Violencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000137",
+                    "label": "Duelo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000138",
+                    "label": "Conducta suicida"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000139",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Severidad clínica / psicosocial",
+              "type": "obs",
+              "required": true,
+              "id": "severidad",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000010",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000141",
+                    "label": "Leve"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000142",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000143",
+                    "label": "Severo"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Diagnóstico CIE-10 de salud mental",
+              "type": "obs",
+              "required": false,
+              "id": "diagnosticoCie10",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f1000000-0000-4000-8000-000000000011"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Plan",
+      "sections": [
+        {
+          "label": "Plan inicial",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Plan de atención individualizado",
+              "type": "obs",
+              "required": true,
+              "id": "planAtencion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000013",
+                "rows": 5
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima acción",
+              "type": "obs",
+              "required": true,
+              "id": "proximaAccion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000027",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000171",
+                    "label": "Continuar tratamiento"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000172",
+                    "label": "Referir a CSMC"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000173",
+                    "label": "Interconsulta a psiquiatría"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000174",
+                    "label": "Activar red de protección o emergencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000175",
+                    "label": "Alta o contrarreferencia"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

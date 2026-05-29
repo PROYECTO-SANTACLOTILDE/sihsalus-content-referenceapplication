@@ -1,0 +1,315 @@
+{
+  "name": "PSIC-002-PLAN DE ATENCION INDIVIDUALIZADO",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "b87a1fe3-d956-4e7a-8640-13e70b73fa42",
+  "encounter": "Plan de Atención Individualizado en Salud Mental",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "901a3851-fac2-4214-b7a7-47522b8f2548",
+  "description": "Registro del plan de atención individualizado de salud mental con objetivos, intervenciones, red de apoyo y seguimiento. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Datos del PAI",
+      "sections": [
+        {
+          "label": "Datos de atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaPai",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "responsablePai",
+              "label": "Responsable del PAI",
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "required": true
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "servicio",
+              "label": "Servicio"
+            }
+          ]
+        },
+        {
+          "label": "Resumen clínico",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Problema priorizado",
+              "type": "obs",
+              "required": true,
+              "id": "problemaPriorizado",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000009",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000131",
+                    "label": "Problema psicosocial"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000132",
+                    "label": "Ansiedad"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000133",
+                    "label": "Depresión"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000134",
+                    "label": "Psicosis"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000135",
+                    "label": "Consumo de sustancias"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000136",
+                    "label": "Violencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000137",
+                    "label": "Duelo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000138",
+                    "label": "Conducta suicida"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000139",
+                    "label": "Otro"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Diagnóstico CIE-10 de salud mental",
+              "type": "obs",
+              "required": false,
+              "id": "diagnosticoCie10",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f1000000-0000-4000-8000-000000000011"
+              },
+              "validators": []
+            },
+            {
+              "label": "Severidad clínica / psicosocial",
+              "type": "obs",
+              "required": true,
+              "id": "severidad",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000010",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000141",
+                    "label": "Leve"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000142",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000143",
+                    "label": "Severo"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Plan",
+      "sections": [
+        {
+          "label": "Plan de atención individualizado",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Plan de atención individualizado",
+              "type": "obs",
+              "required": true,
+              "id": "planAtencionIndividualizado",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000013",
+                "rows": 5
+              },
+              "validators": []
+            },
+            {
+              "label": "Objetivos terapéuticos",
+              "type": "obs",
+              "required": true,
+              "id": "objetivosTerapeuticos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000014",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Intervenciones planificadas",
+              "type": "obs",
+              "required": true,
+              "id": "intervencionesPlanificadas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000015",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Participación de familia, cuidadores o comunidad",
+              "type": "obs",
+              "required": false,
+              "id": "participacionRedApoyo",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000016",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Frecuencia de seguimiento",
+              "type": "obs",
+              "required": true,
+              "id": "frecuenciaSeguimiento",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "f1000000-0000-4000-8000-000000000017"
+              },
+              "validators": []
+            },
+            {
+              "label": "Indicadores de seguimiento",
+              "type": "obs",
+              "required": false,
+              "id": "indicadoresSeguimiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000018",
+                "rows": 3
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Seguimiento",
+      "sections": [
+        {
+          "label": "Cierre y seguimiento",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Próxima acción",
+              "type": "obs",
+              "required": true,
+              "id": "proximaAccion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000027",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000171",
+                    "label": "Continuar tratamiento"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000172",
+                    "label": "Referir a CSMC"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000173",
+                    "label": "Interconsulta a psiquiatría"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000174",
+                    "label": "Activar red de protección o emergencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000175",
+                    "label": "Alta o contrarreferencia"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            },
+            {
+              "label": "Observaciones de seguimiento",
+              "type": "obs",
+              "required": false,
+              "id": "observacionesSeguimiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000031",
+                "rows": 3
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

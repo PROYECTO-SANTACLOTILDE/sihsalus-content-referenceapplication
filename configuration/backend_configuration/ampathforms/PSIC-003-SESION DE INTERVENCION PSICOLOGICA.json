@@ -1,0 +1,346 @@
+{
+  "name": "PSIC-003-SESION DE INTERVENCION PSICOLOGICA",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "c0372dfa-6787-4e6d-9e70-95e77b4365fc",
+  "encounter": "Intervención Psicológica",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "b6aed790-f935-45af-8c95-7adb82ee00ff",
+  "description": "Registro de sesión de intervención psicológica, psicoterapia, psicoeducación o seguimiento comunitario. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Sesión",
+      "sections": [
+        {
+          "label": "Datos de la sesión",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSesion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "psicologoResponsable",
+              "label": "Psicólogo responsable",
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "required": true
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "servicio",
+              "label": "Servicio"
+            },
+            {
+              "label": "Modalidad de atención",
+              "type": "obs",
+              "required": true,
+              "id": "modalidadAtencion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000020",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000161",
+                    "label": "Presencial"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000162",
+                    "label": "Teleconsulta"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000163",
+                    "label": "Domiciliaria"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000164",
+                    "label": "Comunitaria"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Tipo de intervención",
+              "type": "obs",
+              "required": true,
+              "id": "tipoIntervencion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000019",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000151",
+                    "label": "Acogida y escucha activa"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000152",
+                    "label": "Intervención breve"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000153",
+                    "label": "Psicoeducación"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000154",
+                    "label": "Psicoterapia individual"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000155",
+                    "label": "Psicoterapia familiar"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000156",
+                    "label": "Psicoterapia grupal"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000157",
+                    "label": "Consejería en salud mental"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000158",
+                    "label": "Seguimiento comunitario o visita domiciliaria"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Número de sesión",
+              "type": "obs",
+              "required": false,
+              "id": "numeroSesion",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1000000-0000-4000-8000-000000000021",
+                "min": "1",
+                "max": "99",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Duración en minutos",
+              "type": "obs",
+              "required": false,
+              "id": "duracionSesion",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1000000-0000-4000-8000-000000000022",
+                "min": "1",
+                "max": "240",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Intervención",
+      "sections": [
+        {
+          "label": "Trabajo terapéutico",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Objetivo de la sesión",
+              "type": "obs",
+              "required": true,
+              "id": "objetivoSesion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000023",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "label": "Técnicas o acciones realizadas",
+              "type": "obs",
+              "required": true,
+              "id": "tecnicasAcciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000024",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Evolución de salud mental",
+              "type": "obs",
+              "required": false,
+              "id": "evolucionSaludMental",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000025",
+                "rows": 4
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Riesgo y cierre",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Riesgo suicida o autolesivo",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoSuicida",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000006",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Riesgo de violencia o desprotección",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoViolencia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000007",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000111",
+                    "label": "No identificado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000112",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000113",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000114",
+                    "label": "Alto o inminente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Acuerdos o tareas terapéuticas",
+              "type": "obs",
+              "required": false,
+              "id": "acuerdosTareas",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f1000000-0000-4000-8000-000000000026",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima acción",
+              "type": "obs",
+              "required": true,
+              "id": "proximaAccion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f1000000-0000-4000-8000-000000000027",
+                "answers": [
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000171",
+                    "label": "Continuar tratamiento"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000172",
+                    "label": "Referir a CSMC"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000173",
+                    "label": "Interconsulta a psiquiatría"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000174",
+                    "label": "Activar red de protección o emergencia"
+                  },
+                  {
+                    "concept": "f1000000-0000-4000-8000-000000000175",
+                    "label": "Alta o contrarreferencia"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
