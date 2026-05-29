@@ -1,0 +1,442 @@
+{
+  "name": "ODONT-003-ATENCIÓN ODONTOLÓGICA",
+  "processor": "EncounterFormProcessor",
+  "encounterType": "1a58800e-dc0d-49b3-abfa-5da144e08d00",
+  "encounter": "Atención de Odontología",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c1130000-0000-4000-8000-000000000003",
+  "description": "Atención odontológica clínica: motivo de consulta, evaluación estomatológica (índices CPO-D, ceo-d e IHOS), riesgo estomatológico, diagnóstico CIE-10, actividades preventivas y recuperativas realizadas, plan de tratamiento y disposición. Complementa el odontograma, que registra los hallazgos por pieza. Basado en la NTS N° 040-MINSA y la Estrategia Sanitaria Nacional de Salud Bucal.",
+  "version": "1.0.0",
+  "pages": [
+    {
+      "label": "Atención Odontológica",
+      "sections": [
+        {
+          "label": "Datos de la atención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de atención",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaAtencion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "cirujanoDentista",
+              "label": "Cirujano dentista responsable",
+              "required": true
+            },
+            {
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "required": true
+            },
+            {
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "id": "consultorio",
+              "label": "Consultorio / Servicio"
+            },
+            {
+              "label": "Tipo de atención odontológica",
+              "type": "obs",
+              "required": true,
+              "id": "tipoAtencion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000104",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000120",
+                    "label": "Preventiva promocional"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000121",
+                    "label": "Recuperativa"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000122",
+                    "label": "Emergencia"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000123",
+                    "label": "Especializada / Referida"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Motivo de consulta",
+              "type": "obs",
+              "required": true,
+              "id": "motivoConsulta",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Evaluación estomatológica",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Antecedentes estomatológicos",
+              "type": "obs",
+              "required": false,
+              "id": "antecedentesEstomatologicos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c1130000-0000-4000-8000-000000000105",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "label": "Índice CPO-D (dentición permanente)",
+              "type": "obs",
+              "required": false,
+              "id": "indiceCpod",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c1130000-0000-4000-8000-000000000106",
+                "min": "0",
+                "max": "32",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Índice ceo-d (dentición temporal)",
+              "type": "obs",
+              "required": false,
+              "id": "indiceCeod",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c1130000-0000-4000-8000-000000000107",
+                "min": "0",
+                "max": "20",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Índice de higiene oral simplificado (IHOS)",
+              "type": "obs",
+              "required": false,
+              "id": "ihos",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000108",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000130",
+                    "label": "Buena"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000131",
+                    "label": "Regular"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000132",
+                    "label": "Mala"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Riesgo estomatológico",
+              "type": "obs",
+              "required": true,
+              "id": "riesgoEstomatologico",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000109",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000140",
+                    "label": "Bajo"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000141",
+                    "label": "Moderado"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000142",
+                    "label": "Alto"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Diagnóstico estomatológico (CIE-10)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Diagnóstico estomatológico",
+              "type": "obs",
+              "required": true,
+              "id": "diagnosticoEstomatologico",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Tipo de diagnóstico",
+              "type": "obs",
+              "required": false,
+              "id": "certezaDiagnostica",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "159946AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Definitivo"
+                  },
+                  {
+                    "concept": "159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Presuntivo"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Procedimientos y Plan",
+      "sections": [
+        {
+          "label": "Actividades realizadas",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Actividad preventiva realizada",
+              "type": "obs",
+              "required": false,
+              "id": "actividadPreventiva",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000110",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000150",
+                    "label": "Instrucción de higiene oral"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000151",
+                    "label": "Profilaxis dental"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000152",
+                    "label": "Aplicación de flúor (barniz/gel)"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000153",
+                    "label": "Sellantes de fosas y fisuras"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000154",
+                    "label": "Fluoruro diamino de plata"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000155",
+                    "label": "Destartraje / raspaje supragingival"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000156",
+                    "label": "Ninguna"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Procedimiento recuperativo realizado",
+              "type": "obs",
+              "required": false,
+              "id": "actividadRecuperativa",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000111",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000160",
+                    "label": "Restauración con ionómero de vidrio"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000161",
+                    "label": "Restauración con resina"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000162",
+                    "label": "Restauración con amalgama"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000163",
+                    "label": "Pulpotomía"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000164",
+                    "label": "Pulpectomía"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000165",
+                    "label": "Exodoncia simple"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000166",
+                    "label": "Tratamiento periodontal"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000167",
+                    "label": "Ninguno"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Detalle de procedimientos realizados",
+              "type": "obs",
+              "required": false,
+              "id": "detalleProcedimientos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c1130000-0000-4000-8000-000000000112",
+                "rows": 4
+              },
+              "validators": []
+            },
+            {
+              "label": "Piezas dentarias tratadas",
+              "type": "obs",
+              "required": false,
+              "id": "piezasTratadas",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "c1130000-0000-4000-8000-000000000113"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Plan y cierre",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Plan de tratamiento",
+              "type": "obs",
+              "required": false,
+              "id": "planTratamiento",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 3
+              },
+              "validators": []
+            },
+            {
+              "label": "Prescripción / Medicamentos",
+              "type": "obs",
+              "required": false,
+              "id": "prescripcion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rows": 2
+              },
+              "validators": []
+            },
+            {
+              "label": "Disposición de la atención",
+              "type": "obs",
+              "required": true,
+              "id": "disposicion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c1130000-0000-4000-8000-000000000114",
+                "answers": [
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000170",
+                    "label": "Continúa tratamiento"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000171",
+                    "label": "Alta odontológica"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000172",
+                    "label": "Referencia a especialidad odontológica"
+                  },
+                  {
+                    "concept": "c1130000-0000-4000-8000-000000000173",
+                    "label": "Interconsulta"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Fecha de próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "true"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
