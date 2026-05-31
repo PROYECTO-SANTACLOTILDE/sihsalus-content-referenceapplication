@@ -9,4 +9,90 @@
         <sql> ALTER TABLE concept_name MODIFY COLUMN name VARCHAR(500) NOT NULL DEFAULT ''; </sql>
     </changeSet>
 
+    <changeSet id="emergency-unidentified-patient-flags-20260530" author="codex">
+        <comment>Configura prioridades, tag y Patient Flags de seguridad para pacientes no identificados o incapaces de comunicarse</comment>
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="patientflags_priority" />
+            <tableExists tableName="patientflags_tag" />
+            <tableExists tableName="patientflags_flag" />
+            <tableExists tableName="patientflags_flag_tag" />
+        </preConditions>
+        <sql><![CDATA[
+INSERT IGNORE INTO patientflags_priority (name, style, p_rank, description, creator, date_created, retired, uuid)
+VALUES ('risk', 'color:red', 1, 'Riesgo de seguridad clínica o administrativa que requiere acción durante la atención', COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1), NOW(), 0, '3a1741ba-b06d-400f-a469-68eadbd8483d');
+
+INSERT IGNORE INTO patientflags_priority (name, style, p_rank, description, creator, date_created, retired, uuid)
+VALUES ('info', 'color:#525252', 2, 'Información administrativa relevante para continuidad de atención', COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1), NOW(), 0, '01d65ed3-f47a-42a4-9f83-0558bfccdb49');
+
+INSERT IGNORE INTO patientflags_tag (name, description, creator, date_created, retired, uuid)
+VALUES ('Identificación de emergencia', 'Flags relacionados con identidad temporal, comunicación y responsable obligatorio en emergencia', COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1), NOW(), 0, 'd9e80970-9450-4ffa-8bfe-44a98195a6fe');
+
+INSERT IGNORE INTO patientflags_flag (name, criteria, message, enabled, evaluator, description, creator, date_created, retired, uuid, priority_id)
+SELECT 'Paciente no identificado',
+       'select p.patient_id from patient p join person_attribute pa on pa.person_id = p.patient_id and pa.voided = 0 join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where p.voided = 0 and pat.uuid = ''8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47'' and lower(pa.value) = ''true''',
+       'Paciente no identificado',
+       1,
+       'org.openmrs.module.patientflags.evaluator.SQLFlagEvaluator',
+       'Visible cuando el registro fue creado como paciente no identificado o con identidad no verificada',
+       COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1),
+       NOW(),
+       0,
+       'dedee9d0-3410-4ab0-941a-dd9b28ee2ea4',
+       priority_id
+FROM patientflags_priority
+WHERE uuid = '3a1741ba-b06d-400f-a469-68eadbd8483d';
+
+INSERT IGNORE INTO patientflags_flag (name, criteria, message, enabled, evaluator, description, creator, date_created, retired, uuid, priority_id)
+SELECT 'Datos de identidad pendientes',
+       'select p.patient_id from patient p join person_attribute pa on pa.person_id = p.patient_id and pa.voided = 0 join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where p.voided = 0 and pat.uuid = ''787f1ea9-1792-45e5-9076-699b1a0638cb'' and pa.value in (''pending'', ''partial'')',
+       'Datos de identidad pendientes',
+       1,
+       'org.openmrs.module.patientflags.evaluator.SQLFlagEvaluator',
+       'Visible cuando la identificación del paciente sigue pendiente o parcial',
+       COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1),
+       NOW(),
+       0,
+       '780f8364-5cda-465b-a12e-dabcc0e0dbb1',
+       priority_id
+FROM patientflags_priority
+WHERE uuid = '01d65ed3-f47a-42a4-9f83-0558bfccdb49';
+
+INSERT IGNORE INTO patientflags_flag (name, criteria, message, enabled, evaluator, description, creator, date_created, retired, uuid, priority_id)
+SELECT 'Paciente incapaz de comunicarse',
+       'select p.patient_id from patient p join person_attribute pa on pa.person_id = p.patient_id and pa.voided = 0 join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where p.voided = 0 and pat.uuid = ''ee0fb3c8-0432-4035-97c1-e2315d347310'' and pa.value in (''unconscious'', ''comatose'', ''disoriented'', ''non_verbal'')',
+       'Paciente incapaz de comunicarse',
+       1,
+       'org.openmrs.module.patientflags.evaluator.SQLFlagEvaluator',
+       'Visible cuando el paciente no puede brindar datos o consentimiento por condición de comunicación',
+       COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1),
+       NOW(),
+       0,
+       '2a303888-2642-4ba8-a2e9-df6c47bef067',
+       priority_id
+FROM patientflags_priority
+WHERE uuid = '3a1741ba-b06d-400f-a469-68eadbd8483d';
+
+INSERT IGNORE INTO patientflags_flag (name, criteria, message, enabled, evaluator, description, creator, date_created, retired, uuid, priority_id)
+SELECT 'Requiere responsable',
+       'select p.patient_id from patient p where p.voided = 0 and (exists (select 1 from person_attribute pa join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where pa.person_id = p.patient_id and pa.voided = 0 and pat.uuid = ''8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47'' and lower(pa.value) = ''true'') or exists (select 1 from person_attribute pa join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where pa.person_id = p.patient_id and pa.voided = 0 and pat.uuid = ''ee0fb3c8-0432-4035-97c1-e2315d347310'' and pa.value in (''unconscious'', ''comatose'', ''disoriented'', ''non_verbal''))) and not exists (select 1 from person_attribute pa join person_attribute_type pat on pat.person_attribute_type_id = pa.person_attribute_type_id where pa.person_id = p.patient_id and pa.voided = 0 and pat.uuid = ''4697d0e6-5b24-416b-aee6-708cd9a3a1db'' and trim(pa.value) <> '''')',
+       'Requiere responsable',
+       1,
+       'org.openmrs.module.patientflags.evaluator.SQLFlagEvaluator',
+       'Visible para registros antiguos o incompletos que no tienen responsable administrativo registrado',
+       COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1),
+       NOW(),
+       0,
+       '0a9c4d7e-97a5-4fe5-8442-a4850b8c4d05',
+       priority_id
+FROM patientflags_priority
+WHERE uuid = '3a1741ba-b06d-400f-a469-68eadbd8483d';
+
+INSERT IGNORE INTO patientflags_flag_tag (flag_id, tag_id)
+SELECT f.flag_id, t.tag_id
+FROM patientflags_flag f, patientflags_tag t
+WHERE f.uuid in ('dedee9d0-3410-4ab0-941a-dd9b28ee2ea4', '780f8364-5cda-465b-a12e-dabcc0e0dbb1', '2a303888-2642-4ba8-a2e9-df6c47bef067', '0a9c4d7e-97a5-4fe5-8442-a4850b8c4d05')
+  AND t.uuid = 'd9e80970-9450-4ffa-8bfe-44a98195a6fe';
+        ]]></sql>
+    </changeSet>
+
 </databaseChangeLog>
