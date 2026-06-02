@@ -25,3 +25,6 @@ a180fa5f-c44e-4490-a981-d7196b70c6ac,,Parentesco del Acompañante,"Parentesco o 
 9b3df0a1-0c58-4f55-9868-9c38f1db1005,,Estado de Acreditación de Seguro,"Estado de acreditación registrado para el seguro del paciente",org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2005,true
 9b3df0a1-0c58-4f55-9868-9c38f1db1006,,Fecha/Hora de Acreditación,"Fecha y hora de la última acreditación de seguro registrada",java.lang.String,,,
 9b3df0a1-0c58-4f55-9868-9c38f1db1007,,Nacionalidad,"Nacionalidad declarada del paciente extranjero para continuidad de admisión ante no disponibilidad de consulta a Migraciones",java.lang.String,,true
+0f2f2f40-c978-491f-8931-8febaafeec84,,Tipo de Responsable de Emergencia,"Clasificación del responsable que acompaña o representa al paciente cuando no puede identificarse o comunicarse",java.lang.String,,true
+ee0fb3c8-0432-4035-97c1-e2315d347310,,Condición de Comunicación al Ingreso,"Condición administrativa de comunicación del paciente al ingreso: comunica, inconsciente, comatoso, desorientado, no verbal, menor sin datos u otro",java.lang.String,,true
+787f1ea9-1792-45e5-9076-699b1a0638cb,,Estado de Identificación del Paciente,"Estado administrativo de identificación del paciente: pending, partial, confirmed o merged",java.lang.String,,true
