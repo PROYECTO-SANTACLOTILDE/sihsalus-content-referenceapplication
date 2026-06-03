@@ -11,12 +11,6 @@
 
     <changeSet id="emergency-unidentified-patient-flags-20260530" author="codex">
         <comment>Configura prioridades, tag y Patient Flags de seguridad para pacientes no identificados o incapaces de comunicarse</comment>
-        <preConditions onFail="MARK_RAN">
-            <tableExists tableName="patientflags_priority" />
-            <tableExists tableName="patientflags_tag" />
-            <tableExists tableName="patientflags_flag" />
-            <tableExists tableName="patientflags_flag_tag" />
-        </preConditions>
         <sql><![CDATA[
 INSERT IGNORE INTO patientflags_priority (name, style, p_rank, description, creator, date_created, retired, uuid)
 VALUES ('risk', 'color:red', 1, 'Riesgo de seguridad clínica o administrativa que requiere acción durante la atención', COALESCE((SELECT user_id FROM users WHERE username = 'admin' LIMIT 1), 1), NOW(), 0, '3a1741ba-b06d-400f-a469-68eadbd8483d');
