@@ -5,8 +5,9 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 csv_file="${repo_root}/configuration/backend_configuration/conceptreferencerange/conceptreferencerange_vital_signs.csv"
 ocl_zip="${repo_root}/configuration/backend_configuration/ocl/PeruHCE_SIHSALUS-v4_v12-05-2026-1.2026-05-12_034600.zip"
 
-concept_uuid="11032370"
+ocl_concept_uuid="11032370"
 openmrs_uuid="18fcbd1f-5b4f-44ed-a664-8637a83cc7eb"
+range_concept_uuid="$openmrs_uuid"
 
 if [[ ! -f "$csv_file" ]]; then
   echo "Reference range CSV not found: $csv_file"
@@ -18,9 +19,9 @@ if [[ ! -f "$ocl_zip" ]]; then
   exit 1
 fi
 
-range_count="$(awk -F, -v uuid="$concept_uuid" 'NR > 1 && $2 == uuid { count++ } END { print count + 0 }' "$csv_file")"
+range_count="$(awk -F, -v uuid="$range_concept_uuid" 'NR > 1 && $2 == uuid { count++ } END { print count + 0 }' "$csv_file")"
 if [[ "$range_count" -lt "2" ]]; then
-  echo "Expected at least 2 abdominal circumference ranges for ${concept_uuid}, found ${range_count}."
+  echo "Expected at least 2 abdominal circumference ranges for ${range_concept_uuid}, found ${range_count}."
   exit 1
 fi
 
@@ -32,7 +33,7 @@ require_range() {
   local gender_criteria="\$patient.getGender().equals(\"\"${gender}\"\")"
 
   awk -F, \
-    -v uuid="$concept_uuid" \
+    -v uuid="$range_concept_uuid" \
     -v label="$label" \
     -v normal_high="$normal_high" \
     -v critical_high="$critical_high" \
@@ -63,7 +64,7 @@ require_range "Perimetro abdominal adulto mujer >=18 yrs" "79.9" "88" "F"
 require_range "Perimetro abdominal adulto hombre >=18 yrs" "93.9" "102" "M"
 
 unzip -p "$ocl_zip" export.json | awk \
-  -v concept_pattern="\"uuid\": \"${concept_uuid}\"" \
+  -v concept_pattern="\"uuid\": \"${ocl_concept_uuid}\"" \
   -v openmrs_pattern="\"external_id\": \"${openmrs_uuid}\"" '
     index($0, concept_pattern) > 0 {
       found_concept = 1

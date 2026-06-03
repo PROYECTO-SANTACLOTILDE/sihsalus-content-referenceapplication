@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.proyecto-santaclotilde</groupId>
     <artifactId>sihsalus-content</artifactId>
-    <version>1.9.0</version>
+    <version>1.9.1</version>
     <packaging>pom</packaging>
     <name>SIHSALUS Content Package</name>
     <description>OpenMRS content package for the SIHSALUS distribution.</description>
-    <url>https://github.com/sihsalus/sihsalus-content-referenceapplication</url>
+    <url>https://github.com/sihsalus/sihsalus-content</url>
     <licenses>
         <license>
             <name>Mozilla Public License 2.0</name>
@@ -25,9 +25,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/sihsalus/sihsalus-content-referenceapplication.git</connection>
-        <developerConnection>scm:git:https://github.com/sihsalus/sihsalus-content-referenceapplication.git</developerConnection>
-        <url>https://github.com/sihsalus/sihsalus-content-referenceapplication</url>
+        <connection>scm:git:https://github.com/sihsalus/sihsalus-content.git</connection>
+        <developerConnection>scm:git:https://github.com/sihsalus/sihsalus-content.git</developerConnection>
+        <url>https://github.com/sihsalus/sihsalus-content</url>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
