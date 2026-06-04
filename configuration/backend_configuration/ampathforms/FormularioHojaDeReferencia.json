@@ -45,11 +45,11 @@
                 "concept": "7fd2a94a-ee99-491c-a4dc-f873eba59efa",
                 "answers": [
                   {
-                    "concept": "08089f9b-f544-4aad-a3d8-c5f52b6901a5",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Si"
                   },
                   {
-                    "concept": "5b2a0f81-22df-4ee1-ae2e-3c547cd7ec9f",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -66,7 +66,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "isEmpty(asegurado) || asegurado !== '08089f9b-f544-4aad-a3d8-c5f52b6901a5'"
+                "hideWhenExpression": "isEmpty(asegurado) || asegurado !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
               }
             },
             {
@@ -422,7 +422,7 @@
                     "label": "Medicina"
                   },
                   {
-                    "concept": "1825a78b-557d-42b8-829f-798aa45a1eb2",
+                    "concept": "fba05733-88f9-459c-acd4-b4e844c24bb7",
                     "label": "Cirugía"
                   },
                   {

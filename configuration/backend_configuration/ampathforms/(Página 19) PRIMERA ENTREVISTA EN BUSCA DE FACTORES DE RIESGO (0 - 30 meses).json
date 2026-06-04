@@ -90,11 +90,11 @@
                 "concept": "07715eb5-aa61-4ca4-ab71-60718775c027",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -114,7 +114,7 @@
                 "disallowDecimals": true
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(nacioAntesDeLos7MesesDeEmbarazo) || nacioAntesDeLos7MesesDeEmbarazo === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(nacioAntesDeLos7MesesDeEmbarazo) || nacioAntesDeLos7MesesDeEmbarazo === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               },
               "validators": []
             },
@@ -128,11 +128,11 @@
                 "concept": "a25cfa7f-e57c-4ba5-afac-a7dcc7c774c3",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -201,7 +201,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud) || ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud) || ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               },
               "validators": []
             },
@@ -237,11 +237,11 @@
                 ],
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -317,7 +317,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida) || ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida) || ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               }
             },
             {
@@ -330,11 +330,11 @@
                 "concept": "4f60300e-44d5-45fc-8232-29c168ca0204",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -350,7 +350,7 @@
                 "concept": "b58f29b6-87e5-4064-92ac-4ad6f981b5bd"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral) || ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral === '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral) || ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               }
             }
           ]

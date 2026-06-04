@@ -25,11 +25,11 @@
                 "concept": "495890cc-7176-4eff-a4b3-7d45a3f471cd",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
@@ -173,7 +173,7 @@
                     "concept": "9f355939-5fb3-4c41-96b5-77c320b77503",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -221,7 +221,7 @@
                     "concept": "c6567881-4659-4624-8adf-ba0c15cbc4c6",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -439,7 +439,7 @@
                     "concept": "b7ab46e7-7dfa-4ee4-b00d-161e165370e6",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -736,7 +736,7 @@
                         "label": "Triple"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otro"
                       }
                     ]
@@ -822,7 +822,7 @@
                     "concept": "b035566c-5677-4581-acc5-069042c62a43",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -864,11 +864,11 @@
                     "concept": "fa264962-2ae5-4861-843d-b467c4e0a09e",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -1216,7 +1216,7 @@
                         "label": "Alumno"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otro"
                       }
                     ]
@@ -1281,7 +1281,7 @@
                         "label": "Alumno"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otro"
                       }
                     ]
@@ -1327,7 +1327,7 @@
                     "concept": "9d6a29b2-1cd6-4097-8750-623774d79c40",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {

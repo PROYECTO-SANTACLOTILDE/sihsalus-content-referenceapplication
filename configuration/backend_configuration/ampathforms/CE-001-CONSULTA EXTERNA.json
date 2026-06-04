@@ -55,7 +55,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "71b58cff-879b-4358-98d5-2165434d4324",
                 "rows": 4
               },
               "id": "motivoConsulta",
@@ -125,7 +125,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000202-0000-4000-8000-000000000202",
                 "rows": 4
               },
               "id": "soapSubjetivo",
@@ -155,7 +155,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000201-0000-4000-8000-000000000201",
                 "rows": 4
               },
               "id": "soapPlan",
@@ -186,14 +186,14 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "159946AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "2d53d39f-c93f-4128-8f7c-1bb45b498497",
                 "answers": [
                   {
-                    "concept": "159943AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "2c60a8f6-1787-41be-8434-30ebeb5656ff",
                     "label": "Definitivo"
                   },
                   {
-                    "concept": "159944AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "4f59cf03-f888-4d34-a5dc-f24269b1945d",
                     "label": "Presuntivo"
                   }
                 ]
@@ -205,14 +205,14 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "159946AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000207-0000-4000-8000-000000000207",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f0000208-0000-4000-8000-000000000208",
                     "label": "Nuevo"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f0000209-0000-4000-8000-000000000209",
                     "label": "Repetido"
                   }
                 ]
@@ -235,7 +235,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "1271AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000204-0000-4000-8000-000000000204",
                 "rows": 3
               },
               "id": "ordenesLaboratorio",
@@ -245,7 +245,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "1651AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000206-0000-4000-8000-000000000206",
                 "rows": 3
               },
               "id": "procedimientos",
@@ -255,7 +255,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "1282AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000215-0000-4000-8000-000000000215",
                 "rows": 3
               },
               "id": "prescripciones",
@@ -275,7 +275,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "1272AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000205-0000-4000-8000-000000000205",
                 "rows": 2
               },
               "id": "referencia",
@@ -285,7 +285,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "5096AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "f0000004-0000-4000-8000-000000000004"
               },
               "id": "proximaCita",
               "label": "Fecha de próxima cita",

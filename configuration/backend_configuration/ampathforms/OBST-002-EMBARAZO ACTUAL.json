@@ -76,11 +76,11 @@
                     "concept": "df4f047e-8668-4fa6-b371-8184f0e8813f",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -97,11 +97,11 @@
                     "concept": "12d52f4a-2ed9-4f3d-9b59-555364c633ee",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -153,11 +153,11 @@
                     "concept": "ba4ec6b5-352f-425c-ae8f-fa8538022695",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -173,7 +173,7 @@
                     "concept": "d95b40d4-c72b-4a40-bc8e-a44f25fe81bb",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -269,7 +269,7 @@
                     "concept": "a92deb61-2eca-47cf-8532-94d13ab28536",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
@@ -299,7 +299,7 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "primeraDosisAntitetáNica !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "primeraDosisAntitetáNica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
@@ -312,7 +312,7 @@
                     "concept": "0948db74-0691-450b-906e-44ba0358847a",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
@@ -342,7 +342,7 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "segundaDosisAntitetáNica !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "segundaDosisAntitetáNica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
@@ -354,7 +354,7 @@
                     "concept": "fcfb9d34-bb24-491a-9aca-d648acd43c9e",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
@@ -382,7 +382,7 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "influenza !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "influenza !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -417,11 +417,11 @@
                     "concept": "e6586f9f-61c4-4693-842d-24a28ca8cd25",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -437,11 +437,11 @@
                     "concept": "d50d1015-1def-4bd8-8268-59d1e97e33d3",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -473,11 +473,11 @@
                     "concept": "1846e918-d5ca-4cce-b64e-afce809ed7c1",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -520,7 +520,7 @@
                         "label": "Sin Examen"
                       },
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -544,7 +544,7 @@
                         "label": "Sin Examen"
                       },
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -569,7 +569,7 @@
                         "label": "Sin Examen"
                       },
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -594,7 +594,7 @@
                         "label": "Sin examen"
                       },
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -619,7 +619,7 @@
                         "label": "Sin Examen"
                       },
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -661,11 +661,11 @@
                     "concept": "d18507ca-8084-4ae6-bb4d-506d15a94e13",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -682,7 +682,7 @@
                     "concept": "921c4803-3583-446c-a10f-942ca77d4c35"
                   },
                   "hide": {
-                    "hideWhenExpression": "hospitalizacióN !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "hospitalizacióN !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
@@ -701,7 +701,7 @@
                     "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
                   },
                   "hide": {
-                    "hideWhenExpression": "hospitalizacióN !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "hospitalizacióN !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -736,11 +736,11 @@
                     "concept": "c1055ebe-b480-4b2c-a911-cd198e345ee2",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -757,7 +757,7 @@
                     "concept": "e066b18b-e816-4ad9-a2e7-4a12b8425df3"
                   },
                   "hide": {
-                    "hideWhenExpression": "emergencia !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "emergencia !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
@@ -776,7 +776,7 @@
                     "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
                   },
                   "hide": {
-                    "hideWhenExpression": "emergencia !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "emergencia !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]

@@ -8,12 +8,121 @@
           "label": "Control de uso",
           "isExpanded": "true",
           "questions": [
-            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaControl", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
-            { "label": "Método actual", "type": "obs", "required": false, "id": "metodoActual", "questionOptions": { "rendering": "select", "concept": "f0000014-0000-4000-8000-000000000014", "answers": [{ "concept": "f0000141-0000-4000-8000-000000000141", "label": "Condón masculino" }, { "concept": "f0000142-0000-4000-8000-000000000142", "label": "Anticonceptivo oral" }, { "concept": "f0000143-0000-4000-8000-000000000143", "label": "Inyectable" }, { "concept": "f0000144-0000-4000-8000-000000000144", "label": "Implante" }, { "concept": "f0000145-0000-4000-8000-000000000145", "label": "DIU" }, { "concept": "f0000146-0000-4000-8000-000000000146", "label": "AOE" }, { "concept": "f0000147-0000-4000-8000-000000000147", "label": "AQV" }] }, "validators": [] },
-            { "label": "Adherencia", "type": "obs", "required": true, "id": "adherencia", "questionOptions": { "rendering": "select", "concept": "f0000016-0000-4000-8000-000000000016", "answers": [{ "concept": "f0000151-0000-4000-8000-000000000151", "label": "Buena" }, { "concept": "f0000152-0000-4000-8000-000000000152", "label": "Parcial" }, { "concept": "f0000153-0000-4000-8000-000000000153", "label": "Baja" }] }, "validators": [] },
-            { "label": "Efectos adversos o dificultades", "type": "obs", "required": false, "id": "efectosAdversos", "questionOptions": { "rendering": "textarea", "concept": "f0000015-0000-4000-8000-000000000015" }, "validators": [] },
-            { "label": "Plan o cambio de método", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] },
-            { "label": "Próxima cita", "type": "obs", "required": false, "id": "proximaCita", "questionOptions": { "rendering": "date", "concept": "f0000004-0000-4000-8000-000000000004" }, "validators": [] }
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaControl",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Método actual",
+              "type": "obs",
+              "required": false,
+              "id": "metodoActual",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000014-0000-4000-8000-000000000014",
+                "answers": [
+                  {
+                    "concept": "f0000141-0000-4000-8000-000000000141",
+                    "label": "Condón masculino"
+                  },
+                  {
+                    "concept": "f0000142-0000-4000-8000-000000000142",
+                    "label": "Anticonceptivo oral"
+                  },
+                  {
+                    "concept": "f0000143-0000-4000-8000-000000000143",
+                    "label": "Inyectable"
+                  },
+                  {
+                    "concept": "f0000144-0000-4000-8000-000000000144",
+                    "label": "Implante"
+                  },
+                  {
+                    "concept": "f0000145-0000-4000-8000-000000000145",
+                    "label": "DIU"
+                  },
+                  {
+                    "concept": "f0000146-0000-4000-8000-000000000146",
+                    "label": "AOE"
+                  },
+                  {
+                    "concept": "f0000147-0000-4000-8000-000000000147",
+                    "label": "AQV"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Adherencia",
+              "type": "obs",
+              "required": true,
+              "id": "adherencia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000016-0000-4000-8000-000000000016",
+                "answers": [
+                  {
+                    "concept": "f0000151-0000-4000-8000-000000000151",
+                    "label": "Buena"
+                  },
+                  {
+                    "concept": "f0000152-0000-4000-8000-000000000152",
+                    "label": "Parcial"
+                  },
+                  {
+                    "concept": "f0000153-0000-4000-8000-000000000153",
+                    "label": "Baja"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Efectos adversos o dificultades",
+              "type": "obs",
+              "required": false,
+              "id": "efectosAdversos",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000015-0000-4000-8000-000000000015"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan o cambio de método",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "validators": []
+            }
           ]
         }
       ]

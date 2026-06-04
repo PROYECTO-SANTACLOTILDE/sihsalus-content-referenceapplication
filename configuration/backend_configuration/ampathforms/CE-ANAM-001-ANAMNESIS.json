@@ -61,7 +61,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "5219AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "71b58cff-879b-4358-98d5-2165434d4324",
                 "rows": 3
               },
               "id": "motivoConsulta",

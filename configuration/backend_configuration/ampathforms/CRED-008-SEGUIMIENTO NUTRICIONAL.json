@@ -8,19 +8,124 @@
           "label": "Control de seguimiento",
           "isExpanded": "true",
           "questions": [
-            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaSeguimiento", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
-            { "label": "Clasificación nutricional actual", "type": "obs", "required": true, "id": "clasificacionActual", "questionOptions": { "rendering": "select", "concept": "f0000009-0000-4000-8000-000000000009", "answers": [{ "concept": "f0000121-0000-4000-8000-000000000121", "label": "Crecimiento adecuado" }, { "concept": "f0000122-0000-4000-8000-000000000122", "label": "Riesgo de crecimiento" }, { "concept": "f0000123-0000-4000-8000-000000000123", "label": "Desnutrición aguda" }, { "concept": "f0000124-0000-4000-8000-000000000124", "label": "Desnutrición crónica" }, { "concept": "f0000125-0000-4000-8000-000000000125", "label": "Sobrepeso u obesidad" }] }, "validators": [] },
-            { "label": "Evolución y adherencia al plan", "type": "obs", "required": false, "id": "evolucion", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
-            { "label": "Requiere referencia", "type": "obs", "required": false, "id": "requiereReferencia", "questionOptions": { "rendering": "radio", "concept": "f0000005-0000-4000-8000-000000000005", "answers": [{ "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" }, { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }] }, "validators": [] },
-            { "label": "Próxima cita", "type": "obs", "required": false, "id": "proximaCita", "questionOptions": { "rendering": "date", "concept": "f0000004-0000-4000-8000-000000000004" }, "validators": [] }
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaSeguimiento",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Clasificación nutricional actual",
+              "type": "obs",
+              "required": true,
+              "id": "clasificacionActual",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000009-0000-4000-8000-000000000009",
+                "answers": [
+                  {
+                    "concept": "f0000121-0000-4000-8000-000000000121",
+                    "label": "Crecimiento adecuado"
+                  },
+                  {
+                    "concept": "f0000122-0000-4000-8000-000000000122",
+                    "label": "Riesgo de crecimiento"
+                  },
+                  {
+                    "concept": "f0000123-0000-4000-8000-000000000123",
+                    "label": "Desnutrición aguda"
+                  },
+                  {
+                    "concept": "f0000124-0000-4000-8000-000000000124",
+                    "label": "Desnutrición crónica"
+                  },
+                  {
+                    "concept": "f0000125-0000-4000-8000-000000000125",
+                    "label": "Sobrepeso u obesidad"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Evolución y adherencia al plan",
+              "type": "obs",
+              "required": false,
+              "id": "evolucion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Requiere referencia",
+              "type": "obs",
+              "required": false,
+              "id": "requiereReferencia",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f0000005-0000-4000-8000-000000000005",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "validators": []
+            }
           ]
         },
         {
           "label": "Responsable",
           "isExpanded": "true",
           "questions": [
-            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
-            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
           ]
         }
       ]

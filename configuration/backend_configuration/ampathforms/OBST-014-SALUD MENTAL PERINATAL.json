@@ -8,19 +8,110 @@
           "label": "Tamizaje y plan",
           "isExpanded": "true",
           "questions": [
-            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaTamizaje", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
-            { "label": "Semanas de gestación", "type": "obs", "required": false, "id": "semanasGestacion", "questionOptions": { "rendering": "number", "concept": "f0000021-0000-4000-8000-000000000021", "min": "0", "max": "43", "step": 1 }, "hideSteppers": true, "validators": [] },
-            { "label": "Resultado de salud mental", "type": "obs", "required": true, "id": "resultado", "questionOptions": { "rendering": "select", "concept": "f0000013-0000-4000-8000-000000000013", "answers": [{ "concept": "f0000101-0000-4000-8000-000000000101", "label": "Normal" }, { "concept": "f0000102-0000-4000-8000-000000000102", "label": "Riesgo" }, { "concept": "f0000103-0000-4000-8000-000000000103", "label": "Anormal" }] }, "validators": [] },
-            { "label": "Observaciones clínicas", "type": "obs", "required": false, "id": "observaciones", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
-            { "label": "Plan, interconsulta o referencia", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaTamizaje",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Semanas de gestación",
+              "type": "obs",
+              "required": false,
+              "id": "semanasGestacion",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f0000021-0000-4000-8000-000000000021",
+                "min": "0",
+                "max": "43",
+                "step": 1
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Resultado de salud mental",
+              "type": "obs",
+              "required": true,
+              "id": "resultado",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000013-0000-4000-8000-000000000013",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones clínicas",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan, interconsulta o referencia",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
           ]
         },
         {
           "label": "Responsable",
           "isExpanded": "true",
           "questions": [
-            { "id": "responsableAtencion", "label": "Responsable atención", "type": "encounterProvider", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true },
-            { "id": "rolDelResponsable", "label": "Rol del responsable", "type": "encounterRole", "questionOptions": { "rendering": "ui-select-extended", "isSearchable": true }, "required": true }
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
           ]
         }
       ]

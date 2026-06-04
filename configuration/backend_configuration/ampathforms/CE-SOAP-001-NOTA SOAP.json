@@ -61,7 +61,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160531AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000202-0000-4000-8000-000000000202",
                 "rows": 4
               },
               "id": "soapSubjetivo",
@@ -91,7 +91,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "159615AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "f0000201-0000-4000-8000-000000000201",
                 "rows": 4
               },
               "id": "soapPlan",
