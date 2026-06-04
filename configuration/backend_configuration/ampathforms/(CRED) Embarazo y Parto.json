@@ -54,19 +54,19 @@
                 "concept": "899e0cc8-5f6a-4334-b51d-c559f71ea550",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f2fdf3bf-1dcb-4230-b607-4ed08f9b594d",
                     "label": "Espontáneo"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "2844ec0e-5627-415e-9edf-452f577525ab",
                     "label": "Instrumentado"
                   },
                   {
-                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "12f3c4d9-a91b-4fc9-9131-5d5611dd3432",
                     "label": "Cesárea"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro"
                   }
                 ]
@@ -124,7 +124,7 @@
                     "label": "Profesional de salud"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro"
                   }
                 ]

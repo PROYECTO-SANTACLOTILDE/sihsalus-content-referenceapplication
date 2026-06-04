@@ -31,7 +31,7 @@
                     "label": "Rosado"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -68,7 +68,7 @@
                     "label": "Tense fontanelle"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otros"
                   }
                 ]
@@ -85,7 +85,7 @@
               "id": "otrosParaFontanela",
               "label": "Otros para fontanela",
               "hide": {
-                "hideWhenExpression": "isEmpty(fontanela) || fontanela !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(fontanela) || fontanela !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -138,7 +138,7 @@
                     "label": "Ubicación de Orejas"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -179,7 +179,7 @@
               "id": "otrosParaOrejas",
               "label": "Otros para orejas",
               "hide": {
-                "hideWhenExpression": "isEmpty(orejas) || orejas !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(orejas) || orejas !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -193,7 +193,7 @@
                     "label": "Permeabilidad coanas"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -210,7 +210,7 @@
               "id": "otrosParaNariz",
               "label": "Otros para nariz",
               "hide": {
-                "hideWhenExpression": "isEmpty(nariz) || nariz !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(nariz) || nariz !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -224,7 +224,7 @@
                     "label": "Paladar hendido"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -241,7 +241,7 @@
               "id": "otrosParaBoca",
               "label": "Otros para boca",
               "hide": {
-                "hideWhenExpression": "isEmpty(boca) || boca !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(boca) || boca !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -259,7 +259,7 @@
                     "label": "Tortícoles"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -276,7 +276,7 @@
               "id": "otrosParaCuello",
               "label": "Otros para cuello",
               "hide": {
-                "hideWhenExpression": "isEmpty(cuello) || cuello !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(cuello) || cuello !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
@@ -393,7 +393,7 @@
                     "label": "Adbomen blando"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -436,7 +436,7 @@
                     "label": "Ano"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -453,7 +453,7 @@
               "id": "otrosParaPermeabilidadAnal",
               "label": "Otros para permeabilidad",
               "hide": {
-                "hideWhenExpression": "isEmpty(permeabilidadAnal) || permeabilidadAnal !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(permeabilidadAnal) || permeabilidadAnal !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -471,7 +471,7 @@
                     "label": "Meconio"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -488,7 +488,7 @@
               "id": "otrosParaEliminacióNGenitoUrinario",
               "label": "Otros para eliminación",
               "hide": {
-                "hideWhenExpression": "isEmpty(eliminacióNGenitoUrinario) || eliminacióNGenitoUrinario !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(eliminacióNGenitoUrinario) || eliminacióNGenitoUrinario !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
@@ -512,7 +512,7 @@
                     "label": "Simetría de vertebras"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -529,7 +529,7 @@
               "id": "otrosParaColumnaVertebral",
               "label": "Otros para columna vertebral",
               "hide": {
-                "hideWhenExpression": "isEmpty(columnaVertebral) || columnaVertebral !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(columnaVertebral) || columnaVertebral !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
@@ -561,11 +561,11 @@
                     "label": "Sindactilia"
                   },
                   {
-                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                     "label": "Normal"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -582,7 +582,7 @@
               "id": "otrosParaExtremidades",
               "label": "Otros para extremidades",
               "hide": {
-                "hideWhenExpression": "isEmpty(extremidades) || extremidades !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(extremidades) || extremidades !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             },
             {
@@ -600,11 +600,11 @@
                     "label": "Hipertónico"
                   },
                   {
-                    "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                     "label": "Normal"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -621,7 +621,7 @@
               "id": "otrosParaTonoMuscular",
               "label": "Otros para tono muscular",
               "hide": {
-                "hideWhenExpression": "isEmpty(tonoMuscular) || tonoMuscular !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(tonoMuscular) || tonoMuscular !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
@@ -706,7 +706,7 @@
                     "label": "Reflejo Moro"
                   },
                   {
-                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                     "label": "Otro no codificado"
                   }
                 ]
@@ -723,7 +723,7 @@
               "id": "otrosParaValoracióNNeurolóGica",
               "label": "Otros para valoración neurológica",
               "hide": {
-                "hideWhenExpression": "isEmpty(valoracióNNeurolóGica) || valoracióNNeurolóGica !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(valoracióNNeurolóGica) || valoracióNNeurolóGica !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]

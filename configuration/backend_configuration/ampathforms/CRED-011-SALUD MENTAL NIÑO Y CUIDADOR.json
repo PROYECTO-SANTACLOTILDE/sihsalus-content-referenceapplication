@@ -8,11 +8,94 @@
           "label": "Tamizaje",
           "isExpanded": "true",
           "questions": [
-            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaTamizaje", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
-            { "label": "Resultado salud mental niño/cuidador", "type": "obs", "required": true, "id": "resultadoSaludMental", "questionOptions": { "rendering": "select", "concept": "f0000013-0000-4000-8000-000000000013", "answers": [{ "concept": "f0000101-0000-4000-8000-000000000101", "label": "Normal" }, { "concept": "f0000102-0000-4000-8000-000000000102", "label": "Riesgo" }, { "concept": "f0000103-0000-4000-8000-000000000103", "label": "Anormal" }] }, "validators": [] },
-            { "label": "Violencia, negligencia o maltrato", "type": "obs", "required": false, "id": "resultadoViolencia", "questionOptions": { "rendering": "select", "concept": "f0000012-0000-4000-8000-000000000012", "answers": [{ "concept": "f0000131-0000-4000-8000-000000000131", "label": "Sin evidencia" }, { "concept": "f0000132-0000-4000-8000-000000000132", "label": "Caso sospechoso" }, { "concept": "f0000133-0000-4000-8000-000000000133", "label": "Caso confirmado o referido" }] }, "validators": [] },
-            { "label": "Observaciones", "type": "obs", "required": false, "id": "observaciones", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
-            { "label": "Plan, consejería o referencia", "type": "obs", "required": false, "id": "plan", "questionOptions": { "rendering": "textarea", "concept": "f0000003-0000-4000-8000-000000000003" }, "validators": [] }
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaTamizaje",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Resultado salud mental niño/cuidador",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoSaludMental",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000013-0000-4000-8000-000000000013",
+                "answers": [
+                  {
+                    "concept": "f0000101-0000-4000-8000-000000000101",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "f0000102-0000-4000-8000-000000000102",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "f0000103-0000-4000-8000-000000000103",
+                    "label": "Anormal"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Violencia, negligencia o maltrato",
+              "type": "obs",
+              "required": false,
+              "id": "resultadoViolencia",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000012-0000-4000-8000-000000000012",
+                "answers": [
+                  {
+                    "concept": "f0000131-0000-4000-8000-000000000131",
+                    "label": "Sin evidencia"
+                  },
+                  {
+                    "concept": "f0000132-0000-4000-8000-000000000132",
+                    "label": "Caso sospechoso"
+                  },
+                  {
+                    "concept": "f0000133-0000-4000-8000-000000000133",
+                    "label": "Caso confirmado o referido"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan, consejería o referencia",
+              "type": "obs",
+              "required": false,
+              "id": "plan",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "validators": []
+            }
           ]
         }
       ]

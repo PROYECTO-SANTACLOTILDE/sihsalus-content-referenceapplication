@@ -8,11 +8,106 @@
           "label": "Consejería y método",
           "isExpanded": "true",
           "questions": [
-            { "label": "Fecha y hora", "type": "encounterDatetime", "required": true, "id": "fechaAtencion", "questionOptions": { "rendering": "datetime" }, "validators": [{ "type": "date", "allowFutureDates": "false", "message": "No puede ser una fecha futura" }] },
-            { "label": "Consejería brindada", "type": "obs", "required": true, "id": "consejeriaBrindada", "questionOptions": { "rendering": "radio", "concept": "f0000011-0000-4000-8000-000000000011", "answers": [{ "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" }, { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }] }, "validators": [] },
-            { "label": "Método anticonceptivo elegido o entregado", "type": "obs", "required": true, "id": "metodo", "questionOptions": { "rendering": "select", "concept": "f0000014-0000-4000-8000-000000000014", "answers": [{ "concept": "f0000141-0000-4000-8000-000000000141", "label": "Condón masculino" }, { "concept": "f0000142-0000-4000-8000-000000000142", "label": "Anticonceptivo oral" }, { "concept": "f0000143-0000-4000-8000-000000000143", "label": "Inyectable" }, { "concept": "f0000144-0000-4000-8000-000000000144", "label": "Implante" }, { "concept": "f0000145-0000-4000-8000-000000000145", "label": "DIU" }, { "concept": "f0000146-0000-4000-8000-000000000146", "label": "AOE" }, { "concept": "f0000147-0000-4000-8000-000000000147", "label": "AQV" }] }, "validators": [] },
-            { "label": "Observaciones o consentimiento", "type": "obs", "required": false, "id": "observaciones", "questionOptions": { "rendering": "textarea", "concept": "f0000002-0000-4000-8000-000000000002" }, "validators": [] },
-            { "label": "Próxima cita", "type": "obs", "required": false, "id": "proximaCita", "questionOptions": { "rendering": "date", "concept": "f0000004-0000-4000-8000-000000000004" }, "validators": [] }
+            {
+              "label": "Fecha y hora",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaAtencion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Consejería brindada",
+              "type": "obs",
+              "required": true,
+              "id": "consejeriaBrindada",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "f0000011-0000-4000-8000-000000000011",
+                "answers": [
+                  {
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Método anticonceptivo elegido o entregado",
+              "type": "obs",
+              "required": true,
+              "id": "metodo",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f0000014-0000-4000-8000-000000000014",
+                "answers": [
+                  {
+                    "concept": "f0000141-0000-4000-8000-000000000141",
+                    "label": "Condón masculino"
+                  },
+                  {
+                    "concept": "f0000142-0000-4000-8000-000000000142",
+                    "label": "Anticonceptivo oral"
+                  },
+                  {
+                    "concept": "f0000143-0000-4000-8000-000000000143",
+                    "label": "Inyectable"
+                  },
+                  {
+                    "concept": "f0000144-0000-4000-8000-000000000144",
+                    "label": "Implante"
+                  },
+                  {
+                    "concept": "f0000145-0000-4000-8000-000000000145",
+                    "label": "DIU"
+                  },
+                  {
+                    "concept": "f0000146-0000-4000-8000-000000000146",
+                    "label": "AOE"
+                  },
+                  {
+                    "concept": "f0000147-0000-4000-8000-000000000147",
+                    "label": "AQV"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones o consentimiento",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "f0000002-0000-4000-8000-000000000002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Próxima cita",
+              "type": "obs",
+              "required": false,
+              "id": "proximaCita",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "validators": []
+            }
           ]
         }
       ]

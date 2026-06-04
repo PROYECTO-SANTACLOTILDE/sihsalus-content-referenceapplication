@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.9.6] - 2026-06-04
+
+### Corregido
+- Migra referencias de formularios a conceptos SIHSALUS V4 cargados en QLTY, incluyendo respuestas Si/No, Otro, Normal, Ninguno, diagnostico, laboratorio y opciones no binarias que habian quedado apuntando a UUIDs CIEL antiguos.
+- Agrega conceptos internos `SIH.SALUS - ...` para campos de formulario que no tienen equivalente directo en SIHSALUS V4, evitando colisiones de nombres durante Initializer.
+
 ## [1.9.4] - 2026-06-04
 
 ### Corregido

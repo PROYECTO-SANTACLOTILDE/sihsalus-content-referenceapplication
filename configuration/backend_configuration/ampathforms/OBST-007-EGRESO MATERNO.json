@@ -16,7 +16,7 @@
               },
               "id": "egresoMaternoGroup",
               "label": "Egreso Materno",
-              "questions":[
+              "questions": [
                 {
                   "type": "obs",
                   "questionOptions": {
@@ -120,7 +120,7 @@
                         "label": "Abstinencia Periódica"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otro"
                       },
                       {

@@ -76,7 +76,7 @@
                 "concept": "82e4809f-801f-4fc8-8872-f180cf7fcb3c",
                 "answers": [
                   {
-                    "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c69b424f-4d9c-4ba9-aeae-045ff5a5e530",
                     "label": "Sin Anemia (≥ 11.0 g/dL)"
                   },
                   {
@@ -124,7 +124,7 @@
               "id": "observaciones",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "161011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "concept": "643c7023-c2f4-4796-9920-a2ed0f79ba35"
               },
               "validators": []
             }

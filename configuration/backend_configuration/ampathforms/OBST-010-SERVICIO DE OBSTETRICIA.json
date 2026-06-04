@@ -184,7 +184,7 @@
                     "concept": "6a8fd860-e741-4880-aeef-14ad23c4a05e",
                     "answers": [
                       {
-                        "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "c69b424f-4d9c-4ba9-aeae-045ff5a5e530",
                         "label": "Ninguna"
                       },
                       {
@@ -232,7 +232,7 @@
                         "label": "TBC Pulmonar"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otros"
                       }
                     ]
@@ -271,7 +271,7 @@
                     "concept": "68cf307b-bfb1-4f7a-8079-bb057b234dab",
                     "answers": [
                       {
-                        "concept": "1107AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "c69b424f-4d9c-4ba9-aeae-045ff5a5e530",
                         "label": "Ninguno"
                       },
                       {
@@ -379,7 +379,7 @@
                         "label": "VIH/SIDA"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otros"
                       }
                     ]
@@ -622,7 +622,7 @@
                         "label": "Abstinencia Periódica"
                       },
                       {
-                        "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
                         "label": "Otro"
                       },
                       {
@@ -892,7 +892,7 @@
                     "concept": "bc0d9b17-1f67-40e0-913f-082af65c7004",
                     "answers": [
                       {
-                        "concept": "1115AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                         "label": "Normal"
                       },
                       {
@@ -900,7 +900,7 @@
                         "label": "Anormal"
                       },
                       {
-                        "concept": "1118AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "413e2548-a312-44f7-8052-1e10e88b6ade",
                         "label": "No realizada"
                       }
                     ]
@@ -1106,11 +1106,11 @@
                     "concept": "7ced0466-4d8c-4b2f-b88e-ea81a699402b",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -1125,11 +1125,11 @@
                     "concept": "01fe9e3c-7150-42ca-87db-8813fa630129",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -1144,11 +1144,11 @@
                     "concept": "e6586f9f-61c4-4693-842d-24a28ca8cd25",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -1163,11 +1163,11 @@
                     "concept": "5e3766a4-f49b-41fe-9dea-91249d3bc3bb",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]
@@ -1182,11 +1182,11 @@
                     "concept": "59ceeb63-996e-4c67-906a-a4a20ca00755",
                     "answers": [
                       {
-                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                         "label": "Sí"
                       },
                       {
-                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                         "label": "No"
                       }
                     ]

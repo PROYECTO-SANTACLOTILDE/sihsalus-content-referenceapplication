@@ -63,7 +63,7 @@
               "id": "perimetroCefalicoCm",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "5314AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "c4d39248-c896-433a-bc69-e24d04b7f0e5",
                 "min": "20",
                 "max": "70",
                 "step": 0.1,
@@ -175,11 +175,11 @@
                 "concept": "f0000008-0000-4000-8000-000000000008",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
                     "label": "No"
                   }
                 ]
