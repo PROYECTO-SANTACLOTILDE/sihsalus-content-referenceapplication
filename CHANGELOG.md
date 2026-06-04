@@ -9,6 +9,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Corregido
 - Alinea las opciones de formularios `ODONT-003`, `PSIC-001`, `PSIC-002` y `PSIC-004` con UUIDs canonicos ya importados por la terminologia para evitar referencias a conceptos no cargados.
+- Agrega la estructura de conceptos y mappings `CIEL` requeridos por FHIR2 `Immunization`, incluyendo el set `CIEL:984` con vacunas MINSA para `INMU-001`.
 - Elimina filas de conceptos locales duplicados que fallaban en Initializer por nombres existentes en locale `es`.
 
 ## [1.8.32] - 2026-05-28
