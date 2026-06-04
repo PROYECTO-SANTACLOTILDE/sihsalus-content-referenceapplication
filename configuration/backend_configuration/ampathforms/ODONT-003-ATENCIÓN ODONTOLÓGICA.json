@@ -264,7 +264,7 @@
                     "label": "Instrucción de higiene oral"
                   },
                   {
-                    "concept": "c1130000-0000-4000-8000-000000000151",
+                    "concept": "9c9ae571-1003-414b-ac88-a893eea9ae05",
                     "label": "Profilaxis dental"
                   },
                   {
@@ -276,7 +276,7 @@
                     "label": "Sellantes de fosas y fisuras"
                   },
                   {
-                    "concept": "c1130000-0000-4000-8000-000000000154",
+                    "concept": "ce21b887-36e5-48df-b425-52889cdd6277",
                     "label": "Fluoruro diamino de plata"
                   },
                   {
@@ -313,15 +313,15 @@
                     "label": "Restauración con amalgama"
                   },
                   {
-                    "concept": "c1130000-0000-4000-8000-000000000163",
+                    "concept": "a1d9ba06-bee6-4a13-8303-5079870ab54a",
                     "label": "Pulpotomía"
                   },
                   {
-                    "concept": "c1130000-0000-4000-8000-000000000164",
+                    "concept": "f89c001d-d840-4dcf-be6a-1c91bdc13c1f",
                     "label": "Pulpectomía"
                   },
                   {
-                    "concept": "c1130000-0000-4000-8000-000000000165",
+                    "concept": "58f34a64-26a9-499d-98e6-23d12b109e55",
                     "label": "Exodoncia simple"
                   },
                   {

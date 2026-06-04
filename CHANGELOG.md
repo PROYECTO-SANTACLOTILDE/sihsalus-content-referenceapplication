@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.9.4] - 2026-06-04
+
+### Corregido
+- Alinea las opciones de formularios `ODONT-003`, `PSIC-001`, `PSIC-002` y `PSIC-004` con UUIDs canonicos ya importados por la terminologia para evitar referencias a conceptos no cargados.
+- Elimina filas de conceptos locales duplicados que fallaban en Initializer por nombres existentes en locale `es`.
+
 ## [1.8.32] - 2026-05-28
 
 ### Agregado
