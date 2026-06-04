@@ -294,7 +294,7 @@
                     "label": "Depresión"
                   },
                   {
-                    "concept": "f1000000-0000-4000-8000-000000000134",
+                    "concept": "447f9cf2-74b3-48f6-947d-9882851d294d",
                     "label": "Psicosis"
                   },
                   {
@@ -302,7 +302,7 @@
                     "label": "Consumo de sustancias"
                   },
                   {
-                    "concept": "f1000000-0000-4000-8000-000000000136",
+                    "concept": "7db07cfb-d6f4-44f5-9492-95ea491adae2",
                     "label": "Violencia"
                   },
                   {
@@ -331,7 +331,7 @@
                 "concept": "f1000000-0000-4000-8000-000000000010",
                 "answers": [
                   {
-                    "concept": "f1000000-0000-4000-8000-000000000141",
+                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
                     "label": "Leve"
                   },
                   {
@@ -339,7 +339,7 @@
                     "label": "Moderado"
                   },
                   {
-                    "concept": "f1000000-0000-4000-8000-000000000143",
+                    "concept": "b05a68ec-49de-423f-ada9-9a58c887eca6",
                     "label": "Severo"
                   }
                 ]
