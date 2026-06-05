@@ -51,7 +51,7 @@ Cobertura estimada (categoría II-1 / II-2):
    - Obstetricia y neonatal: `OBST-*`, partograma, RN y puerperio
    - Hospitalización: `HOSP-001`, `HOSP-004`, `HOSP-008`, `HOSP-009`, `HOSP-012`, `FormularioEpicrisisMédica`
    - Referencia/contrarreferencia: `CE-REF-*`
-   - CRED y programas de continuidad: `CRED-*`
+   - CRED y programas de continuidad: `CRED-*`, incluyendo Huanca Test adaptado (`CRED-026`) y lista de habilidades/conductas esperadas (`CRED-027`)
    - Salud mental: `PSIC-001` a `PSIC-004`
    - Odontología: `ODONT-*`
    - Inmunizaciones: `INMU-001`
@@ -63,7 +63,7 @@ Cobertura estimada (categoría II-1 / II-2):
    - Radiología/imagen y patología: validar módulos instalados antes de crear formularios
    - UCI y cirugía/electiva: revisar visittypes y módulos de urgencia/cirugía habilitados
 
-1. Pendientes prioritarios para documentación MIINSA por categoría II
+1. Pendientes prioritarios para documentación MINSA por categoría II
    - Formularios de urgencia (triaje, atención inicial, observación/evolución, reanimación)
    - Formularios quirúrgicos y anestésicos (pre-operatorio, consentimiento, nota operatoria, anestesia, recuperación)
    - Solicitud de laboratorio + toma y trazabilidad de muestra
@@ -78,3 +78,5 @@ Cobertura estimada (categoría II-1 / II-2):
 Referencias mínimas
 - NTS 021-MINSA/DGSP-V.03 (categorías de establecimientos): https://spij.minjus.gob.pe/Graficos/Peru/2011/Julio/16/RM-546-2011-MINSA.pdf
 - NTS 139-MINSA/2018/DGAIN (gestión de historia clínica): https://spij.minjus.gob.pe/Graficos/Peru/2018/Marzo/15/RM-214-2018-MINSA.pdf
+- NTS 238-MINSA/DGIESP-2025 (control de crecimiento y desarrollo del niño): https://www.gob.pe/institucion/minsa/informes-publicaciones/7857089-norma-tecnica-de-salud-para-el-control-de-crecimiento-y-desarrollo-del-nino-nts-n-238-minsa-dgiesp-2025
+- Guía de Vigilancia del Neurodesarrollo - Huanca Payehuanca (manual de aplicación): https://repositorio.essalud.gob.pe/handle/20.500.12959/5846
