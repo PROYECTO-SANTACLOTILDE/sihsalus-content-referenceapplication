@@ -1,0 +1,371 @@
+{
+  "name": "CRED-027-LISTA HABILIDADES Y CONDUCTAS ESPERADAS",
+  "pages": [
+    {
+      "label": "Habilidades y Conductas Esperadas",
+      "sections": [
+        {
+          "label": "Datos de evaluación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de evaluación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Instrumento aplicado",
+              "type": "obs",
+              "required": true,
+              "id": "instrumento",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2380001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "c2380102-0000-4000-8000-000000000102",
+                    "label": "Lista de habilidades y conductas esperadas"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Edad del niño (años)",
+              "type": "obs",
+              "required": true,
+              "id": "edadAnios",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380043-0000-4000-8000-000000000043",
+                "min": "4",
+                "max": "11",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Pauta de edad aplicada",
+              "type": "obs",
+              "required": true,
+              "id": "pautaEdad",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2380030-0000-4000-8000-000000000030",
+                "answers": [
+                  { "concept": "c2380141-0000-4000-8000-000000000141", "label": "4 años" },
+                  { "concept": "c2380142-0000-4000-8000-000000000142", "label": "5 años" },
+                  { "concept": "c2380143-0000-4000-8000-000000000143", "label": "6 años" },
+                  { "concept": "c2380144-0000-4000-8000-000000000144", "label": "7 años" },
+                  { "concept": "c2380145-0000-4000-8000-000000000145", "label": "8 años" },
+                  { "concept": "c2380146-0000-4000-8000-000000000146", "label": "9 años" },
+                  { "concept": "c2380147-0000-4000-8000-000000000147", "label": "10 años" },
+                  { "concept": "c2380148-0000-4000-8000-000000000148", "label": "11 años" }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Preguntas iniciales al cuidador",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Preocupación sobre desarrollo, comportamiento, habla o aprendizaje",
+              "type": "obs",
+              "required": true,
+              "id": "preocupacionCuidador",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380005-0000-4000-8000-000000000005",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Detalle de preocupación",
+              "type": "obs",
+              "required": false,
+              "id": "detallePreocupacion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380006-0000-4000-8000-000000000006"
+              },
+              "validators": []
+            },
+            {
+              "label": "Regresión o pérdida de habilidades",
+              "type": "obs",
+              "required": true,
+              "id": "regresionHabilidades",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380007-0000-4000-8000-000000000007",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Detalle de regresión",
+              "type": "obs",
+              "required": false,
+              "id": "detalleRegresion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380008-0000-4000-8000-000000000008"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Habilidades y conductas por área",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Ausencia en desarrollo motor/sensorial",
+              "type": "obs",
+              "required": true,
+              "id": "ausenciaMotorSensorial",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380031-0000-4000-8000-000000000031",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            { "label": "Detalle motor/sensorial", "type": "obs", "required": false, "id": "detalleMotorSensorial", "questionOptions": { "rendering": "textarea", "concept": "c2380032-0000-4000-8000-000000000032" }, "validators": [] },
+            {
+              "label": "Ausencia en desarrollo socioemocional",
+              "type": "obs",
+              "required": true,
+              "id": "ausenciaSocioemocional",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380033-0000-4000-8000-000000000033",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            { "label": "Detalle socioemocional", "type": "obs", "required": false, "id": "detalleSocioemocional", "questionOptions": { "rendering": "textarea", "concept": "c2380034-0000-4000-8000-000000000034" }, "validators": [] },
+            {
+              "label": "Ausencia en desarrollo del lenguaje",
+              "type": "obs",
+              "required": true,
+              "id": "ausenciaLenguaje",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380035-0000-4000-8000-000000000035",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            { "label": "Detalle lenguaje", "type": "obs", "required": false, "id": "detalleLenguaje", "questionOptions": { "rendering": "textarea", "concept": "c2380036-0000-4000-8000-000000000036" }, "validators": [] },
+            {
+              "label": "Ausencia en desarrollo cognitivo",
+              "type": "obs",
+              "required": true,
+              "id": "ausenciaCognitivo",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380037-0000-4000-8000-000000000037",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            { "label": "Detalle cognitivo", "type": "obs", "required": false, "id": "detalleCognitivo", "questionOptions": { "rendering": "textarea", "concept": "c2380038-0000-4000-8000-000000000038" }, "validators": [] }
+          ]
+        },
+        {
+          "label": "Interpretación e intervención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Factor de riesgo para desarrollo infantil",
+              "type": "obs",
+              "required": false,
+              "id": "factorRiesgo",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380039-0000-4000-8000-000000000039",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Detalle de factores de riesgo/protección",
+              "type": "obs",
+              "required": false,
+              "id": "detalleFactorRiesgo",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380040-0000-4000-8000-000000000040"
+              },
+              "validators": []
+            },
+            {
+              "label": "Resultado de lista de habilidades",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoLista",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2380041-0000-4000-8000-000000000041",
+                "answers": [
+                  { "concept": "c2380151-0000-4000-8000-000000000151", "label": "Desarrollo esperado" },
+                  { "concept": "c2380154-0000-4000-8000-000000000154", "label": "Ausencia de habilidad esperada" },
+                  { "concept": "c2380155-0000-4000-8000-000000000155", "label": "Evaluación no concluyente" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Acción inmediata",
+              "type": "obs",
+              "required": true,
+              "id": "accionInmediata",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2380042-0000-4000-8000-000000000042",
+                "answers": [
+                  { "concept": "c2380161-0000-4000-8000-000000000161", "label": "Continuar controles y consejería" },
+                  { "concept": "c2380163-0000-4000-8000-000000000163", "label": "ATD semanal y prueba EDI" },
+                  { "concept": "c2380164-0000-4000-8000-000000000164", "label": "Interconsulta o referencia especializada" },
+                  { "concept": "c2380165-0000-4000-8000-000000000165", "label": "Reprogramar evaluación" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Consejería brindada",
+              "type": "obs",
+              "required": false,
+              "id": "consejeriaBrindada",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380024-0000-4000-8000-000000000024"
+              },
+              "validators": []
+            },
+            {
+              "label": "Requiere prueba EDI",
+              "type": "obs",
+              "required": false,
+              "id": "requiereEdi",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380027-0000-4000-8000-000000000027",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Requiere interconsulta o referencia",
+              "type": "obs",
+              "required": false,
+              "id": "requiereInterconsulta",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c2380028-0000-4000-8000-000000000028",
+                "answers": [
+                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
+                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380029-0000-4000-8000-000000000029"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Responsable",
+      "sections": [
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2270000-0000-4000-8000-000000000027",
+  "description": "Lista de habilidades y conductas esperadas por edad para niños de 4 a 11 años, 11 meses y 29 días según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.0.0"
+}

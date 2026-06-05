@@ -68,6 +68,14 @@
                   {
                     "concept": "f0000112-0000-4000-8000-000000000112",
                     "label": "Tamizaje TEA"
+                  },
+                  {
+                    "concept": "c2380101-0000-4000-8000-000000000101",
+                    "label": "Huanca Test adaptado"
+                  },
+                  {
+                    "concept": "c2380102-0000-4000-8000-000000000102",
+                    "label": "Lista de habilidades y conductas esperadas"
                   }
                 ]
               },
@@ -223,6 +231,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "6de41002-6b38-4fdc-9551-c78642256040",
-  "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (EEDP/TEPSI/TA/EDI/TEA) según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.1.0"
+  "description": "Evaluación y seguimiento del desarrollo psicomotor del niño (Huanca Test/Lista de habilidades/EEDP/TEPSI/TA/EDI/TEA) según NTS 238-MINSA/DGIESP-2025.",
+  "version": "1.2.0"
 }
