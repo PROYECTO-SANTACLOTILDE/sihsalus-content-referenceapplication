@@ -15,7 +15,7 @@ The contents of a typical Content Package are:
 * **content.properties File**
     * Contents: This file specifies the required ESMs and OMODs (frontend modules and backend modules) that make up the Content Package.
     * Importance:
-        * The content.properties file is important because when Implementers add this Content Package to their distribution, the content.properties file will automatically be read and compared with their exitisting distro.properties file.
+        * The content.properties file is important because when Implementers add this Content Package to their distribution, the content.properties file will automatically be read and compared with their existing distro.properties file.
         * An automatic distro Build Helper Tool then fetches the content package's information and extracts the content into the Implementation's distro.properties file.
         * **Dependencies** are especially important here, as the Build Helper Tool will add any dependencies from the Content Package into an Implementation's distro.properties file.
 
