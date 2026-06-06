@@ -5,6 +5,7 @@
   "published": true,
   "retired": false,
   "encounterType": "16bec8b6-4a2d-4cf9-8e66-9bb6e1c5d1da",
+  "encounter": "Referencia y Contrarreferencia",
   "processor": "EncounterFormProcessor",
   "referencedForms": [],
   "pages": [
