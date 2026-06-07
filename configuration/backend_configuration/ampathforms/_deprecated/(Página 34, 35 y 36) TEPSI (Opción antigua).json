@@ -1247,6 +1247,7 @@
   "published": false,
   "retired": true,
   "retireReason": "Formulario reemplazado por la versión vigente de TEPSI.",
+  "retiredReason": "Formulario reemplazado por la versión vigente de TEPSI.",
   "referencedForms": [],
   "uuid": "01f9069b-4cf7-4fae-afb7-52253301bdb6",
   "description": "Página 34, 35 y 36",
