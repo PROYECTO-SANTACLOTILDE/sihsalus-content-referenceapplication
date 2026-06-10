@@ -24,20 +24,25 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "2eb9b2c4-cd08-4e6f-a11f-e1e6dc3cb54f",
-                "min": "1"
+                "min": "1",
+                "max": "45",
+                "disallowDecimals": true
               },
-              "id": "edadGestacional(Semanas)",
+              "hideSteppers": true,
+              "id": "edadGestacionalSemanas",
               "label": "Edad Gestacional (semanas)"
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "number",
-                "step": 1,
+                "step": 0.1,
                 "concept": "9a9c73d0-76e6-4b84-b20c-dfe8efea9542",
                 "min": "0",
-                "max": "100"
+                "max": "100",
+                "disallowDecimals": false
               },
+              "hideSteppers": true,
               "id": "hematocrito",
               "label": "Hematocrito (%)"
             }
@@ -54,8 +59,10 @@
                 "step": 1,
                 "concept": "dcc62b2c-2fc7-4053-9239-0e79335ecdbc",
                 "min": "5",
-                "max": "60"
+                "max": "60",
+                "disallowDecimals": true
               },
+              "hideSteppers": true,
               "id": "edadDeLaMadre",
               "label": "Edad de la madre"
             },
@@ -66,9 +73,11 @@
                 "step": 1,
                 "concept": "6cce201f-26eb-46d0-a8cb-f17ef045af78",
                 "min": "0",
-                "max": "30"
+                "max": "30",
+                "disallowDecimals": true
               },
-              "id": "núMeroDeHijos",
+              "hideSteppers": true,
+              "id": "numeroDeHijos",
               "label": "Número de hijos"
             },
             {
@@ -141,7 +150,7 @@
                   }
                 ]
               },
-              "id": "produccióNLáCtea",
+              "id": "produccionLactea",
               "label": "Producción Láctea"
             }
           ]
@@ -189,7 +198,7 @@
                   }
                 ]
               },
-              "id": "succióN",
+              "id": "succion",
               "label": "Succión"
             },
             {
@@ -212,7 +221,7 @@
                   }
                 ]
               },
-              "id": "deglucióN",
+              "id": "deglucion",
               "label": "Deglución"
             },
             {
@@ -223,7 +232,7 @@
                 "minLength": "",
                 "rows": 2
               },
-              "id": "diagnóSticoDeEnfermeríA",
+              "id": "diagnosticoDeEnfermeria",
               "label": "Diagnóstico de Enfermería"
             },
             {
@@ -233,7 +242,7 @@
                 "concept": "47a5ae3a-36a8-422c-a0b0-9b18bb44655f",
                 "rows": 3
               },
-              "id": "intervencióNDeEnfermeríA",
+              "id": "intervencionDeEnfermeria",
               "label": "Intervención de enfermería"
             }
           ]
@@ -280,5 +289,5 @@
   "referencedForms": [],
   "uuid": "73dd01eb-3a15-4485-b030-e0d1feb84844",
   "description": "Página 10",
-  "version": "1.3"
+  "version": "1.4"
 }
