@@ -10,6 +10,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Agregado
 - Privilegios granulares del modulo CRED (`app:cred.antecedentes`, `app:cred.cursoVida`, `app:cred.earlyStim`, `app:cred.immunization`, `app:cred.neonatal`, `app:cred.nutrition`, `app:cred.wellChild` y sus variantes `.edit`) en `privileges_core-demo.csv`.
 - Roles `CRED lectura` y `CRED lectura y edicion` en `roles-core.csv`, agrupando los privilegios de lectura y de edicion del modulo CRED.
+- Privilegios independientes del modulo de vacunacion (`app:immunization` y `app:immunization.edit`) para desacoplar el modulo general de vacunacion de los privilegios CRED.
+- Roles `Vacunacion lectura` y `Vacunacion lectura y edicion`; los roles CRED tambien reciben los privilegios de vacunacion para conservar el flujo de las enfermeras CRED.
+- Runbook `docs/asignacion-roles-cred.md` con el paso de asignacion por ambiente para `Enfermera CRED` y `Medico` (Initializer reemplaza — no fusiona — privilegios y herencias de los roles declarados, por lo que este repo no declara roles creados en los servidores).
+
+### Corregido
+- Descripciones de privilegios CRED con comas que el parser CSV truncaba en la primera coma.
 
 ## [1.9.6] - 2026-06-04
 
