@@ -5,6 +5,12 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.11.0] - 2026-06-09
+
+### Agregado
+- Privilegios granulares del modulo CRED (`app:cred.antecedentes`, `app:cred.cursoVida`, `app:cred.earlyStim`, `app:cred.immunization`, `app:cred.neonatal`, `app:cred.nutrition`, `app:cred.wellChild` y sus variantes `.edit`) en `privileges_core-demo.csv`.
+- Roles `CRED lectura` y `CRED lectura y edicion` en `roles-core.csv`, agrupando los privilegios de lectura y de edicion del modulo CRED.
+
 ## [1.9.6] - 2026-06-04
 
 ### Corregido
