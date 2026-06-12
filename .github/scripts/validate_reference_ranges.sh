@@ -10,7 +10,6 @@ ocl_dir="${repo_root}/configuration/backend_configuration/ocl"
 # Antes era PeruHCE_SIHSALUS-v4_*.zip, pero ahora el source nuevo es SIHSALUS_sihsalus_*.zip.
 ocl_zip="$(find "$ocl_dir" -maxdepth 1 -type f -name 'SIHSALUS_sihsalus_*.zip' | sort | tail -n 1)"
 
-ocl_concept_uuid="11032370"
 openmrs_uuid="18fcbd1f-5b4f-44ed-a664-8637a83cc7eb"
 range_concept_uuid="$openmrs_uuid"
 
