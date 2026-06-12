@@ -34,7 +34,7 @@ Inventario contra los exports `clean-2026-06-12`:
 |---|---:|---|
 | `concepts-cred-huanca.csv` | 0/77 | Migrar a `SIHSALUS/sihsalus`; son conceptos CRED/Huanca propios con UUID estable. |
 | `concepts-odontology.csv` | 0/38 | Migrar a `SIHSALUS/sihsalus`; luego mapear procedimientos recuperativos/preventivos a `procedimientos` cuando aplique. |
-| `concepts-psychology.csv` | 0/81 | Migrar a `SIHSALUS/sihsalus`; mapear diagnósticos/problemas clínicos a `diagnosis` solo cuando haya equivalencia clara. |
+| `concepts-psychology.csv` | 0/80 | Migrar a `SIHSALUS/sihsalus`; `Moderado` se reutiliza desde OCL `sihsalus:413` (`external_id` `aed747d5-fba0-49fc-9e29-ebc56b62fb22`). |
 | `concepts-form-migration.csv` | 7/20 | Auditar los 13 faltantes; migrar los faltantes y retirar del CSV solo cuando los forms resuelvan por OCL. |
 | `concepts-immunization-fhir.csv` | 9/9 | Ya existe en OCL; candidato a retirar después de validar forms/FHIR y set de respuestas. |
 | `sihsalus-locale-aliases.csv` | 18/18 | No retirar todavía: validar que OCL conserva los nombres/aliases esperados en `es` y `en`, no solo los UUIDs. |
@@ -45,6 +45,8 @@ Plan de ejecución:
 
 1. Migrar primero `concepts-cred-huanca.csv`, `concepts-odontology.csv`, `concepts-psychology.csv` y los 13 faltantes
    de `concepts-form-migration.csv` a `SIHSALUS/sihsalus`, preservando el UUID OpenMRS como `external_id`.
+   Si un concepto local ya existe semánticamente en OCL, reutilizar el `external_id` existente y actualizar los forms
+   en vez de crear un duplicado.
 2. Para cada concepto codificado, crear mappings externos solo cuando la equivalencia sea defendible:
    `procedimientos` para CPMS, `diagnosis` para CIE-10, `laboratorio` para pruebas/resultados y
    `inmunizaciones` para vacunas clínicas. No mapear campos operacionales por aproximación.
@@ -219,7 +221,7 @@ OpenMRS si hay obs/forms que referencian uuids viejos. Eso lo gobierna el proces
 - **Plan:** mover los 43 a OCL (SIHSALUS-v4) + **crear source `odontograma`** con la nomenclatura de la NTS 188.
   Bloqueado por: necesito la **tabla de hallazgos de la NTS 188** (PDF escaneado, requiere OCR/transcripción).
 
-### 5.2 Psicología (`concepts-psychology.csv`, 86 conceptos)
+### 5.2 Psicología (`concepts-psychology.csv`, 80 conceptos pendientes)
 - Hoy: **sin mappings**. Campos: grouper SIHCE-PSICOLOGIA, Modalidad de ingreso a salud mental, Motivo de
   atención psicológica, Antecedentes de salud mental, etc.
 - **Estándares MINSA aplicables:**
@@ -229,8 +231,9 @@ OpenMRS si hay obs/forms que referencian uuids viejos. Eso lo gobierna el proces
     códigos "Lab", tipo de Dx (P/D/R), actividades/tamizajes. Esos códigos NO son CIE-10 y serían digitalizables,
     pero son difusos. **Valor cuestionable vs esfuerzo (DUDA, §7).**
   - Campos operativos (modalidad de ingreso, motivo de atención) → app-specific, sin estándar
-- **Plan:** mover los 86 a OCL (SIHSALUS-v4); apuntar answer-sets de Dx a `diagnosis` (CIE-10). NO digitalizar
-  HIS-SM salvo decisión explícita.
+- **Plan:** mover los 80 conceptos propios a OCL (`SIHSALUS/sihsalus`); apuntar answer-sets de Dx a `diagnosis`
+  (CIE-10). Reutilizar conceptos existentes cuando aplique; `Moderado` ya se repuntó al concepto OCL `413`.
+  NO digitalizar HIS-SM salvo decisión explícita.
 
 ### 5.3 Decisión transversal para mover odontología/psicología
 Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los códigos `SIHSALUS:*` se **dropean**
