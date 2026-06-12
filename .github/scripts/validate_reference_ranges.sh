@@ -3,9 +3,9 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 csv_file="${repo_root}/configuration/backend_configuration/conceptreferencerange/conceptreferencerange_vital_signs.csv"
-ocl_zip="${repo_root}/configuration/backend_configuration/ocl/PeruHCE_SIHSALUS-v4_v12-05-2026-1.2026-05-12_034600.zip"
+ocl_zip="${repo_root}/configuration/backend_configuration/ocl/SIHSALUS_sihsalus_vclean-2026-06-12.zip"
 
-ocl_concept_uuid="11032370"
+ocl_concept_uuid="12003700"
 openmrs_uuid="18fcbd1f-5b4f-44ed-a664-8637a83cc7eb"
 range_concept_uuid="$openmrs_uuid"
 
