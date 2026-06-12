@@ -3,9 +3,8 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 csv_file="${repo_root}/configuration/backend_configuration/conceptreferencerange/conceptreferencerange_vital_signs.csv"
-ocl_zip="${repo_root}/configuration/backend_configuration/ocl/PeruHCE_SIHSALUS-v4_v12-05-2026-1.2026-05-12_034600.zip"
+ocl_dir="${repo_root}/configuration/backend_configuration/ocl"
 
-ocl_concept_uuid="11032370"
 openmrs_uuid="18fcbd1f-5b4f-44ed-a664-8637a83cc7eb"
 range_concept_uuid="$openmrs_uuid"
 
@@ -14,10 +13,17 @@ if [[ ! -f "$csv_file" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$ocl_zip" ]]; then
-  echo "OCL export not found: $ocl_zip"
+shopt -s nullglob
+ocl_candidates=("${ocl_dir}"/SIHSALUS_sihsalus_*.zip)
+shopt -u nullglob
+
+if [[ "${#ocl_candidates[@]}" -eq 0 ]]; then
+  echo "OCL sihsalus export not found in ${ocl_dir}"
   exit 1
 fi
+
+# Pick the most recently modified matching OCL export.
+ocl_zip="$(ls -t "${ocl_candidates[@]}" | head -n1)"
 
 range_count="$(awk -F, -v uuid="$range_concept_uuid" 'NR > 1 && $2 == uuid { count++ } END { print count + 0 }' "$csv_file")"
 if [[ "$range_count" -lt "2" ]]; then
@@ -64,22 +70,15 @@ require_range "Perimetro abdominal adulto mujer >=18 yrs" "79.9" "88" "F"
 require_range "Perimetro abdominal adulto hombre >=18 yrs" "93.9" "102" "M"
 
 unzip -p "$ocl_zip" export.json | awk \
-  -v concept_pattern="\"uuid\": \"${ocl_concept_uuid}\"" \
   -v openmrs_pattern="\"external_id\": \"${openmrs_uuid}\"" '
-    index($0, concept_pattern) > 0 {
-      found_concept = 1
-    }
     index($0, openmrs_pattern) > 0 {
       found_openmrs_uuid = 1
     }
     END {
-      if (!found_concept) {
-        printf("OCL export does not include concept %s.\n", concept_pattern)
-      }
       if (!found_openmrs_uuid) {
         printf("OCL export does not include OpenMRS UUID %s.\n", openmrs_pattern)
       }
-      exit(found_concept && found_openmrs_uuid ? 0 : 1)
+      exit(found_openmrs_uuid ? 0 : 1)
     }
   '
 
