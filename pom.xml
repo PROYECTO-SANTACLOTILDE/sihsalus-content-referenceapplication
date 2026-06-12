@@ -1,13 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+>
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.proyecto-santaclotilde</groupId>
     <artifactId>sihsalus-content</artifactId>
-    <version>1.11.0</version>
+    <version>1.12.0</version>
     <packaging>pom</packaging>
     <name>SIHSALUS Content Package</name>
-    <description>OpenMRS content package for the SIHSALUS distribution.</description>
+    <description
+    >OpenMRS content package for the SIHSALUS distribution.</description>
     <url>https://github.com/sihsalus/sihsalus-content</url>
     <licenses>
         <license>
@@ -25,8 +28,10 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/sihsalus/sihsalus-content.git</connection>
-        <developerConnection>scm:git:https://github.com/sihsalus/sihsalus-content.git</developerConnection>
+        <connection
+        >scm:git:https://github.com/sihsalus/sihsalus-content.git</connection>
+        <developerConnection
+        >scm:git:https://github.com/sihsalus/sihsalus-content.git</developerConnection>
         <url>https://github.com/sihsalus/sihsalus-content</url>
     </scm>
     <properties>
@@ -47,7 +52,8 @@
                             <goal>validate-content-package</goal>
                         </goals>
                         <configuration>
-                            <sourceFile>${project.basedir}/content.properties</sourceFile>
+                            <sourceFile
+                            >${project.basedir}/content.properties</sourceFile>
                         </configuration>
                     </execution>
                     <!-- Commented out for now
@@ -77,12 +83,14 @@
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>${project.basedir}/assembly.xml</descriptor>
+                                <descriptor
+                                >${project.basedir}/assembly.xml</descriptor>
                             </descriptors>
                             <!-- Setting appendAssemblyId to false ensures that the assembly ID
                             is not appended to the final name of the assembled artifact -->
                             <appendAssemblyId>false</appendAssemblyId>
-                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <finalName
+                            >${project.artifactId}-${project.version}</finalName>
                         </configuration>
                     </execution>
                 </executions>
@@ -120,7 +128,8 @@
                             <goal>resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}</outputDirectory>
+                            <outputDirectory
+                            >${project.build.directory}</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.basedir}</directory>
@@ -158,7 +167,8 @@
                                 <include>**/*.xml</include>
                             </includes>
                             <licenseHeader>
-                                <file>${project.basedir}/license-header.txt</file>
+                                <file
+                                >${project.basedir}/license-header.txt</file>
                                 <delimiter>^(?!&lt;\?xml)</delimiter>
                             </licenseHeader>
                         </format>
