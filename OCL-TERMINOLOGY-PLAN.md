@@ -22,6 +22,48 @@ reconstrucción y migración.
 | `laboratorio` | 232 | 997 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
 
+### Plan actual para `concepts/` y `conceptsets/`
+
+El repo todavía carga conceptos locales desde `configuration/backend_configuration/concepts/` y relaciones desde
+`configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
+conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
+
+Inventario contra los exports `clean-2026-06-12`:
+
+| Archivo | Cobertura en OCL por `external_id` | Decisión |
+|---|---:|---|
+| `concepts-cred-huanca.csv` | 0/77 | Migrar a `SIHSALUS/sihsalus`; son conceptos CRED/Huanca propios con UUID estable. |
+| `concepts-odontology.csv` | 0/38 | Migrar a `SIHSALUS/sihsalus`; luego mapear procedimientos recuperativos/preventivos a `procedimientos` cuando aplique. |
+| `concepts-psychology.csv` | 0/81 | Migrar a `SIHSALUS/sihsalus`; mapear diagnósticos/problemas clínicos a `diagnosis` solo cuando haya equivalencia clara. |
+| `concepts-form-migration.csv` | 7/20 | Auditar los 13 faltantes; migrar los faltantes y retirar del CSV solo cuando los forms resuelvan por OCL. |
+| `concepts-immunization-fhir.csv` | 9/9 | Ya existe en OCL; candidato a retirar después de validar forms/FHIR y set de respuestas. |
+| `sihsalus-locale-aliases.csv` | 18/18 | No retirar todavía: validar que OCL conserva los nombres/aliases esperados en `es` y `en`, no solo los UUIDs. |
+| `conceptsets/sihsalus-queue-conceptsets.csv` | 18/18 relaciones cubiertas | Candidato a retirar después de prueba de arranque/import en BD limpia. |
+| `conceptsets/sihsalus-immunization-conceptsets.csv` | 0/41 relaciones cubiertas | No retirar. El CSV apunta `Vacuna administrada` a 41 productos de `medicamentos`; OCL actualmente usa 22 respuestas `Q-AND-A` hacia `inmunizaciones`. Hay que decidir semántica antes de tocarlo. |
+
+Plan de ejecución:
+
+1. Migrar primero `concepts-cred-huanca.csv`, `concepts-odontology.csv`, `concepts-psychology.csv` y los 13 faltantes
+   de `concepts-form-migration.csv` a `SIHSALUS/sihsalus`, preservando el UUID OpenMRS como `external_id`.
+2. Para cada concepto codificado, crear mappings externos solo cuando la equivalencia sea defendible:
+   `procedimientos` para CPMS, `diagnosis` para CIE-10, `laboratorio` para pruebas/resultados y
+   `inmunizaciones` para vacunas clínicas. No mapear campos operacionales por aproximación.
+3. Convertir `conceptsets/*.csv` a mappings OCL (`CONCEPT-SET` o `Q-AND-A`) después de que todos los miembros
+   existan en OCL. La excepción actual es inmunización: primero hay que decidir si "Vacuna administrada" debe
+   responder con conceptos clínicos de `inmunizaciones`, productos de `medicamentos`, o dos preguntas distintas.
+4. Re-exportar release OCL, reemplazar ZIPs, y recién entonces retirar filas/archivos CSV ya cubiertos.
+5. Agregar guardas de CI antes de retirar contenido: todo UUID de `concepts/*.csv` debe estar en el export por
+   `external_id` o estar listado explícitamente como local-only; todo par de `conceptsets/*.csv` retirado debe
+   existir como mapping OCL equivalente.
+
+Criterios para eliminar un CSV o filas:
+
+- El export OCL released contiene el concepto por `external_id`, con clase/tipo de dato correctos.
+- Las relaciones de answer-set/concept-set están presentes en OCL y resuelven a los miembros esperados.
+- Initializer corre en BD limpia sin duplicados de FSN/UUID.
+- Los formularios y global properties que referencian esos UUIDs siguen resolviendo después de quitar el CSV.
+- Para aliases/locales, OCL conserva los nombres necesarios en los locales usados por el frontend.
+
 ---
 
 ## 1. Dirección arquitectónica
@@ -196,18 +238,20 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 
 ---
 
-## 6. Pendiente operativo CRÍTICO: re-exportar el bundle OCL
+## 6. Operativa de exports OCL
 
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
-`configuration/backend_configuration/ocl/` (snapshot de may-2026). **Nada de lo escrito en OCL en vivo está
-en esos zips:** el source `vacunas`, los conceptos nuevos de inmunización en SIHSALUS-v4, los Q-AND-A, los
-fixes de mappings, las retiradas.
+`configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
-**Antes del próximo build hay que:**
-1. Re-exportar de OCL `SIHSALUS-v4` y `vacunas` (y futuros `odontograma`, etc.).
-2. Reemplazar los `.zip` correspondientes en `configuration/backend_configuration/ocl/`.
+Estado 2026-06-12: el blocker histórico de los snapshots de mayo quedó resuelto para la org `SIHSALUS`; el repo
+incluye exports released `SIHSALUS_*_vclean-2026-06-12.zip`.
 
-Como el CSV de inmunización **ya se eliminó**, si se buildea sin re-exportar, **faltarán esos 12 conceptos**.
+Para cada siguiente migración de conceptos/sets:
+1. Crear o actualizar el contenido en OCL.
+2. Crear un release explícito del source afectado.
+3. Descargar el export oficial de ese release.
+4. Reemplazar el `.zip` correspondiente en `configuration/backend_configuration/ocl/`.
+5. Correr validaciones locales y CI antes de retirar filas CSV cubiertas por OCL.
 
 ---
 

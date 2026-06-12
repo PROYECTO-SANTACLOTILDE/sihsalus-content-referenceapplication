@@ -3,9 +3,8 @@ set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 csv_file="${repo_root}/configuration/backend_configuration/conceptreferencerange/conceptreferencerange_vital_signs.csv"
-ocl_zip="${repo_root}/configuration/backend_configuration/ocl/SIHSALUS_sihsalus_vclean-2026-06-12.zip"
+ocl_dir="${repo_root}/configuration/backend_configuration/ocl"
 
-ocl_concept_uuid="12003700"
 openmrs_uuid="18fcbd1f-5b4f-44ed-a664-8637a83cc7eb"
 range_concept_uuid="$openmrs_uuid"
 
@@ -14,8 +13,14 @@ if [[ ! -f "$csv_file" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$ocl_zip" ]]; then
-  echo "OCL export not found: $ocl_zip"
+if [[ ! -d "$ocl_dir" ]]; then
+  echo "OCL export directory not found: $ocl_dir"
+  exit 1
+fi
+
+ocl_zip="$(find "$ocl_dir" -maxdepth 1 -type f -name 'SIHSALUS_sihsalus_v*.zip' | sort | tail -n 1)"
+if [[ -z "$ocl_zip" || ! -f "$ocl_zip" ]]; then
+  echo "OCL export not found: ${ocl_dir}/SIHSALUS_sihsalus_v*.zip"
   exit 1
 fi
 
@@ -63,24 +68,25 @@ require_range() {
 require_range "Perimetro abdominal adulto mujer >=18 yrs" "79.9" "88" "F"
 require_range "Perimetro abdominal adulto hombre >=18 yrs" "93.9" "102" "M"
 
-unzip -p "$ocl_zip" export.json | awk \
-  -v concept_pattern="\"uuid\": \"${ocl_concept_uuid}\"" \
-  -v openmrs_pattern="\"external_id\": \"${openmrs_uuid}\"" '
-    index($0, concept_pattern) > 0 {
-      found_concept = 1
-    }
-    index($0, openmrs_pattern) > 0 {
-      found_openmrs_uuid = 1
-    }
-    END {
-      if (!found_concept) {
-        printf("OCL export does not include concept %s.\n", concept_pattern)
-      }
-      if (!found_openmrs_uuid) {
-        printf("OCL export does not include OpenMRS UUID %s.\n", openmrs_pattern)
-      }
-      exit(found_concept && found_openmrs_uuid ? 0 : 1)
-    }
-  '
+node -e '
+  const fs = require("node:fs");
+  const externalId = process.argv[1];
+  const raw = fs.readFileSync(0, "utf8");
+  const data = JSON.parse(raw);
+  const concepts = Array.isArray(data.concepts) ? data.concepts : [];
+  const concept = concepts.find((candidate) => candidate.external_id === externalId);
+
+  if (!concept) {
+    console.error(`OCL export does not include OpenMRS UUID ${externalId}.`);
+    process.exit(1);
+  }
+
+  if (concept.datatype !== "Numeric") {
+    console.error(`Expected abdominal circumference concept datatype Numeric, found ${concept.datatype}.`);
+    process.exit(1);
+  }
+
+  console.log(`Validated OCL concept ${concept.id} (${concept.display_name}) for OpenMRS UUID ${externalId}.`);
+' "$openmrs_uuid" < <(unzip -p "$ocl_zip" export.json)
 
 echo "Reference range validation complete."
