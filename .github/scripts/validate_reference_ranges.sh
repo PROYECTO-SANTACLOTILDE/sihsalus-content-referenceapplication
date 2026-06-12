@@ -18,11 +18,19 @@ if [[ ! -d "$ocl_dir" ]]; then
   exit 1
 fi
 
+# ZIP actual del source sihsalus en la org SIHSALUS.
+# Antes era PeruHCE_SIHSALUS-v4_*.zip, pero ahora el source nuevo es SIHSALUS_sihsalus_v*.zip.
 ocl_zip="$(find "$ocl_dir" -maxdepth 1 -type f -name 'SIHSALUS_sihsalus_v*.zip' | sort | tail -n 1)"
-if [[ -z "$ocl_zip" || ! -f "$ocl_zip" ]]; then
-  echo "OCL export not found: ${ocl_dir}/SIHSALUS_sihsalus_v*.zip"
+if [[ -z "${ocl_zip:-}" || ! -f "$ocl_zip" ]]; then
+  echo "OCL export not found in: $ocl_dir"
+  echo "Expected a file matching: SIHSALUS_sihsalus_v*.zip"
+  echo
+  echo "Available OCL ZIPs:"
+  find "$ocl_dir" -maxdepth 1 -type f -name '*.zip' -print | sort || true
   exit 1
 fi
+
+echo "Using OCL export: $ocl_zip"
 
 range_count="$(awk -F, -v uuid="$range_concept_uuid" 'NR > 1 && $2 == uuid { count++ } END { print count + 0 }' "$csv_file")"
 if [[ "$range_count" -lt "2" ]]; then
