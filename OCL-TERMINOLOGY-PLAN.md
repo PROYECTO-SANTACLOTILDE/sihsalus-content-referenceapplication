@@ -1,8 +1,26 @@
 # Plan de Terminología OCL — SIHSALUS
 
 > Documento de plan/arquitectura para la consolidación de conceptos en OpenConceptLab (OCL).
-> Última actualización: 2026-06-01. Org OCL: **PeruHCE** (`https://app.openconceptlab.org/#/orgs/PeruHCE/`).
+> Última actualización: 2026-06-12. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
 > Estado: en progreso. Contiene lo hecho, el plan pendiente, convenciones y **dudas abiertas**.
+
+---
+
+## Estado actual del paquete (2026-06-12)
+
+El content package consume exports OCL released desde la org `SIHSALUS`, release `clean-2026-06-12`.
+El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
+reconstrucción y migración.
+
+| Source SIHSALUS | Conceptos | Mappings | Qué es |
+|---|---:|---:|---|
+| `sihsalus` | 4357 | 5237 | Diccionario clínico principal SIHSALUS |
+| `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
+| `diagnosis` | 13484 | 0 | CIE-10 MINSA |
+| `medicamentos` | 1003 | 0 | Medicamentos e insumos SIS/Dige |
+| `alergias` | 177 | 278 | Alergias y reacciones adversas |
+| `laboratorio` | 232 | 997 | Pruebas, paneles y resultados de laboratorio |
+| `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
 
 ---
 

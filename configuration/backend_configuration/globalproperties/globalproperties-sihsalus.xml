@@ -38,7 +38,7 @@
 
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
-            <value>https://api.openconceptlab.org/orgs/PeruHCE/sources/SIHSALUS-v4</value>
+            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/clean-2026-06-12</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
@@ -50,21 +50,21 @@
         <!-- Queue Configuration -->
 
         <!--
-        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2724/ -->
+        https://app.openconceptlab.org/#/orgs/SIHSALUS/sources/sihsalus/concepts/2724/ -->
         <globalProperty>
             <property>queue.serviceConceptSetName</property>
             <value>4bf3f465-ac91-44fa-9b1f-173daf0c89a0</value>
         </globalProperty>
 
         <!--
-        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2726/ -->
+        https://app.openconceptlab.org/#/orgs/SIHSALUS/sources/sihsalus/concepts/2726/ -->
         <globalProperty>
             <property>queue.priorityConceptSetName</property>
             <value>d736c954-601f-4d8b-b778-6df7f3ed3767</value>
         </globalProperty>
 
         <!--
-        https://app.openconceptlab.org/#/orgs/PeruHCE/sources/SIHSALUS-v4/concepts/2720/ -->
+        https://app.openconceptlab.org/#/orgs/SIHSALUS/sources/sihsalus/concepts/2720/ -->
         <globalProperty>
             <property>queue.statusConceptSetName</property>
             <value>a10612bc-373d-44cf-8a1a-277e65f7fcf9</value>
