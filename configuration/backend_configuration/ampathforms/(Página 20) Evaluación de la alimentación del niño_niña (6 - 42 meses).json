@@ -11,7 +11,7 @@
             {
               "type": "obs",
               "required": false,
-              "id": "evaluacióNDeLaAlimentacióNDelNiñO",
+              "id": "evaluacioNDeLaAlimentacioNDelNinO",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "6d411bf5-4391-4f4b-8ec6-7f789be9a237",

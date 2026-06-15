@@ -12,7 +12,7 @@
               "label": "¿Diria que en su familia se dan situaciones de violencia?",
               "type": "obs",
               "required": false,
-              "id": "¿DiriaQueEnSuFamiliaSeDanSituacionesDeViolencia?",
+              "id": "diriaQueEnSuFamiliaSeDanSituacionesDeViolencia",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "313baa99-a2e3-449c-bc5f-3230d2508695",
@@ -33,7 +33,7 @@
               "label": "¿Alguna vez algún miembro de la familia le insulta?",
               "type": "obs",
               "required": false,
-              "id": "¿AlgunaVezAlgúNMiembroDeLaFamiliaLeInsulta?",
+              "id": "algunaVezAlgunMiembroDeLaFamiliaLeInsulta",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "a33bf670-e9a0-4cf0-8348-7a99e66a1d30",
@@ -54,7 +54,7 @@
               "label": "¿Algún miembro de su familia le golpea?",
               "type": "obs",
               "required": false,
-              "id": "¿AlgúNMiembroDeSuFamiliaLeGolpea?",
+              "id": "algunMiembroDeSuFamiliaLeGolpea",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "4d41937f-e524-4119-bf47-ad2052d6647a",
@@ -75,7 +75,7 @@
               "label": "¿Alguna vez algún miembro de su familia le chantajea?",
               "type": "obs",
               "required": false,
-              "id": "¿AlgunaVezAlgúNMiembroDeSuFamiliaLeChantajea?",
+              "id": "algunaVezAlgunMiembroDeSuFamiliaLeChantajea",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "6cbf0391-a087-4cbe-985d-aadb0081005f",
@@ -102,7 +102,7 @@
               "label": "Indicadores de maltrato físico",
               "type": "obs",
               "required": false,
-              "id": "indicadoresDeMaltratoFíSico",
+              "id": "indicadoresDeMaltratoFisico",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "f685e559-fdb4-406c-a464-2aeba7727e13",
@@ -151,7 +151,7 @@
               "label": "Indicadores de maltrato psicológico",
               "type": "obs",
               "required": false,
-              "id": "indicadoresDeMaltratoPsicolóGico",
+              "id": "indicadoresDeMaltratoPsicologico",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dc762f4b-e936-4c27-b118-93775166d171",

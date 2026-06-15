@@ -263,7 +263,7 @@
                     "concept": "3156cfeb-d3c9-455b-8d90-f839c186823c",
                     "rows": 4
                   },
-                  "id": "diagnóSticosFinalesDeEgreso",
+                  "id": "diagnosticosFinalesDeEgreso",
                   "label": "Diagnósticos Finales de Egreso"
                 },
                 {
@@ -327,7 +327,7 @@
                       }
                     ]
                   },
-                  "id": "planificacióNFamiliar",
+                  "id": "planificacionFamiliar",
                   "label": "Planificación Familiar"
                 }
               ]
@@ -357,7 +357,7 @@
                       }
                     ]
                   },
-                  "id": "géNero",
+                  "id": "genero",
                   "label": "Género"
                 },
                 {
@@ -367,7 +367,7 @@
                     "min": "0",
                     "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
-                  "id": "peso(Kg)",
+                  "id": "pesoKg",
                   "label": "Peso (Kg)"
                 },
                 {
@@ -400,7 +400,7 @@
                     "concept": "2282d464-bd57-453f-9aef-2d5f7f006069",
                     "max": "10"
                   },
-                  "id": "condicióNDeAlta",
+                  "id": "condicionDeAlta",
                   "label": "Condición de Alta"
                 },
                 {
@@ -439,7 +439,7 @@
                     "concept": "104b6741-cf34-4805-875c-f475748092b3",
                     "min": "0"
                   },
-                  "id": "núMeroDeCama",
+                  "id": "numeroDeCama",
                   "label": "Número de Cama"
                 }
               ]

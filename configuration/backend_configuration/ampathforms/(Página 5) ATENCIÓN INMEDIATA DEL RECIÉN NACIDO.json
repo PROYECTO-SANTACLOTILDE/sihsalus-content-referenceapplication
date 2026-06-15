@@ -28,7 +28,7 @@
                   }
                 ]
               },
-              "id": "valoracióNInmediataDelReciéNNacido",
+              "id": "valoracionInmediataDelRecienNacido",
               "label": "Valoración inmediata del recién nacido"
             },
             {
@@ -55,7 +55,7 @@
                   }
                 ]
               },
-              "id": "marqueUno-CuestionarioInmediatoParaNacimientoDelNiñO",
+              "id": "marqueUnoCuestionarioInmediatoParaNacimientoDelNino",
               "label": "Marque uno - Cuestionario inmediato para nacimiento del niño"
             }
           ]
@@ -80,7 +80,7 @@
                   }
                 ]
               },
-              "id": "posicionaVíAAéRea",
+              "id": "posicionaViaAerea",
               "label": "Posiciona vía aérea"
             },
             {
@@ -99,7 +99,7 @@
                   }
                 ]
               },
-              "id": "secadoYEstimulacióN",
+              "id": "secadoYEstimulacion",
               "label": "Secado y estimulación"
             },
             {
@@ -118,7 +118,7 @@
                   }
                 ]
               },
-              "id": "aspiracióNDeSecrecionesBucoNasal",
+              "id": "aspiracionDeSecrecionesBucoNasal",
               "label": "Aspiración de secreciones buco nasal"
             },
             {
@@ -156,7 +156,7 @@
                   }
                 ]
               },
-              "id": "colocacióNEnBolsaPolietileno",
+              "id": "colocacionEnBolsaPolietileno",
               "label": "Colocación en bolsa polietileno"
             },
             {
@@ -175,7 +175,7 @@
                   }
                 ]
               },
-              "id": "valoracióNDeLaEdadGestacional",
+              "id": "valoracionDeLaEdadGestacional",
               "label": "Valoración de la edad gestacional"
             },
             {
@@ -213,7 +213,7 @@
                   }
                 ]
               },
-              "id": "valoracióNDeTestDeSilverman",
+              "id": "valoracionDeTestDeSilverman",
               "label": "Valoración de test de Silverman"
             },
             {
@@ -232,7 +232,7 @@
                   }
                 ]
               },
-              "id": "insercióNDeCatéTerEnVenaPeriféRica",
+              "id": "insercionDeCateterEnVenaPeriferica",
               "label": "Inserción de catéter en vena periférica"
             },
             {
@@ -251,7 +251,7 @@
                   }
                 ]
               },
-              "id": "curacióNDelCordóNUmbilical",
+              "id": "curacionDelCordonUmbilical",
               "label": "Curación del cordón umbilical"
             },
             {
@@ -270,7 +270,7 @@
                   }
                 ]
               },
-              "id": "examenFíSico",
+              "id": "examenFisico",
               "label": "Examen físico"
             },
             {
@@ -289,7 +289,7 @@
                   }
                 ]
               },
-              "id": "registroDeEliminacióNDeOrina",
+              "id": "registroDeEliminacionDeOrina",
               "label": "Registro de eliminación de orina"
             },
             {
@@ -308,7 +308,7 @@
                   }
                 ]
               },
-              "id": "registroDeEliminacióNDeDeposicióN",
+              "id": "registroDeEliminacionDeDeposicion",
               "label": "Registro de eliminación de deposición"
             },
             {
@@ -327,7 +327,7 @@
                   }
                 ]
               },
-              "id": "informacióNDadaALosPadres",
+              "id": "informacionDadaALosPadres",
               "label": "Información dada a los padres"
             },
             {
@@ -407,7 +407,7 @@
                   }
                 ]
               },
-              "id": "soporteDeOxíGeno",
+              "id": "soporteDeOxigeno",
               "label": "Soporte de Oxígeno"
             },
             {
@@ -426,7 +426,7 @@
                   }
                 ]
               },
-              "id": "administracióNDeVitaminaK",
+              "id": "administracionDeVitaminaK",
               "label": "Administración de Vitamina K"
             }
           ]
@@ -493,7 +493,7 @@
                   }
                 ]
               },
-              "id": "lavadoGáStrico",
+              "id": "lavadoGastrico",
               "label": "Lavado Gástrico"
             },
             {
@@ -504,7 +504,7 @@
                 "concept": "1c2e66e6-1a67-488c-a36b-e2f3536b72fe",
                 "min": "1"
               },
-              "id": "cantidadDeLavadosGáStricos",
+              "id": "cantidadDeLavadosGastricos",
               "label": "Cantidad de Lavados Gástricos"
             }
           ]
@@ -520,7 +520,7 @@
                 "rows": 3,
                 "concept": "8e779adc-c463-434a-9113-a74c5e12399d"
               },
-              "id": "diagnóSticoDeEnfermeríA",
+              "id": "diagnosticoDeEnfermeria",
               "label": "Diagnóstico de Enfermería"
             }
           ]

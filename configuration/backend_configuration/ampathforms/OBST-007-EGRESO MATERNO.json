@@ -146,7 +146,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {
