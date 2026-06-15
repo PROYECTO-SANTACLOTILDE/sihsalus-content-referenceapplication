@@ -21,7 +21,7 @@ jobs:
           distribution: 'temurin'
           java-version: 8
       - name: Validate reference ranges
-        run: bash .github/scripts/validate_reference_ranges.sh
+        run: python3 .github/scripts/validate_reference_ranges.py
       - name: Build with Maven
         id: build_with_maven
         run: |

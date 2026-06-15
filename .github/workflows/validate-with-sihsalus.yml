@@ -104,7 +104,7 @@ jobs:
       - name: Classify validation log errors
         working-directory: sihsalus
         run: |
-          bash ../content-package/.github/scripts/classify_validation_log.sh sihsalus-content-validation.log
+          python3 ../content-package/.github/scripts/classify_validation_log.py sihsalus-content-validation.log
 
       - name: Stop SIHSALUS backend
         if: always() && hashFiles('sihsalus/docker-compose-no-volumes.yml') != ''
