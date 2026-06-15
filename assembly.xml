@@ -18,6 +18,12 @@
             <includes>
                 <include>**/*</include>
             </includes>
+            <excludes>
+                <exclude>**/.DS_Store</exclude>
+                <exclude>**/.gitkeep</exclude>
+                <exclude>backend_configuration/ampathforms/Readme</exclude>
+                <exclude>backend_configuration/ampathforms/_deprecated/**</exclude>
+            </excludes>
         </fileSet>
     </fileSets>
 </assembly>

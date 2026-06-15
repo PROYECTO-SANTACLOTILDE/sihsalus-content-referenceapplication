@@ -23,7 +23,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "hematocrito(%)",
+              "id": "hematocrito",
               "label": "Hematocrito (%)"
             },
             {
@@ -35,7 +35,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "hemoglobina(G/Dl)",
+              "id": "hemoglobinaGDl",
               "label": "Hemoglobina (g/dl)"
             },
             {
@@ -71,7 +71,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "abastonados(%)",
+              "id": "abastonados",
               "label": "Abastonados (%)"
             },
             {
@@ -83,7 +83,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "segmentados(%)",
+              "id": "segmentados",
               "label": "Segmentados (%)"
             },
             {
@@ -95,7 +95,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "linfositos(%)",
+              "id": "linfositos",
               "label": "Linfositos (%)"
             },
             {
@@ -107,7 +107,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "eusinofilos(%)",
+              "id": "eusinofilos",
               "label": "Eusinofilos (%)"
             },
             {
@@ -119,7 +119,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "monocitos(%)",
+              "id": "monocitos",
               "label": "Monocitos (%)"
             },
             {
@@ -131,7 +131,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "basofilos(%)",
+              "id": "basofilos",
               "label": "Basofilos (%)"
             },
             {
@@ -143,7 +143,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "velocidadDeSedimentacióNGlobular(Mm/H)",
+              "id": "velocidadDeSedimentacionGlobularMmH",
               "label": "Velocidad de Sedimentación Globular (mm/h)"
             },
             {
@@ -155,7 +155,7 @@
                 "min": "0",
                 "max": "100"
               },
-              "id": "reticulocitos(%)",
+              "id": "reticulocitos",
               "label": "Reticulocitos (%)"
             },
             {
@@ -167,7 +167,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "tiempoDeSangríA(Min)",
+              "id": "tiempoDeSangriaMin",
               "label": "Tiempo de Sangría (min)"
             },
             {
@@ -179,7 +179,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "tiempoDeCoagulacióN(Min)",
+              "id": "tiempoDeCoagulacionMin",
               "label": "Tiempo de Coagulación (min)"
             }
           ]
@@ -396,7 +396,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "tgo(TransaminasaGlutáMico-OxalacéTicaSéRica)",
+              "id": "tgoTransaminasaGlutamicoOxalaceticaSerica",
               "label": "TGO (Transaminasa Glutámico-oxalacética Sérica)"
             },
             {
@@ -408,7 +408,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "tgp(TransaminasaGlutáMicoPirúVica)",
+              "id": "tgpTransaminasaGlutamicoPiruvica",
               "label": "TGP (Transaminasa Glutámico Pirúvica)"
             },
             {
@@ -504,7 +504,7 @@
                 "min": "0",
                 "max": ""
               },
-              "id": "acidoúRico",
+              "id": "acidoUrico",
               "label": "Acido úrico"
             }
           ]
@@ -529,7 +529,7 @@
                   }
                 ]
               },
-              "id": "pruebaRáPidaVih",
+              "id": "pruebaRapidaVIH",
               "label": "Prueba Rápida VIH"
             },
             {
@@ -548,7 +548,7 @@
                   }
                 ]
               },
-              "id": "vdrl/Rpr(PruebasSerolóGicasParaDetectarSíFilis)",
+              "id": "vdrlRPRPruebasSerologicasParaDetectarSifilis",
               "label": "VDRL / RPR (Pruebas serológicas para detectar sífilis)"
             },
             {
@@ -567,7 +567,7 @@
                   }
                 ]
               },
-              "id": "pruebaRáPidaHepatitisB",
+              "id": "pruebaRapidaHepatitisB",
               "label": "Prueba Rápida Hepatitis B"
             },
             {
@@ -586,7 +586,7 @@
                   }
                 ]
               },
-              "id": "pruebaRáPidaHepatitisA",
+              "id": "pruebaRapidaHepatitisA",
               "label": "Prueba Rápida Hepatitis A"
             },
             {
@@ -597,7 +597,7 @@
                 "concept": "19614ad3-9470-4972-a74c-c6133fb6571e",
                 "min": "0"
               },
-              "id": "pruebaRáPidaPsa(AntíGenoProstáTicoEspecíFico)",
+              "id": "pruebaRapidaPSAAntigenoProstaticoEspecifico",
               "label": "Prueba Rápida PSA (Antígeno Prostático Específico)"
             },
             {
@@ -608,7 +608,7 @@
                 "concept": "75abf697-3137-404f-87f7-39cbb8a2dd67",
                 "min": "0"
               },
-              "id": "pcr(PruebaDeReaccióNEnCadenaDeLaPolimerasa)",
+              "id": "pcrPruebaDeReaccionEnCadenaDeLaPolimerasa",
               "label": "PCR (Prueba de Reacción en Cadena de la Polimerasa)"
             },
             {
@@ -831,7 +831,7 @@
                 "concept": "e2a44847-68b1-44ef-af4c-0609d87f4c05",
                 "min": "0"
               },
-              "id": "cuerposCetóNicas",
+              "id": "cuerposCetonicas",
               "label": "Cuerpos cetónicas"
             },
             {
@@ -892,7 +892,7 @@
                   }
                 ]
               },
-              "id": "céLulasEpiteliales",
+              "id": "celulasEpiteliales",
               "label": "Células Epiteliales"
             },
             {
@@ -949,7 +949,7 @@
                   }
                 ]
               },
-              "id": "géRmenes",
+              "id": "germenes",
               "label": "Gérmenes"
             },
             {
@@ -998,7 +998,7 @@
                   }
                 ]
               },
-              "id": "paráSitos",
+              "id": "parasitos",
               "label": "Parásitos"
             },
             {
@@ -1083,7 +1083,7 @@
                   }
                 ]
               },
-              "id": "bkEsputo(BaciloDeKoch)",
+              "id": "bkEsputoBaciloDeKoch",
               "label": "BK esputo (Bacilo de Koch)"
             }
           ]

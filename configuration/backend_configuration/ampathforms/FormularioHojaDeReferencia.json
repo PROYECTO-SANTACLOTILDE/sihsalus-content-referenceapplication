@@ -18,7 +18,7 @@
           "questions": [
             {
               "label": "Número de hoja de referencia",
-              "id": "numero-hoja-referencia",
+              "id": "numeroDeHojaDeReferencia",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -28,7 +28,7 @@
             },
             {
               "label": "Fecha y hora de la referencia",
-              "id": "fecha-y-hora-referencia",
+              "id": "fechaYHoraDeLaReferencia",
               "required": "true",
               "questionOptions": {
                 "rendering": "datetime",
@@ -58,7 +58,7 @@
             },
             {
               "label": "Tipo de seguro",
-              "id": "tipo-seguro",
+              "id": "tipoDeSeguro",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -71,7 +71,7 @@
             },
             {
               "label": "Plan de atención SIS",
-              "id": "plan-atencion-sis",
+              "id": "planDeAtencionSis",
               "required": "false",
               "questionOptions": {
                 "rendering": "radio",
@@ -103,7 +103,7 @@
             },
             {
               "label": "Establecimiento de origen de la referencia",
-              "id": "establecimiento-origen-referencia",
+              "id": "establecimientoDeOrigenDeLaReferencia",
               "required": "true",
               "questionOptions": {
                 "rendering": "text",
@@ -113,7 +113,7 @@
             },
             {
               "label": "Establecimiento destino de la referencia",
-              "id": "establecimiento-destino-referencia",
+              "id": "establecimientoDestinoDeLaReferencia",
               "required": "true",
               "questionOptions": {
                 "rendering": "text",
@@ -129,7 +129,7 @@
           "questions": [
             {
               "label": "Código de afiliación al SIS",
-              "id": "codigo-afiliacion-sis",
+              "id": "codigoDeAfiliacionAlSis",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -139,7 +139,7 @@
             },
             {
               "label": "Número de historia clínica",
-              "id": "numero-historia-clinica",
+              "id": "numeroDeHistoriaClinica",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -170,7 +170,7 @@
             },
             {
               "label": "Examen físico (descripción)",
-              "id": "examen-fisico-descripcion",
+              "id": "examenFisicoDescripcion",
               "required": "false",
               "questionOptions": {
                 "rendering": "textarea",
@@ -190,7 +190,7 @@
             },
             {
               "label": "Presión arterial (P.A.)",
-              "id": "presion-arterial",
+              "id": "presionArterialPA",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -200,7 +200,7 @@
             },
             {
               "label": "Frecuencia respiratoria (F.R.)",
-              "id": "frecuencia-respiratoria",
+              "id": "frecuenciaRespiratoriaFR",
               "required": "false",
               "questionOptions": {
                 "rendering": "number",
@@ -210,7 +210,7 @@
             },
             {
               "label": "Frecuencia cardiaca (F.C.)",
-              "id": "frecuencia-cardiaca",
+              "id": "frecuenciaCardiacaFC",
               "required": "false",
               "questionOptions": {
                 "rendering": "number",
@@ -220,7 +220,7 @@
             },
             {
               "label": "Exámenes auxiliares",
-              "id": "examenes-auxiliares",
+              "id": "examenesAuxiliares",
               "required": "false",
               "questionOptions": {
                 "rendering": "textarea",
@@ -236,7 +236,7 @@
           "questions": [
             {
               "label": "Diagnóstico 1 (descripción)",
-              "id": "diagnostico-1-descripcion",
+              "id": "diagnostico1Descripcion",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -246,7 +246,7 @@
             },
             {
               "label": "Diagnóstico 1 - Código CIE-10",
-              "id": "diagnostico-1-cie10",
+              "id": "diagnostico1CodigoCie10",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -256,7 +256,7 @@
             },
             {
               "label": "Diagnóstico 1 - Tipo (D/P/R)",
-              "id": "diagnostico-1-tipo",
+              "id": "diagnostico1TipoDPR",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -266,7 +266,7 @@
             },
             {
               "label": "Diagnóstico 2 (descripción)",
-              "id": "diagnostico-2-descripcion",
+              "id": "diagnostico2Descripcion",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -276,7 +276,7 @@
             },
             {
               "label": "Diagnóstico 2 - Código CIE-10",
-              "id": "diagnostico-2-cie10",
+              "id": "diagnostico2CodigoCie10",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -286,7 +286,7 @@
             },
             {
               "label": "Diagnóstico 2 - Tipo (D/P/R)",
-              "id": "diagnostico-2-tipo",
+              "id": "diagnostico2TipoDPR",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -296,7 +296,7 @@
             },
             {
               "label": "Diagnóstico 3 (descripción)",
-              "id": "diagnostico-3-descripcion",
+              "id": "diagnostico3Descripcion",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -306,7 +306,7 @@
             },
             {
               "label": "Diagnóstico 3 - Código CIE-10",
-              "id": "diagnostico-3-cie10",
+              "id": "diagnostico3CodigoCie10",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -316,7 +316,7 @@
             },
             {
               "label": "Diagnóstico 3 - Tipo (D/P/R)",
-              "id": "diagnostico-3-tipo",
+              "id": "diagnostico3TipoDPR",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -371,7 +371,7 @@
             },
             {
               "label": "Fecha y hora en que será atendido",
-              "id": "fecha-atencion-destino",
+              "id": "fechaYHoraEnQueSeraAtendido",
               "required": "false",
               "questionOptions": {
                 "rendering": "datetime",
@@ -384,7 +384,7 @@
             },
             {
               "label": "Nombre de quien lo atenderá",
-              "id": "nombre-quien-atendera",
+              "id": "nombreDeQuienLoAtendera",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -397,7 +397,7 @@
             },
             {
               "label": "Nombre con quien se coordinó la atención",
-              "id": "nombre-coordinacion-atencion",
+              "id": "nombreConQuienSeCoordinoLaAtencion",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -466,7 +466,7 @@
           "questions": [
             {
               "label": "Condición del paciente al inicio del traslado",
-              "id": "condicion-inicio-traslado",
+              "id": "condicionDelPacienteAlInicioDelTraslado",
               "required": "false",
               "questionOptions": {
                 "rendering": "radio",
@@ -486,7 +486,7 @@
             },
             {
               "label": "Responsable de la referencia - nombre",
-              "id": "responsable-referencia-nombre",
+              "id": "responsableDeLaReferenciaNombre",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -496,7 +496,7 @@
             },
             {
               "label": "Responsable de la referencia - colegiatura",
-              "id": "responsable-referencia-colegiatura",
+              "id": "responsableDeLaReferenciaColegiatura",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -547,7 +547,7 @@
             },
             {
               "label": "Responsable del establecimiento - nombre",
-              "id": "responsable-establecimiento-nombre",
+              "id": "responsableDelEstablecimientoNombre",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -557,7 +557,7 @@
             },
             {
               "label": "Responsable del establecimiento - colegiatura",
-              "id": "responsable-establecimiento-colegiatura",
+              "id": "responsableDelEstablecimientoColegiatura",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -608,7 +608,7 @@
             },
             {
               "label": "Personal que acompaña - nombre",
-              "id": "personal-acompana-nombre",
+              "id": "personalQueAcompanaNombre",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -618,7 +618,7 @@
             },
             {
               "label": "Personal que acompaña - colegiatura",
-              "id": "personal-acompana-colegiatura",
+              "id": "personalQueAcompanaColegiatura",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -675,7 +675,7 @@
           "questions": [
             {
               "label": "Personal que recibe - nombre",
-              "id": "personal-recibe-nombre",
+              "id": "personalQueRecibeNombre",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -685,7 +685,7 @@
             },
             {
               "label": "Personal que recibe - colegiatura",
-              "id": "personal-recibe-colegiatura",
+              "id": "personalQueRecibeColegiatura",
               "required": "false",
               "questionOptions": {
                 "rendering": "text",
@@ -736,7 +736,7 @@
             },
             {
               "label": "Fecha y hora de recepción",
-              "id": "fecha-hora-recepcion",
+              "id": "fechaYHoraDeRecepcion",
               "required": "false",
               "questionOptions": {
                 "rendering": "datetime",
@@ -746,7 +746,7 @@
             },
             {
               "label": "Condición del paciente a la llegada",
-              "id": "condicion-llegada-destino",
+              "id": "condicionDelPacienteALaLlegada",
               "required": "false",
               "questionOptions": {
                 "rendering": "radio",

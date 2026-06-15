@@ -1,26 +1,74 @@
 # Plan de Terminología OCL — SIHSALUS
 
 > Documento de plan/arquitectura para la consolidación de conceptos en OpenConceptLab (OCL).
-> Última actualización: 2026-06-12. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
+> Última actualización: 2026-06-15. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
 > Estado: en progreso. Contiene lo hecho, el plan pendiente, convenciones y **dudas abiertas**.
 
 ---
 
-## Estado actual del paquete (2026-06-12)
+## Estado actual del paquete (2026-06-15)
 
-El content package consume exports OCL released desde la org `SIHSALUS`, release `clean-2026-06-12`.
+El content package consume exports OCL released desde la org `SIHSALUS`, release `v2026-06-15-lab-normalization`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
 | Source SIHSALUS | Conceptos | Mappings | Qué es |
 |---|---:|---:|---|
-| `sihsalus` | 4357 | 5237 | Diccionario clínico principal SIHSALUS |
+| `sihsalus` | 4560 | 5338 | Diccionario clínico principal SIHSALUS |
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
-| `medicamentos` | 1003 | 0 | Medicamentos e insumos SIS/Dige |
-| `alergias` | 177 | 278 | Alergias y reacciones adversas |
-| `laboratorio` | 232 | 997 | Pruebas, paneles y resultados de laboratorio |
+| `medicamentos` | 1001 | 0 | Medicamentos e insumos SIS/Dige |
+| `laboratorio` | 208 | 1024 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
+
+La release `v2026-06-15-lab-normalization` consolida la limpieza posterior al rebuild: el source `alergias`
+queda absorbido por `sihsalus`, conceptos administrativos se movieron fuera de `laboratorio`, 646 insumos de
+`medicamentos` quedaron como `Medical supply`, 520 códigos CIE-10 `U*` quedaron como `Misc`, y se normalizó
+la página final de `laboratorio` moviendo dos procedimientos clínicos a `sihsalus` y corrigiendo clases/nombres.
+
+### Plan actual para `concepts/` y `conceptsets/`
+
+El repo todavía carga conceptos locales desde `configuration/backend_configuration/concepts/` y relaciones desde
+`configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
+conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
+
+Inventario contra los exports `v2026-06-15-lab-normalization`:
+
+| Archivo | Cobertura en OCL por `external_id` | Decisión |
+|---|---:|---|
+| `concepts-cred-huanca.csv` | 0/77 | Migrar a `SIHSALUS/sihsalus`; son conceptos CRED/Huanca propios con UUID estable. |
+| `concepts-odontology.csv` | 0/38 | Migrar a `SIHSALUS/sihsalus`; luego mapear procedimientos recuperativos/preventivos a `procedimientos` cuando aplique. |
+| `concepts-psychology.csv` | 0/80 | Migrar a `SIHSALUS/sihsalus`; `Moderado` se reutiliza desde OCL `sihsalus:413` (`external_id` `aed747d5-fba0-49fc-9e29-ebc56b62fb22`). |
+| `concepts-form-migration.csv` | 7/20 | Auditar los 13 faltantes; migrar los faltantes y retirar del CSV solo cuando los forms resuelvan por OCL. |
+| `concepts-immunization-fhir.csv` | 9/9 | Ya existe en OCL; candidato a retirar después de validar forms/FHIR y set de respuestas. |
+| `sihsalus-locale-aliases.csv` | 18/18 | No retirar todavía: validar que OCL conserva los nombres/aliases esperados en `es` y `en`, no solo los UUIDs. |
+| `conceptsets/sihsalus-queue-conceptsets.csv` | 18/18 relaciones cubiertas | Candidato a retirar después de prueba de arranque/import en BD limpia. |
+| `conceptsets/sihsalus-immunization-conceptsets.csv` | 0/41 relaciones cubiertas | No retirar. El CSV apunta `Vacuna administrada` a 41 productos de `medicamentos`; OCL actualmente usa 22 respuestas `Q-AND-A` hacia `inmunizaciones`. Hay que decidir semántica antes de tocarlo. |
+
+Plan de ejecución:
+
+1. Migrar primero `concepts-cred-huanca.csv`, `concepts-odontology.csv`, `concepts-psychology.csv` y los 13 faltantes
+   de `concepts-form-migration.csv` a `SIHSALUS/sihsalus`, preservando el UUID OpenMRS como `external_id`.
+   Si un concepto local ya existe semánticamente en OCL, reutilizar el `external_id` existente y actualizar los forms
+   en vez de crear un duplicado.
+2. Para cada concepto codificado, crear mappings externos solo cuando la equivalencia sea defendible:
+   `procedimientos` para CPMS, `diagnosis` para CIE-10, `laboratorio` para pruebas/resultados y
+   `inmunizaciones` para vacunas clínicas. No mapear campos operacionales por aproximación.
+3. Convertir `conceptsets/*.csv` a mappings OCL (`CONCEPT-SET` o `Q-AND-A`) después de que todos los miembros
+   existan en OCL. La excepción actual es inmunización: primero hay que decidir si "Vacuna administrada" debe
+   responder con conceptos clínicos de `inmunizaciones`, productos de `medicamentos`, o dos preguntas distintas.
+4. Re-exportar release OCL, reemplazar ZIPs, y recién entonces retirar filas/archivos CSV ya cubiertos.
+5. Agregar guardas de CI antes de retirar contenido: todo UUID de `concepts/*.csv` debe estar en el export por
+   `external_id` o estar listado explícitamente como local-only; todo par de `conceptsets/*.csv` retirado debe
+   existir como mapping OCL equivalente.
+
+Criterios para eliminar un CSV o filas:
+
+- El export OCL released contiene el concepto por `external_id`, con clase/tipo de dato correctos.
+- Las relaciones de answer-set/concept-set están presentes en OCL y resuelven a los miembros esperados.
+- Initializer corre en BD limpia sin duplicados de FSN/UUID.
+- Los formularios y global properties que referencian esos UUIDs siguen resolviendo después de quitar el CSV.
+- Para aliases/locales, OCL conserva los nombres necesarios en los locales usados por el frontend.
 
 ---
 
@@ -177,7 +225,7 @@ OpenMRS si hay obs/forms que referencian uuids viejos. Eso lo gobierna el proces
 - **Plan:** mover los 43 a OCL (SIHSALUS-v4) + **crear source `odontograma`** con la nomenclatura de la NTS 188.
   Bloqueado por: necesito la **tabla de hallazgos de la NTS 188** (PDF escaneado, requiere OCR/transcripción).
 
-### 5.2 Psicología (`concepts-psychology.csv`, 86 conceptos)
+### 5.2 Psicología (`concepts-psychology.csv`, 80 conceptos pendientes)
 - Hoy: **sin mappings**. Campos: grouper SIHCE-PSICOLOGIA, Modalidad de ingreso a salud mental, Motivo de
   atención psicológica, Antecedentes de salud mental, etc.
 - **Estándares MINSA aplicables:**
@@ -187,8 +235,9 @@ OpenMRS si hay obs/forms que referencian uuids viejos. Eso lo gobierna el proces
     códigos "Lab", tipo de Dx (P/D/R), actividades/tamizajes. Esos códigos NO son CIE-10 y serían digitalizables,
     pero son difusos. **Valor cuestionable vs esfuerzo (DUDA, §7).**
   - Campos operativos (modalidad de ingreso, motivo de atención) → app-specific, sin estándar
-- **Plan:** mover los 86 a OCL (SIHSALUS-v4); apuntar answer-sets de Dx a `diagnosis` (CIE-10). NO digitalizar
-  HIS-SM salvo decisión explícita.
+- **Plan:** mover los 80 conceptos propios a OCL (`SIHSALUS/sihsalus`); apuntar answer-sets de Dx a `diagnosis`
+  (CIE-10). Reutilizar conceptos existentes cuando aplique; `Moderado` ya se repuntó al concepto OCL `413`.
+  NO digitalizar HIS-SM salvo decisión explícita.
 
 ### 5.3 Decisión transversal para mover odontología/psicología
 Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los códigos `SIHSALUS:*` se **dropean**
@@ -196,18 +245,20 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 
 ---
 
-## 6. Pendiente operativo CRÍTICO: re-exportar el bundle OCL
+## 6. Operativa de exports OCL
 
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
-`configuration/backend_configuration/ocl/` (snapshot de may-2026). **Nada de lo escrito en OCL en vivo está
-en esos zips:** el source `vacunas`, los conceptos nuevos de inmunización en SIHSALUS-v4, los Q-AND-A, los
-fixes de mappings, las retiradas.
+`configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
-**Antes del próximo build hay que:**
-1. Re-exportar de OCL `SIHSALUS-v4` y `vacunas` (y futuros `odontograma`, etc.).
-2. Reemplazar los `.zip` correspondientes en `configuration/backend_configuration/ocl/`.
+Estado 2026-06-15: el repo incluye exports released
+`SIHSALUS_*_v2026-06-15-lab-normalization.zip` para los 6 sources activos de la org `SIHSALUS`.
 
-Como el CSV de inmunización **ya se eliminó**, si se buildea sin re-exportar, **faltarán esos 12 conceptos**.
+Para cada siguiente migración de conceptos/sets:
+1. Crear o actualizar el contenido en OCL.
+2. Crear un release explícito del source afectado.
+3. Descargar el export oficial de ese release.
+4. Reemplazar el `.zip` correspondiente en `configuration/backend_configuration/ocl/`.
+5. Correr validaciones locales y CI antes de retirar filas CSV cubiertas por OCL.
 
 ---
 

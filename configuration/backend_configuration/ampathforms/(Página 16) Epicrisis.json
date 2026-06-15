@@ -158,7 +158,7 @@
               "label": "Perímetro Cefálico (cm)",
               "type": "obs",
               "required": false,
-              "id": "períMetroCefáLico(Cm)",
+              "id": "perimetroCefalicoCm",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -203,7 +203,7 @@
               "label": "Perímetro Torácico (cm)",
               "type": "obs",
               "required": false,
-              "id": "períMetroToráCico(Cm)",
+              "id": "perimetroToracicoCm",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -249,7 +249,7 @@
               "label": "Líquido Amniótico",
               "type": "obs",
               "required": false,
-              "id": "líQuidoAmnióTico",
+              "id": "liquidoAmniotico",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "1c1b9203-3152-46c1-aab1-27a311924f31"
@@ -260,7 +260,7 @@
               "label": "Grupo Sanguíneo",
               "type": "obs",
               "required": false,
-              "id": "grupoSanguíNeo",
+              "id": "grupoSanguineo",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "3f6056ed-17e9-4b3b-98a7-18dc431a7e99",
@@ -445,7 +445,7 @@
                 "rendering": "text",
                 "concept": "1d6443de-16b2-4038-9dc1-988500cf9ca0"
               },
-              "id": "1erDia",
+              "id": "field1erDia",
               "label": "1er Día"
             },
             {
@@ -454,7 +454,7 @@
                 "rendering": "text",
                 "concept": "8b54cdd1-e0c5-44a8-ae49-32300bf81215"
               },
-              "id": "2doDia",
+              "id": "field2doDia",
               "label": "2do Día"
             },
             {
@@ -463,7 +463,7 @@
                 "rendering": "text",
                 "concept": "8067dc9f-ec24-4a73-92dd-a481bd9cd54d"
               },
-              "id": "3erDia",
+              "id": "field3erDia",
               "label": "3er Día"
             },
             {
@@ -482,7 +482,7 @@
                 "concept": "84a0fce1-9931-413b-a665-8e6936a8477f",
                 "rows": 2
               },
-              "id": "diagnóSticoDeIngreso",
+              "id": "diagnosticoDeIngreso",
               "label": "Diagnóstico de Ingreso"
             },
             {
@@ -492,7 +492,7 @@
                 "concept": "3156cfeb-d3c9-455b-8d90-f839c186823c",
                 "rows": 2
               },
-              "id": "diagnóSticoDeEgreso",
+              "id": "diagnosticoDeEgreso",
               "label": "Diagnóstico de Egreso"
             },
             {
@@ -501,7 +501,7 @@
                 "rendering": "text",
                 "concept": "2282d464-bd57-453f-9aef-2d5f7f006069"
               },
-              "id": "condicióNDeAlta",
+              "id": "condicionDeAlta",
               "label": "Condición de Alta"
             },
             {
@@ -520,7 +520,7 @@
                 "concept": "f947a4ad-3d8d-4516-8e6b-67b3dca4e227",
                 "rows": 2
               },
-              "id": "observacióN",
+              "id": "observacion",
               "label": "Observación"
             }
           ]
