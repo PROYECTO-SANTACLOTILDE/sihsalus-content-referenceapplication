@@ -8,7 +8,7 @@ dd5c4d7d-8dd5-40a5-905a-c094edcbec35,,"41dc3091-cf1c-4a54-bbc6-98b762c87f28",Fas
 931c779c-10f7-4ff5-817e-d3e42155b17f,,"97bffd13-168a-45b0-9204-7a97dd6dafa0",Posparto,false,false
 6c4a935c-5333-42a1-ac88-05e28ea5d6a2,,"97bffd13-168a-45b0-9204-7a97dd6dafa0",Paciente de Alta,false,true
 e6d3c332-ca44-4d60-ac77-6f2a9f01256a,,"97bffd13-168a-45b0-9204-7a97dd6dafa0",Abandono,false,true
-8ab422ec-5684-40d5-a63a-9a4b3612f8d5,,"97bffd13-168a-45b0-9204-7a97dd6dafa0",FALLECIDO,false,true
+8ab422ec-5684-40d5-a63a-9a4b3612f8d5,,"97bffd13-168a-45b0-9204-7a97dd6dafa0",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
 5c300562-07e5-421d-bb58-30f36f6b76f8,,"f8df9c54-3123-466b-ab23-d911e5204e85",Activo,true,false
 6874cc96-9794-4e47-8126-afd597fb492b,,"f8df9c54-3123-466b-ab23-d911e5204e85",Fase de Seguimiento,false,false
 8701f041-a903-4099-a992-c17e23920404,,"f8df9c54-3123-466b-ab23-d911e5204e85",Paciente de Alta,false,true
@@ -22,16 +22,16 @@ cb25fd90-9903-47d4-b479-a2898eae75ae,,"63e90d83-2df6-4851-949e-1d145f52a665",Act
 b881b14f-38a6-4a43-bb33-b94d945f96f9,,"05b2858d-85e8-403a-ba4c-7965b8e3dd1a",Fase de Seguimiento,false,false
 52128330-543a-4a9b-ad43-53e3bdfc89f7,,"05b2858d-85e8-403a-ba4c-7965b8e3dd1a",Paciente de Alta,false,true
 7acc3c53-1b21-48e7-af1f-4eb06997a37a,,"05b2858d-85e8-403a-ba4c-7965b8e3dd1a",Abandono,false,true
-5e9a7fa9-103e-41d2-8ca7-286072ba2d6d,,"05b2858d-85e8-403a-ba4c-7965b8e3dd1a",FALLECIDO,false,true
+5e9a7fa9-103e-41d2-8ca7-286072ba2d6d,,"05b2858d-85e8-403a-ba4c-7965b8e3dd1a",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
 8b6170ab-f0d5-410f-966d-6ebc4bb67852,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",Activo,true,false
 7505d1b2-f007-49f7-9f3d-983636cedaa0,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",Tratamiento,false,false
 3455cf63-a23f-4b64-b076-d8501d0b9557,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",Fase de Seguimiento,false,false
 789d8b1b-18c6-4cb5-93d3-edc750557f72,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",Abandono,false,true
-0d4ab748-d940-47fb-a62c-9cc114c2b540,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",FALLECIDO,false,true
+0d4ab748-d940-47fb-a62c-9cc114c2b540,,"5bae440a-c7cf-4a7c-8e53-e6e23e1666f9",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
 d5435471-8ad9-439e-ae72-28c2203d392f,,"ad2b9dce-8cc0-4d30-ac74-ff19fbbd2f43",Activo,true,false
 a3f3d942-febe-4ab8-ae3a-01282a05fa23,,"ad2b9dce-8cc0-4d30-ac74-ff19fbbd2f43",Fase de Seguimiento,false,false
 75b74f67-ab70-4bf1-ab93-e0b3a8ae0c74,,"ad2b9dce-8cc0-4d30-ac74-ff19fbbd2f43",Paciente de Alta,false,true
-c169a704-bb8c-45cb-9556-a69dc2c76f94,,"ad2b9dce-8cc0-4d30-ac74-ff19fbbd2f43",FALLECIDO,false,true
+c169a704-bb8c-45cb-9556-a69dc2c76f94,,"ad2b9dce-8cc0-4d30-ac74-ff19fbbd2f43",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
 e2d61a56-8b1c-4275-b460-a73caa12ccab,,"3eb862d6-1e88-4ac8-9e48-eff89f54e442",Activo,true,false
 f57473b4-8575-434a-bd0c-89b4d6a4df1e,,"3eb862d6-1e88-4ac8-9e48-eff89f54e442",Fase de Seguimiento,false,false
 fc4fb81b-d2b5-439b-b789-df92980bd28f,,"3eb862d6-1e88-4ac8-9e48-eff89f54e442",Paciente de Alta,false,true
@@ -40,10 +40,10 @@ fc4fb81b-d2b5-439b-b789-df92980bd28f,,"3eb862d6-1e88-4ac8-9e48-eff89f54e442",Pac
 7d931339-fcdf-43b0-9909-1b1aee1abe63,,"f0b40591-cdbc-44e6-9cb4-5452081dd7c9",Fase de Seguimiento,false,false
 0608a090-3033-4e19-b53f-fde7cc355840,,"f0b40591-cdbc-44e6-9cb4-5452081dd7c9",Paciente de Alta,false,true
 df4b6481-d79a-427c-b4d3-613f1525c3de,,"f0b40591-cdbc-44e6-9cb4-5452081dd7c9",Abandono,false,true
-b3acc58a-e36f-4b66-a438-129cfca22627,,"f0b40591-cdbc-44e6-9cb4-5452081dd7c9",FALLECIDO,false,true
+b3acc58a-e36f-4b66-a438-129cfca22627,,"f0b40591-cdbc-44e6-9cb4-5452081dd7c9",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
 cea924d5-19a9-4d0b-af5c-c3133e24417d,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",Activo,true,false
 6a49e1ac-8443-4cc6-8f81-088cfdf0ff2b,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",Tratamiento,false,false
 a8426d79-ac8e-4516-aa25-b98927595299,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",Fase de Seguimiento,false,false
 c42a8c63-8589-41b2-b441-1788bc68e510,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",Paciente de Alta,false,true
 41c4f2ec-3033-4170-8fd8-4b5df5633020,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",Abandono,false,true
-d3b74fec-2faa-4da1-bb00-9cd36b741a04,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",FALLECIDO,false,true
+d3b74fec-2faa-4da1-bb00-9cd36b741a04,,"031f90e5-f40d-46dd-a1b0-6e49a9237d66",1b3c9822-74ee-4ce5-a3b3-bac03ca44df5,false,true
