@@ -8,7 +8,7 @@
 
 ## Estado actual del paquete (2026-06-15)
 
-El content package consume exports OCL released desde la org `SIHSALUS`, release `v2026-06-15-critical-refactions`.
+El content package consume exports OCL released desde la org `SIHSALUS`, release `v2026-06-15-lab-normalization`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
@@ -21,9 +21,10 @@ reconstrucción y migración.
 | `laboratorio` | 208 | 1024 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
 
-La release `v2026-06-15-critical-refactions` consolida la limpieza posterior al rebuild: el source `alergias`
+La release `v2026-06-15-lab-normalization` consolida la limpieza posterior al rebuild: el source `alergias`
 queda absorbido por `sihsalus`, conceptos administrativos se movieron fuera de `laboratorio`, 646 insumos de
-`medicamentos` quedaron como `Medical supply`, y 520 códigos CIE-10 `U*` quedaron como `Misc`.
+`medicamentos` quedaron como `Medical supply`, 520 códigos CIE-10 `U*` quedaron como `Misc`, y se normalizó
+la página final de `laboratorio` moviendo dos procedimientos clínicos a `sihsalus` y corrigiendo clases/nombres.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -31,7 +32,7 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports `v2026-06-15-critical-refactions`:
+Inventario contra los exports `v2026-06-15-lab-normalization`:
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
 |---|---:|---|
@@ -250,7 +251,7 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
 Estado 2026-06-15: el repo incluye exports released
-`SIHSALUS_*_v2026-06-15-critical-refactions.zip` para los 6 sources activos de la org `SIHSALUS`.
+`SIHSALUS_*_v2026-06-15-lab-normalization.zip` para los 6 sources activos de la org `SIHSALUS`.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.
