@@ -24,7 +24,7 @@
                     "concept": "b1c5577c-8cd9-4994-aa4c-da7eb1ed8adf"
                   },
                   "datePickerFormat": "both",
-                  "id": "fecha/hora",
+                  "id": "fechaHora",
                   "label": "Fecha/hora"
                 },
                 {
@@ -174,7 +174,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

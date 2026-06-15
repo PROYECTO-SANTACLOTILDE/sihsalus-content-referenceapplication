@@ -24,7 +24,7 @@
                   }
                 ]
               },
-              "id": "géNero",
+              "id": "genero",
               "label": "Género"
             },
             {
@@ -64,7 +64,7 @@
                 "concept": "d9473339-af67-4625-8d0d-5a1766567f43",
                 "rows": 3
               },
-              "id": "exploracióN",
+              "id": "exploracion",
               "label": "Exploración"
             },
             {
@@ -84,7 +84,7 @@
                 "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853",
                 "rows": 3
               },
-              "id": "diagnóSticos",
+              "id": "diagnosticos",
               "label": "Diagnósticos"
             },
             {

@@ -33,7 +33,7 @@
                     "rendering": "datetime",
                     "concept": "2ca9da32-2a77-42a1-b043-e8b5928b939e"
                   },
-                  "id": "fechaYHoraSuspensión",
+                  "id": "fechaYHoraDeSuspension",
                   "label": "Fecha y hora de suspensión",
                   "datePickerFormat": "both"
                 },

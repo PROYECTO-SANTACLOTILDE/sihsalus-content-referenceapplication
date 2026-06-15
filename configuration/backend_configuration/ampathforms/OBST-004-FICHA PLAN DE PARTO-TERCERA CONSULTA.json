@@ -14,7 +14,7 @@
                 "rendering": "repeating",
                 "concept": "be65db12-826c-461c-8374-5862f218dc12"
               },
-              "id": "colaborador_group",
+              "id": "colaboradorA",
               "label": "Colaborador(a)",
               "questions": [
                 {
@@ -23,7 +23,7 @@
                     "rendering": "text",
                     "concept": "be65db12-826c-461c-8374-5862f218dc12"
                   },
-                  "id": "nombreCompletoDelColaborador(A)",
+                  "id": "nombreCompletoDelColaboradorA",
                   "label": "Nombre completo del colaborador(a)"
                 },
                 {
@@ -58,7 +58,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {
