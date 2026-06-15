@@ -22,6 +22,8 @@ jobs:
           java-version: 8
       - name: Validate AMPATH forms
         run: python3 .github/scripts/validate_ampath_forms.py
+      - name: Validate CSV widths
+        run: python3 .github/scripts/validate_csv_widths.py
       - name: Validate reference ranges
         run: bash .github/scripts/validate_reference_ranges.sh
       - name: Build with Maven

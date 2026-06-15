@@ -8,6 +8,7 @@ from pathlib import Path
 FORM_DIR = Path("configuration/backend_configuration/ampathforms")
 REQUIRED_TOP_LEVEL = {
     "name",
+    "uuid",
     "version",
     "published",
     "retired",
@@ -17,6 +18,10 @@ REQUIRED_TOP_LEVEL = {
     "pages",
 }
 ID_RE = re.compile(r"^[a-z][A-Za-z0-9]*$")
+UUID_RE = re.compile(
+    r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-"
+    r"[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$"
+)
 
 
 def walk(value):
@@ -39,6 +44,12 @@ def validate_form(path):
     missing = sorted(REQUIRED_TOP_LEVEL - data.keys())
     if missing:
         errors.append(f"{path}: missing top-level keys: {', '.join(missing)}")
+
+    form_uuid = data.get("uuid")
+    if form_uuid is not None and (
+        not isinstance(form_uuid, str) or not UUID_RE.fullmatch(form_uuid)
+    ):
+        errors.append(f"{path}: invalid top-level form uuid: {form_uuid!r}")
 
     ids = set()
     for node in walk(data):
@@ -74,8 +85,24 @@ def validate_form(path):
 def main():
     paths = sorted(FORM_DIR.glob("*.json"))
     errors = []
+    form_uuids = {}
     for path in paths:
         errors.extend(validate_form(path))
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            continue
+
+        form_uuid = data.get("uuid")
+        if isinstance(form_uuid, str) and UUID_RE.fullmatch(form_uuid):
+            previous = form_uuids.get(form_uuid)
+            if previous is not None:
+                errors.append(
+                    f"{path}: duplicate top-level form uuid {form_uuid} "
+                    f"also used by {previous}"
+                )
+            else:
+                form_uuids[form_uuid] = path
 
     if errors:
         print("AMPATH form validation failed:", file=sys.stderr)
