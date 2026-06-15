@@ -1,0 +1,11 @@
+Uuid,Void/Retire,Name,Description,_order:1000
+ae52e0c4-f34c-4fbf-bf43-2bc4a17e7f5a,,Procedimiento quirúrgico,"Intervenciones quirúrgicas mayores o menores, en sala quirúrgica o sala de procedimientos.",10
+53242686-699c-40a0-9959-2bf3701f614b,,Procedimiento obstétrico,"Parto, cesárea, manejo obstétrico y procedimientos gineco-obstétricos.",20
+22d6acb2-a5ff-4560-bac9-c2f93e5a29f6,,Procedimiento odontológico,"Procedimientos preventivos, diagnósticos o recuperativos odontológicos.",30
+d98f7f70-60a2-4c8b-9872-bc97d837e920,,Procedimiento de enfermería,"Procedimientos de cuidado, administración, curación, toma de muestras y soporte realizados por enfermería o técnicos.",40
+5698bbf1-1489-4a1b-84fd-daa2b0059f93,,Procedimiento de laboratorio,"Toma, procesamiento o realización de pruebas de laboratorio clínico.",50
+194a173b-5f14-4f2f-8cbf-ce3f165ae950,,Procedimiento de diagnóstico por imágenes,"Radiología, ecografía, tomografía, resonancia y otros procedimientos de imagen.",60
+35ca9b47-01b1-4e8d-9a66-04043155039b,,Procedimiento terapéutico no quirúrgico,"Intervenciones terapéuticas no quirúrgicas, procedimientos clínicos y terapias no operatorias.",70
+1b3d929e-2646-408d-ba3d-9883cf6b7866,,Rehabilitación y terapia física,"Terapia física, rehabilitación funcional y procedimientos afines.",80
+6d0859f0-66cf-437b-abd3-c426ea469b01,,Educación y consejería,"Actividades de educación, consejería, orientación preventiva o adherencia.",90
+a986d9e8-4d3f-4ac1-92a6-4c5069116d66,,Otro procedimiento,"Procedimientos que no encajan en los tipos anteriores.",100

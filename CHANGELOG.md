@@ -7,7 +7,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Agregado
+- Agrega tipos de procedimiento EMR API mediante el dominio Initializer `proceduretypes`, junto con los privilegios requeridos para leer y gestionar procedimientos en el módulo O3.
+
 ### Cambiado
+- Agrega el atributo de visita `Procedencia` para registrar desde dónde procede el paciente en una atención.
 - Actualiza los exports OCL del content package a la org `SIHSALUS`, release `v2026-06-15-lab-normalization`.
 - Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-15-lab-normalization`.
 - Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, normalización de conceptos de laboratorio, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
