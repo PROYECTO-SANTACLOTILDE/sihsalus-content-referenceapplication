@@ -14,6 +14,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Normaliza IDs de preguntas AMPATH a ASCII camelCase, corrige botones `workspace-launcher` para que no se guarden como `obs` sin concepto, y agrega validacion CI para estructura basica de formularios.
 - Retira/reclasifica procedimientos duplicados y mappings huerfanos de `SIHSALUS/sihsalus` para que CPMS (`SIHSALUS/procedimientos`) sea la fuente canonica de procedimientos, y actualiza formularios obstetricos a UUIDs CPMS para parto instrumentado y cesarea.
 - Retira/reclasifica conceptos `Drug` de `SIHSALUS/sihsalus` para que `SIHSALUS/medicamentos` sea la fuente canonica de medicamentos, manteniendo en `sihsalus` solo campos clinicos y respuestas de formulario no ordenables.
+- Agrega `UBIGEO de Nacimiento` como atributo de persona buscable y retira el atributo textual legado `Lugar de Nacimiento`.
 - Ordena los exports OCL con prefijos numericos para cargar primero `sihsalus` y `procedimientos`, evitando mappings hacia conceptos destino aun no importados.
 - Reexporta `laboratorio` desde OCL HEAD para incluir los `external_id` agregados a mappings de laboratorio, manteniendo sin tocar los paneles excluidos `4315` y `4318`.
 - Actualiza los exports OCL del content package a la org `SIHSALUS`, release `clean-2026-06-12`.
