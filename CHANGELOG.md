@@ -8,8 +8,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Cambiado
-- Actualiza los exports OCL del content package a la org `SIHSALUS`, release `clean-2026-06-12`.
-- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/clean-2026-06-12`.
+- Actualiza los exports OCL del content package a la org `SIHSALUS`, release `v2026-06-15-critical-refactions`.
+- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-15-critical-refactions`.
+- Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
 
 ## [1.11.0] - 2026-06-09
 

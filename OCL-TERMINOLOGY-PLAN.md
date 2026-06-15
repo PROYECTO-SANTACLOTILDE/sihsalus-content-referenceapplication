@@ -1,26 +1,29 @@
 # Plan de Terminología OCL — SIHSALUS
 
 > Documento de plan/arquitectura para la consolidación de conceptos en OpenConceptLab (OCL).
-> Última actualización: 2026-06-12. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
+> Última actualización: 2026-06-15. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
 > Estado: en progreso. Contiene lo hecho, el plan pendiente, convenciones y **dudas abiertas**.
 
 ---
 
-## Estado actual del paquete (2026-06-12)
+## Estado actual del paquete (2026-06-15)
 
-El content package consume exports OCL released desde la org `SIHSALUS`, release `clean-2026-06-12`.
+El content package consume exports OCL released desde la org `SIHSALUS`, release `v2026-06-15-critical-refactions`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
 | Source SIHSALUS | Conceptos | Mappings | Qué es |
 |---|---:|---:|---|
-| `sihsalus` | 4357 | 5237 | Diccionario clínico principal SIHSALUS |
+| `sihsalus` | 4560 | 5338 | Diccionario clínico principal SIHSALUS |
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
-| `medicamentos` | 1003 | 0 | Medicamentos e insumos SIS/Dige |
-| `alergias` | 177 | 278 | Alergias y reacciones adversas |
-| `laboratorio` | 232 | 997 | Pruebas, paneles y resultados de laboratorio |
+| `medicamentos` | 1001 | 0 | Medicamentos e insumos SIS/Dige |
+| `laboratorio` | 208 | 1024 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
+
+La release `v2026-06-15-critical-refactions` consolida la limpieza posterior al rebuild: el source `alergias`
+queda absorbido por `sihsalus`, conceptos administrativos se movieron fuera de `laboratorio`, 646 insumos de
+`medicamentos` quedaron como `Medical supply`, y 520 códigos CIE-10 `U*` quedaron como `Misc`.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -28,7 +31,7 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports `clean-2026-06-12`:
+Inventario contra los exports `v2026-06-15-critical-refactions`:
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
 |---|---:|---|
@@ -246,8 +249,8 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
-Estado 2026-06-12: el blocker histórico de los snapshots de mayo quedó resuelto para la org `SIHSALUS`; el repo
-incluye exports released `SIHSALUS_*_vclean-2026-06-12.zip`.
+Estado 2026-06-15: el repo incluye exports released
+`SIHSALUS_*_v2026-06-15-critical-refactions.zip` para los 6 sources activos de la org `SIHSALUS`.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.

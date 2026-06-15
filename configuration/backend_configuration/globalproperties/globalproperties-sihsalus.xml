@@ -38,7 +38,7 @@
 
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
-            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/clean-2026-06-12</value>
+            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-15-critical-refactions</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
