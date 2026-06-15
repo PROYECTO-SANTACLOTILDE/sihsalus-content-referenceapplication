@@ -51,7 +51,7 @@
                   "label": "IMC pregestacional",
                   "type": "obs",
                   "required": true,
-                  "id": "IMCPregestacional",
+                  "id": "imcPregestacional",
                   "questionOptions": {
                     "rendering": "number",
                     "concept": "5b877648-ae50-4d45-ad36-0196042baa1a",
@@ -167,7 +167,7 @@
                   "label": "Ecografía obstétrica",
                   "type": "obs",
                   "required": false,
-                  "id": "ecografíAObstéTrica",
+                  "id": "ecografiaObstetrica",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "d95b40d4-c72b-4a40-bc8e-a44f25fe81bb",
@@ -263,7 +263,7 @@
                   "label": "1ra Dosis Antitetánica",
                   "type": "obs",
                   "required": false,
-                  "id": "primeraDosisAntitetáNica",
+                  "id": "field1raDosisAntitetanica",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "a92deb61-2eca-47cf-8532-94d13ab28536",
@@ -287,7 +287,7 @@
                   "label": "1ra Dosis Antitetánica (mes de gestación)",
                   "type": "obs",
                   "required": false,
-                  "id": "1raDosisAntitetaNica(MesDeGestacioN)",
+                  "id": "field1raDosisAntitetanicaMesDeGestacion",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": true,
@@ -299,14 +299,14 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "primeraDosisAntitetáNica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "field1raDosisAntitetanica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
                   "label": "2da Dosis Antitetánica",
                   "type": "obs",
                   "required": false,
-                  "id": "segundaDosisAntitetáNica",
+                  "id": "field2daDosisAntitetanica",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "0948db74-0691-450b-906e-44ba0358847a",
@@ -330,7 +330,7 @@
                   "label": "2da Dosis Antitetánica (mes de gestación)",
                   "type": "obs",
                   "required": false,
-                  "id": "2daDosisAntitetanica(MesDeGestacióN)",
+                  "id": "field2daDosisAntitetanicaMesDeGestacion",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": true,
@@ -342,7 +342,7 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "segundaDosisAntitetáNica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "field2daDosisAntitetanica !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 },
                 {
@@ -369,7 +369,7 @@
                   }
                 },
                 {
-                  "id": "dosisInfluenza(MesDeGestacióN)",
+                  "id": "dosisInfluenzaMesDeGestacion",
                   "label": "Dosis Influenza (mes de gestación)",
                   "type": "obs",
                   "questionOptions": {
@@ -655,7 +655,7 @@
                   "label": "Hospitalización",
                   "type": "obs",
                   "required": false,
-                  "id": "hospitalizacióN",
+                  "id": "hospitalizacion",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "d18507ca-8084-4ae6-bb4d-506d15a94e13",
@@ -673,7 +673,7 @@
                   "validators": []
                 },
                 {
-                  "id": "fechaDeHospitalizacióN",
+                  "id": "fechaDeHospitalizacion",
                   "label": "Fecha de hospitalización",
                   "datePickerFormat": "calendar",
                   "type": "obs",
@@ -682,7 +682,7 @@
                     "concept": "921c4803-3583-446c-a10f-942ca77d4c35"
                   },
                   "hide": {
-                    "hideWhenExpression": "hospitalizacióN !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "hospitalizacion !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   },
                   "validators": [
                     {
@@ -693,7 +693,7 @@
                   ]
                 },
                 {
-                  "id": "diagnóSticoDeHospitalizacióN",
+                  "id": "diagnostico",
                   "label": "Diagnóstico",
                   "type": "obs",
                   "questionOptions": {
@@ -701,7 +701,7 @@
                     "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
                   },
                   "hide": {
-                    "hideWhenExpression": "hospitalizacióN !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                    "hideWhenExpression": "hospitalizacion !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
                   }
                 }
               ]
@@ -768,7 +768,7 @@
                   ]
                 },
                 {
-                  "id": "diagnóSticoDeEmergencia",
+                  "id": "diagnostico2",
                   "label": "Diagnóstico",
                   "type": "obs",
                   "questionOptions": {
@@ -793,7 +793,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

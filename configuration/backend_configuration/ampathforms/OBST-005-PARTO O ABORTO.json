@@ -181,7 +181,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -194,7 +194,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -234,7 +234,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "pesoMadre(Kg)",
+                  "id": "pesoMadreKg",
                   "label": "Peso Madre (Kg)",
                   "type": "obs",
                   "questionOptions": {
@@ -250,7 +250,7 @@
                   "label": "Edad gestacional (semanas)",
                   "type": "obs",
                   "required": false,
-                  "id": "edadGestacional(Semanas)",
+                  "id": "edadGestacionalSemanas",
                   "questionOptions": {
                     "rendering": "number",
                     "min": "1",
@@ -347,7 +347,7 @@
                     ]
                   },
                   "questionInfo": "Se indica si el tamaño del feto es adecuado para pasar por la pelvis",
-                  "id": "tamañoFetalAcorde",
+                  "id": "tamanoFetalAcorde",
                   "label": "Tamaño Fetal Acorde"
                 },
                 {
@@ -470,7 +470,7 @@
                     "rendering": "datetime",
                     "concept": "0c4bf846-1b2a-4495-87b6-6e24a2eadb8b"
                   },
-                  "id": "FechaHoraRuptura",
+                  "id": "fechaYHoraDeRuptura",
                   "label": "Fecha y Hora de Ruptura",
                   "datePickerFormat": "both"
                 }
@@ -742,7 +742,7 @@
                       }
                     ]
                   },
-                  "id": "partoAcompañante",
+                  "id": "partoConAcompanante",
                   "label": "Parto con Acompañante"
                 },
                 {
@@ -829,7 +829,7 @@
                     "concept": "9e418e29-6a41-4f55-bf74-5531fc8b1d83",
                     "answers": [
                       {
-                        "concept": "",
+                        "concept": "c0bd5819-02ec-4c57-94b1-23fe47af8a30",
                         "label": "No hubo"
                       },
                       {
@@ -1314,7 +1314,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

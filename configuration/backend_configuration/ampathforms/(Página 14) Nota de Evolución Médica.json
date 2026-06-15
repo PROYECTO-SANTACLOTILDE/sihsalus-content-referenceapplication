@@ -14,7 +14,7 @@
                 "rendering": "repeating",
                 "concept": "b71c10a3-bfb2-480f-a2e9-93e2feabb8e3"
               },
-              "id": "notaDeEvolucióN",
+              "id": "notaDeEvolucion",
               "label": "Nota de evolución",
               "questions": [
                 {
@@ -23,7 +23,7 @@
                     "rendering": "datetime",
                     "concept": "d6c11be0-b3b2-4969-bba3-e020dcf382eb"
                   },
-                  "id": "fechaYHoraDeLaAnotacióN",
+                  "id": "fechaYHoraDeLaAnotacion",
                   "label": "Fecha y hora de la anotación",
                   "datePickerFormat": "both"
                 },
@@ -34,7 +34,7 @@
                     "rows": 2,
                     "concept": "d29ccdb7-b8ab-4d29-8a58-751300875df4"
                   },
-                  "id": "descripcióN",
+                  "id": "descripcion",
                   "label": "Descripción"
                 }
               ]

@@ -104,7 +104,7 @@
               "label": "¿A que edad nació el niño? (meses)",
               "type": "obs",
               "required": false,
-              "id": "¿aQueEdadNacióElNiñO?(Meses)",
+              "id": "aQueEdadNacioElNinoMeses",
               "questionOptions": {
                 "rendering": "number",
                 "min": "1",
@@ -122,7 +122,7 @@
               "label": "¿El parto del niño fue atendido fuera de un establecimiento de Salud?",
               "type": "obs",
               "required": false,
-              "id": "ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud",
+              "id": "elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "a25cfa7f-e57c-4ba5-afac-a7dcc7c774c3",
@@ -201,7 +201,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud) || ElPartoDelNinOFueAtendidoFueraDeUnEstablecimientoDeSalud === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud) || elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               },
               "validators": []
             },
@@ -209,7 +209,7 @@
               "label": "¿El niño juega con la madre, padre o persona que lo cuida?",
               "type": "obs",
               "required": false,
-              "id": "ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida",
+              "id": "elNinoJuegaConLaMadrePadreOPersonaQueLoCuida",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "b6eab11f-a08d-4982-8d3a-6f5f38505b5f",
@@ -317,14 +317,14 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida) || ElNinOJuegaConLaMadrePadreOPersonaQueLoCuida === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elNinoJuegaConLaMadrePadreOPersonaQueLoCuida) || elNinoJuegaConLaMadrePadreOPersonaQueLoCuida === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               }
             },
             {
               "label": "¿El niño presentó alguna infección del Sistema Nervioso Central: Meningitis, Encefalitis?",
               "type": "obs",
               "required": false,
-              "id": "ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral",
+              "id": "elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "4f60300e-44d5-45fc-8232-29c168ca0204",
@@ -344,13 +344,13 @@
               "label": "Escriba la infección del sistema nervioso central que tuvo",
               "type": "obs",
               "required": false,
-              "id": "escribaLaInfecciónDelSistemaNerviosoCentralQueTuvo",
+              "id": "escribaLaInfeccionDelSistemaNerviosoCentralQueTuvo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "b58f29b6-87e5-4064-92ac-4ad6f981b5bd"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral) || ElNiñoPresentóAlgunaInfeccióNDelSistemaNerviosoCentral === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis) || elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
               }
             }
           ]

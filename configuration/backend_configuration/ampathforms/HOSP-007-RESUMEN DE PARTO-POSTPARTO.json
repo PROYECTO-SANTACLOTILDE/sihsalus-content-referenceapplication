@@ -305,7 +305,7 @@
                       }
                     ]
                   },
-                  "id": "Terminación",
+                  "id": "terminacion",
                   "label": "Terminación"
                 },
                 {
@@ -393,7 +393,7 @@
                       }
                     ]
                   },
-                  "id": "TipoParto",
+                  "id": "tipoDeParto",
                   "label": "Tipo de Parto"
                 },
                 {
@@ -649,7 +649,7 @@
                 "rendering": "group",
                 "concept": "7f75f2a9-3531-4f9a-b2ac-eaf61d74f614"
               },
-              "id": "CordonAnexosGroup",
+              "id": "cordon",
               "label": "Cordón",
               "questions": [
                 {
@@ -903,7 +903,7 @@
                     "concept": "b1c5577c-8cd9-4994-aa4c-da7eb1ed8adf"
                   },
                   "datePickerFormat": "both",
-                  "id": "fecha/hora",
+                  "id": "fechaHora",
                   "label": "Fecha/hora"
                 },
                 {
@@ -933,7 +933,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -946,7 +946,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
