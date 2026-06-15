@@ -11,7 +11,7 @@
             {
               "type": "obsGroup",
               "label": "Transporte",
-              "id": "transporte_group",
+              "id": "transporte",
               "questionOptions": {
                 "rendering": "repeating",
                 "concept": "830ecf86-edd6-41dd-9211-7785a930e995"
@@ -19,7 +19,7 @@
               "questions": [
                 {
                   "label": "Transporte",
-                  "id": "transporte_question",
+                  "id": "transporte2",
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
@@ -59,7 +59,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "transporte_question !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "transporte2 !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
                   },
                   "id": "especificarTransporte",
                   "label": "Especificar (transporte)"
@@ -79,7 +79,7 @@
                     "rendering": "text",
                     "concept": "6b932878-454e-4065-8e01-771fd5c5094e"
                   },
-                  "id": "dóNdeSeEncuentra",
+                  "id": "dondeSeEncuentra",
                   "label": "¿Dónde se encuentra?"
                 },
                 {
@@ -127,7 +127,7 @@
                     "rendering": "text",
                     "concept": "8a65caa1-5dda-4d81-9de7-0d14defba631"
                   },
-                  "id": "informacióNAdicional",
+                  "id": "informacionAdicional",
                   "label": "Información adicional"
                 }
               ]
@@ -144,7 +144,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

@@ -80,7 +80,7 @@
                   }
                 ]
               },
-              "id": "subtestsCoordinacióN",
+              "id": "subtestsCoordinacion",
               "label": "Subtests Coordinación"
             }
           ]
@@ -93,7 +93,7 @@
               "label": "Reconoce grande y chico (Lam. 6)",
               "type": "obs",
               "required": false,
-              "id": "reconoceGrandeYChico(Lam.6)",
+              "id": "reconoceGrandeYChicoLam6",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "736e8857-21c8-4c11-b9f1-e154f64bfff2",
@@ -114,7 +114,7 @@
               "label": "Reconoce más y menos (Lam. 7)",
               "type": "obs",
               "required": false,
-              "id": "reconoceMáSYMenos(Lam.7)",
+              "id": "reconoceMasYMenosLam7",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "0facbe63-2b6a-4cab-bfe8-aa618e797df0",
@@ -135,7 +135,7 @@
               "label": "Nombra animales (Lam. 8)",
               "type": "obs",
               "required": false,
-              "id": "nombraAnimales(Lam.8)",
+              "id": "nombraAnimalesLam8",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "cfe1cc7b-8917-4f0e-ab57-406a14a2c8e8",
@@ -180,7 +180,7 @@
               "label": "Nombra Objetos (Lam. 5)",
               "type": "obs",
               "required": false,
-              "id": "nombraObjetos(Lam.5)",
+              "id": "nombraObjetosLam5",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "42f12037-929f-4a6d-a261-74be94c34025",
@@ -225,7 +225,7 @@
               "label": "Reconoce largo y corto (Lam. 1)",
               "type": "obs",
               "required": false,
-              "id": "reconoceLargoYCorto(Lam.1)",
+              "id": "reconoceLargoYCortoLam1",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2f13461-4719-46a3-b35d-d9cb820a8007",
@@ -246,7 +246,7 @@
               "label": "Verbaliza acciones (Lam. 11)",
               "type": "obs",
               "required": false,
-              "id": "verbalizaAcciones(Lam.11)",
+              "id": "verbalizaAccionesLam11",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "4ae1815e-83c7-4603-817f-141ed783fcc5",
@@ -312,7 +312,7 @@
               "label": "Discrimina pesado y liviano (Bolsas con arena y esponja)",
               "type": "obs",
               "required": false,
-              "id": "discriminaPesadoYLiviano(BolsasConArenaSíponja)",
+              "id": "discriminaPesadoYLivianoBolsasConArenaYEsponja",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "03537af4-aea5-4c79-89ab-40d5a6ead690",
@@ -391,7 +391,7 @@
               "label": "Comprende preposiciones (Lápiz)",
               "type": "obs",
               "required": false,
-              "id": "comprendePreposiciones(LáPiz)",
+              "id": "comprendePreposicionesLapiz",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "c111ed8a-a231-479c-95cb-acfc7e1049bd",
@@ -416,7 +416,7 @@
               "label": "Razona por analogías opuestas",
               "type": "obs",
               "required": false,
-              "id": "razonaPorAnalogíAsOpuestas",
+              "id": "razonaPorAnalogiasOpuestas",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "f122c95f-d833-4893-a4ce-49d91a65a0fd",
@@ -441,7 +441,7 @@
               "label": "Nombra Colores (Papel lustre azul, amarillo, rojo)",
               "type": "obs",
               "required": false,
-              "id": "nombraColores(PapelLustreAzul,Amarillo,Rojo)",
+              "id": "nombraColoresPapelLustreAzulAmarilloRojo",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "a1c2b664-b797-41b3-9b6e-229391ccd6b6",
@@ -466,7 +466,7 @@
               "label": "Señala colores (Papel lustre azul, amarillo, rojo)",
               "type": "obs",
               "required": false,
-              "id": "señAlaColores(PapelLustreAzul,Amarillo,Rojo)",
+              "id": "senalaColoresPapelLustreAzulAmarilloRojo",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "8d2122a3-0025-4967-b864-1135120c0409",
@@ -491,7 +491,7 @@
               "label": "Nombra Figuras Geométricas (Lam. 12)",
               "type": "obs",
               "required": false,
-              "id": "nombraFigurasGeoméTricas(Lam.12)",
+              "id": "nombraFigurasGeometricasLam12",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "2f7dc5c6-6adc-48f1-bbe9-467bb0ceabe8",
@@ -516,7 +516,7 @@
               "label": "Señala Figuras Geométricas (Lam. 12)",
               "type": "obs",
               "required": false,
-              "id": "señAlaFigurasGeoméTricas(Lam.12)",
+              "id": "senalaFigurasGeometricasLam12",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "b995cbdc-7b31-4342-a2bc-e31291f42e6b",
@@ -541,7 +541,7 @@
               "label": "Describe escenas (Lam. 13 y 14)",
               "type": "obs",
               "required": false,
-              "id": "describeEscenas(Lam.13Y14)",
+              "id": "describeEscenasLam13Y14",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "b2255e31-a8f5-4910-bb36-fc571260c3a4",
@@ -562,7 +562,7 @@
               "label": "Reconoce absurdos (Lam. 15)",
               "type": "obs",
               "required": false,
-              "id": "reconoceAbsurdos(Lam.15)",
+              "id": "reconoceAbsurdosLam15",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "72936c50-e238-435c-b895-e23f66234cc3",
@@ -583,7 +583,7 @@
               "label": "Usa plurales (Lam. 16)",
               "type": "obs",
               "required": false,
-              "id": "usaPlurales(Lam.16)",
+              "id": "usaPluralesLam16",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "77c6acd4-60f6-4a93-a592-2913df4a1e88",
@@ -604,7 +604,7 @@
               "label": "Reconoce antes y después (Lam. 17)",
               "type": "obs",
               "required": false,
-              "id": "reconoceAntesYDespuéS(Lam.17)",
+              "id": "reconoceAntesYDespuesLam17",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "80030f3f-4fa6-4a98-b718-12c932214e53",
@@ -654,7 +654,7 @@
               "label": "Nombra características de objetos (Pelota, globo inflado; bolsa, arena)",
               "type": "obs",
               "required": false,
-              "id": "nombraCaracteríSticasDeObjetos(Pelota,GloboInflado;Bolsa,Arena)",
+              "id": "nombraCaracteristicasDeObjetosPelotaGloboInfladoBolsaArena",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "e16e8209-95c2-4a01-b3f1-d9359184a2b0",

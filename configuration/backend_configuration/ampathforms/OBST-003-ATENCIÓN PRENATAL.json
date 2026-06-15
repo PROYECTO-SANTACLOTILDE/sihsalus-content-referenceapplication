@@ -18,7 +18,7 @@
               "label": "Atención prenatal",
               "questions": [
                 {
-                  "id": "fechaYHoraAtencióNPrenatal",
+                  "id": "fechaYHoraAtencion",
                   "label": "Fecha y hora atención",
                   "datePickerFormat": "both",
                   "type": "encounterDatetime",
@@ -30,7 +30,7 @@
                   "label": "Edad gestacional (semanas)",
                   "type": "obs",
                   "required": false,
-                  "id": "edadGestacional(Semanas)",
+                  "id": "edadGestacionalSemanas",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": false,
@@ -41,7 +41,7 @@
                   }
                 },
                 {
-                  "id": "pesoMadre(Kg)",
+                  "id": "pesoMadreKg",
                   "label": "Peso Madre (Kg)",
                   "type": "obs",
                   "questionOptions": {
@@ -67,7 +67,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "íNdiceDeMasaCorporal",
+                  "id": "imc",
                   "label": "IMC",
                   "type": "obs",
                   "questionOptions": {
@@ -75,7 +75,7 @@
                     "disallowDecimals": false,
                     "concept": "5b877648-ae50-4d45-ad36-0196042baa1a",
                     "calculate": {
-                      "calculateExpression": "calcBMI(talla,pesoMadre(Kg))"
+                      "calculateExpression": "calcBMI(talla,pesoMadreKg)"
                     },
                     "min": "10",
                     "max": "100"
@@ -96,7 +96,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -110,7 +110,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -242,7 +242,7 @@
                   }
                 },
                 {
-                  "id": "examenDePezóN",
+                  "id": "examenDePezon",
                   "label": "Examen de pezón",
                   "type": "obs",
                   "questionOptions": {
@@ -265,7 +265,7 @@
                   }
                 },
                 {
-                  "id": "indicacióNFierro/AcidoFóLico",
+                  "id": "indicFierroAcFolicoMayorOIgualA16SemanasTabletas",
                   "label": "Indic. Fierro/Ac. Fólico (Mayor o igual a 16 semanas) (tabletas)",
                   "type": "obs",
                   "questionOptions": {
@@ -279,7 +279,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "indic.Calcio",
+                  "id": "indicCalcioTabletas",
                   "label": "Indic. Calcio (tabletas)",
                   "type": "obs",
                   "questionOptions": {
@@ -293,7 +293,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "indic.Ac.FóLico",
+                  "id": "indicAcFolicoTabletas",
                   "label": "Indic. Ac. Fólico (tabletas)",
                   "type": "obs",
                   "questionOptions": {
@@ -307,7 +307,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "orientacióNYConsejeríA",
+                  "id": "orientacionYConsejeria",
                   "label": "Orientación y Consejería",
                   "type": "obs",
                   "questionOptions": {
@@ -373,7 +373,7 @@
                   }
                 },
                 {
-                  "id": "edadGestacionalEnSemanasSegúNEcografíA",
+                  "id": "edadGestacionalEnSemanasSegunEcografia",
                   "label": "Edad gestacional en semanas según ecografía",
                   "type": "obs",
                   "questionOptions": {
@@ -390,7 +390,7 @@
                   }
                 },
                 {
-                  "id": "perfilBiofíSicoFetal",
+                  "id": "perfilBiofisicoFetal",
                   "label": "Perfil Biofísico Fetal",
                   "type": "obs",
                   "questionOptions": {
@@ -425,7 +425,7 @@
                   }
                 },
                 {
-                  "id": "próXimaCita",
+                  "id": "proximaCita",
                   "label": "Próxima cita",
                   "datePickerFormat": "calendar",
                   "type": "obs",
@@ -510,7 +510,7 @@
                 "rendering": "group",
                 "concept": "4c481ae7-5629-4c99-9334-566fad97ae22"
               },
-              "id": "evaluaciónFetoGroup",
+              "id": "evaluacionDelFeto",
               "label": "Evaluación del Feto",
               "questions": [
                 {
@@ -533,7 +533,7 @@
                   "label": "Situación (L/T/NA)",
                   "type": "obs",
                   "required": false,
-                  "id": "situacion(L/T/Na)",
+                  "id": "situacionLTNA",
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "6a3d594b-c4f6-4066-b304-aa5229102e1f",
@@ -557,7 +557,7 @@
                   "label": "Presentación (C/P/NA)",
                   "type": "obs",
                   "required": false,
-                  "id": "presentacion(C/P/Na)",
+                  "id": "presentacionCPNA",
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "b966aaa2-260c-4092-8a80-14337f877019",
@@ -581,7 +581,7 @@
                   "label": "Posición (D/I/NA)",
                   "type": "obs",
                   "required": false,
-                  "id": "posicion(D/I/Na)",
+                  "id": "posicionDINA",
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "7cf115cb-da62-4a09-8f38-5e2cc726cacb",
@@ -648,7 +648,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {
@@ -671,7 +671,7 @@
               "questionOptions": {
                 "rendering": "select"
               },
-              "id": "establecimientoDeLaAtencióN",
+              "id": "establecimientoDeLaAtencion",
               "label": "Establecimiento de la atención"
             }
           ]

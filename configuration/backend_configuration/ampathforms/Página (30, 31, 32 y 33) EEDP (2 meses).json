@@ -42,7 +42,7 @@
               "label": "Aprieta el dedo índice del examinador",
               "type": "obs",
               "required": false,
-              "id": "aprietaElDedoíNdiceDelExaminador",
+              "id": "aprietaElDedoIndiceDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -57,7 +57,7 @@
               "label": "Sigue con la vista la argolla (ang. 90°)",
               "type": "obs",
               "required": false,
-              "id": "sigueConLaVistaLaArgolla(Ang.90°)",
+              "id": "sigueConLaVistaLaArgollaAng90",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -72,7 +72,7 @@
               "label": "Movimiento de cabeza en posición prona",
               "type": "obs",
               "required": false,
-              "id": "movimientoDeCabezaEnPosicióNProna",
+              "id": "movimientoDeCabezaEnPosicionProna",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -93,7 +93,7 @@
               "label": "Mímica en respuesta al rostro del examinador",
               "type": "obs",
               "required": false,
-              "id": "míMicaEnRespuestaAlRostroDelExaminador",
+              "id": "mimicaEnRespuestaAlRostroDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -108,7 +108,7 @@
               "label": "Vocaliza en respuesta a la sonrisa y conversación del examinador",
               "type": "obs",
               "required": false,
-              "id": "vocalizaEnRespuestaALaSonrisaYConversacióNDelExaminador",
+              "id": "vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -138,7 +138,7 @@
               "label": "Intenta controlar la cabeza al ser llevado a posición sentada",
               "type": "obs",
               "required": false,
-              "id": "intentaControlarLaCabezaAlSerLlevadoAPosicióNSentada",
+              "id": "intentaControlarLaCabezaAlSerLlevadoAPosicionSentada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,

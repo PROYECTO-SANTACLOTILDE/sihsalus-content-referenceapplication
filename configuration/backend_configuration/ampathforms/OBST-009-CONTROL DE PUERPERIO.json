@@ -22,7 +22,7 @@
                   "questionOptions": {
                     "rendering": "datetime"
                   },
-                  "id": "fechaYHoraAtencióN",
+                  "id": "fechaYHoraAtencion",
                   "label": "Fecha y hora atención",
                   "datePickerFormat": "both"
                 },
@@ -62,7 +62,7 @@
                     "max": "250"
                   },
                   "hideSteppers": true,
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)"
                 },
                 {
@@ -75,7 +75,7 @@
                     "max": "150"
                   },
                   "hideSteppers": true,
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)"
                 },
                 {
@@ -194,7 +194,7 @@
                 "rendering": "group",
                 "concept": "2d83b0ce-cd5e-4431-a235-de9674319037"
               },
-              "id": "examenFíSico",
+              "id": "examenFisico",
               "label": "Examen Físico",
               "questions": [
                 {
@@ -288,7 +288,7 @@
                     "rendering": "text",
                     "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
                   },
-                  "id": "impresióNDiagnóStica(Imp.Dx)",
+                  "id": "impresionDiagnosticaImpDx",
                   "label": "Impresión Diagnóstica (Imp. Dx)"
                 }
               ]
@@ -361,7 +361,7 @@
                     "max": "5",
                     "concept": "bea765a6-f3ed-428d-bf3e-88e02f373701"
                   },
-                  "id": "sulfatoFerroso(N°Dosis)",
+                  "id": "sulfatoFerrosoNDosis",
                   "label": "Sulfato Ferroso (N° Dosis)"
                 }
               ]
@@ -378,7 +378,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "próXimaCita",
+              "id": "proximaCita",
               "label": "Próxima cita",
               "datePickerFormat": "calendar",
               "type": "obs",
@@ -388,7 +388,7 @@
               }
             },
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

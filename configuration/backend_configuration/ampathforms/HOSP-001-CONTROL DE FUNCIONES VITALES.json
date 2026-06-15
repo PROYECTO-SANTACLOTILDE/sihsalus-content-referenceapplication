@@ -33,7 +33,7 @@
                 "rendering": "group",
                 "concept": "f9da2267-ecf1-4fc7-89bb-7616dd2ca027"
               },
-              "id": "dias_estadia_group",
+              "id": "diasEstadia",
               "label": "Días Estadía",
               "questions": [
                 {
@@ -42,7 +42,7 @@
                     "rendering": "date",
                     "concept": "f63cf305-c1ff-49c9-b6e1-3cf43c54c516"
                   },
-                  "id": "dias_estadia",
+                  "id": "fechaDelDiaDeEstadia",
                   "label": "Fecha del día de estadía"
                 },
                 {
@@ -108,7 +108,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -121,7 +121,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {

@@ -425,7 +425,7 @@
                   "label": "RN de mayor peso (g)",
                   "type": "obs",
                   "required": false,
-                  "id": "RNDeMayorPeso",
+                  "id": "rnDeMayorPesoG",
                   "questionOptions": {
                     "rendering": "number",
                     "min": "1000",
@@ -714,7 +714,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

@@ -37,7 +37,7 @@
                   "datePickerFormat": "timer"
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -50,7 +50,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -158,7 +158,7 @@
                   },
                   "hideSteppers": true,
                   "questionInfo": "Tiempo que dura cada contracción",
-                  "id": "duración",
+                  "id": "dDuracionSegundos",
                   "label": "D (Duración) (segundos)"
                 },
                 {

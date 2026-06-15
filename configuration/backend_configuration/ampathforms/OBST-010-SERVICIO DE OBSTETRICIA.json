@@ -18,7 +18,7 @@
               "label": "Atención prenatal",
               "questions": [
                 {
-                  "id": "fechaYHoraAtencióNPrenatal",
+                  "id": "fechaYHoraAtencion",
                   "label": "Fecha y hora atención",
                   "datePickerFormat": "both",
                   "type": "encounterDatetime",
@@ -30,7 +30,7 @@
                   "label": "Edad gestacional (semanas)",
                   "type": "obs",
                   "required": false,
-                  "id": "edadGestacional(Semanas)",
+                  "id": "edadGestacionalSemanas",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": false,
@@ -56,7 +56,7 @@
                   "validators": []
                 },
                 {
-                  "id": "pesoMadre(Kg)",
+                  "id": "pesoMadreKg",
                   "label": "Peso Madre (Kg)",
                   "type": "obs",
                   "questionOptions": {
@@ -78,7 +78,7 @@
                     "concept": "5b877648-ae50-4d45-ad36-0196042baa1a",
                     "disallowDecimals": false,
                     "calculate": {
-                      "calculateExpression": "calcBMI(talla,pesoMadre(Kg))"
+                      "calculateExpression": "calcBMI(talla,pesoMadreKg)"
                     },
                     "min": "10",
                     "max": "100"
@@ -101,7 +101,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -114,7 +114,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -674,7 +674,7 @@
                   "label": "Edad gestacional (semanas)",
                   "type": "obs",
                   "required": false,
-                  "id": "edadGestacionalAntecedentes(Semanas)",
+                  "id": "edadGestacionalSemanas2",
                   "questionOptions": {
                     "rendering": "number",
                     "disallowDecimals": false,
@@ -819,7 +819,7 @@
                 "rendering": "group",
                 "concept": "2d83b0ce-cd5e-4431-a235-de9674319037"
               },
-              "id": "examenFíSico",
+              "id": "examenFisico",
               "label": "Examen Físico",
               "questions": [
                 {
@@ -925,7 +925,7 @@
                 "rendering": "group",
                 "concept": "4c481ae7-5629-4c99-9334-566fad97ae22"
               },
-              "id": "evaluaciónFetoGroup",
+              "id": "evaluacionDelFeto",
               "label": "Evaluación del Feto",
               "questions": [
                 {
@@ -1047,7 +1047,7 @@
                     "rendering": "text",
                     "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
                   },
-                  "id": "impresióNDiagnóStica(Imp.Dx)",
+                  "id": "impresionDiagnosticaImpDx",
                   "label": "Impresión Diagnóstica (Imp. Dx)"
                 },
                 {
@@ -1065,7 +1065,7 @@
                     "rendering": "text",
                     "concept": "faf6c50d-8889-497a-a564-d08fd2fc6f7c"
                   },
-                  "id": "diagnosticoGananciaDePesoSegúNEg",
+                  "id": "dxGananciaDePesoSegunEG",
                   "label": "Dx: Ganancia de Peso según EG"
                 },
                 {
@@ -1115,7 +1115,7 @@
                       }
                     ]
                   },
-                  "id": "consejeríAPreTestVih",
+                  "id": "consejeriaPreTestVIH",
                   "label": "Consejería Pre Test VIH"
                 },
                 {
@@ -1134,7 +1134,7 @@
                       }
                     ]
                   },
-                  "id": "solicitudDeExáMenesAuxiliares",
+                  "id": "solicitudDeExamenesAuxiliares",
                   "label": "Solicitud de Exámenes Auxiliares"
                 },
                 {
@@ -1172,7 +1172,7 @@
                       }
                     ]
                   },
-                  "id": "aplicacióNPlanDeParto",
+                  "id": "aplicacionPlanDeParto",
                   "label": "Aplicación plan de parto"
                 },
                 {
@@ -1191,7 +1191,7 @@
                       }
                     ]
                   },
-                  "id": "consejeríAEnSignosDeAlarma",
+                  "id": "consejeriaEnSignosDeAlarma",
                   "label": "Consejería en Signos de Alarma"
                 },
                 {
@@ -1200,7 +1200,7 @@
                     "rendering": "date",
                     "concept": "dbde3da2-f281-4b06-8308-12d1be1f63ed"
                   },
-                  "id": "fechaProgramadaPara1°Visita",
+                  "id": "fechaProgramadaPara1Visita",
                   "label": "Fecha programada para 1° visita",
                   "datePickerFormat": "calendar"
                 },
@@ -1210,7 +1210,7 @@
                     "rendering": "text",
                     "concept": "75a9b6d1-2835-42e5-9020-a9be75645dbe"
                   },
-                  "id": "consejeríAPpf",
+                  "id": "consejeriaPpf",
                   "label": "Consejería PPF"
                 },
                 {
@@ -1219,7 +1219,7 @@
                     "rendering": "text",
                     "concept": "a8f48788-4c59-4ea8-8ca2-8790b3c7f3eb"
                   },
-                  "id": "consejeríAIts",
+                  "id": "consejeriaIts",
                   "label": "Consejería ITS"
                 }
               ]
@@ -1230,7 +1230,7 @@
                 "rendering": "group",
                 "concept": "6169f1fa-cf89-4a22-96e9-bb0f406b0577"
               },
-              "id": "suplementacióNNutricional",
+              "id": "suplementacionNutricional",
               "label": "Suplementación Nutricional",
               "questions": [
                 {
@@ -1258,7 +1258,7 @@
                     "max": "20"
                   },
                   "hideSteppers": true,
-                  "id": "n°ConsejeríANutricional",
+                  "id": "nConsejeriaNutricional",
                   "label": "N° Consejería Nutricional"
                 }
               ]
@@ -1280,11 +1280,11 @@
                 "rendering": "text",
                 "concept": "3f573194-bade-46bc-b5fd-59c36f5f697a"
               },
-              "id": "interconsultaY/OReferencia",
+              "id": "interconsultaYOReferencia",
               "label": "Interconsulta y/o Referencia"
             },
             {
-              "id": "próXimaCita",
+              "id": "proximaCita",
               "label": "Próxima cita",
               "datePickerFormat": "calendar",
               "type": "obs",
@@ -1294,7 +1294,7 @@
               }
             },
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {
