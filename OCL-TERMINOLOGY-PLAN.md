@@ -283,6 +283,7 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
+<<<<<<< HEAD
 Estado 2026-06-17: el repo incluye el export released
 `10_SIHSALUS_sihsalus_v2026-06-17-openmrs-order-fix.zip` para el source principal y
 `20_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Además incluye
@@ -290,6 +291,10 @@ Estado 2026-06-17: el repo incluye el export released
 necesario para resolver el ciclo de mappings `sihsalus <-> laboratorio`. Los 4 sources de dominio restantes
 siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`, y `prestacionales` se importa como
 `05_SIHSALUS_prestacionales_v2026-06-17-openmrs-current.zip` antes de `sihsalus`.
+=======
+Estado 2026-06-15: el repo incluye exports released
+`SIHSALUS_*_v2026-06-15-final.zip` para los 6 sources activos de la org `SIHSALUS`.
+>>>>>>> 2c881d1 (chore: update OCL exports to final release)
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.
