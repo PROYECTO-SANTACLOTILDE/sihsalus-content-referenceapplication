@@ -8,6 +8,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Cambiado
+- Agrega el atributo de visita `Procedencia` para registrar desde dónde procede el paciente en una atención.
 - Ordena los exports OCL con prefijos numericos para cargar primero `sihsalus` y `procedimientos`, evitando mappings hacia conceptos destino aun no importados.
 - Reexporta `laboratorio` desde OCL HEAD para incluir los `external_id` agregados a mappings de laboratorio, manteniendo sin tocar los paneles excluidos `4315` y `4318`.
 - Actualiza los exports OCL del content package a la org `SIHSALUS`, release `clean-2026-06-12`.
