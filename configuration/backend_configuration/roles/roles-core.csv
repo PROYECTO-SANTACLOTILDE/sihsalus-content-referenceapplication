@@ -18,3 +18,5 @@ fab43ac4-79bc-4f3d-805b-bd3a82ce41e9,Organizational: Registration Clerk,Registra
 2f087f90-9c47-4262-bfce-23c7862e727e,Organizational: System Administrator,System Administrator,Application: Configures Forms; Application: Configures Metadata; Application: Administers System,,
 4da5a52d-04d7-46a8-b5d4-045d655bfd35,CRED lectura,,,app:cred.antecedentes;app:cred.cursoVida;app:cred.earlyStim;app:cred.immunization;app:cred.neonatal;app:cred.nutrition;app:cred.wellChild,
 05f70273-860c-4a77-9534-12a43895de13,CRED lectura y edicion,,,app:cred.antecedentes;app:cred.cursoVida;app:cred.earlyStim;app:cred.immunization;app:cred.neonatal;app:cred.nutrition;app:cred.wellChild;app:cred.antecedentes.edit;app:cred.cursoVida.edit;app:cred.earlyStim.edit;app:cred.immunization.edit;app:cred.neonatal.edit;app:cred.nutrition.edit;app:cred.wellChild.edit,
+7bd9252b-0fdf-470a-8a99-683cac4d1452,Vacunacion lectura,,,app:immunization,
+9ca984d2-3819-4463-8e40-5d5e7ccabbbd,Vacunacion lectura y edicion,,,app:immunization;app:immunization.edit,
