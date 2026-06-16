@@ -9,8 +9,8 @@
 ## Estado actual del paquete (2026-06-16)
 
 El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
-usa la release `v2026-06-16-pns-contact-metadata` y los sources de dominio mantienen
-`v2026-06-16-openmrs-current`.
+usa la release `v2026-06-16-pns-contact-metadata`, `laboratorio` usa `16-06-2026-2`
+y los otros sources de dominio mantienen `v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
@@ -20,7 +20,7 @@ reconstrucción y migración.
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
 | `medicamentos` | 1001 | 17 | Medicamentos e insumos SIS/Dige |
-| `laboratorio` | 213 | 1056 | Pruebas, paneles y resultados de laboratorio |
+| `laboratorio` | 246 | 1088 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
 
 La release base `v2026-06-16-openmrs-current` consolida la limpieza posterior al rebuild: el source `alergias`
@@ -44,8 +44,8 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-pns-contact-metadata`; dominios en
-`v2026-06-16-openmrs-current`):
+Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-pns-contact-metadata`,
+`laboratorio` en `16-06-2026-2` y los otros dominios en `v2026-06-16-openmrs-current`):
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
 |---|---:|---|
@@ -265,7 +265,8 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 
 Estado 2026-06-16: el repo incluye el export released
 `00_SIHSALUS_sihsalus_v2026-06-16-pns-contact-metadata.zip` para el source principal y
-`SIHSALUS_*_v2026-06-16-openmrs-current.zip` para los 5 sources de dominio restantes.
+`13_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Los 4 sources de dominio restantes
+siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.

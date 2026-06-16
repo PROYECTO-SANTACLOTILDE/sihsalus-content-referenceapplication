@@ -40,7 +40,7 @@
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
             <value
-            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus</value>
+            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-16-pns-contact-metadata</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
