@@ -17,10 +17,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Asigna al rol `Admision` solo los accesos de admision, citas y colas necesarios para registro, agenda y derivacion operativa.
 - Define los roles operativos `Laboratorista` y `Farmacia` con los privilegios de frontend y backend requeridos para ver y operar laboratorio y dispensacion sin heredar accesos de admision.
 - Agrega el atributo de visita `Procedencia` para registrar desde dónde procede el paciente en una atención.
-- Actualiza los exports OCL del content package a la org `SIHSALUS`, release `v2026-06-15-final`.
+- Actualiza los exports OCL del content package a la org `SIHSALUS`; los sources de dominio quedan en `v2026-06-16-openmrs-current`.
+- Actualiza el export principal `sihsalus` a `v2026-06-16-education-mappings-fix`, moviendo las respuestas de nivel educativo desde `No (respuesta)` hacia `Highest education level` y enlazando `Nivel I-2` a `Nivel de Atención`.
+- Actualiza el export principal `sihsalus` a `v2026-06-16-glasgow-vitals`, agregando los conceptos de Escala de Glasgow usados por el ESM de signos vitales (`glasgowEyeOpeningUuid`, `glasgowVerbalResponseUuid`, `glasgowMotorResponseUuid`, `glasgowTotalUuid`) y sus respuestas.
+- Actualiza el export principal `sihsalus` a `v2026-06-16-pns-contact-metadata`, agregando conceptos y mappings para metadata de contactos PNS usada por flujos de ficha familiar, relaciones y notificación de contactos.
 - Corrige la validacion SIHSALUS con Initializer 2.12: evaluator SQL de Patient Flags, estado `Fallecido` en workflows de programa y referencia activa del medicamento MINSA `47343`.
-- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-15-final`.
+- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-16-pns-contact-metadata`.
 - Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, normalización de conceptos de laboratorio, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
+- Re-exporta OCL tras los fixes de import OpenMRS: `inmunizaciones#584` queda como `Vacuna antiamarílica` y las respuestas clínicas de aborto se rewirean a `diagnosis`.
 - Migra la configuracion de Patient Flags desde Liquibase a dominios Initializer (`flagpriorities`, `flagtags`, `flags`) y corrige el evaluator SQL al nombre soportado por `patientflags`.
 - Fortalece CI con validacion de anchos CSV, UUIDs unicos en formularios AMPATH y verificacion real de rangos de referencia contra los exports OCL bundleados.
 - Excluye artefactos no ejecutables del ZIP final (`.DS_Store`, `.gitkeep`, `ampathforms/Readme` y formularios `_deprecated`).
