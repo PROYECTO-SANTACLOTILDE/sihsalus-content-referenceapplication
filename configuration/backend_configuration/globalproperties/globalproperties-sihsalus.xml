@@ -39,7 +39,7 @@
 
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
-            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-15-lab-normalization</value>
+            <value>https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-15-final</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
