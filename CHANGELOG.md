@@ -9,13 +9,16 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Agregado
 - Agrega tipos de procedimiento EMR API mediante el dominio Initializer `proceduretypes`, junto con los privilegios requeridos para leer y gestionar procedimientos en el módulo O3.
+- Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
 - Reemplaza los conceptCodes CIEL de dispositions por conceptos locales ya cargados en SIHSALUS, evitando dependencia runtime de CIEL para admisión, alta, transferencia, fallecido y observación.
+- Asigna al rol `Admision` solo los accesos de admision, citas y colas necesarios para registro, agenda y derivacion operativa.
+- Define los roles operativos `Laboratorista` y `Farmacia` con los privilegios de frontend y backend requeridos para ver y operar laboratorio y dispensacion sin heredar accesos de admision.
 - Agrega el atributo de visita `Procedencia` para registrar desde dónde procede el paciente en una atención.
-- Actualiza los exports OCL del content package a la org `SIHSALUS`, release `v2026-06-15-lab-normalization`.
+- Actualiza los exports OCL del content package a la org `SIHSALUS`, release `v2026-06-15-final`.
 - Corrige la validacion SIHSALUS con Initializer 2.12: evaluator SQL de Patient Flags, estado `Fallecido` en workflows de programa y referencia activa del medicamento MINSA `47343`.
-- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-15-lab-normalization`.
+- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-15-final`.
 - Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, normalización de conceptos de laboratorio, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
 - Migra la configuracion de Patient Flags desde Liquibase a dominios Initializer (`flagpriorities`, `flagtags`, `flags`) y corrige el evaluator SQL al nombre soportado por `patientflags`.
 - Fortalece CI con validacion de anchos CSV, UUIDs unicos en formularios AMPATH y verificacion real de rangos de referencia contra los exports OCL bundleados.
