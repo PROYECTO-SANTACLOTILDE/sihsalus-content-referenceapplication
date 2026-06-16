@@ -2,7 +2,7 @@
   {
     "uuid": "b37386de-b14d-4830-84b6-11324cd96aab",
     "name": "Admitir al Hospital",
-    "conceptCode": "CIEL:1654",
+    "conceptCode": "f2dca1bb-bc4c-4d6c-a5c9-c6e41a592a0e",
     "type": "ADMIT",
     "careSettingType": "INPATIENT",
     "actions": [
@@ -11,7 +11,7 @@
     "additionalObs": [
       {
         "label": "Ubicación de Admisión",
-        "conceptCode": "CIEL:159791",
+        "conceptCode": "5fc29316-0869-4b3b-ae2f-cc37c6014eb7",
         "params": {
           "type": "org.openmrs.Location"
         }
@@ -21,7 +21,7 @@
   {
     "uuid": "16a8ef88-3590-4430-8f06-e19f18ef2e07",
     "name": "Alta Hospitalaria",
-    "conceptCode": "CIEL:1657",
+    "conceptCode": "c71c1bda-d909-4b84-9218-609c69e1eb7e",
     "type": "DISCHARGE",
     "actions": [
       "closeCurrentVisitAction"
@@ -30,7 +30,7 @@
   {
     "uuid": "799820e5-834a-4269-9724-4e061e288ece",
     "name": "Transferir a Otro Establecimiento",
-    "conceptCode": "CIEL:1655",
+    "conceptCode": "677f9fa8-c843-4cda-a8e4-6e1166a6d8f6",
     "type": "TRANSFER",
     "actions": [
       "transferToSpecificLocationAction"
@@ -38,7 +38,7 @@
     "additionalObs": [
       {
         "label": "Ubicación de Transferencia",
-        "conceptCode": "CIEL:160473",
+        "conceptCode": "6a1e18c1-8874-45fe-92dd-26758d5d6ba7",
         "params": {
           "type": "org.openmrs.Location"
         }
@@ -48,7 +48,7 @@
   {
     "uuid": "c94adab7-5534-45e1-b6d5-e1dd3a8dbc23",
     "name": "Fallecido",
-    "conceptCode": "CIEL:1656",
+    "conceptCode": "1b3c9822-74ee-4ce5-a3b3-bac03ca44df5",
     "type": "DISCHARGE",
     "actions": [
       "markPatientDeadAction",
@@ -58,7 +58,7 @@
   {
     "uuid": "ce4310fa-4453-41a0-8a8b-6a6f0bf2dcb6",
     "name": "Observación",
-    "conceptCode": "CIEL:1654",
+    "conceptCode": "f2dca1bb-bc4c-4d6c-a5c9-c6e41a592a0e",
     "type": "ADMIT",
     "careSettingType": "INPATIENT",
     "actions": [
@@ -67,7 +67,7 @@
     "additionalObs": [
       {
         "label": "Ubicación de Observación",
-        "conceptCode": "CIEL:159791",
+        "conceptCode": "5fc29316-0869-4b3b-ae2f-cc37c6014eb7",
         "params": {
           "type": "org.openmrs.Location"
         }
