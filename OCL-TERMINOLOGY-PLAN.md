@@ -1,30 +1,40 @@
 # Plan de Terminología OCL — SIHSALUS
 
 > Documento de plan/arquitectura para la consolidación de conceptos en OpenConceptLab (OCL).
-> Última actualización: 2026-06-15. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
+> Última actualización: 2026-06-16. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
 > Estado: en progreso. Contiene lo hecho, el plan pendiente, convenciones y **dudas abiertas**.
 
 ---
 
-## Estado actual del paquete (2026-06-15)
+## Estado actual del paquete (2026-06-16)
 
-El content package consume exports OCL released desde la org `SIHSALUS`, release `v2026-06-15-final`.
+El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
+usa la release `v2026-06-16-glasgow-vitals` y los sources de dominio mantienen
+`v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
 | Source SIHSALUS | Conceptos | Mappings | Qué es |
 |---|---:|---:|---|
-| `sihsalus` | 4560 | 5338 | Diccionario clínico principal SIHSALUS |
+| `sihsalus` | 4569 | 5391 | Diccionario clínico principal SIHSALUS |
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
-| `medicamentos` | 1001 | 0 | Medicamentos e insumos SIS/Dige |
-| `laboratorio` | 208 | 1024 | Pruebas, paneles y resultados de laboratorio |
+| `medicamentos` | 1001 | 17 | Medicamentos e insumos SIS/Dige |
+| `laboratorio` | 213 | 1056 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
 
-La release `v2026-06-15-final` consolida la limpieza posterior al rebuild: el source `alergias`
+La release base `v2026-06-16-openmrs-current` consolida la limpieza posterior al rebuild: el source `alergias`
 queda absorbido por `sihsalus`, conceptos administrativos se movieron fuera de `laboratorio`, 646 insumos de
 `medicamentos` quedaron como `Medical supply`, 520 códigos CIE-10 `U*` quedaron como `Misc`, y se normalizó
 la página final de `laboratorio` moviendo dos procedimientos clínicos a `sihsalus` y corrigiendo clases/nombres.
+También incluye los fixes posteriores de import OpenMRS: `inmunizaciones#584` queda publicado como
+`Vacuna antiamarílica`, y las respuestas clínicas de aborto se rewirean desde conceptos locales de `sihsalus`
+hacia conceptos canónicos en `diagnosis`.
+La release `v2026-06-16-education-mappings-fix` actualiza el source `sihsalus`: `No (respuesta)` queda como
+respuesta genérica sin mappings salientes, `Highest education level` recibe sus respuestas educativas y mappings
+externos, y `Nivel I-2` queda enlazado como respuesta de `Nivel de Atención`.
+La release `v2026-06-16-glasgow-vitals` agrega los 22 conceptos de Escala de Glasgow para triaje de emergencia,
+incluyendo las cuatro preguntas usadas por el ESM de signos vitales y sus respuestas Q-AND-A.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -32,7 +42,8 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports `v2026-06-15-final`:
+Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-glasgow-vitals`; dominios en
+`v2026-06-16-openmrs-current`):
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
 |---|---:|---|
@@ -250,8 +261,9 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
-Estado 2026-06-15: el repo incluye exports released
-`SIHSALUS_*_v2026-06-15-final.zip` para los 6 sources activos de la org `SIHSALUS`.
+Estado 2026-06-16: el repo incluye el export released
+`00_SIHSALUS_sihsalus_v2026-06-16-glasgow-vitals.zip` para el source principal y
+`SIHSALUS_*_v2026-06-16-openmrs-current.zip` para los 5 sources de dominio restantes.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.
