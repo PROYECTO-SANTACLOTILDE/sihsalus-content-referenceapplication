@@ -9,14 +9,14 @@
 ## Estado actual del paquete (2026-06-16)
 
 El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
-usa la release `v2026-06-16-glasgow-vitals` y los sources de dominio mantienen
+usa la release `v2026-06-16-pns-contact-metadata` y los sources de dominio mantienen
 `v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
 | Source SIHSALUS | Conceptos | Mappings | Qué es |
 |---|---:|---:|---|
-| `sihsalus` | 4569 | 5391 | Diccionario clínico principal SIHSALUS |
+| `sihsalus` | 4611 | 5532 | Diccionario clínico principal SIHSALUS |
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
 | `medicamentos` | 1001 | 17 | Medicamentos e insumos SIS/Dige |
@@ -35,6 +35,8 @@ respuesta genérica sin mappings salientes, `Highest education level` recibe sus
 externos, y `Nivel I-2` queda enlazado como respuesta de `Nivel de Atención`.
 La release `v2026-06-16-glasgow-vitals` agrega los 22 conceptos de Escala de Glasgow para triaje de emergencia,
 incluyendo las cuatro preguntas usadas por el ESM de signos vitales y sus respuestas Q-AND-A.
+La release `v2026-06-16-pns-contact-metadata` agrega conceptos y mappings para metadata de contactos PNS
+usada por flujos de ficha familiar, relaciones y notificación de contactos.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -42,7 +44,7 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-glasgow-vitals`; dominios en
+Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-pns-contact-metadata`; dominios en
 `v2026-06-16-openmrs-current`):
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
@@ -262,7 +264,7 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
 Estado 2026-06-16: el repo incluye el export released
-`00_SIHSALUS_sihsalus_v2026-06-16-glasgow-vitals.zip` para el source principal y
+`00_SIHSALUS_sihsalus_v2026-06-16-pns-contact-metadata.zip` para el source principal y
 `SIHSALUS_*_v2026-06-16-openmrs-current.zip` para los 5 sources de dominio restantes.
 
 Para cada siguiente migración de conceptos/sets:
