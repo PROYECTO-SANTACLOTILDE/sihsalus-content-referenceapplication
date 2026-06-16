@@ -1,6 +1,6 @@
-# <u>Content Package Template</u>
+# SIHSALUS Content Package
 
-This is a template repo to be used to set up and share Content Packages.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.12.6**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -38,6 +38,8 @@ To check if your code adheres to the style guidelines without making any changes
 If this command reports any violations, you can then run `mvn spotless:apply` to fix them.
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
+
+Versión del paquete: **1.12.6**.
 
 ## Cobertura MINSA (Categoría II)
 
