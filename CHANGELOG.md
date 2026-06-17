@@ -21,9 +21,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Actualiza el export principal `sihsalus` a `v2026-06-16-education-mappings-fix`, moviendo las respuestas de nivel educativo desde `No (respuesta)` hacia `Highest education level` y enlazando `Nivel I-2` a `Nivel de Atención`.
 - Actualiza el export principal `sihsalus` a `v2026-06-16-glasgow-vitals`, agregando los conceptos de Escala de Glasgow usados por el ESM de signos vitales (`glasgowEyeOpeningUuid`, `glasgowVerbalResponseUuid`, `glasgowMotorResponseUuid`, `glasgowTotalUuid`) y sus respuestas.
 - Actualiza el export principal `sihsalus` a `v2026-06-16-pns-contact-metadata`, agregando conceptos y mappings para metadata de contactos PNS usada por flujos de ficha familiar, relaciones y notificación de contactos.
+- Actualiza el export principal `sihsalus` a `v2026-06-16-languages`, agregando sets de lenguas del mundo y lenguas indígenas u originarias del Perú (BDPI), separados de conceptos de etnia, más `Otra lengua no codificada`.
+- Actualiza el export principal `sihsalus` a `v2026-06-16-qanda-cleanup`, completando mappings `Q-AND-A` determinísticos para preguntas CRED, atributos de persona, educación, grupo sanguíneo, acreditación y formularios sin reabrir la duplicidad controlada de `Sí`/`No`.
 - Actualiza el export `laboratorio` a `16-06-2026-2`.
 - Corrige la validacion SIHSALUS con Initializer 2.12: evaluator SQL de Patient Flags, estado `Fallecido` en workflows de programa y referencia activa del medicamento MINSA `47343`.
-- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-16-pns-contact-metadata`.
+- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-16-qanda-cleanup`.
 - Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, normalización de conceptos de laboratorio, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
 - Re-exporta OCL tras los fixes de import OpenMRS: `inmunizaciones#584` queda como `Vacuna antiamarílica` y las respuestas clínicas de aborto se rewirean a `diagnosis`.
 - Migra la configuracion de Patient Flags desde Liquibase a dominios Initializer (`flagpriorities`, `flagtags`, `flags`) y corrige el evaluator SQL al nombre soportado por `patientflags`.

@@ -9,14 +9,14 @@
 ## Estado actual del paquete (2026-06-16)
 
 El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
-usa la release `v2026-06-16-pns-contact-metadata`, `laboratorio` usa `16-06-2026-2`
+usa la release `v2026-06-16-qanda-cleanup`, `laboratorio` usa `16-06-2026-2`
 y los otros sources de dominio mantienen `v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
 | Source SIHSALUS | Conceptos | Mappings | Qué es |
 |---|---:|---:|---|
-| `sihsalus` | 4611 | 5532 | Diccionario clínico principal SIHSALUS |
+| `sihsalus` | 4674 | 6064 | Diccionario clínico principal SIHSALUS |
 | `procedimientos` | 12333 | 12331 | Procedimientos CPMS MINSA |
 | `diagnosis` | 13484 | 0 | CIE-10 MINSA |
 | `medicamentos` | 1001 | 17 | Medicamentos e insumos SIS/Dige |
@@ -37,6 +37,15 @@ La release `v2026-06-16-glasgow-vitals` agrega los 22 conceptos de Escala de Gla
 incluyendo las cuatro preguntas usadas por el ESM de signos vitales y sus respuestas Q-AND-A.
 La release `v2026-06-16-pns-contact-metadata` agrega conceptos y mappings para metadata de contactos PNS
 usada por flujos de ficha familiar, relaciones y notificación de contactos.
+La release `v2026-06-16-languages` agrega conceptos de lengua separados de etnia/pueblo: `Idioma` queda con
+61 respuestas Q-AND-A, `Lenguas del mundo` tiene 61 miembros, `Lenguas indígenas u originarias del Perú` tiene
+las 48 lenguas listadas por BDPI, y se agrega `Otra lengua no codificada`.
+La release `v2026-06-16-qanda-cleanup` completa mappings `Q-AND-A` determinísticos para preguntas CRED
+con respuestas Sí/No, `Tipo de suplemento`, educación de la madre, grupo sanguíneo ABO, estado/tipo de historia
+clínica y estado de acreditación de seguro. La duplicidad controlada de `Sí`/`No` queda pendiente por decisión
+explícita; no se tocó en esta ronda. Quedan 26 preguntas `Question/Coded` sin respuestas, listadas en
+`reports/sihsalus-coded-without-answers-residual.2026-06-16.csv`, porque requieren revisar formulario o criterio
+clínico antes de mapear.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -44,7 +53,7 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-pns-contact-metadata`,
+Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-qanda-cleanup`,
 `laboratorio` en `16-06-2026-2` y los otros dominios en `v2026-06-16-openmrs-current`):
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
@@ -264,16 +273,32 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
 Estado 2026-06-16: el repo incluye el export released
-`00_SIHSALUS_sihsalus_v2026-06-16-pns-contact-metadata.zip` para el source principal y
+`00_SIHSALUS_sihsalus_v2026-06-16-qanda-cleanup.zip` para el source principal y
 `13_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Los 4 sources de dominio restantes
 siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.
 2. Crear un release explícito del source afectado.
-3. Descargar el export oficial de ese release.
+3. Descargar el export oficial de ese release con:
+   `https://api.openconceptlab.org/orgs/SIHSALUS/sources/<source>/<version>/export/`.
+   Ese endpoint responde con un redirect a S3; descargar con `curl -L`.
 4. Reemplazar el `.zip` correspondiente en `configuration/backend_configuration/ocl/`.
 5. Correr validaciones locales y CI antes de retirar filas CSV cubiertas por OCL.
+
+Validaciones mínimas aprendidas:
+
+- `unzip -tq <export.zip>` debe pasar.
+- `export.json` debe tener un solo objeto `Source Version`, con arrays `concepts` y `mappings`.
+- Para UUIDs esperados por frontend/forms, validar por `external_id` dentro del export; la búsqueda `?q=<uuid>`
+  de OCL no es confiable para `external_id`.
+- Para duplicados aparentes en la UI, validar el concepto activo con `GET /concepts/<id>/` y con el export
+  versionado: la UI puede mostrar versiones históricas del mismo ID.
+- Los answer sets y concept sets se representan como mappings `Q-AND-A` o `CONCEPT-SET`; no usar `references`
+  en source exports.
+- Importar conceptos antes que mappings. Si se encolan tareas dependientes, usar la misma cola para preservar orden.
+- Después de migrar un CSV a OCL, no dejarlo también en `concepts/` o `conceptsets/`: el paquete no debe importar
+  el mismo contenido por OCL ZIP y por CSV Initializer al mismo tiempo.
 
 ---
 
@@ -284,8 +309,9 @@ Para cada siguiente migración de conceptos/sets:
    ¿Se dropean también, o hay una forma correcta de representar el ConceptSource SIHSALUS en OCL
    (p.ej. mapear el source OCL SIHSALUS-v4 al ConceptSource SIHSALUS)? **Sin resolver.**
 
-2. **Proceso de re-export del bundle.** ¿Existe un pipeline/script para exportar sources de OCL y regenerar
-   los `.zip` del content repo? ¿Quién lo corre? Hoy no lo conozco.
+2. **Proceso de re-export del bundle.** Resuelto para operación manual: crear release en OCL, esperar
+   `processing=false`, descargar `/export/` con `curl -L`, reemplazar el ZIP estático y validar el paquete.
+   Pendiente automatizarlo en CI/script.
 
 3. **¿El frontend o el módulo de calendario SIHSALUS usa los códigos `SIHSALUS:IMMUNIZATION_*`?**
    Se confirmó que sihsalus-core (backend) no los usa, pero no se revisó el frontend. Si los usa, el drop los rompe.
@@ -317,9 +343,16 @@ Para cada siguiente migración de conceptos/sets:
 
 ## 8. Notas operativas
 
-- **Acceso OCL API:** `https://api.openconceptlab.org/orgs/PeruHCE/sources/<src>/...`, header
-  `Authorization: Token <token>`. El token usado pertenece a **alvax (Alvaro Mendoza-Li)** y se usó para
-  escrituras/retiros en producción. **Recomendado rotarlo.**
+- **Acceso OCL API actual:** `https://api.openconceptlab.org/orgs/SIHSALUS/sources/<src>/...`, header
+  `Authorization: Token <token>`. Usar `OCL_API_TOKEN` o un secreto local no versionado; nunca commitear tokens.
+- **OCL vivo no basta para OpenMRS:** el backend consume los ZIPs estáticos del repo. Todo cambio en OCL debe cerrar
+  con release, descarga del export oficial, reemplazo del ZIP y build/validación del content package.
+- **Revisión semántica antes de mover:** si un concepto cambia de source/clase, revisar mappings salientes y entrantes.
+  Ejemplo aprendido: `No (respuesta)` debía quedar como respuesta genérica sin mappings salientes; `Highest education
+  level` debía poseer sus Q-AND-A educativos.
+- **Glasgow:** los UUIDs `glasgowEyeOpeningUuid`, `glasgowVerbalResponseUuid`, `glasgowMotorResponseUuid` y
+  `glasgowTotalUuid` viven en OCL desde la release `v2026-06-16-glasgow-vitals`; los CSVs temporales fueron eliminados
+  para evitar doble import.
 - **Scripts y catálogos** generados en `~/sihsalus/tmp/ocl-fix/`:
   `create_vacunas.py`, `migrate_phase5.py`, `fix_vacunas_maps.py`, `migrate_immunization.py`,
   `cpms_oficial_RM550-2023.xlsx/.csv`, `cpms_catalog.csv`, `vacunas_source_propuesta.csv`,
