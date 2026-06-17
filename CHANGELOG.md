@@ -23,9 +23,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Actualiza el export principal `sihsalus` a `v2026-06-16-pns-contact-metadata`, agregando conceptos y mappings para metadata de contactos PNS usada por flujos de ficha familiar, relaciones y notificación de contactos.
 - Actualiza el export principal `sihsalus` a `v2026-06-16-languages`, agregando sets de lenguas del mundo y lenguas indígenas u originarias del Perú (BDPI), separados de conceptos de etnia, más `Otra lengua no codificada`.
 - Actualiza el export principal `sihsalus` a `v2026-06-16-qanda-cleanup`, completando mappings `Q-AND-A` determinísticos para preguntas CRED, atributos de persona, educación, grupo sanguíneo, acreditación y formularios sin reabrir la duplicidad controlada de `Sí`/`No`.
+- Actualiza el export principal `sihsalus` a `v2026-06-17-openmrs-order-fix`, retirando un mapping activo desde un concepto retirado y reordenando los ZIPs OCL para que los conceptos destino existan antes de importar mappings cross-source.
 - Actualiza el export `laboratorio` a `16-06-2026-2`.
 - Corrige la validacion SIHSALUS con Initializer 2.12: evaluator SQL de Patient Flags, estado `Fallecido` en workflows de programa y referencia activa del medicamento MINSA `47343`.
-- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-16-qanda-cleanup`.
+- Apunta `openconceptlab.subscriptionUrl` al source principal versionado `SIHSALUS/sihsalus/v2026-06-17-openmrs-order-fix`.
 - Consolida la curación OCL: conceptos administrativos movidos fuera de `laboratorio`, normalización de conceptos de laboratorio, insumos de `medicamentos` clasificados como `Medical supply`, y códigos CIE-10 `U*` clasificados como `Misc`.
 - Re-exporta OCL tras los fixes de import OpenMRS: `inmunizaciones#584` queda como `Vacuna antiamarílica` y las respuestas clínicas de aborto se rewirean a `diagnosis`.
 - Migra la configuracion de Patient Flags desde Liquibase a dominios Initializer (`flagpriorities`, `flagtags`, `flags`) y corrige el evaluator SQL al nombre soportado por `patientflags`.

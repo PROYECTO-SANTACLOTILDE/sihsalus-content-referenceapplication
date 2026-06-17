@@ -40,7 +40,7 @@
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
             <value
-            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-16-qanda-cleanup</value>
+            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/v2026-06-17-openmrs-order-fix</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
