@@ -34,4 +34,4 @@ e91775be-cf11-45e3-9b34-3c3f8849d4d6,,Contacto Creado Desde PNS,Indica si la per
 98c0a958-515e-4dec-a771-7a4cb9aa5492,,Método de Notificación PNS,Método preferido para notificación de contactos o parejas en PNS,org.openmrs.Concept,3d496077-411f-43f2-b151-263f2a76c761,true
 1a951a91-231f-4a3a-9a22-e396fa93455c,,Convive con el Paciente,Indica si el contacto o pareja convive con el paciente,org.openmrs.Concept,7a3639b3-5a62-473b-b97d-d7661ce50aab,true
 81a8b164-befa-4cac-8978-da059082297c,,Resultado de Tamizaje de Violencia de Pareja,Resultado resumido del tamizaje de violencia de pareja en el flujo PNS,org.openmrs.Concept,f96ef81d-afde-437a-9530-b0d093ff098a,true
-49ff9334-9d9-47d0-a236-72c0c9d4dea9,,Consentimiento de Tratamiento de Datos Personales,Consentimiento para registrar y tratar datos personales sensibles según la Ley 29733,org.openmrs.Concept,df10fb01-49dc-4e80-871b-55935121842c,true
+49ff9334-09d9-47d0-a236-72c0c9d4dea9,,Consentimiento de Tratamiento de Datos Personales,Consentimiento para registrar y tratar datos personales sensibles según la Ley 29733,org.openmrs.Concept,df10fb01-49dc-4e80-871b-55935121842c,true
