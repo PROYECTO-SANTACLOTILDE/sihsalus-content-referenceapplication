@@ -9,7 +9,7 @@
 ## Estado actual del paquete (2026-06-16)
 
 El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
-usa la release `v2026-06-16-qanda-cleanup`, `laboratorio` usa `16-06-2026-2`
+usa la release `v2026-06-17-openmrs-order-fix`, `laboratorio` usa `16-06-2026-2`
 y los otros sources de dominio mantienen `v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
@@ -46,6 +46,12 @@ clínica y estado de acreditación de seguro. La duplicidad controlada de `Sí`/
 explícita; no se tocó en esta ronda. Quedan 26 preguntas `Question/Coded` sin respuestas, listadas en
 `reports/sihsalus-coded-without-answers-residual.2026-06-16.csv`, porque requieren revisar formulario o criterio
 clínico antes de mapear.
+La release `v2026-06-17-openmrs-order-fix` retira el mapping activo `sihsalus:5242`, que apuntaba desde el
+concepto retirado `sihsalus:2560`, y el paquete reordena los ZIPs OCL para evitar errores de mappings hacia
+conceptos aún no importados. `laboratorio` se carga en dos pasadas: primero un ZIP `concepts-only` para que
+`sihsalus` pueda apuntar a pruebas/paneles de laboratorio, y al final el ZIP oficial completo para crear los
+mappings de `laboratorio` hacia `sihsalus`. La simulación local de import queda con 0 mappings internos cuyo
+origen o destino falte al momento de importarse.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -53,7 +59,7 @@ El repo todavía carga conceptos locales desde `configuration/backend_configurat
 `configuration/backend_configuration/conceptsets/`. El objetivo sigue siendo que OCL sea la fuente de verdad de los
 conceptos clínicos; los CSVs deben quedar solo como capa temporal mientras se migra y valida el contenido.
 
-Inventario contra los exports actuales (`sihsalus` en `v2026-06-16-qanda-cleanup`,
+Inventario contra los exports actuales (`sihsalus` en `v2026-06-17-openmrs-order-fix`,
 `laboratorio` en `16-06-2026-2` y los otros dominios en `v2026-06-16-openmrs-current`):
 
 | Archivo | Cobertura en OCL por `external_id` | Decisión |
@@ -273,8 +279,10 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
 Estado 2026-06-16: el repo incluye el export released
-`00_SIHSALUS_sihsalus_v2026-06-16-qanda-cleanup.zip` para el source principal y
-`13_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Los 4 sources de dominio restantes
+`10_SIHSALUS_sihsalus_v2026-06-17-openmrs-order-fix.zip` para el source principal y
+`20_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Además incluye
+`03_SIHSALUS_laboratorio_16-06-2026-2-concepts-only.zip` como preseed de conceptos de laboratorio,
+necesario para resolver el ciclo de mappings `sihsalus <-> laboratorio`. Los 4 sources de dominio restantes
 siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`.
 
 Para cada siguiente migración de conceptos/sets:
