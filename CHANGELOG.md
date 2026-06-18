@@ -16,6 +16,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Reemplaza los conceptCodes CIEL de dispositions por conceptos locales ya cargados en SIHSALUS, evitando dependencia runtime de CIEL para admisión, alta, transferencia, fallecido y observación.
 - Restringe `Application: Registers Patients` a privilegios explícitos de registro de pacientes para evitar que `Admision` reciba permisos clínicos por herencia de `Privilege Level: High`.
 - Asigna al rol `Admision` solo los accesos de admision, citas y colas necesarios para registro, agenda y derivacion operativa.
+- Agrega `Get Beds` y `Get Admission Locations` al rol `Admision` porque el validador de `bedmanagement` los requiere al crear visitas, incluso cuando la consulta no asigna cama.
 - Define los roles operativos `Laboratorista` y `Farmacia` con los privilegios de frontend y backend requeridos para ver y operar laboratorio y dispensacion sin heredar accesos de admision.
 - Agrega el atributo de visita `Procedencia` para registrar desde dónde procede el paciente en una atención.
 - Actualiza los exports OCL del content package a la org `SIHSALUS`; los sources de dominio quedan en `v2026-06-16-openmrs-current`.
