@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.13.6**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.14.0**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -39,7 +39,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.13.6**.
+Versión del paquete: **1.14.0**.
 
 ## Cobertura MINSA (Categoría II)
 
@@ -56,7 +56,7 @@ Cobertura estimada (categoría II-1 / II-2):
    - CRED y programas de continuidad: `CRED-*`, incluyendo Huanca Test adaptado (`CRED-026`) y lista de habilidades/conductas esperadas (`CRED-027`)
    - Salud mental: `PSIC-001` a `PSIC-004`
    - Odontología: `ODONT-*`
-   - Inmunizaciones: `INMU-001`
+   - Inmunizaciones: `INMU-001` y `INMU-002`; pendiente alinear el set de vacunas/productos contra la NTS 246-MINSA/DGIESP-2026.
 
 1. Parcial o soportado por OpenMRS nativo (requiere validación local)
    - Prescripción médica: formulario de prescripción + módulos de med list/order
@@ -81,4 +81,7 @@ Referencias mínimas
 - NTS 021-MINSA/DGSP-V.03 (categorías de establecimientos): https://spij.minjus.gob.pe/Graficos/Peru/2011/Julio/16/RM-546-2011-MINSA.pdf
 - NTS 139-MINSA/2018/DGAIN (gestión de historia clínica): https://spij.minjus.gob.pe/Graficos/Peru/2018/Marzo/15/RM-214-2018-MINSA.pdf
 - NTS 238-MINSA/DGIESP-2025 (control de crecimiento y desarrollo del niño): https://www.gob.pe/institucion/minsa/informes-publicaciones/7857089-norma-tecnica-de-salud-para-el-control-de-crecimiento-y-desarrollo-del-nino-nts-n-238-minsa-dgiesp-2025
+- NTS 246-MINSA/DGIESP-2026 (esquema nacional de inmunizaciones): https://www.gob.pe/institucion/minsa/normas-legales/8265031-561-2026-minsa
 - Guía de Vigilancia del Neurodesarrollo - Huanca Payehuanca (manual de aplicación): https://repositorio.essalud.gob.pe/handle/20.500.12959/5846
+
+Antes de crear o modificar formularios clínicos, revisar la norma técnica vigente en fuentes oficiales MINSA/gob.pe. No asumir que una NTS anterior sigue vigente si existe resolución posterior.

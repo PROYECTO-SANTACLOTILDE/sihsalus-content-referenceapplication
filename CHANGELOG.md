@@ -31,6 +31,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Re-exporta OCL tras los fixes de import OpenMRS: `inmunizaciones#584` queda como `Vacuna antiamarílica` y las respuestas clínicas de aborto se rewirean a `diagnosis`.
 - Migra la configuracion de Patient Flags desde Liquibase a dominios Initializer (`flagpriorities`, `flagtags`, `flags`) y corrige el evaluator SQL al nombre soportado por `patientflags`.
 - Alinea rangos críticos de signos vitales de triaje con la NT 042-MINSA/DGSP-V.01 y amplía límites absolutos para no bloquear valores de Prioridad I.
+- Documenta la auditoría de inmunizaciones contra la NTS 246-MINSA/DGIESP-2026 y marca las brechas de hexavalente, VRS, meningococo, VPH y SR antes de modificar calendario o formularios.
 - Fortalece CI con validacion de anchos CSV, UUIDs unicos en formularios AMPATH y verificacion real de rangos de referencia contra los exports OCL bundleados.
 - Excluye artefactos no ejecutables del ZIP final (`.DS_Store`, `.gitkeep`, `ampathforms/Readme` y formularios `_deprecated`).
 - Normaliza IDs de preguntas AMPATH a ASCII camelCase, corrige botones `workspace-launcher` para que no se guarden como `obs` sin concepto, y agrega validacion CI para estructura basica de formularios.
