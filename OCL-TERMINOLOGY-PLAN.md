@@ -1,16 +1,17 @@
 # Plan de Terminología OCL — SIHSALUS
 
 > Documento de plan/arquitectura para la consolidación de conceptos en OpenConceptLab (OCL).
-> Última actualización: 2026-06-16. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
+> Última actualización: 2026-06-17. Org OCL activa para el content package: **SIHSALUS** (`https://app.openconceptlab.org/#/orgs/SIHSALUS/`).
 > Estado: en progreso. Contiene lo hecho, el plan pendiente, convenciones y **dudas abiertas**.
 
 ---
 
-## Estado actual del paquete (2026-06-16)
+## Estado actual del paquete (2026-06-17)
 
 El content package consume exports OCL released desde la org `SIHSALUS`; el source principal `sihsalus`
-usa la release `v2026-06-17-openmrs-order-fix`, `laboratorio` usa `16-06-2026-2`
-y los otros sources de dominio mantienen `v2026-06-16-openmrs-current`.
+usa la release `v2026-06-17-openmrs-order-fix`, `laboratorio` usa `16-06-2026-2`,
+`prestacionales` usa `v2026-06-17-openmrs-current` y los otros sources de dominio mantienen
+`v2026-06-16-openmrs-current`.
 El historial de este documento conserva referencias a `PeruHCE` porque describe el trabajo previo de
 reconstrucción y migración.
 
@@ -22,6 +23,7 @@ reconstrucción y migración.
 | `medicamentos` | 1001 | 17 | Medicamentos e insumos SIS/Dige |
 | `laboratorio` | 246 | 1088 | Pruebas, paneles y resultados de laboratorio |
 | `inmunizaciones` | 22 | 60 | Vacunas del esquema nacional |
+| `prestacionales` | 66 | 65 | Códigos prestacionales administrativos para historias clínicas y FUAs |
 
 La release base `v2026-06-16-openmrs-current` consolida la limpieza posterior al rebuild: el source `alergias`
 queda absorbido por `sihsalus`, conceptos administrativos se movieron fuera de `laboratorio`, 646 insumos de
@@ -52,6 +54,9 @@ conceptos aún no importados. `laboratorio` se carga en dos pasadas: primero un 
 `sihsalus` pueda apuntar a pruebas/paneles de laboratorio, y al final el ZIP oficial completo para crear los
 mappings de `laboratorio` hacia `sihsalus`. La simulación local de import queda con 0 mappings internos cuyo
 origen o destino falte al momento de importarse.
+La release `prestacionales/v2026-06-17-openmrs-current` agrega 65 códigos prestacionales como conceptos
+`Misc/N/A` y un agrupador `Codigos Prestacionales` como `ConvSet/N/A`, con 65 mappings `CONCEPT-SET`. La release
+previa `2026-06-17-01` no se bundlea porque no incluía el agrupador ni los mappings.
 
 ### Plan actual para `concepts/` y `conceptsets/`
 
@@ -278,12 +283,13 @@ Misma fórmula que inmunización: mover conceptos a OCL preservando uuid; los c�
 ⚠️ El import OCL del backend usa los **`.zip` ESTÁTICOS** en
 `configuration/backend_configuration/ocl/`; no consume OCL en vivo.
 
-Estado 2026-06-16: el repo incluye el export released
+Estado 2026-06-17: el repo incluye el export released
 `10_SIHSALUS_sihsalus_v2026-06-17-openmrs-order-fix.zip` para el source principal y
 `20_SIHSALUS_laboratorio_16-06-2026-2.zip` para laboratorio. Además incluye
 `03_SIHSALUS_laboratorio_16-06-2026-2-concepts-only.zip` como preseed de conceptos de laboratorio,
 necesario para resolver el ciclo de mappings `sihsalus <-> laboratorio`. Los 4 sources de dominio restantes
-siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`.
+siguen en `SIHSALUS_*_v2026-06-16-openmrs-current.zip`, y `prestacionales` se importa como
+`05_SIHSALUS_prestacionales_v2026-06-17-openmrs-current.zip` antes de `sihsalus`.
 
 Para cada siguiente migración de conceptos/sets:
 1. Crear o actualizar el contenido en OCL.

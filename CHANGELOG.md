@@ -12,6 +12,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Agrega al bundle OCL el source `prestacionales` (`v2026-06-17-openmrs-current`) con 65 códigos prestacionales y un agrupador `CONCEPT-SET`, reclasificando los códigos como `Misc/N/A` y el set como `ConvSet/N/A`.
 - Reemplaza los conceptCodes CIEL de dispositions por conceptos locales ya cargados en SIHSALUS, evitando dependencia runtime de CIEL para admisión, alta, transferencia, fallecido y observación.
 - Restringe `Application: Registers Patients` a privilegios explícitos de registro de pacientes para evitar que `Admision` reciba permisos clínicos por herencia de `Privilege Level: High`.
 - Asigna al rol `Admision` solo los accesos de admision, citas y colas necesarios para registro, agenda y derivacion operativa.
