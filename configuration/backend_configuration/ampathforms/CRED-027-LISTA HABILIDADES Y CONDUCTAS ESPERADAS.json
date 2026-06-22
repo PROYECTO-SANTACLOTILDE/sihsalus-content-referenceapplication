@@ -118,11 +118,11 @@
                 "concept": "c2380005-0000-4000-8000-000000000005",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -132,14 +132,14 @@
             {
               "label": "Detalle de preocupación",
               "type": "obs",
-              "required": "preocupacionCuidador === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detallePreocupacion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380006-0000-4000-8000-000000000006"
               },
               "hide": {
-                "hideWhenExpression": "preocupacionCuidador !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "preocupacionCuidador !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -153,11 +153,11 @@
                 "concept": "c2380007-0000-4000-8000-000000000007",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -167,14 +167,14 @@
             {
               "label": "Detalle de regresión",
               "type": "obs",
-              "required": "regresionHabilidades === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleRegresion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380008-0000-4000-8000-000000000008"
               },
               "hide": {
-                "hideWhenExpression": "regresionHabilidades !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "regresionHabilidades !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             }
@@ -194,11 +194,11 @@
                 "concept": "c2380031-0000-4000-8000-000000000031",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -208,14 +208,14 @@
             {
               "label": "Detalle motor/sensorial",
               "type": "obs",
-              "required": "ausenciaMotorSensorial === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleMotorSensorial",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380032-0000-4000-8000-000000000032"
               },
               "hide": {
-                "hideWhenExpression": "ausenciaMotorSensorial !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "ausenciaMotorSensorial !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -229,11 +229,11 @@
                 "concept": "c2380033-0000-4000-8000-000000000033",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -243,14 +243,14 @@
             {
               "label": "Detalle socioemocional",
               "type": "obs",
-              "required": "ausenciaSocioemocional === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleSocioemocional",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380034-0000-4000-8000-000000000034"
               },
               "hide": {
-                "hideWhenExpression": "ausenciaSocioemocional !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "ausenciaSocioemocional !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -264,11 +264,11 @@
                 "concept": "c2380035-0000-4000-8000-000000000035",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -278,14 +278,14 @@
             {
               "label": "Detalle lenguaje",
               "type": "obs",
-              "required": "ausenciaLenguaje === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleLenguaje",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380036-0000-4000-8000-000000000036"
               },
               "hide": {
-                "hideWhenExpression": "ausenciaLenguaje !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "ausenciaLenguaje !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -299,11 +299,11 @@
                 "concept": "c2380037-0000-4000-8000-000000000037",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -313,14 +313,14 @@
             {
               "label": "Detalle cognitivo",
               "type": "obs",
-              "required": "ausenciaCognitivo === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleCognitivo",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380038-0000-4000-8000-000000000038"
               },
               "hide": {
-                "hideWhenExpression": "ausenciaCognitivo !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "ausenciaCognitivo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             }
@@ -340,11 +340,11 @@
                 "concept": "c2380039-0000-4000-8000-000000000039",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -354,14 +354,14 @@
             {
               "label": "Detalle de factores de riesgo/protección",
               "type": "obs",
-              "required": "factorRiesgo === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'",
+              "required": "factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleFactorRiesgo",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380040-0000-4000-8000-000000000040"
               },
               "hide": {
-                "hideWhenExpression": "factorRiesgo !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "factorRiesgo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -372,7 +372,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "(preocupacionCuidador === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (regresionHabilidades === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (ausenciaMotorSensorial === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (ausenciaSocioemocional === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (ausenciaLenguaje === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (ausenciaCognitivo === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0) + (factorRiesgo === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA' ? 1 : 0)"
+                  "calculateExpression": "(preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0)"
                 },
                 "min": "0",
                 "max": "7",
@@ -456,11 +456,11 @@
                 "concept": "c2380027-0000-4000-8000-000000000027",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -480,11 +480,11 @@
                 "concept": "c2380028-0000-4000-8000-000000000028",
                 "answers": [
                   {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]

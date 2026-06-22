@@ -19,28 +19,6 @@
                 "min": "0",
                 "max": "10",
                 "concept": "a2010a1f-d7ca-4d6f-9255-f53da4fa5c3f",
-                "conceptMappings": [
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "AMPATH",
-                    "value": "6430"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "169895004"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "159603"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "1218"
-                  }
-                ],
                 "disallowDecimals": true
               },
               "validators": []
@@ -56,28 +34,6 @@
                 "min": "0",
                 "max": "10",
                 "concept": "0f3be2f6-986f-4928-8761-b531044c1f36",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "159604"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "169909004"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "1217"
-                  },
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "AMPATH",
-                    "value": "6431"
-                  }
-                ],
                 "answers": []
               }
             },
@@ -92,53 +48,6 @@
                 "min": "0",
                 "max": "20",
                 "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "relationship": "BROADER-THAN",
-                    "type": "LOINC",
-                    "value": "3141-9"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "org.openmrs.module.mdrtb",
-                    "value": "WEIGHT"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "5089"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "5089"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH-Malawi",
-                    "value": "5089"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "5089"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "647"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "ANC-DAK",
-                    "value": "ANC.B8.DE3"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "27113001"
-                  }
-                ],
                 "answers": []
               }
             },
@@ -163,40 +72,7 @@
                 "rendering": "number",
                 "step": 1,
                 "min": "0",
-                "concept": "c4d39248-c896-433a-bc69-e24d04b7f0e5",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "5314"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "5314"
-                  },
-                  {
-                    "relationship": "BROADER-THAN",
-                    "type": "LOINC",
-                    "value": "8287-5"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO-ProcedureIT",
-                    "value": "29947201"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "363812007"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "638"
-                  }
-                ]
-              },
+                "concept": "c4d39248-c896-433a-bc69-e24d04b7f0e5"              },
               "validators": []
             },
             {
@@ -264,33 +140,6 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "3f6056ed-17e9-4b3b-98a7-18dc431a7e99",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "LOINC",
-                    "value": "882-1"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "300"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "300"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "44608003"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO-ProcedureIT",
-                    "value": "869"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "e77ffae6-940a-4541-b74f-170d262b1dff",
@@ -337,40 +186,7 @@
                 "rendering": "number",
                 "step": 1,
                 "min": "0",
-                "concept": "9a9c73d0-76e6-4b84-b20c-dfe8efea9542",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1015"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "1015"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO-ProcedureIT",
-                    "value": "2464"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "365616005"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO-ProcedureIT",
-                    "value": "935674"
-                  },
-                  {
-                    "relationship": "BROADER-THAN",
-                    "type": "LOINC",
-                    "value": "20570-8"
-                  }
-                ]
-              },
+                "concept": "9a9c73d0-76e6-4b84-b20c-dfe8efea9542"              },
               "validators": []
             },
             {
@@ -382,55 +198,7 @@
                 "rendering": "number",
                 "step": 1,
                 "min": "0",
-                "concept": "0ffe780c-a3ee-4c9c-b4dd-bf2e0f79dc7f",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "IMO-ProcedureIT",
-                    "value": "930136"
-                  },
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "SNOMED-CT",
-                    "value": "38082009"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH-Malawi",
-                    "value": "7982"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "21"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "21"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "301"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "441689006"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "648"
-                  },
-                  {
-                    "relationship": "BROADER-THAN",
-                    "type": "LOINC",
-                    "value": "718-7"
-                  }
-                ]
-              },
+                "concept": "0ffe780c-a3ee-4c9c-b4dd-bf2e0f79dc7f"              },
               "validators": []
             }
           ]

@@ -90,11 +90,11 @@
                 "concept": "07715eb5-aa61-4ca4-ab71-60718775c027",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -114,7 +114,7 @@
                 "disallowDecimals": true
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(nacioAntesDeLos7MesesDeEmbarazo) || nacioAntesDeLos7MesesDeEmbarazo === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(nacioAntesDeLos7MesesDeEmbarazo) || nacioAntesDeLos7MesesDeEmbarazo === '17455a61-ab7d-4bfb-a8d2-68f75a10d5f0'"
               },
               "validators": []
             },
@@ -128,11 +128,11 @@
                 "concept": "a25cfa7f-e57c-4ba5-afac-a7dcc7c774c3",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -147,48 +147,6 @@
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "8c19ba2b-503f-4559-9079-0b861f3865c2",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "1252"
-                  },
-                  {
-                    "relationship": "Associated finding",
-                    "type": "SNOMED-CT",
-                    "value": "366344009"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH-Malawi",
-                    "value": "2997"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "2997"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1572"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "169812000"
-                  },
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "AMPATH",
-                    "value": "6441"
-                  },
-                  {
-                    "relationship": "NARROWER-THAN",
-                    "type": "AMPATH",
-                    "value": "2368"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "7bc0bfa1-37fc-4ea2-acd1-a57fd19d8d43",
@@ -201,7 +159,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud) || elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud) || elPartoDelNinoFueAtendidoFueraDeUnEstablecimientoDeSalud === '17455a61-ab7d-4bfb-a8d2-68f75a10d5f0'"
               },
               "validators": []
             },
@@ -213,35 +171,13 @@
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "b6eab11f-a08d-4982-8d3a-6f5f38505b5f",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "303071001"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1560"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "1144"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "6441"
-                  }
-                ],
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -255,28 +191,6 @@
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "74217a41-8c23-466c-b2e5-9f327ae9f08d",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED-CT",
-                    "value": "303071001"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1560"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "sihsalus",
-                    "value": "1144"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "6441"
-                  }
-                ],
                 "answers": [
                   {
                     "concept": "c95955ff-2de0-44bf-871a-e3f34b718d5a",
@@ -317,7 +231,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(elNinoJuegaConLaMadrePadreOPersonaQueLoCuida) || elNinoJuegaConLaMadrePadreOPersonaQueLoCuida === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elNinoJuegaConLaMadrePadreOPersonaQueLoCuida) || elNinoJuegaConLaMadrePadreOPersonaQueLoCuida === '17455a61-ab7d-4bfb-a8d2-68f75a10d5f0'"
               }
             },
             {
@@ -330,11 +244,11 @@
                 "concept": "4f60300e-44d5-45fc-8232-29c168ca0204",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -350,7 +264,7 @@
                 "concept": "b58f29b6-87e5-4064-92ac-4ad6f981b5bd"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis) || elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis === '488b58ff-64f5-4f8a-8979-fa79940b1594'"
+                "hideWhenExpression": "isEmpty(elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis) || elNinoPresentoAlgunaInfeccionDelSistemaNerviosoCentralMeningitisEncefalitis === '17455a61-ab7d-4bfb-a8d2-68f75a10d5f0'"
               }
             }
           ]

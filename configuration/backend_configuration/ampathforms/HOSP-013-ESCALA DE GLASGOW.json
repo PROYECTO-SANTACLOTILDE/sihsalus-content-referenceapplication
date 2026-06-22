@@ -31,26 +31,26 @@
               "id": "respuestaOcular",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "0d913a2c-f77e-4485-8505-c7e00d297d73",
+                "concept": "7e540048-19b4-4261-af10-3b20712a92ef",
                 "answers": [
                   {
-                    "concept": "8fb50359-d821-4873-9b57-cd4dbdf31edb",
+                    "concept": "faff1dec-14df-44d4-8695-b337dced2274",
                     "label": "E4 Espontánea"
                   },
                   {
-                    "concept": "46fbc643-acfc-4139-9507-bc5103cd7ca5",
-                    "label": "E3 Al sonido"
+                    "concept": "2120199e-03ed-4986-892f-52a3d13b92c0",
+                    "label": "E3 Al llamado"
                   },
                   {
-                    "concept": "1c66664b-1451-4cff-8d80-62e839ade419",
-                    "label": "E2 A la presión"
+                    "concept": "1633ea34-bc65-4a87-9fec-8fef231b85cf",
+                    "label": "E2 Al dolor"
                   },
                   {
-                    "concept": "4c79326b-c8fc-4704-b232-c8b4bce55dd7",
+                    "concept": "8b4ee185-b709-4cfa-b3db-f15d565ddc04",
                     "label": "E1 Ninguna"
                   },
                   {
-                    "concept": "2c9f2f96-24be-467a-9a7e-048ee421f47b",
+                    "concept": "25c71769-dddb-4d06-a858-cde05e2087e2",
                     "label": "No evaluable"
                   }
                 ]
@@ -64,30 +64,30 @@
               "id": "respuestaVerbal",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "43e1f5ff-0beb-4d99-9452-4bd4b8e18f7e",
+                "concept": "67f9449e-e7ef-436c-9eb7-837b5afe30e4",
                 "answers": [
                   {
-                    "concept": "267ee4e2-1718-4212-b6a3-559e49fbb8db",
+                    "concept": "6440f83b-657e-4c5c-bac5-e3f67660ea4e",
                     "label": "V5 Orientado"
                   },
                   {
-                    "concept": "f6a992fc-7794-444b-8ebf-a263cf09157c",
+                    "concept": "52066114-63ee-48ca-a09b-fa9c0c7f73ba",
                     "label": "V4 Confuso"
                   },
                   {
-                    "concept": "02135095-4ce0-4b7e-98af-7bc08d08f0f2",
+                    "concept": "0b5820f1-f968-4950-bc62-ad54c6166723",
                     "label": "V3 Palabras"
                   },
                   {
-                    "concept": "0d77b488-58b7-49c7-a225-23e6ab5eebfd",
+                    "concept": "245c6329-b810-4db3-bdc1-62bb9cdc0f31",
                     "label": "V2 Sonidos"
                   },
                   {
-                    "concept": "35e48386-e81f-489a-9da2-5df72e33fa27",
+                    "concept": "1d01f180-1acd-4121-b380-049f4bbb4af7",
                     "label": "V1 Ninguna"
                   },
                   {
-                    "concept": "2c9f2f96-24be-467a-9a7e-048ee421f47b",
+                    "concept": "fd4b9335-0f74-453e-b787-46d303a9b3b5",
                     "label": "No evaluable"
                   }
                 ]
@@ -101,34 +101,34 @@
               "id": "respuestaMotora",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "bf6eee3e-32a5-43ae-8bc4-24a9e34bc271",
+                "concept": "98bfda0d-2a22-4ca4-8bc9-b0b6c6505899",
                 "answers": [
                   {
-                    "concept": "c4ae0749-3d2e-4487-ae64-11a69d8dfe42",
+                    "concept": "bddbf4e2-c870-4515-924e-d98cfcb7948f",
                     "label": "M6 Obedece órdenes"
                   },
                   {
-                    "concept": "eca4b279-de47-4520-9dbc-5f20ff55d3f7",
-                    "label": "M5 Localiza"
+                    "concept": "355eb0e2-c319-4536-9837-43bf3c23f592",
+                    "label": "M5 Localiza dolor"
                   },
                   {
-                    "concept": "2c3a0185-62c8-4b2b-b5b7-af8f9acced2a",
-                    "label": "M4 Flexión normal"
+                    "concept": "a815a9d0-a033-48bc-89e9-836a15b9a3b2",
+                    "label": "M4 Retira ante dolor"
                   },
                   {
-                    "concept": "4b5f7223-aa69-437f-939e-988e52d18f8d",
+                    "concept": "795e56c8-e783-470e-8b83-3ee11300f4a7",
                     "label": "M3 Flexión anormal"
                   },
                   {
-                    "concept": "de53d9e3-33b0-46dc-baaf-989cf4a5e5de",
+                    "concept": "b4e10f1d-09e2-4b6b-8471-466c25da1b79",
                     "label": "M2 Extensión"
                   },
                   {
-                    "concept": "66d6ba60-3a3b-4232-b440-f7b2c56fe984",
+                    "concept": "7e16856d-c686-4921-ba7f-65f7bf15771a",
                     "label": "M1 Ninguna"
                   },
                   {
-                    "concept": "2c9f2f96-24be-467a-9a7e-048ee421f47b",
+                    "concept": "09957de5-8eb7-4865-8e29-e946cf895bc4",
                     "label": "No evaluable"
                   }
                 ]
@@ -142,9 +142,9 @@
               "id": "puntajeGlasgow",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "9d46d12d-c833-4cdd-9bb6-c0fed0a0794f",
+                "concept": "9ba86e50-a4fd-48b7-b8b2-f537fde5a382",
                 "calculate": {
-                  "calculateExpression": "isEmpty(respuestaOcular) || isEmpty(respuestaVerbal) || isEmpty(respuestaMotora) || respuestaOcular === '2c9f2f96-24be-467a-9a7e-048ee421f47b' || respuestaVerbal === '2c9f2f96-24be-467a-9a7e-048ee421f47b' || respuestaMotora === '2c9f2f96-24be-467a-9a7e-048ee421f47b' ? undefined : ((respuestaOcular === '8fb50359-d821-4873-9b57-cd4dbdf31edb' ? 4 : (respuestaOcular === '46fbc643-acfc-4139-9507-bc5103cd7ca5' ? 3 : (respuestaOcular === '1c66664b-1451-4cff-8d80-62e839ade419' ? 2 : 1))) + (respuestaVerbal === '267ee4e2-1718-4212-b6a3-559e49fbb8db' ? 5 : (respuestaVerbal === 'f6a992fc-7794-444b-8ebf-a263cf09157c' ? 4 : (respuestaVerbal === '02135095-4ce0-4b7e-98af-7bc08d08f0f2' ? 3 : (respuestaVerbal === '0d77b488-58b7-49c7-a225-23e6ab5eebfd' ? 2 : 1)))) + (respuestaMotora === 'c4ae0749-3d2e-4487-ae64-11a69d8dfe42' ? 6 : (respuestaMotora === 'eca4b279-de47-4520-9dbc-5f20ff55d3f7' ? 5 : (respuestaMotora === '2c3a0185-62c8-4b2b-b5b7-af8f9acced2a' ? 4 : (respuestaMotora === '4b5f7223-aa69-437f-939e-988e52d18f8d' ? 3 : (respuestaMotora === 'de53d9e3-33b0-46dc-baaf-989cf4a5e5de' ? 2 : 1))))))"
+                  "calculateExpression": "isEmpty(respuestaOcular) || isEmpty(respuestaVerbal) || isEmpty(respuestaMotora) || respuestaOcular === '25c71769-dddb-4d06-a858-cde05e2087e2' || respuestaVerbal === 'fd4b9335-0f74-453e-b787-46d303a9b3b5' || respuestaMotora === '09957de5-8eb7-4865-8e29-e946cf895bc4' ? undefined : ((respuestaOcular === 'faff1dec-14df-44d4-8695-b337dced2274' ? 4 : (respuestaOcular === '2120199e-03ed-4986-892f-52a3d13b92c0' ? 3 : (respuestaOcular === '1633ea34-bc65-4a87-9fec-8fef231b85cf' ? 2 : 1))) + (respuestaVerbal === '6440f83b-657e-4c5c-bac5-e3f67660ea4e' ? 5 : (respuestaVerbal === '52066114-63ee-48ca-a09b-fa9c0c7f73ba' ? 4 : (respuestaVerbal === '0b5820f1-f968-4950-bc62-ad54c6166723' ? 3 : (respuestaVerbal === '245c6329-b810-4db3-bdc1-62bb9cdc0f31' ? 2 : 1)))) + (respuestaMotora === 'bddbf4e2-c870-4515-924e-d98cfcb7948f' ? 6 : (respuestaMotora === '355eb0e2-c319-4536-9837-43bf3c23f592' ? 5 : (respuestaMotora === 'a815a9d0-a033-48bc-89e9-836a15b9a3b2' ? 4 : (respuestaMotora === '795e56c8-e783-470e-8b83-3ee11300f4a7' ? 3 : (respuestaMotora === 'b4e10f1d-09e2-4b6b-8471-466c25da1b79' ? 2 : 1))))))"
                 },
                 "min": "3",
                 "max": "15",
