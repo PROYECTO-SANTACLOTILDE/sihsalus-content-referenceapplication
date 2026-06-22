@@ -1056,6 +1056,32 @@
               "validators": []
             }
           ]
+        },
+        {
+          "label": "Puntaje",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Puntaje EEDP calculado",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeEedpCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c4010003-0000-4000-8000-000000000003",
+                "calculate": {
+                  "calculateExpression": "isEmpty(fijaLaMiradaEnElRostroDelExaminador) && isEmpty(reaccionaAlSonidoDeLaCampanilla) && isEmpty(aprietaElDedoIndiceDelExaminador) && isEmpty(sigueConLaVistaLaArgollaAng90) && isEmpty(movimientoDeCabezaEnPosicionProna) && isEmpty(mimicaEnRespuestaAlRostroDelExaminador) && isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) && isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) && isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) && isEmpty(vocalizaDosSonidosDiferentes) && isEmpty(sonrieEnRespuestaALaSonrisaDelExaminador) && isEmpty(buscaConLaVistaLaFuenteDelSonido) && isEmpty(sigueConLaVistaLaArgollaAng180) && isEmpty(mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) && isEmpty(vocalizacionProlongada) && isEmpty(laCabezaSigueLaCucharaQueDesaparece) && isEmpty(giraLaCabezaAlSonidoDeLaCampanilla) && isEmpty(enPosicionPronaSeLevantaASiMismo) && isEmpty(levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) && isEmpty(rieACarcajadas) && isEmpty(vuelveLaCabezaHaciaQuienLeHabla) && isEmpty(palpaElBordeDeLaMesa) && isEmpty(intentaPresionDeLaArgolla) && isEmpty(empujaHastaLograrLaPosicionSentada) && isEmpty(seMantieneSentadoConBreveApoyo) && isEmpty(seMantieneSentadoSoloMomentaneamente) && isEmpty(vuelveLaCabezaHaciaLaCucharaCaida) && isEmpty(cogeLaArgolla) && isEmpty(cogeElCubo) && isEmpty(vocalizaCuandoSeLeHabla) && isEmpty(seMantieneSentadoSoloPor30SegOMas) && isEmpty(intentaAgarrarLaPastilla) && isEmpty(escuchaSelectivamentePalabrasFamiliares) && isEmpty(cooperaEnLosJuegos) && isEmpty(cogeDosCubosUnoEnCadaMano) && isEmpty(seSientaSoloYSeMantieneErguido) && isEmpty(empujaHastaLograrLaPosicionDePie) && isEmpty(iniciacionDePasosSostenidoBajoLosBrazos) && isEmpty(cogeLaPastillaConMovimientoDeRastrillo) && isEmpty(diceDaDaOEquivalente) && isEmpty(sePoneDePieConApoyo) && isEmpty(realizaMovimientosQueSemejanPasosSostenidoBajoLosBrazos) && isEmpty(cogeLaPastillaConParticipacionDelPulgar) && isEmpty(encuentraElCuboBajoElPanal) && isEmpty(reaccionaALosRequerimientosVerbales) && isEmpty(cogeLaPastillaConPulgarEIndice) && isEmpty(imitaGestosSimples) && isEmpty(cogeElTercerCuboDejando1DeLos2Primeros) && isEmpty(juntaCubosEnLaLineaMedia) && isEmpty(reaccionaAlNoNo) && isEmpty(caminaAlgunosPasosDeLaMano) && isEmpty(juntaLasManosEnLaLineaMedia) && isEmpty(sePoneDePieSolo) && isEmpty(entregaComoRespuestaAUnaOrden) && isEmpty(diceAlMenos2Palabras) && isEmpty(caminaSolo) && isEmpty(introduceLaPastillaEnLaBotella) && isEmpty(espontaneamenteGarabatea) && isEmpty(cogeElTercerCuboConservandoLos2Primeros) && isEmpty(diceAlMenos3Palabras) && isEmpty(muestraSusZapatos) && isEmpty(caminaVariosPasosHaciaElLado) && isEmpty(caminaVariosPasosHaciaAtras) && isEmpty(retiraInmediatamenteLaPastillaDeLaBotella) && isEmpty(atraeElCuboConUnPalo) ? undefined : ((isEmpty(fijaLaMiradaEnElRostroDelExaminador) ? 0 : fijaLaMiradaEnElRostroDelExaminador) + (isEmpty(reaccionaAlSonidoDeLaCampanilla) ? 0 : reaccionaAlSonidoDeLaCampanilla) + (isEmpty(aprietaElDedoIndiceDelExaminador) ? 0 : aprietaElDedoIndiceDelExaminador) + (isEmpty(sigueConLaVistaLaArgollaAng90) ? 0 : sigueConLaVistaLaArgollaAng90) + (isEmpty(movimientoDeCabezaEnPosicionProna) ? 0 : movimientoDeCabezaEnPosicionProna) + (isEmpty(mimicaEnRespuestaAlRostroDelExaminador) ? 0 : mimicaEnRespuestaAlRostroDelExaminador) + (isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) ? 0 : vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) + (isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) ? 0 : reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) + (isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) ? 0 : intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) + (isEmpty(vocalizaDosSonidosDiferentes) ? 0 : vocalizaDosSonidosDiferentes) + (isEmpty(sonrieEnRespuestaALaSonrisaDelExaminador) ? 0 : sonrieEnRespuestaALaSonrisaDelExaminador) + (isEmpty(buscaConLaVistaLaFuenteDelSonido) ? 0 : buscaConLaVistaLaFuenteDelSonido) + (isEmpty(sigueConLaVistaLaArgollaAng180) ? 0 : sigueConLaVistaLaArgollaAng180) + (isEmpty(mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) ? 0 : mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) + (isEmpty(vocalizacionProlongada) ? 0 : vocalizacionProlongada) + (isEmpty(laCabezaSigueLaCucharaQueDesaparece) ? 0 : laCabezaSigueLaCucharaQueDesaparece) + (isEmpty(giraLaCabezaAlSonidoDeLaCampanilla) ? 0 : giraLaCabezaAlSonidoDeLaCampanilla) + (isEmpty(enPosicionPronaSeLevantaASiMismo) ? 0 : enPosicionPronaSeLevantaASiMismo) + (isEmpty(levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) ? 0 : levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) + (isEmpty(rieACarcajadas) ? 0 : rieACarcajadas) + (isEmpty(vuelveLaCabezaHaciaQuienLeHabla) ? 0 : vuelveLaCabezaHaciaQuienLeHabla) + (isEmpty(palpaElBordeDeLaMesa) ? 0 : palpaElBordeDeLaMesa) + (isEmpty(intentaPresionDeLaArgolla) ? 0 : intentaPresionDeLaArgolla) + (isEmpty(empujaHastaLograrLaPosicionSentada) ? 0 : empujaHastaLograrLaPosicionSentada) + (isEmpty(seMantieneSentadoConBreveApoyo) ? 0 : seMantieneSentadoConBreveApoyo) + (isEmpty(seMantieneSentadoSoloMomentaneamente) ? 0 : seMantieneSentadoSoloMomentaneamente) + (isEmpty(vuelveLaCabezaHaciaLaCucharaCaida) ? 0 : vuelveLaCabezaHaciaLaCucharaCaida) + (isEmpty(cogeLaArgolla) ? 0 : cogeLaArgolla) + (isEmpty(cogeElCubo) ? 0 : cogeElCubo) + (isEmpty(vocalizaCuandoSeLeHabla) ? 0 : vocalizaCuandoSeLeHabla) + (isEmpty(seMantieneSentadoSoloPor30SegOMas) ? 0 : seMantieneSentadoSoloPor30SegOMas) + (isEmpty(intentaAgarrarLaPastilla) ? 0 : intentaAgarrarLaPastilla) + (isEmpty(escuchaSelectivamentePalabrasFamiliares) ? 0 : escuchaSelectivamentePalabrasFamiliares) + (isEmpty(cooperaEnLosJuegos) ? 0 : cooperaEnLosJuegos) + (isEmpty(cogeDosCubosUnoEnCadaMano) ? 0 : cogeDosCubosUnoEnCadaMano) + (isEmpty(seSientaSoloYSeMantieneErguido) ? 0 : seSientaSoloYSeMantieneErguido) + (isEmpty(empujaHastaLograrLaPosicionDePie) ? 0 : empujaHastaLograrLaPosicionDePie) + (isEmpty(iniciacionDePasosSostenidoBajoLosBrazos) ? 0 : iniciacionDePasosSostenidoBajoLosBrazos) + (isEmpty(cogeLaPastillaConMovimientoDeRastrillo) ? 0 : cogeLaPastillaConMovimientoDeRastrillo) + (isEmpty(diceDaDaOEquivalente) ? 0 : diceDaDaOEquivalente) + (isEmpty(sePoneDePieConApoyo) ? 0 : sePoneDePieConApoyo) + (isEmpty(realizaMovimientosQueSemejanPasosSostenidoBajoLosBrazos) ? 0 : realizaMovimientosQueSemejanPasosSostenidoBajoLosBrazos) + (isEmpty(cogeLaPastillaConParticipacionDelPulgar) ? 0 : cogeLaPastillaConParticipacionDelPulgar) + (isEmpty(encuentraElCuboBajoElPanal) ? 0 : encuentraElCuboBajoElPanal) + (isEmpty(reaccionaALosRequerimientosVerbales) ? 0 : reaccionaALosRequerimientosVerbales) + (isEmpty(cogeLaPastillaConPulgarEIndice) ? 0 : cogeLaPastillaConPulgarEIndice) + (isEmpty(imitaGestosSimples) ? 0 : imitaGestosSimples) + (isEmpty(cogeElTercerCuboDejando1DeLos2Primeros) ? 0 : cogeElTercerCuboDejando1DeLos2Primeros) + (isEmpty(juntaCubosEnLaLineaMedia) ? 0 : juntaCubosEnLaLineaMedia) + (isEmpty(reaccionaAlNoNo) ? 0 : reaccionaAlNoNo) + (isEmpty(caminaAlgunosPasosDeLaMano) ? 0 : caminaAlgunosPasosDeLaMano) + (isEmpty(juntaLasManosEnLaLineaMedia) ? 0 : juntaLasManosEnLaLineaMedia) + (isEmpty(sePoneDePieSolo) ? 0 : sePoneDePieSolo) + (isEmpty(entregaComoRespuestaAUnaOrden) ? 0 : entregaComoRespuestaAUnaOrden) + (isEmpty(diceAlMenos2Palabras) ? 0 : diceAlMenos2Palabras) + (isEmpty(caminaSolo) ? 0 : caminaSolo) + (isEmpty(introduceLaPastillaEnLaBotella) ? 0 : introduceLaPastillaEnLaBotella) + (isEmpty(espontaneamenteGarabatea) ? 0 : espontaneamenteGarabatea) + (isEmpty(cogeElTercerCuboConservandoLos2Primeros) ? 0 : cogeElTercerCuboConservandoLos2Primeros) + (isEmpty(diceAlMenos3Palabras) ? 0 : diceAlMenos3Palabras) + (isEmpty(muestraSusZapatos) ? 0 : muestraSusZapatos) + (isEmpty(caminaVariosPasosHaciaElLado) ? 0 : caminaVariosPasosHaciaElLado) + (isEmpty(caminaVariosPasosHaciaAtras) ? 0 : caminaVariosPasosHaciaAtras) + (isEmpty(retiraInmediatamenteLaPastillaDeLaBotella) ? 0 : retiraInmediatamenteLaPastillaDeLaBotella) + (isEmpty(atraeElCuboConUnPalo) ? 0 : atraeElCuboConUnPalo))"
+                },
+                "min": "0",
+                "max": "540",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "validators": []
+            }
+          ]
         }
       ]
     },
@@ -1085,6 +1111,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -1099,5 +1135,5 @@
   "referencedForms": [],
   "uuid": "597a3a88-28a5-4d39-8975-9ff6ea7f691e",
   "description": "Pagina 30, 31, 32 y 33",
-  "version": "1.6"
+  "version": "1.7"
 }

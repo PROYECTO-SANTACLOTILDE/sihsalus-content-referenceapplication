@@ -114,16 +114,46 @@
                 "rendering": "select",
                 "concept": "c2380009-0000-4000-8000-000000000009",
                 "answers": [
-                  { "concept": "c2380121-0000-4000-8000-000000000121", "label": "Recién nacido" },
-                  { "concept": "c2380122-0000-4000-8000-000000000122", "label": "15 a 21 días" },
-                  { "concept": "c2380123-0000-4000-8000-000000000123", "label": "2 meses" },
-                  { "concept": "c2380124-0000-4000-8000-000000000124", "label": "3 meses" },
-                  { "concept": "c2380125-0000-4000-8000-000000000125", "label": "6 meses" },
-                  { "concept": "c2380126-0000-4000-8000-000000000126", "label": "9 meses" },
-                  { "concept": "c2380127-0000-4000-8000-000000000127", "label": "12 meses" },
-                  { "concept": "c2380128-0000-4000-8000-000000000128", "label": "18 meses" },
-                  { "concept": "c2380129-0000-4000-8000-000000000129", "label": "24 meses" },
-                  { "concept": "c2380130-0000-4000-8000-000000000130", "label": "30 meses" }
+                  {
+                    "concept": "c2380121-0000-4000-8000-000000000121",
+                    "label": "Recién nacido"
+                  },
+                  {
+                    "concept": "c2380122-0000-4000-8000-000000000122",
+                    "label": "15 a 21 días"
+                  },
+                  {
+                    "concept": "c2380123-0000-4000-8000-000000000123",
+                    "label": "2 meses"
+                  },
+                  {
+                    "concept": "c2380124-0000-4000-8000-000000000124",
+                    "label": "3 meses"
+                  },
+                  {
+                    "concept": "c2380125-0000-4000-8000-000000000125",
+                    "label": "6 meses"
+                  },
+                  {
+                    "concept": "c2380126-0000-4000-8000-000000000126",
+                    "label": "9 meses"
+                  },
+                  {
+                    "concept": "c2380127-0000-4000-8000-000000000127",
+                    "label": "12 meses"
+                  },
+                  {
+                    "concept": "c2380128-0000-4000-8000-000000000128",
+                    "label": "18 meses"
+                  },
+                  {
+                    "concept": "c2380129-0000-4000-8000-000000000129",
+                    "label": "24 meses"
+                  },
+                  {
+                    "concept": "c2380130-0000-4000-8000-000000000130",
+                    "label": "30 meses"
+                  }
                 ]
               },
               "validators": []
@@ -143,8 +173,14 @@
                 "rendering": "radio",
                 "concept": "c2380005-0000-4000-8000-000000000005",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
@@ -169,8 +205,14 @@
                 "rendering": "radio",
                 "concept": "c2380007-0000-4000-8000-000000000007",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
@@ -201,23 +243,157 @@
                 "rendering": "select",
                 "concept": "c2380010-0000-4000-8000-000000000010",
                 "answers": [
-                  { "concept": "c2380111-0000-4000-8000-000000000111", "label": "Observación directa" },
-                  { "concept": "c2380112-0000-4000-8000-000000000112", "label": "Reporte del cuidador" },
-                  { "concept": "c2380113-0000-4000-8000-000000000113", "label": "Observación y reporte" }
+                  {
+                    "concept": "c2380111-0000-4000-8000-000000000111",
+                    "label": "Observación directa"
+                  },
+                  {
+                    "concept": "c2380112-0000-4000-8000-000000000112",
+                    "label": "Reporte del cuidador"
+                  },
+                  {
+                    "concept": "c2380113-0000-4000-8000-000000000113",
+                    "label": "Observación y reporte"
+                  }
                 ]
               },
               "validators": []
             },
-            { "label": "Hitos no logrados - motor grueso", "type": "obs", "required": false, "id": "noLogradosMotorGrueso", "questionOptions": { "rendering": "number", "concept": "c2380011-0000-4000-8000-000000000011", "min": "0", "max": "20", "step": 1, "disallowDecimals": true }, "hideSteppers": true, "validators": [] },
-            { "label": "Detalle motor grueso", "type": "obs", "required": false, "id": "detalleMotorGrueso", "questionOptions": { "rendering": "textarea", "concept": "c2380016-0000-4000-8000-000000000016" }, "validators": [] },
-            { "label": "Hitos no logrados - motor fino", "type": "obs", "required": false, "id": "noLogradosMotorFino", "questionOptions": { "rendering": "number", "concept": "c2380012-0000-4000-8000-000000000012", "min": "0", "max": "20", "step": 1, "disallowDecimals": true }, "hideSteppers": true, "validators": [] },
-            { "label": "Detalle motor fino", "type": "obs", "required": false, "id": "detalleMotorFino", "questionOptions": { "rendering": "textarea", "concept": "c2380017-0000-4000-8000-000000000017" }, "validators": [] },
-            { "label": "Hitos no logrados - social", "type": "obs", "required": false, "id": "noLogradosSocial", "questionOptions": { "rendering": "number", "concept": "c2380013-0000-4000-8000-000000000013", "min": "0", "max": "20", "step": 1, "disallowDecimals": true }, "hideSteppers": true, "validators": [] },
-            { "label": "Detalle social", "type": "obs", "required": false, "id": "detalleSocial", "questionOptions": { "rendering": "textarea", "concept": "c2380018-0000-4000-8000-000000000018" }, "validators": [] },
-            { "label": "Hitos no logrados - cognitivo", "type": "obs", "required": false, "id": "noLogradosCognitivo", "questionOptions": { "rendering": "number", "concept": "c2380014-0000-4000-8000-000000000014", "min": "0", "max": "20", "step": 1, "disallowDecimals": true }, "hideSteppers": true, "validators": [] },
-            { "label": "Detalle cognitivo", "type": "obs", "required": false, "id": "detalleCognitivo", "questionOptions": { "rendering": "textarea", "concept": "c2380019-0000-4000-8000-000000000019" }, "validators": [] },
-            { "label": "Hitos no logrados - habla", "type": "obs", "required": false, "id": "noLogradosHabla", "questionOptions": { "rendering": "number", "concept": "c2380015-0000-4000-8000-000000000015", "min": "0", "max": "20", "step": 1, "disallowDecimals": true }, "hideSteppers": true, "validators": [] },
-            { "label": "Detalle habla", "type": "obs", "required": false, "id": "detalleHabla", "questionOptions": { "rendering": "textarea", "concept": "c2380020-0000-4000-8000-000000000020" }, "validators": [] }
+            {
+              "label": "Hitos no logrados - motor grueso",
+              "type": "obs",
+              "required": false,
+              "id": "noLogradosMotorGrueso",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380011-0000-4000-8000-000000000011",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Detalle motor grueso",
+              "type": "obs",
+              "required": false,
+              "id": "detalleMotorGrueso",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380016-0000-4000-8000-000000000016"
+              },
+              "validators": []
+            },
+            {
+              "label": "Hitos no logrados - motor fino",
+              "type": "obs",
+              "required": false,
+              "id": "noLogradosMotorFino",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380012-0000-4000-8000-000000000012",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Detalle motor fino",
+              "type": "obs",
+              "required": false,
+              "id": "detalleMotorFino",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380017-0000-4000-8000-000000000017"
+              },
+              "validators": []
+            },
+            {
+              "label": "Hitos no logrados - social",
+              "type": "obs",
+              "required": false,
+              "id": "noLogradosSocial",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380013-0000-4000-8000-000000000013",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Detalle social",
+              "type": "obs",
+              "required": false,
+              "id": "detalleSocial",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380018-0000-4000-8000-000000000018"
+              },
+              "validators": []
+            },
+            {
+              "label": "Hitos no logrados - cognitivo",
+              "type": "obs",
+              "required": false,
+              "id": "noLogradosCognitivo",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380014-0000-4000-8000-000000000014",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Detalle cognitivo",
+              "type": "obs",
+              "required": false,
+              "id": "detalleCognitivo",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380019-0000-4000-8000-000000000019"
+              },
+              "validators": []
+            },
+            {
+              "label": "Hitos no logrados - habla",
+              "type": "obs",
+              "required": false,
+              "id": "noLogradosHabla",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380015-0000-4000-8000-000000000015",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Detalle habla",
+              "type": "obs",
+              "required": false,
+              "id": "detalleHabla",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380020-0000-4000-8000-000000000020"
+              },
+              "validators": []
+            }
           ]
         },
         {
@@ -232,13 +408,33 @@
               "questionOptions": {
                 "rendering": "number",
                 "concept": "c2380021-0000-4000-8000-000000000021",
+                "calculate": {
+                  "calculateExpression": "(isEmpty(noLogradosMotorGrueso) ? 0 : noLogradosMotorGrueso) + (isEmpty(noLogradosMotorFino) ? 0 : noLogradosMotorFino) + (isEmpty(noLogradosSocial) ? 0 : noLogradosSocial) + (isEmpty(noLogradosCognitivo) ? 0 : noLogradosCognitivo) + (isEmpty(noLogradosHabla) ? 0 : noLogradosHabla)"
+                },
                 "min": "0",
                 "max": "50",
                 "step": 1,
                 "disallowDecimals": true
               },
+              "editable": false,
               "hideSteppers": true,
               "validators": []
+            },
+            {
+              "label": "Nivel de alerta calculado",
+              "type": "control",
+              "id": "nivelAlertaCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "totalHitosNoLogrados >= 2 ? 2 : totalHitosNoLogrados"
+                },
+                "min": "0",
+                "max": "2",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
             },
             {
               "label": "Resultado Huanca Test",
@@ -249,10 +445,22 @@
                 "rendering": "select",
                 "concept": "c2380022-0000-4000-8000-000000000022",
                 "answers": [
-                  { "concept": "c2380151-0000-4000-8000-000000000151", "label": "Desarrollo esperado" },
-                  { "concept": "c2380152-0000-4000-8000-000000000152", "label": "Alerta por un hito no logrado" },
-                  { "concept": "c2380153-0000-4000-8000-000000000153", "label": "Alerta por dos o más hitos no logrados" },
-                  { "concept": "c2380155-0000-4000-8000-000000000155", "label": "Evaluación no concluyente" }
+                  {
+                    "concept": "c2380151-0000-4000-8000-000000000151",
+                    "label": "Desarrollo esperado"
+                  },
+                  {
+                    "concept": "c2380152-0000-4000-8000-000000000152",
+                    "label": "Alerta por un hito no logrado"
+                  },
+                  {
+                    "concept": "c2380153-0000-4000-8000-000000000153",
+                    "label": "Alerta por dos o más hitos no logrados"
+                  },
+                  {
+                    "concept": "c2380155-0000-4000-8000-000000000155",
+                    "label": "Evaluación no concluyente"
+                  }
                 ]
               },
               "validators": []
@@ -266,10 +474,22 @@
                 "rendering": "select",
                 "concept": "c2380023-0000-4000-8000-000000000023",
                 "answers": [
-                  { "concept": "c2380161-0000-4000-8000-000000000161", "label": "Continuar controles y consejería" },
-                  { "concept": "c2380162-0000-4000-8000-000000000162", "label": "ATD semanal y reevaluación mensual" },
-                  { "concept": "c2380163-0000-4000-8000-000000000163", "label": "ATD semanal y prueba EDI" },
-                  { "concept": "c2380165-0000-4000-8000-000000000165", "label": "Reprogramar evaluación" }
+                  {
+                    "concept": "c2380161-0000-4000-8000-000000000161",
+                    "label": "Continuar controles y consejería"
+                  },
+                  {
+                    "concept": "c2380162-0000-4000-8000-000000000162",
+                    "label": "ATD semanal y reevaluación mensual"
+                  },
+                  {
+                    "concept": "c2380163-0000-4000-8000-000000000163",
+                    "label": "ATD semanal y prueba EDI"
+                  },
+                  {
+                    "concept": "c2380165-0000-4000-8000-000000000165",
+                    "label": "Reprogramar evaluación"
+                  }
                 ]
               },
               "validators": []
@@ -288,56 +508,86 @@
             {
               "label": "ATD semanal programada",
               "type": "obs",
-              "required": false,
+              "required": "accionInmediata === 'c2380162-0000-4000-8000-000000000162' || accionInmediata === 'c2380163-0000-4000-8000-000000000163'",
               "id": "atdProgramada",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2380025-0000-4000-8000-000000000025",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(accionInmediata) || (accionInmediata !== 'c2380162-0000-4000-8000-000000000162' && accionInmediata !== 'c2380163-0000-4000-8000-000000000163')"
               },
               "validators": []
             },
             {
               "label": "Fecha de reevaluación",
               "type": "obs",
-              "required": false,
+              "required": "accionInmediata === 'c2380162-0000-4000-8000-000000000162' || accionInmediata === 'c2380163-0000-4000-8000-000000000163'",
               "id": "fechaReevaluacion",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "c2380026-0000-4000-8000-000000000026"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(accionInmediata) || (accionInmediata !== 'c2380162-0000-4000-8000-000000000162' && accionInmediata !== 'c2380163-0000-4000-8000-000000000163')"
               },
               "validators": []
             },
             {
               "label": "Requiere prueba EDI",
               "type": "obs",
-              "required": false,
+              "required": "resultadoHuanca === 'c2380153-0000-4000-8000-000000000153' || accionInmediata === 'c2380163-0000-4000-8000-000000000163'",
               "id": "requiereEdi",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2380027-0000-4000-8000-000000000027",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "resultadoHuanca !== 'c2380153-0000-4000-8000-000000000153' && accionInmediata !== 'c2380163-0000-4000-8000-000000000163'"
               },
               "validators": []
             },
             {
               "label": "Requiere interconsulta o referencia",
               "type": "obs",
-              "required": false,
+              "required": "resultadoHuanca === 'c2380153-0000-4000-8000-000000000153'",
               "id": "requiereInterconsulta",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2380028-0000-4000-8000-000000000028",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "resultadoHuanca !== 'c2380153-0000-4000-8000-000000000153'"
               },
               "validators": []
             },
@@ -382,6 +632,16 @@
                 "isSearchable": true
               },
               "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -396,5 +656,5 @@
   "referencedForms": [],
   "uuid": "c2260000-0000-4000-8000-000000000026",
   "description": "Vigilancia del neurodesarrollo con Huanca Test adaptado para niños hasta 36 meses según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

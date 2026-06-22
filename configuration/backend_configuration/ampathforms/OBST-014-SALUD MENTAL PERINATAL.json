@@ -45,7 +45,7 @@
               "required": true,
               "id": "resultado",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f0000013-0000-4000-8000-000000000013",
                 "answers": [
                   {
@@ -65,6 +65,22 @@
               "validators": []
             },
             {
+              "label": "Nivel de riesgo calculado",
+              "type": "control",
+              "id": "nivelRiesgoCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(resultado) ? undefined : (resultado === 'f0000103-0000-4000-8000-000000000103' ? 2 : (resultado === 'f0000102-0000-4000-8000-000000000102' ? 1 : 0))"
+                },
+                "min": "0",
+                "max": "2",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
+            },
+            {
               "label": "Observaciones clínicas",
               "type": "obs",
               "required": false,
@@ -78,11 +94,14 @@
             {
               "label": "Plan, interconsulta o referencia",
               "type": "obs",
-              "required": false,
+              "required": "resultado === 'f0000102-0000-4000-8000-000000000102' || resultado === 'f0000103-0000-4000-8000-000000000103'",
               "id": "plan",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(resultado) || resultado === 'f0000101-0000-4000-8000-000000000101'"
               },
               "validators": []
             }
@@ -111,6 +130,16 @@
                 "isSearchable": true
               },
               "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -125,5 +154,5 @@
   "referencedForms": [],
   "uuid": "b1140000-0000-4000-8000-000000000014",
   "description": "Tamizaje resumido de salud mental perinatal para gestante o puérpera.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "f0703edb-cb58-4cf4-976a-755bd9e15c95",
   "description": "Tamizaje de salud mental, riesgo psicosocial, consumo de sustancias o violencia para detección y referencia oportuna. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pages": [
     {
       "label": "Tamizaje",
@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "servicio",
-              "label": "Servicio"
+              "label": "Servicio",
+              "required": true
             }
           ]
         },
@@ -130,6 +131,9 @@
                 "step": 1
               },
               "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'"
+              },
               "validators": []
             },
             {
@@ -199,6 +203,356 @@
                     "label": "Otro"
                   }
                 ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "PHQ-9 calculado",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "type": "markdown",
+              "questionOptions": {
+                "rendering": "markdown"
+              },
+              "id": "phq9Intro",
+              "value": [
+                "**PHQ-9**",
+                "",
+                "Durante las ultimas 2 semanas, indique con que frecuencia la persona ha presentado los siguientes problemas."
+              ],
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              }
+            },
+            {
+              "label": "1. Poco interes o placer en hacer cosas",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq91",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167006AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "2. Sentirse desanimado/a, deprimido/a o sin esperanza",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq92",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167007AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "3. Problemas para dormir, mantenerse dormido/a o dormir demasiado",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq93",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167068AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "4. Sentirse cansado/a o con poca energia",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq94",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167069AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "5. Falta de apetito o comer en exceso",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq95",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167070AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "6. Sentirse mal consigo mismo/a, que ha fallado o que ha defraudado a su familia",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq96",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167071AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "7. Dificultad para concentrarse, por ejemplo al leer o ver television",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq97",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167072AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "8. Moverse o hablar muy lento, o estar tan inquieto/a que se mueve mas de lo habitual",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq98",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167073AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "9. Pensamientos de que estaria mejor muerto/a o de hacerse dano de alguna manera",
+              "type": "obs",
+              "required": "instrumentoTamizaje === 'f1000000-0000-4000-8000-000000000182'",
+              "id": "phq99",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "167074AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160215AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nunca"
+                  },
+                  {
+                    "concept": "167000AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Varios dias"
+                  },
+                  {
+                    "concept": "167001AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Mas de la mitad de los dias"
+                  },
+                  {
+                    "concept": "167002AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Casi todos los dias"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              },
+              "validators": []
+            },
+            {
+              "label": "Puntaje PHQ-2",
+              "type": "control",
+              "id": "phq2Score",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "calcPHQ9Score(phq91, phq92)"
+                },
+                "min": "0",
+                "max": "6",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
+              }
+            },
+            {
+              "label": "Puntaje PHQ-9 calculado",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeTamizajePhq9",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "f1000000-0000-4000-8000-000000000029",
+                "calculate": {
+                  "calculateExpression": "calcPHQ9Score(phq91, phq92, phq93, phq94, phq95, phq96, phq97, phq98, phq99)"
+                },
+                "min": "0",
+                "max": "27",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "hide": {
+                "hideWhenExpression": "instrumentoTamizaje !== 'f1000000-0000-4000-8000-000000000182'"
               },
               "validators": []
             }

@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "901a3851-fac2-4214-b7a7-47522b8f2548",
   "description": "Registro del plan de atención individualizado de salud mental con objetivos, intervenciones, red de apoyo y seguimiento. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pages": [
     {
       "label": "Datos del PAI",
@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "servicio",
-              "label": "Servicio"
+              "label": "Servicio",
+              "required": true
             }
           ]
         },
@@ -134,7 +135,7 @@
               "required": true,
               "id": "severidad",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000010",
                 "answers": [
                   {
@@ -152,6 +153,22 @@
                 ]
               },
               "validators": []
+            },
+            {
+              "label": "Nivel de severidad calculado",
+              "type": "control",
+              "id": "nivelSeveridadCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(severidad) ? undefined : (severidad === 'b05a68ec-49de-423f-ada9-9a58c887eca6' ? 3 : (severidad === 'aed747d5-fba0-49fc-9e29-ebc56b62fb22' ? 2 : 1))"
+                },
+                "min": "1",
+                "max": "3",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
             }
           ]
         }
@@ -282,11 +299,14 @@
             {
               "label": "Fecha de próxima cita",
               "type": "obs",
-              "required": false,
+              "required": "proximaAccion === 'f1000000-0000-4000-8000-000000000171' || proximaAccion === 'f1000000-0000-4000-8000-000000000172' || proximaAccion === 'f1000000-0000-4000-8000-000000000173'",
               "id": "proximaCita",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(proximaAccion) || (proximaAccion !== 'f1000000-0000-4000-8000-000000000171' && proximaAccion !== 'f1000000-0000-4000-8000-000000000172' && proximaAccion !== 'f1000000-0000-4000-8000-000000000173')"
               },
               "validators": [
                 {

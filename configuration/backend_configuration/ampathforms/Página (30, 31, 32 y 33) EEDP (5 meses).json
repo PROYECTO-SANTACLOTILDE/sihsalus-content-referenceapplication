@@ -408,6 +408,32 @@
               "validators": []
             }
           ]
+        },
+        {
+          "label": "Puntaje",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Puntaje EEDP calculado",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeEedpCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c4010003-0000-4000-8000-000000000003",
+                "calculate": {
+                  "calculateExpression": "isEmpty(fijaLaMiradaEnElRostroDelExaminador) && isEmpty(reaccionaAlSonidoDeLaCampanilla) && isEmpty(aprietaElDedoIndiceDelExaminador) && isEmpty(sigueConLaVistaLaArgollaAng90) && isEmpty(movimientoDeCabezaEnPosicionProna) && isEmpty(mimicaEnRespuestaAlRostroDelExaminador) && isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) && isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) && isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) && isEmpty(vocalizaDosSonidosDiferentes) && isEmpty(sonrieEnRespuestaALaSonrisaDelExaminador) && isEmpty(buscaConLaVistaLaFuenteDelSonido) && isEmpty(sigueConLaVistaLaArgollaAng180) && isEmpty(mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) && isEmpty(vocalizacionProlongada) && isEmpty(laCabezaSigueLaCucharaQueDesaparece) && isEmpty(giraLaCabezaAlSonidoDeLaCampanilla) && isEmpty(enPosicionPronaSeLevantaASiMismo) && isEmpty(levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) && isEmpty(rieACarcajadas) && isEmpty(vuelveLaCabezaHaciaQuienLeHabla) && isEmpty(palpaElBordeDeLaMesa) && isEmpty(intentaPresionDeLaArgolla) && isEmpty(empujaHastaLograrLaPosicionSentada) && isEmpty(seMantieneSentadoConBreveApoyo) ? undefined : ((isEmpty(fijaLaMiradaEnElRostroDelExaminador) ? 0 : fijaLaMiradaEnElRostroDelExaminador) + (isEmpty(reaccionaAlSonidoDeLaCampanilla) ? 0 : reaccionaAlSonidoDeLaCampanilla) + (isEmpty(aprietaElDedoIndiceDelExaminador) ? 0 : aprietaElDedoIndiceDelExaminador) + (isEmpty(sigueConLaVistaLaArgollaAng90) ? 0 : sigueConLaVistaLaArgollaAng90) + (isEmpty(movimientoDeCabezaEnPosicionProna) ? 0 : movimientoDeCabezaEnPosicionProna) + (isEmpty(mimicaEnRespuestaAlRostroDelExaminador) ? 0 : mimicaEnRespuestaAlRostroDelExaminador) + (isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) ? 0 : vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) + (isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) ? 0 : reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) + (isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) ? 0 : intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) + (isEmpty(vocalizaDosSonidosDiferentes) ? 0 : vocalizaDosSonidosDiferentes) + (isEmpty(sonrieEnRespuestaALaSonrisaDelExaminador) ? 0 : sonrieEnRespuestaALaSonrisaDelExaminador) + (isEmpty(buscaConLaVistaLaFuenteDelSonido) ? 0 : buscaConLaVistaLaFuenteDelSonido) + (isEmpty(sigueConLaVistaLaArgollaAng180) ? 0 : sigueConLaVistaLaArgollaAng180) + (isEmpty(mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) ? 0 : mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada) + (isEmpty(vocalizacionProlongada) ? 0 : vocalizacionProlongada) + (isEmpty(laCabezaSigueLaCucharaQueDesaparece) ? 0 : laCabezaSigueLaCucharaQueDesaparece) + (isEmpty(giraLaCabezaAlSonidoDeLaCampanilla) ? 0 : giraLaCabezaAlSonidoDeLaCampanilla) + (isEmpty(enPosicionPronaSeLevantaASiMismo) ? 0 : enPosicionPronaSeLevantaASiMismo) + (isEmpty(levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) ? 0 : levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada) + (isEmpty(rieACarcajadas) ? 0 : rieACarcajadas) + (isEmpty(vuelveLaCabezaHaciaQuienLeHabla) ? 0 : vuelveLaCabezaHaciaQuienLeHabla) + (isEmpty(palpaElBordeDeLaMesa) ? 0 : palpaElBordeDeLaMesa) + (isEmpty(intentaPresionDeLaArgolla) ? 0 : intentaPresionDeLaArgolla) + (isEmpty(empujaHastaLograrLaPosicionSentada) ? 0 : empujaHastaLograrLaPosicionSentada) + (isEmpty(seMantieneSentadoConBreveApoyo) ? 0 : seMantieneSentadoConBreveApoyo))"
+                },
+                "min": "0",
+                "max": "150",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "validators": []
+            }
+          ]
         }
       ]
     },
@@ -437,6 +463,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -451,5 +487,5 @@
   "referencedForms": [],
   "uuid": "b2c8a680-9d02-4ad4-b0ad-09d0e3cf7ac5",
   "description": "Pagina 30, 31, 32 y 33",
-  "version": "1.2"
+  "version": "1.3"
 }

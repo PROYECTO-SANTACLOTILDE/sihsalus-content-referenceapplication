@@ -275,6 +275,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

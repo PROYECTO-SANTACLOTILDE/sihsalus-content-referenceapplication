@@ -669,10 +669,12 @@
             {
               "type": "encounterLocation",
               "questionOptions": {
-                "rendering": "select"
+                "rendering": "ui-select-extended",
+                "isSearchable": true
               },
               "id": "establecimientoDeLaAtencion",
-              "label": "Establecimiento de la atención"
+              "label": "Establecimiento de la atención",
+              "required": true
             }
           ]
         }
