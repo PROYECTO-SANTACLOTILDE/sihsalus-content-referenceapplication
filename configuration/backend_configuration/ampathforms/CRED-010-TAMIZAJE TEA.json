@@ -51,7 +51,8 @@
                 "concept": "f0000007-0000-4000-8000-000000000007",
                 "min": "0",
                 "max": "100",
-                "step": 1
+                "step": 1,
+                "disallowDecimals": true
               },
               "hideSteppers": true,
               "validators": []
@@ -86,6 +87,22 @@
               "validators": []
             },
             {
+              "label": "Nivel de riesgo calculado",
+              "type": "control",
+              "id": "nivelRiesgoCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104' ? 2 : (resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' ? 1 : 0))"
+                },
+                "min": "0",
+                "max": "2",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
+            },
+            {
               "label": "Señales de alerta observadas",
               "type": "obs",
               "required": false,
@@ -99,11 +116,14 @@
             {
               "label": "Plan, interconsulta o referencia",
               "type": "obs",
-              "required": false,
+              "required": "resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' || resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104'",
               "id": "plan",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(resultadoGlobal) || resultadoGlobal === 'f0000101-0000-4000-8000-000000000101'"
               },
               "validators": []
             }
@@ -132,6 +152,16 @@
                 "isSearchable": true
               },
               "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -146,5 +176,5 @@
   "referencedForms": [],
   "uuid": "c1100000-0000-4000-8000-000000000010",
   "description": "Registro estructurado de tamizaje de señales de TEA en CRED según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

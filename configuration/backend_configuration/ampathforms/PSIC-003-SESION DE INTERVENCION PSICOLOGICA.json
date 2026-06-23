@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "b6aed790-f935-45af-8c95-7adb82ee00ff",
   "description": "Registro de sesión de intervención psicológica, psicoterapia, psicoeducación o seguimiento comunitario. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pages": [
     {
       "label": "Sesión",
@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "servicio",
-              "label": "Servicio"
+              "label": "Servicio",
+              "required": true
             },
             {
               "label": "Modalidad de atención",
@@ -68,7 +69,7 @@
               "required": true,
               "id": "modalidadAtencion",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000020",
                 "answers": [
                   {
@@ -225,7 +226,7 @@
               "required": true,
               "id": "riesgoSuicida",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000006",
                 "answers": [
                   {
@@ -254,7 +255,7 @@
               "required": true,
               "id": "riesgoViolencia",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000007",
                 "answers": [
                   {
@@ -276,6 +277,22 @@
                 ]
               },
               "validators": []
+            },
+            {
+              "label": "Riesgo global calculado",
+              "type": "control",
+              "id": "riesgoGlobalCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(riesgoSuicida) || isEmpty(riesgoViolencia) ? undefined : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000114' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000114' ? 3 : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000113' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000113' ? 2 : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000112' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000112' ? 1 : 0)))"
+                },
+                "min": "0",
+                "max": "3",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
             },
             {
               "label": "Acuerdos o tareas terapéuticas",
@@ -325,11 +342,14 @@
             {
               "label": "Fecha de próxima cita",
               "type": "obs",
-              "required": false,
+              "required": "proximaAccion === 'f1000000-0000-4000-8000-000000000171' || proximaAccion === 'f1000000-0000-4000-8000-000000000172' || proximaAccion === 'f1000000-0000-4000-8000-000000000173'",
               "id": "proximaCita",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(proximaAccion) || (proximaAccion !== 'f1000000-0000-4000-8000-000000000171' && proximaAccion !== 'f1000000-0000-4000-8000-000000000172' && proximaAccion !== 'f1000000-0000-4000-8000-000000000173')"
               },
               "validators": [
                 {

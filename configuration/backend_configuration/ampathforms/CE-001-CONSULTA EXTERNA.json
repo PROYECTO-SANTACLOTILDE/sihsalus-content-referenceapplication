@@ -49,7 +49,8 @@
                 "isSearchable": true
               },
               "id": "consultorio",
-              "label": "Consultorio / Servicio"
+              "label": "Consultorio / Servicio",
+              "required": true
             },
             {
               "type": "obs",

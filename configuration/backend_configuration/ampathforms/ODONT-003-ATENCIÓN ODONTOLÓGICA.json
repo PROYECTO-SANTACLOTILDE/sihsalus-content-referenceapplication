@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "consultorio",
-              "label": "Consultorio / Servicio"
+              "label": "Consultorio / Servicio",
+              "required": true
             },
             {
               "label": "Tipo de atención odontológica",

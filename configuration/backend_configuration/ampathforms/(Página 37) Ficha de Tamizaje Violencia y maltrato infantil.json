@@ -18,11 +18,11 @@
                 "concept": "313baa99-a2e3-449c-bc5f-3230d2508695",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -39,11 +39,11 @@
                 "concept": "a33bf670-e9a0-4cf0-8348-7a99e66a1d30",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -60,11 +60,11 @@
                 "concept": "4d41937f-e524-4119-bf47-ad2052d6647a",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -81,11 +81,11 @@
                 "concept": "6cbf0391-a087-4cbe-985d-aadb0081005f",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -308,6 +308,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

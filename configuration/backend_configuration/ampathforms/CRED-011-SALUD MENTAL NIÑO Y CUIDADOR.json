@@ -30,7 +30,7 @@
               "required": true,
               "id": "resultadoSaludMental",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f0000013-0000-4000-8000-000000000013",
                 "answers": [
                   {
@@ -55,7 +55,7 @@
               "required": false,
               "id": "resultadoViolencia",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f0000012-0000-4000-8000-000000000012",
                 "answers": [
                   {
@@ -75,6 +75,22 @@
               "validators": []
             },
             {
+              "label": "Nivel de riesgo calculado",
+              "type": "control",
+              "id": "nivelRiesgoCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(resultadoSaludMental) ? undefined : (resultadoSaludMental === 'f0000103-0000-4000-8000-000000000103' || resultadoViolencia === 'f0000133-0000-4000-8000-000000000133' ? 2 : (resultadoSaludMental === 'f0000102-0000-4000-8000-000000000102' || resultadoViolencia === 'f0000132-0000-4000-8000-000000000132' ? 1 : 0))"
+                },
+                "min": "0",
+                "max": "2",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
+            },
+            {
               "label": "Observaciones",
               "type": "obs",
               "required": false,
@@ -88,11 +104,14 @@
             {
               "label": "Plan, consejería o referencia",
               "type": "obs",
-              "required": false,
+              "required": "resultadoSaludMental === 'f0000102-0000-4000-8000-000000000102' || resultadoSaludMental === 'f0000103-0000-4000-8000-000000000103' || resultadoViolencia === 'f0000132-0000-4000-8000-000000000132' || resultadoViolencia === 'f0000133-0000-4000-8000-000000000133'",
               "id": "plan",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000003-0000-4000-8000-000000000003"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(resultadoSaludMental) || (resultadoSaludMental === 'f0000101-0000-4000-8000-000000000101' && (isEmpty(resultadoViolencia) || resultadoViolencia === 'f0000131-0000-4000-8000-000000000131'))"
               },
               "validators": []
             }
@@ -109,5 +128,5 @@
   "referencedForms": [],
   "uuid": "c1110000-0000-4000-8000-000000000011",
   "description": "Tamizaje resumido de salud mental, cuidador y entorno familiar para CRED.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

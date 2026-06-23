@@ -282,7 +282,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "0990c088-3bee-4caa-8219-25b272c80324"
+                "concept": "de908063-228c-43ea-888c-9f437e5794ba"
               },
               "id": "planificacionFamiliarGroup",
               "label": "Planificación Familiar",
@@ -291,7 +291,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "checkbox",
-                    "concept": "0990c088-3bee-4caa-8219-25b272c80324",
+                    "concept": "de908063-228c-43ea-888c-9f437e5794ba",
                     "answers": [
                       {
                         "concept": "f0000147-0000-4000-8000-000000000147",
@@ -474,6 +474,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

@@ -28,6 +28,16 @@
               "label": "Responsable"
             },
             {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",

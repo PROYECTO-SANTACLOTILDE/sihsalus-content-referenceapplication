@@ -1,0 +1,235 @@
+{
+  "name": "HOSP-013-ESCALA DE GLASGOW",
+  "pages": [
+    {
+      "label": "Escala de Glasgow",
+      "sections": [
+        {
+          "label": "Evaluación neurológica",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de evaluación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Respuesta ocular",
+              "type": "obs",
+              "required": true,
+              "id": "respuestaOcular",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "7e540048-19b4-4261-af10-3b20712a92ef",
+                "answers": [
+                  {
+                    "concept": "faff1dec-14df-44d4-8695-b337dced2274",
+                    "label": "E4 Espontánea"
+                  },
+                  {
+                    "concept": "2120199e-03ed-4986-892f-52a3d13b92c0",
+                    "label": "E3 Al llamado"
+                  },
+                  {
+                    "concept": "1633ea34-bc65-4a87-9fec-8fef231b85cf",
+                    "label": "E2 Al dolor"
+                  },
+                  {
+                    "concept": "8b4ee185-b709-4cfa-b3db-f15d565ddc04",
+                    "label": "E1 Ninguna"
+                  },
+                  {
+                    "concept": "25c71769-dddb-4d06-a858-cde05e2087e2",
+                    "label": "No evaluable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Respuesta verbal",
+              "type": "obs",
+              "required": true,
+              "id": "respuestaVerbal",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "67f9449e-e7ef-436c-9eb7-837b5afe30e4",
+                "answers": [
+                  {
+                    "concept": "6440f83b-657e-4c5c-bac5-e3f67660ea4e",
+                    "label": "V5 Orientado"
+                  },
+                  {
+                    "concept": "52066114-63ee-48ca-a09b-fa9c0c7f73ba",
+                    "label": "V4 Confuso"
+                  },
+                  {
+                    "concept": "0b5820f1-f968-4950-bc62-ad54c6166723",
+                    "label": "V3 Palabras"
+                  },
+                  {
+                    "concept": "245c6329-b810-4db3-bdc1-62bb9cdc0f31",
+                    "label": "V2 Sonidos"
+                  },
+                  {
+                    "concept": "1d01f180-1acd-4121-b380-049f4bbb4af7",
+                    "label": "V1 Ninguna"
+                  },
+                  {
+                    "concept": "fd4b9335-0f74-453e-b787-46d303a9b3b5",
+                    "label": "No evaluable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Respuesta motora",
+              "type": "obs",
+              "required": true,
+              "id": "respuestaMotora",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "98bfda0d-2a22-4ca4-8bc9-b0b6c6505899",
+                "answers": [
+                  {
+                    "concept": "bddbf4e2-c870-4515-924e-d98cfcb7948f",
+                    "label": "M6 Obedece órdenes"
+                  },
+                  {
+                    "concept": "355eb0e2-c319-4536-9837-43bf3c23f592",
+                    "label": "M5 Localiza dolor"
+                  },
+                  {
+                    "concept": "a815a9d0-a033-48bc-89e9-836a15b9a3b2",
+                    "label": "M4 Retira ante dolor"
+                  },
+                  {
+                    "concept": "795e56c8-e783-470e-8b83-3ee11300f4a7",
+                    "label": "M3 Flexión anormal"
+                  },
+                  {
+                    "concept": "b4e10f1d-09e2-4b6b-8471-466c25da1b79",
+                    "label": "M2 Extensión"
+                  },
+                  {
+                    "concept": "7e16856d-c686-4921-ba7f-65f7bf15771a",
+                    "label": "M1 Ninguna"
+                  },
+                  {
+                    "concept": "09957de5-8eb7-4865-8e29-e946cf895bc4",
+                    "label": "No evaluable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Puntaje Glasgow calculado",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeGlasgow",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "9ba86e50-a4fd-48b7-b8b2-f537fde5a382",
+                "calculate": {
+                  "calculateExpression": "isEmpty(respuestaOcular) || isEmpty(respuestaVerbal) || isEmpty(respuestaMotora) || respuestaOcular === '25c71769-dddb-4d06-a858-cde05e2087e2' || respuestaVerbal === 'fd4b9335-0f74-453e-b787-46d303a9b3b5' || respuestaMotora === '09957de5-8eb7-4865-8e29-e946cf895bc4' ? undefined : ((respuestaOcular === 'faff1dec-14df-44d4-8695-b337dced2274' ? 4 : (respuestaOcular === '2120199e-03ed-4986-892f-52a3d13b92c0' ? 3 : (respuestaOcular === '1633ea34-bc65-4a87-9fec-8fef231b85cf' ? 2 : 1))) + (respuestaVerbal === '6440f83b-657e-4c5c-bac5-e3f67660ea4e' ? 5 : (respuestaVerbal === '52066114-63ee-48ca-a09b-fa9c0c7f73ba' ? 4 : (respuestaVerbal === '0b5820f1-f968-4950-bc62-ad54c6166723' ? 3 : (respuestaVerbal === '245c6329-b810-4db3-bdc1-62bb9cdc0f31' ? 2 : 1)))) + (respuestaMotora === 'bddbf4e2-c870-4515-924e-d98cfcb7948f' ? 6 : (respuestaMotora === '355eb0e2-c319-4536-9837-43bf3c23f592' ? 5 : (respuestaMotora === 'a815a9d0-a033-48bc-89e9-836a15b9a3b2' ? 4 : (respuestaMotora === '795e56c8-e783-470e-8b83-3ee11300f4a7' ? 3 : (respuestaMotora === 'b4e10f1d-09e2-4b6b-8471-466c25da1b79' ? 2 : 1))))))"
+                },
+                "min": "3",
+                "max": "15",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Severidad calculada",
+              "type": "control",
+              "id": "severidadGlasgowCalculada",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(puntajeGlasgow) ? undefined : (puntajeGlasgow <= 8 ? 3 : (puntajeGlasgow <= 12 ? 2 : 1))"
+                },
+                "min": "1",
+                "max": "3",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
+            },
+            {
+              "label": "Observaciones",
+              "type": "obs",
+              "required": false,
+              "id": "observaciones",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "643c7023-c2f4-4796-9920-a2ed0f79ba35"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "8993b43c-7878-4e80-9257-1da45e84a904",
+  "encounter": "Hospitalización",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "4dedb62b-a318-4a81-bd9c-c9bae9a17185",
+  "description": "Registro de la escala de coma de Glasgow con puntaje total calculado.",
+  "version": "1.0.0"
+}

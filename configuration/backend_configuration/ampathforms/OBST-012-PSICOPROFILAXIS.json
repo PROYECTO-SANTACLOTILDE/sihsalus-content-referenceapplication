@@ -41,40 +41,19 @@
               "validators": []
             },
             {
-              "label": "Sesión de Psicoprofilaxis",
+              "label": "Número de sesión de psicoprofilaxis",
               "type": "obs",
               "required": true,
               "id": "sesionPsicoprofilaxis",
               "questionOptions": {
-                "rendering": "select",
-                "concept": "400ebbfe-bdb6-42b8-a783-226e027e2e05",
-                "answers": [
-                  {
-                    "concept": "f0000211-0000-4000-8000-000000000211",
-                    "label": "Sesión 1 — Cambios durante el embarazo y signos de alarma"
-                  },
-                  {
-                    "concept": "f0000212-0000-4000-8000-000000000212",
-                    "label": "Sesión 2 — Atención prenatal y autocuidado"
-                  },
-                  {
-                    "concept": "b1f6645e-1cb3-460e-be35-e8ed40e5d825",
-                    "label": "Sesión 3 — Preparación física y técnicas de respiración"
-                  },
-                  {
-                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
-                    "label": "Sesión 4 — El parto y sus períodos"
-                  },
-                  {
-                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
-                    "label": "Sesión 5 — Puerperio y recién nacido"
-                  },
-                  {
-                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
-                    "label": "Sesión 6 — Planificación familiar y visita al establecimiento"
-                  }
-                ]
+                "rendering": "number",
+                "concept": "f1000000-0000-4000-8000-000000000021",
+                "min": "1",
+                "max": "6",
+                "step": 1,
+                "disallowDecimals": true
               },
+              "hideSteppers": true,
               "validators": []
             },
             {
@@ -87,11 +66,11 @@
                 "concept": "f0000213-0000-4000-8000-000000000213",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -139,6 +118,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

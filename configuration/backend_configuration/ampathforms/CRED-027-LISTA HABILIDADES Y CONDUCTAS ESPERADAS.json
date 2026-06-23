@@ -66,14 +66,38 @@
                 "rendering": "select",
                 "concept": "c2380030-0000-4000-8000-000000000030",
                 "answers": [
-                  { "concept": "c2380141-0000-4000-8000-000000000141", "label": "4 años" },
-                  { "concept": "c2380142-0000-4000-8000-000000000142", "label": "5 años" },
-                  { "concept": "c2380143-0000-4000-8000-000000000143", "label": "6 años" },
-                  { "concept": "c2380144-0000-4000-8000-000000000144", "label": "7 años" },
-                  { "concept": "c2380145-0000-4000-8000-000000000145", "label": "8 años" },
-                  { "concept": "c2380146-0000-4000-8000-000000000146", "label": "9 años" },
-                  { "concept": "c2380147-0000-4000-8000-000000000147", "label": "10 años" },
-                  { "concept": "c2380148-0000-4000-8000-000000000148", "label": "11 años" }
+                  {
+                    "concept": "c2380141-0000-4000-8000-000000000141",
+                    "label": "4 años"
+                  },
+                  {
+                    "concept": "c2380142-0000-4000-8000-000000000142",
+                    "label": "5 años"
+                  },
+                  {
+                    "concept": "c2380143-0000-4000-8000-000000000143",
+                    "label": "6 años"
+                  },
+                  {
+                    "concept": "c2380144-0000-4000-8000-000000000144",
+                    "label": "7 años"
+                  },
+                  {
+                    "concept": "c2380145-0000-4000-8000-000000000145",
+                    "label": "8 años"
+                  },
+                  {
+                    "concept": "c2380146-0000-4000-8000-000000000146",
+                    "label": "9 años"
+                  },
+                  {
+                    "concept": "c2380147-0000-4000-8000-000000000147",
+                    "label": "10 años"
+                  },
+                  {
+                    "concept": "c2380148-0000-4000-8000-000000000148",
+                    "label": "11 años"
+                  }
                 ]
               },
               "validators": []
@@ -93,8 +117,14 @@
                 "rendering": "radio",
                 "concept": "c2380005-0000-4000-8000-000000000005",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
@@ -102,11 +132,14 @@
             {
               "label": "Detalle de preocupación",
               "type": "obs",
-              "required": false,
+              "required": "preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detallePreocupacion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380006-0000-4000-8000-000000000006"
+              },
+              "hide": {
+                "hideWhenExpression": "preocupacionCuidador !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -119,8 +152,14 @@
                 "rendering": "radio",
                 "concept": "c2380007-0000-4000-8000-000000000007",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
@@ -128,11 +167,14 @@
             {
               "label": "Detalle de regresión",
               "type": "obs",
-              "required": false,
+              "required": "regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleRegresion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380008-0000-4000-8000-000000000008"
+              },
+              "hide": {
+                "hideWhenExpression": "regresionHabilidades !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             }
@@ -151,13 +193,32 @@
                 "rendering": "radio",
                 "concept": "c2380031-0000-4000-8000-000000000031",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
             },
-            { "label": "Detalle motor/sensorial", "type": "obs", "required": false, "id": "detalleMotorSensorial", "questionOptions": { "rendering": "textarea", "concept": "c2380032-0000-4000-8000-000000000032" }, "validators": [] },
+            {
+              "label": "Detalle motor/sensorial",
+              "type": "obs",
+              "required": "ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
+              "id": "detalleMotorSensorial",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380032-0000-4000-8000-000000000032"
+              },
+              "hide": {
+                "hideWhenExpression": "ausenciaMotorSensorial !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
+              },
+              "validators": []
+            },
             {
               "label": "Ausencia en desarrollo socioemocional",
               "type": "obs",
@@ -167,13 +228,32 @@
                 "rendering": "radio",
                 "concept": "c2380033-0000-4000-8000-000000000033",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
             },
-            { "label": "Detalle socioemocional", "type": "obs", "required": false, "id": "detalleSocioemocional", "questionOptions": { "rendering": "textarea", "concept": "c2380034-0000-4000-8000-000000000034" }, "validators": [] },
+            {
+              "label": "Detalle socioemocional",
+              "type": "obs",
+              "required": "ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
+              "id": "detalleSocioemocional",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380034-0000-4000-8000-000000000034"
+              },
+              "hide": {
+                "hideWhenExpression": "ausenciaSocioemocional !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
+              },
+              "validators": []
+            },
             {
               "label": "Ausencia en desarrollo del lenguaje",
               "type": "obs",
@@ -183,13 +263,32 @@
                 "rendering": "radio",
                 "concept": "c2380035-0000-4000-8000-000000000035",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
             },
-            { "label": "Detalle lenguaje", "type": "obs", "required": false, "id": "detalleLenguaje", "questionOptions": { "rendering": "textarea", "concept": "c2380036-0000-4000-8000-000000000036" }, "validators": [] },
+            {
+              "label": "Detalle lenguaje",
+              "type": "obs",
+              "required": "ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
+              "id": "detalleLenguaje",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380036-0000-4000-8000-000000000036"
+              },
+              "hide": {
+                "hideWhenExpression": "ausenciaLenguaje !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
+              },
+              "validators": []
+            },
             {
               "label": "Ausencia en desarrollo cognitivo",
               "type": "obs",
@@ -199,13 +298,32 @@
                 "rendering": "radio",
                 "concept": "c2380037-0000-4000-8000-000000000037",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
             },
-            { "label": "Detalle cognitivo", "type": "obs", "required": false, "id": "detalleCognitivo", "questionOptions": { "rendering": "textarea", "concept": "c2380038-0000-4000-8000-000000000038" }, "validators": [] }
+            {
+              "label": "Detalle cognitivo",
+              "type": "obs",
+              "required": "ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
+              "id": "detalleCognitivo",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c2380038-0000-4000-8000-000000000038"
+              },
+              "hide": {
+                "hideWhenExpression": "ausenciaCognitivo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
+              },
+              "validators": []
+            }
           ]
         },
         {
@@ -221,8 +339,14 @@
                 "rendering": "radio",
                 "concept": "c2380039-0000-4000-8000-000000000039",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
               },
               "validators": []
@@ -230,13 +354,32 @@
             {
               "label": "Detalle de factores de riesgo/protección",
               "type": "obs",
-              "required": false,
+              "required": "factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleFactorRiesgo",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380040-0000-4000-8000-000000000040"
               },
+              "hide": {
+                "hideWhenExpression": "factorRiesgo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
+              },
               "validators": []
+            },
+            {
+              "label": "Alertas de desarrollo calculadas",
+              "type": "control",
+              "id": "alertasDesarrolloCalculadas",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "(preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0)"
+                },
+                "min": "0",
+                "max": "7",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
             },
             {
               "label": "Resultado de lista de habilidades",
@@ -247,9 +390,18 @@
                 "rendering": "select",
                 "concept": "c2380041-0000-4000-8000-000000000041",
                 "answers": [
-                  { "concept": "c2380151-0000-4000-8000-000000000151", "label": "Desarrollo esperado" },
-                  { "concept": "c2380154-0000-4000-8000-000000000154", "label": "Ausencia de habilidad esperada" },
-                  { "concept": "c2380155-0000-4000-8000-000000000155", "label": "Evaluación no concluyente" }
+                  {
+                    "concept": "c2380151-0000-4000-8000-000000000151",
+                    "label": "Desarrollo esperado"
+                  },
+                  {
+                    "concept": "c2380154-0000-4000-8000-000000000154",
+                    "label": "Ausencia de habilidad esperada"
+                  },
+                  {
+                    "concept": "c2380155-0000-4000-8000-000000000155",
+                    "label": "Evaluación no concluyente"
+                  }
                 ]
               },
               "validators": []
@@ -263,10 +415,22 @@
                 "rendering": "select",
                 "concept": "c2380042-0000-4000-8000-000000000042",
                 "answers": [
-                  { "concept": "c2380161-0000-4000-8000-000000000161", "label": "Continuar controles y consejería" },
-                  { "concept": "c2380163-0000-4000-8000-000000000163", "label": "ATD semanal y prueba EDI" },
-                  { "concept": "c2380164-0000-4000-8000-000000000164", "label": "Interconsulta o referencia especializada" },
-                  { "concept": "c2380165-0000-4000-8000-000000000165", "label": "Reprogramar evaluación" }
+                  {
+                    "concept": "c2380161-0000-4000-8000-000000000161",
+                    "label": "Continuar controles y consejería"
+                  },
+                  {
+                    "concept": "c2380163-0000-4000-8000-000000000163",
+                    "label": "ATD semanal y prueba EDI"
+                  },
+                  {
+                    "concept": "c2380164-0000-4000-8000-000000000164",
+                    "label": "Interconsulta o referencia especializada"
+                  },
+                  {
+                    "concept": "c2380165-0000-4000-8000-000000000165",
+                    "label": "Reprogramar evaluación"
+                  }
                 ]
               },
               "validators": []
@@ -285,30 +449,48 @@
             {
               "label": "Requiere prueba EDI",
               "type": "obs",
-              "required": false,
+              "required": "resultadoLista === 'c2380154-0000-4000-8000-000000000154' || accionInmediata === 'c2380163-0000-4000-8000-000000000163'",
               "id": "requiereEdi",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2380027-0000-4000-8000-000000000027",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "resultadoLista !== 'c2380154-0000-4000-8000-000000000154' && accionInmediata !== 'c2380163-0000-4000-8000-000000000163'"
               },
               "validators": []
             },
             {
               "label": "Requiere interconsulta o referencia",
               "type": "obs",
-              "required": false,
+              "required": "accionInmediata === 'c2380164-0000-4000-8000-000000000164'",
               "id": "requiereInterconsulta",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c2380028-0000-4000-8000-000000000028",
                 "answers": [
-                  { "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "Sí" },
-                  { "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", "label": "No" }
+                  {
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
+                    "label": "No"
+                  }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "accionInmediata !== 'c2380164-0000-4000-8000-000000000164'"
               },
               "validators": []
             },
@@ -353,6 +535,16 @@
                 "isSearchable": true
               },
               "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -367,5 +559,5 @@
   "referencedForms": [],
   "uuid": "c2270000-0000-4000-8000-000000000027",
   "description": "Lista de habilidades y conductas esperadas por edad para niños de 4 a 11 años, 11 meses y 29 días según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

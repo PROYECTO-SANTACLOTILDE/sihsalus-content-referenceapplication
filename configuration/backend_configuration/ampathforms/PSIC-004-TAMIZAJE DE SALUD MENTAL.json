@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "f0703edb-cb58-4cf4-976a-755bd9e15c95",
   "description": "Tamizaje de salud mental, riesgo psicosocial, consumo de sustancias o violencia para detección y referencia oportuna. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pages": [
     {
       "label": "Tamizaje",
@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "servicio",
-              "label": "Servicio"
+              "label": "Servicio",
+              "required": true
             }
           ]
         },

@@ -165,6 +165,32 @@
               "validators": []
             }
           ]
+        },
+        {
+          "label": "Puntaje",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Puntaje EEDP calculado",
+              "type": "obs",
+              "required": false,
+              "id": "puntajeEedpCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c4010003-0000-4000-8000-000000000003",
+                "calculate": {
+                  "calculateExpression": "isEmpty(fijaLaMiradaEnElRostroDelExaminador) && isEmpty(reaccionaAlSonidoDeLaCampanilla) && isEmpty(aprietaElDedoIndiceDelExaminador) && isEmpty(sigueConLaVistaLaArgollaAng90) && isEmpty(movimientoDeCabezaEnPosicionProna) && isEmpty(mimicaEnRespuestaAlRostroDelExaminador) && isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) && isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) && isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) && isEmpty(vocalizaDosSonidosDiferentes) ? undefined : ((isEmpty(fijaLaMiradaEnElRostroDelExaminador) ? 0 : fijaLaMiradaEnElRostroDelExaminador) + (isEmpty(reaccionaAlSonidoDeLaCampanilla) ? 0 : reaccionaAlSonidoDeLaCampanilla) + (isEmpty(aprietaElDedoIndiceDelExaminador) ? 0 : aprietaElDedoIndiceDelExaminador) + (isEmpty(sigueConLaVistaLaArgollaAng90) ? 0 : sigueConLaVistaLaArgollaAng90) + (isEmpty(movimientoDeCabezaEnPosicionProna) ? 0 : movimientoDeCabezaEnPosicionProna) + (isEmpty(mimicaEnRespuestaAlRostroDelExaminador) ? 0 : mimicaEnRespuestaAlRostroDelExaminador) + (isEmpty(vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) ? 0 : vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador) + (isEmpty(reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) ? 0 : reaccionaAnteElDesaparecimientoDeLaCaraDelExaminador) + (isEmpty(intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) ? 0 : intentaControlarLaCabezaAlSerLlevadoAPosicionSentada) + (isEmpty(vocalizaDosSonidosDiferentes) ? 0 : vocalizaDosSonidosDiferentes))"
+                },
+                "min": "0",
+                "max": "60",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "editable": false,
+              "hideSteppers": true,
+              "validators": []
+            }
+          ]
         }
       ]
     },
@@ -194,6 +220,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }
@@ -208,5 +244,5 @@
   "referencedForms": [],
   "uuid": "fe582b4e-2310-446c-994f-c898c00ce202",
   "description": "Pagina 30, 31, 32 y 33",
-  "version": "1.1"
+  "version": "1.2"
 }

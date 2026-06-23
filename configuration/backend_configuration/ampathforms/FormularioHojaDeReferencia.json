@@ -45,11 +45,11 @@
                 "concept": "7fd2a94a-ee99-491c-a4dc-f873eba59efa",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Si"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -66,7 +66,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "isEmpty(asegurado) || asegurado !== 'cf82933b-3f3f-45e7-a5ab-5d31aaee3da3'"
+                "hideWhenExpression": "isEmpty(asegurado) || asegurado !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               }
             },
             {
@@ -414,7 +414,7 @@
                 "concept": "fd1a48d5-f1cf-42b7-9b8c-141c9817f7a3",
                 "answers": [
                   {
-                    "concept": "3be31163-313b-46eb-af44-5f615ff4bf3d",
+                    "concept": "0902d11c-4db9-48e3-9130-c2a107d4c523",
                     "label": "Pediatría"
                   },
                   {
@@ -798,6 +798,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

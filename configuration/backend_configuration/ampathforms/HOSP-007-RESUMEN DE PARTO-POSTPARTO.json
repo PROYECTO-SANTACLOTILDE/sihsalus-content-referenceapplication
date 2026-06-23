@@ -25,11 +25,11 @@
                 "concept": "495890cc-7176-4eff-a4b3-7d45a3f471cd",
                 "answers": [
                   {
-                    "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -864,11 +864,11 @@
                     "concept": "fa264962-2ae5-4861-843d-b467c4e0a09e",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Sí"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -1383,6 +1383,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

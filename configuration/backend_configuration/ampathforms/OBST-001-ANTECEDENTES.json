@@ -490,11 +490,11 @@
                     "concept": "e5c6d862-a5e5-42f4-ab42-59e34bd65608",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Si"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -628,11 +628,11 @@
                     "concept": "27a9158b-3657-4086-a0b2-b7e781af7c23",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Si"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -649,11 +649,11 @@
                     "concept": "30d8e334-b9c7-4aa3-851e-44a89a2ede53",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Si"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -670,11 +670,11 @@
                     "concept": "d4fa7300-a33b-49cf-8484-1c32175c3803",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Si"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -690,11 +690,11 @@
                     "concept": "ea60f34a-e8ba-4e88-8ff1-9916de2f27f2",
                     "answers": [
                       {
-                        "concept": "cf82933b-3f3f-45e7-a5ab-5d31aaee3da3",
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                         "label": "Sí"
                       },
                       {
-                        "concept": "488b58ff-64f5-4f8a-8979-fa79940b1594",
+                        "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                         "label": "No"
                       }
                     ]
@@ -732,6 +732,16 @@
               "id": "rolDelResponsable",
               "required": true,
               "label": "Rol del responsable"
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
             }
           ]
         }

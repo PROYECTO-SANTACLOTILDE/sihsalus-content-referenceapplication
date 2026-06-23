@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "8015414e-6f0c-46b8-9845-42cd48431cd2",
   "description": "Evaluación psicológica integral para consulta ambulatoria de salud mental. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "pages": [
     {
       "label": "Datos y motivo",
@@ -60,7 +60,8 @@
                 "isSearchable": true
               },
               "id": "consultorio",
-              "label": "Consultorio / servicio"
+              "label": "Consultorio / servicio",
+              "required": true
             }
           ]
         },
@@ -74,7 +75,7 @@
               "required": true,
               "id": "modalidadIngreso",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000001",
                 "answers": [
                   {
@@ -185,7 +186,7 @@
               "required": true,
               "id": "riesgoSuicida",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000006",
                 "answers": [
                   {
@@ -214,7 +215,7 @@
               "required": true,
               "id": "riesgoViolencia",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000007",
                 "answers": [
                   {
@@ -243,7 +244,7 @@
               "required": false,
               "id": "consumoSustancias",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000008",
                 "answers": [
                   {
@@ -265,6 +266,22 @@
                 ]
               },
               "validators": []
+            },
+            {
+              "label": "Riesgo global calculado",
+              "type": "control",
+              "id": "riesgoGlobalCalculado",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(riesgoSuicida) || isEmpty(riesgoViolencia) ? undefined : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000114' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000114' ? 3 : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000113' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000113' ? 2 : (riesgoSuicida === 'f1000000-0000-4000-8000-000000000112' || riesgoViolencia === 'f1000000-0000-4000-8000-000000000112' ? 1 : 0)))"
+                },
+                "min": "0",
+                "max": "3",
+                "step": 1
+              },
+              "editable": false,
+              "hideSteppers": true
             }
           ]
         },
@@ -327,7 +344,7 @@
               "required": true,
               "id": "severidad",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "f1000000-0000-4000-8000-000000000010",
                 "answers": [
                   {
@@ -416,11 +433,14 @@
             {
               "label": "Fecha de próxima cita",
               "type": "obs",
-              "required": false,
+              "required": "proximaAccion === 'f1000000-0000-4000-8000-000000000171' || proximaAccion === 'f1000000-0000-4000-8000-000000000172' || proximaAccion === 'f1000000-0000-4000-8000-000000000173'",
               "id": "proximaCita",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "f0000004-0000-4000-8000-000000000004"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(proximaAccion) || (proximaAccion !== 'f1000000-0000-4000-8000-000000000171' && proximaAccion !== 'f1000000-0000-4000-8000-000000000172' && proximaAccion !== 'f1000000-0000-4000-8000-000000000173')"
               },
               "validators": [
                 {
