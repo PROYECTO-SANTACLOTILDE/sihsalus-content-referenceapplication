@@ -2,36 +2,29 @@ Uuid,Void/Retire,Name,Description,Format,Foreign,Searchable
 14d4f066-15f5-102d-96e4-000c29c2a5d7,,Número de Teléfono,Número de telefono de contacto de la persona,java.lang.String,,
 fee4e8ef-aef8-4bb9-8ed0-7ded6055c61f,,Número de Celular,Número de celular de contacto de la persona,java.lang.String,,
 4bdf3a33-2f63-11f0-8ab4-1a7535b1b3e8,,Correo Electrónico,Dirección de Correo Electrónico de la persona,java.lang.String,,
-8d8718c2-c2cc-11de-8d13-0010c6dffd0f,true,Lugar de Nacimiento,"Lugar de nacimiento textual de la persona. Retirado: usar dirección estructurada de nacimiento en PersonAddress o UBIGEO de Nacimiento cuando el integrador exponga el código.",java.lang.String,,
-1ce1e136-7b03-451f-8a93-7b6a90379202,,UBIGEO de Nacimiento,Código UBIGEO del lugar de nacimiento de la persona,java.lang.String,,true
-8b56eac7-5c76-4b9c-8c6f-1deab8d3fc47,,Paciente No Identificado,Indicador para pacientes cuya identidad no puede ser verificada en el proceso de admisión,java.lang.String,,
-77bbb234-2312-4644-99d0-fa894d438817,,Religión,Religión del paciente,org.openmrs.Concept,6de6d87e-5af8-41d9-98d2-b660fabf25d9,true
-8d871386-c2cc-11de-8d13-0010c6dffd0f,,Etnia,"Grupo étnico al que el paciente se identifica (Ej. Quechua, Aimara, Asháninka, Afroperuano)",org.openmrs.Concept,70482c1e-181e-416d-a0c4-a93919f9f2ef,true
-8d872150-c2cc-11de-8d13-0010c6dffd0f,,Idioma Nativo,"Idioma que el paciente habla en su comunidad (Ej. Español, Quechua, Aimara, Shipibo-Konibo)",java.lang.String,,true
-56188294-b42c-481d-a987-4b495116c580,,Tipo de Seguro de Salud,"Tipo de seguro del paciente (Ej. SIS, EsSalud, EPS, Ninguno).",org.openmrs.Concept,6b932638-242e-49ef-8ba7-0ae87199835c,true
-8d871afc-c2cc-11de-8d13-0010c6dffd0f,,Ocupación,"Profesión o actividad principal del paciente (Ej. Agricultor, Comerciante, Ama de Casa)",java.lang.String,,true
-8d87236c-c2cc-11de-8d13-0010c6dffd0f,,Grado de Instrucción,"Nivel de educación alcanzado por el paciente (Ej. Primaria, Secundaria, Superior)",org.openmrs.Concept,2d790984-f088-4d68-984d-efab9db8c889,true
-8d871f2a-c2cc-11de-8d13-0010c6dffd0f,,Estado Civil,"Estado civil del paciente (Ej. Soltero, Casado, Viudo, Divorciado, Unión Libre)",org.openmrs.Concept,aa345a81-3811-4e9c-be18-d6be727623e0,true
-b4c7d8e9-f0a1-4b2c-8d3e-5f6789abcdef,,Tipo de Sangre,"Tipo de sangre del paciente (Ej. A+, A-, B+, B-, AB+, AB-, O+, O-)",org.openmrs.Concept,3f6056ed-17e9-4b3b-98a7-18dc431a7e99,true
+1ce1e136-7b03-451f-8a93-7b6a90379202,,UBIGEO de Nacimiento,Código UBIGEO del distrito de nacimiento de la persona.,java.lang.String,,true
+77bbb234-2312-4644-99d0-fa894d438817,,Religión,"Religión de la persona",org.openmrs.Concept,6de6d87e-5af8-41d9-98d2-b660fabf25d9,true
+8d871386-c2cc-11de-8d13-0010c6dffd0f,,Etnia,"Grupo étnico con el que la persona se identifica (Ej. Quechua, Aimara, Asháninka, Afroperuano)",org.openmrs.Concept,70482c1e-181e-416d-a0c4-a93919f9f2ef,true
+9b3df0a1-0c58-4f55-9868-9c38f1db1007,,País de Nacionalidad,"País correspondiente a la nacionalidad declarada por la persona.",org.openmrs.Concept,7869ef7a-be6c-4108-9ee5-9cc7470e0b2d,true
+8d872150-c2cc-11de-8d13-0010c6dffd0f,,Idioma,"Idioma que la persona habla en su comunidad (Ej. Español, Quechua, Aimara, Shipibo-Konibo)",org.openmrs.Concept,e103e272-b021-5573-b95b-26121fe8810d,true
+8d871afc-c2cc-11de-8d13-0010c6dffd0f,,Ocupación,"Profesión o actividad principal de la persona (Ej. Agricultor, Comerciante, Ama de Casa)",org.openmrs.Concept,c6eb629e-35a3-48c1-a9fe-a19cfd81bd72,true
+8d87236c-c2cc-11de-8d13-0010c6dffd0f,,Grado de Instrucción,"Nivel de educación alcanzado por la persona (Ej. Primaria, Secundaria, Superior)",org.openmrs.Concept,2d790984-f088-4d68-984d-efab9db8c889,true
+8d871f2a-c2cc-11de-8d13-0010c6dffd0f,,Estado Civil,"Estado civil de la persona (Ej. Soltero, Casado, Viudo, Divorciado, Unión Libre)",org.openmrs.Concept,aa345a81-3811-4e9c-be18-d6be727623e0,true
+9b3df0a1-0c58-4f55-9868-9c38f1db1001,,Grupo Sanguíneo,Grupo sanguíneo ABO de la persona,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2001,true
+9b3df0a1-0c58-4f55-9868-9c38f1db1002,,Factor Rh,Factor Rh de la persona,org.openmrs.Concept,54b52ca9-8168-4f63-b2a3-a18899bf0baa,true
+6f5c0b8a-9e91-4d41-9a8c-8b0f3c2e7a11,,Tipo de Documento de Identidad,"Tipo de documento civil principal de la persona registrado en admisión: DNI, CE, pasaporte, DIE, CNV o sin documento",org.openmrs.Concept,2ef76e8a-331f-4b28-8496-f1d38841a07b,true
+c0d1a2b3-4e5f-4a6b-9c7d-8e9f0a1b2c3d,,Código de Documento de Identidad,"Número o código del documento civil principal de la persona. Debe guardarse normalizado: sin espacios ni guiones, en mayúsculas para documentos alfanuméricos.",java.lang.String,,true
+a7e3f8c1-2d4b-4f9a-8c6e-1b2d3f4a5c6e,,Estado de Verificación de Identidad,"Estado de verificación documental de la identidad civil de la persona: no verificado, validado por RENIEC, validado manualmente, en conflicto o sin documento.",org.openmrs.Concept,eae30f8f-02f7-497a-a9e6-5b6516301a6d,true
+e2a9c7b1-5d6f-4c8a-9b3e-7f1d2a0c6e5b,,Fuente de Verificación de Identidad,"Fuente usada para verificar o registrar la identidad civil de la persona: RENIEC, Migraciones, documento físico, carga masiva, declaración verbal o manual.",org.openmrs.Concept,95ae0627-f7bd-4819-83f1-98638b3bbaef,true
+4a9e2c7f-6d1b-4b8a-9f3e-2c5d7a0b1e6f,,Fecha y Hora de Verificación de Identidad,"Fecha y hora en formato ISO 8601 en que se verificó o registró la identidad civil de la persona.",java.lang.String,,
+d3e5b4d9-93c2-461e-822e-3cecd64b1842,,Observación de Verificación de Identidad,"Observación administrativa cuando hay conflicto, corrección manual o diferencia entre datos locales y fuente externa.",java.lang.String,,
+56188294-b42c-481d-a987-4b495116c580,,Tipo de Seguro de Salud,"Tipo de seguro de la persona (Ej. SIS, EsSalud, EPS, Ninguno).",org.openmrs.Concept,6b932638-242e-49ef-8ba7-0ae87199835c,true
 374b130f-7457-476f-87b1-f182aa77c434,,Código de Seguro,Código de afiliación o seguro del paciente,java.lang.String,,
-8d871d18-c2cc-11de-8d13-0010c6dffd0f,,Nombre de la Madre,Nombre de la madre del paciente,java.lang.String,,
-2f43955c-3205-47ef-96e8-df2f0b89c001,,Nombre del Padre,Nombre del padre del paciente,java.lang.String,,
-4697d0e6-5b24-416b-aee6-708cd9a3a1db,,Nombre del Acompañante,Nombre del acompañante o responsable del paciente,java.lang.String,,
-70ce4571-2e2e-44da-a39f-9dae2a658606,,Edad del Acompañante,Edad del acompañante o responsable del paciente,java.lang.String,,
-a180fa5f-c44e-4490-a981-d7196b70c6ac,,Parentesco del Acompañante,Parentesco o vínculo del acompañante o responsable del paciente,java.lang.String,,
-9b3df0a1-0c58-4f55-9868-9c38f1db1001,,Grupo Sanguíneo,Grupo sanguíneo ABO del paciente,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2001,true
-9b3df0a1-0c58-4f55-9868-9c38f1db1002,,Factor Rh,Factor Rh del paciente,org.openmrs.Concept,54b52ca9-8168-4f63-b2a3-a18899bf0baa,true
+9b3df0a1-0c58-4f55-9868-9c38f1db1005,,Estado de Acreditación de Seguro,Estado de acreditación registrado para el seguro del paciente,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2005,true
+9b3df0a1-0c58-4f55-9868-9c38f1db1006,,Fecha y Hora de Acreditación de Seguro,Fecha y hora de la última acreditación de seguro registrada,java.lang.String,,
 9b3df0a1-0c58-4f55-9868-9c38f1db1003,,Estado de Historia Clínica,"Estado documental de la historia clínica: activa, pasiva o eliminada",org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2003,true
 9b3df0a1-0c58-4f55-9868-9c38f1db1004,,Tipo de Archivo de Historia Clínica,Clasificación de archivo de historia clínica: común o especial,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2004,true
-9b3df0a1-0c58-4f55-9868-9c38f1db1005,,Estado de Acreditación de Seguro,Estado de acreditación registrado para el seguro del paciente,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2005,true
-9b3df0a1-0c58-4f55-9868-9c38f1db1006,,Fecha/Hora de Acreditación,Fecha y hora de la última acreditación de seguro registrada,java.lang.String,,
-9b3df0a1-0c58-4f55-9868-9c38f1db1007,,Nacionalidad,Nacionalidad declarada del paciente extranjero para continuidad de admisión ante no disponibilidad de consulta a Migraciones,java.lang.String,,true
-0f2f2f40-c978-491f-8931-8febaafeec84,,Tipo de Responsable de Emergencia,Clasificación del responsable que acompaña o representa al paciente cuando no puede identificarse o comunicarse,java.lang.String,,true
-ee0fb3c8-0432-4035-97c1-e2315d347310,,Condición de Comunicación al Ingreso,"Condición administrativa de comunicación del paciente al ingreso: comunica, inconsciente, comatoso, desorientado, no verbal, menor sin datos u otro",java.lang.String,,true
-787f1ea9-1792-45e5-9076-699b1a0638cb,,Estado de Identificación del Paciente,"Estado administrativo de identificación del paciente: pending, partial, confirmed o merged",java.lang.String,,true
-b978d331-e162-45b1-b9ca-65d3aa9a851f,,Estado VIH del Contacto,Estado VIH basal del contacto o pareja registrado en el flujo PNS,org.openmrs.Concept,f5b9fcf6-2a36-448e-b135-387581d84ae7,true
-e91775be-cf11-45e3-9b34-3c3f8849d4d6,,Contacto Creado Desde PNS,Indica si la persona fue creada desde el flujo de notificación de parejas o contactos,org.openmrs.Concept,171f88e2-b081-4b28-8c29-7d444a7b2745,true
-98c0a958-515e-4dec-a771-7a4cb9aa5492,,Método de Notificación PNS,Método preferido para notificación de contactos o parejas en PNS,org.openmrs.Concept,3d496077-411f-43f2-b151-263f2a76c761,true
-1a951a91-231f-4a3a-9a22-e396fa93455c,,Convive con el Paciente,Indica si el contacto o pareja convive con el paciente,org.openmrs.Concept,7a3639b3-5a62-473b-b97d-d7661ce50aab,true
-81a8b164-befa-4cac-8978-da059082297c,,Resultado de Tamizaje de Violencia de Pareja,Resultado resumido del tamizaje de violencia de pareja en el flujo PNS,org.openmrs.Concept,f96ef81d-afde-437a-9530-b0d093ff098a,true
+787f1ea9-1792-45e5-9076-699b1a0638cb,,Estado de Identificación en Admisión,"Estado administrativo usado en admisión o emergencia para indicar si el paciente fue identificado durante el ingreso: no identificado, identificación parcial, identificación confirmada o fusionado con registro existente.",org.openmrs.Concept,e47c3ef7-c7e2-4d35-b2fa-934df43df2a5,true
+0f2f2f40-c978-491f-8931-8febaafeec84,,Tipo de Informante o Responsable al Ingreso,"Clasificación de la persona, institución o autoridad que brinda información o representa al paciente durante admisión o emergencia.",org.openmrs.Concept,c837c7a7-1901-405b-9daa-bc460f23d2fb,true
+ee0fb3c8-0432-4035-97c1-e2315d347310,,Condición de Comunicación al Ingreso,"Condición observada al ingreso que indica si el paciente puede brindar información o comunicarse: comunica, inconsciente, comatoso, desorientado, no verbal, menor sin datos, barrera de idioma u otro.",org.openmrs.Concept,65af4ffb-c2a9-4cd9-a5bb-fca25f796292,true
 49ff9334-09d9-47d0-a236-72c0c9d4dea9,,Consentimiento de Tratamiento de Datos Personales,Consentimiento para registrar y tratar datos personales sensibles según la Ley 29733,org.openmrs.Concept,df10fb01-49dc-4e80-871b-55935121842c,true
