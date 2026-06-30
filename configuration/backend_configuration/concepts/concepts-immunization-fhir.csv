@@ -1,0 +1,10 @@
+Uuid,Void/Retire,Fully specified name:es,Description:es,Data class,Data type,Mappings|SAME-AS,_version:1,_order:3000
+a5607f68-a3df-45d8-88f5-8145c57aabce,,SIHCE - INMUNIZACIÓN,Concepto agrupador requerido por el recurso FHIR Immunization.,Misc,N/A,CIEL:1421,,
+f9840000-0000-4000-8000-000000000984,,Vacuna administrada,Vacuna administrada registrada mediante el recurso FHIR Immunization.,Question,Coded,CIEL:984,,
+f1410000-0000-4000-8000-000000001410,,Fecha de vacunación,Fecha de administración de la vacuna registrada mediante FHIR Immunization.,Question,Datetime,CIEL:1410,,
+f1418000-0000-4000-8000-000000001418,,Número de dosis de vacuna,Número de dosis administrada registrado mediante FHIR Immunization.,Question,Numeric,CIEL:1418,,
+f1419000-0000-4000-8000-000000001419,,Fabricante de vacuna,Fabricante de la vacuna registrado mediante FHIR Immunization.,Question,Text,CIEL:1419,,
+f1420000-0000-4000-8000-000000001420,,Número de lote de vacuna,Número de lote de la vacuna registrado mediante FHIR Immunization.,Question,Text,CIEL:1420,,
+f1659070-0000-4000-8000-000000165907,,Fecha de vencimiento de vacuna,Fecha de vencimiento de la vacuna registrada mediante FHIR Immunization.,Question,Date,CIEL:165907,,
+f1610110-0000-4000-8000-000000161011,,Comentario de vacunación,Comentario de vacunación registrado mediante FHIR Immunization.,Question,Text,CIEL:161011,,
+f1700000-0000-4000-8000-000000170000,,Fecha de próxima dosis,Fecha de próxima dosis registrada mediante FHIR Immunization.,Question,Datetime,CIEL:170000,,
