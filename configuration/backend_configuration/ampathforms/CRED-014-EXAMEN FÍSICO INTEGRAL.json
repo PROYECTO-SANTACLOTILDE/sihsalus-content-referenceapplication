@@ -154,7 +154,7 @@
               "id": "signosAlarma",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "c7295b28-b745-52a8-94ab-f65a46be96ec",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

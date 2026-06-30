@@ -95,7 +95,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "495890cc-7176-4eff-a4b3-7d45a3f471cd"
+                "concept": "7d42e551-07c1-53c9-aaa0-4689544046b6"
               },
               "id": "controladaGroup",
               "label": "Controlada",
@@ -137,7 +137,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2dea5543-a686-4240-b4ea-3ec6a143c467"
+                "concept": "a3d2375b-3945-5ec6-b3e4-269fb081ed30"
               },
               "id": "vacunaAntitetanicaGroup",
               "label": "Vacuna Antitetánica",
@@ -181,7 +181,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "c4c83053-2552-42f7-81d6-8b8d5e3a6f14"
+                "concept": "bd3ae5d2-4b9b-5ad9-ab4d-013343d129c3"
               },
               "id": "evolucionesPorTrimestre",
               "label": "Evoluciones por Trimestre",
@@ -225,7 +225,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "48dbbb18-09f2-4f78-9f7d-8412d8189c73"
+                "concept": "ec1247d3-2fae-5e0a-82c3-fe66781de6b1"
               },
               "id": "antropometria",
               "label": "Antropometría",
@@ -347,7 +347,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "dfe7614a-0461-4fd6-af6b-80f990516aa2"
+                "concept": "8c8d8e27-4041-5e37-8ee8-a39e86a294cf"
               },
               "id": "examenClinicoGeneralGroup",
               "label": "Examen Clínico General",
@@ -430,7 +430,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "a7f247f7-5a22-4af1-9254-eb8c83169ce1"
+                "concept": "28123355-c980-5c67-b7cb-71fea57f2695"
               },
               "id": "aparatoUrinarioGroup",
               "label": "Aparato Urinario",
@@ -469,7 +469,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "479e125e-e5be-4538-8c4e-ed6fd9c8d515"
+                "concept": "e860ab63-fec4-567b-9eca-8e0a9f236c51"
               },
               "id": "aparatoLocomotorExtremidadesGroup",
               "label": "Aparato Locomotor y Extremidades",
@@ -519,7 +519,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "de7363ce-617a-4854-bba8-737dd876d249"
+                "concept": "bf85bee2-9991-5d90-ab81-d26d3545b96c"
               },
               "id": "mamasGroup",
               "label": "Mamas",
@@ -539,7 +539,7 @@
                         "label": "Turgentes"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -556,7 +556,7 @@
                   "id": "especificar",
                   "label": "Especificar",
                   "hide": {
-                    "hideWhenExpression": "mamas !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "mamas !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   }
                 }
               ]
@@ -678,7 +678,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "e11ad041-ea9c-4920-a686-c692d735a0f1"
+                "concept": "95ace6b5-8458-56fc-893b-fa673b834453"
               },
               "id": "tactoVaginal",
               "label": "Tacto Vaginal",
@@ -738,7 +738,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "b966aaa2-260c-4092-8a80-14337f877019"
+                "concept": "9c8a4dd0-9f32-5883-9d61-3948dbcef985"
               },
               "id": "presentacionFetal",
               "label": "Presentación Fetal",
@@ -778,8 +778,22 @@
             {
               "type": "obs",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "ca0e2569-a580-4b47-b18d-61710d7f59d2"
+                "rendering": "radio",
+                "concept": "99bb73de-f3ec-41d8-bbd4-61ea43843cbf",
+                "answers": [
+                  {
+                    "concept": "59a2a3f9-e7d9-44bc-a4bd-d7462d850192",
+                    "label": "Sin Examen"
+                  },
+                  {
+                    "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "d02f20c2-e0ed-45b2-ada0-cc4306747cc7",
+                    "label": "Patológico"
+                  }
+                ]
               },
               "id": "cuelloUterino",
               "label": "Cuello Uterino"
@@ -851,7 +865,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
+                "concept": "a0d0cca1-dff9-592f-b8cd-1d6ff6aa394f"
               },
               "id": "diagnosticoGroup",
               "label": "Diagnósticos",
@@ -877,7 +891,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "5628516a-71b4-4532-8fbf-291d83a25113"
+                "concept": "c520119c-214c-5a84-80e9-bd7c5ea507dc"
               },
               "id": "planTrabajoGroup",
               "label": "Plan de Trabajo",

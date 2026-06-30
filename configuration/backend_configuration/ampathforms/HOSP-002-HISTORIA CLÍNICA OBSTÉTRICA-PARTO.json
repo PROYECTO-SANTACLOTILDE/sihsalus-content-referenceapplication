@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "d18507ca-8084-4ae6-bb4d-506d15a94e13"
+                "concept": "b71f2104-d278-528e-8ff4-237429b52eef"
               },
               "id": "hospitalizacionGroup",
               "label": "Hospitalización",
@@ -58,7 +58,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
+                "concept": "e1cd096a-b3c4-5741-a574-1720e7625f57"
               },
               "id": "anamnesisGroup",
               "label": "Anamnesis",
@@ -90,7 +90,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6664cb70-d3e7-4d31-8ab4-3cab799f1f39"
+                "concept": "c7c78f62-a911-5eec-a724-db79a92751bd"
               },
               "id": "enfermedadGroup",
               "label": "Enfermedad",
@@ -147,7 +147,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "9011adf4-2b9f-4ecb-a44c-cb5642e4e015"
+                "concept": "b98e1020-598d-56c3-a92b-d9131d4875da"
               },
               "id": "funcionesBiologicasGroup",
               "label": "Funciones Biológicas",
@@ -223,7 +223,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6a8fd860-e741-4880-aeef-14ad23c4a05e"
+                "concept": "7e517ff5-31c1-50b0-b42a-185feb38f602"
               },
               "id": "antecedentesFamiliaresGroup",
               "label": "Antecedentes Familiares",
@@ -284,7 +284,7 @@
                         "label": "TBC Pulmonar"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -318,7 +318,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "68cf307b-bfb1-4f7a-8079-bb057b234dab"
+                "concept": "2f72dc12-58d3-5285-b2ed-bd5f28069d19"
               },
               "id": "antecedentesPersonalesGroup",
               "label": "Antecedentes Personales",
@@ -439,7 +439,7 @@
                         "label": "VIH/SIDA"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -549,7 +549,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "ed3443fe-b7d4-4e68-882f-d6a6901408c7"
+                "concept": "bbdfb8d8-e797-52cc-b2cf-38451250222f"
               },
               "id": "formulaObstetrica",
               "label": "F.O (Fórmula Obstétrica)",
@@ -600,7 +600,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "e98689eb-20ec-49b5-8815-934244622c89"
+                "concept": "12b52b87-0818-5ce2-bb3f-80b3402fb7ee"
               },
               "id": "embarazosAnteriores",
               "label": "Embarazos anteriores",

@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "f1458c5f-9f0b-4924-8d87-e9d0653f7e31"
+                "concept": "395c5d0e-632b-583a-8f45-d56ec5bbf6f8"
               },
               "id": "reingresoMaternoGroup",
               "label": "Reingreso Materno",
@@ -21,7 +21,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "f1458c5f-9f0b-4924-8d87-e9d0653f7e31",
+                    "concept": "787dd0e6-3759-5251-8c55-126cd3cb5fff",
                     "answers": [
                       {
                         "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -69,7 +69,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "96758d0d-bb08-4ab3-a0ad-cefb271ec0c2",
+                    "concept": "11e0b3bc-cf78-50fe-bac0-79bbdd5cfb14",
                     "answers": [
                       {
                         "concept": "ffb79ff9-5379-45ae-b7db-ced8246e7653",

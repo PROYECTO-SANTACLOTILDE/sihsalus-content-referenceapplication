@@ -31,7 +31,7 @@
               "id": "vitaminaAAdministrada",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000006-0000-4000-8000-000000000006",
+                "concept": "598a9630-fc8f-53d4-bf53-b569ca613ac7",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -79,7 +79,7 @@
               "id": "eventoAdverso",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "a9372bb5-a7f1-51b7-85c4-4fa2030a2980",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

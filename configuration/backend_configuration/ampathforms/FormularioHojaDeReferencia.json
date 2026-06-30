@@ -61,8 +61,34 @@
               "id": "tipoDeSeguro",
               "required": "false",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "6b932638-242e-49ef-8ba7-0ae87199835c"
+                "rendering": "select",
+                "concept": "6b932638-242e-49ef-8ba7-0ae87199835c",
+                "answers": [
+                  {
+                    "concept": "b61a9ff9-1485-4388-9f67-9c341f847f85",
+                    "label": "SIS Gratuito"
+                  },
+                  {
+                    "concept": "e43e0a71-0b5d-4fc2-b599-a76e4562ae5a",
+                    "label": "SIS Semicontributivo"
+                  },
+                  {
+                    "concept": "cc6958d9-7948-4f29-b244-4ff896c0b2ee",
+                    "label": "SIS Emprendedor"
+                  },
+                  {
+                    "concept": "f38b048f-ee8b-4244-b3eb-a47a34c38f04",
+                    "label": "ESSALUD"
+                  },
+                  {
+                    "concept": "4e4f62f9-2171-4eef-8d67-1c7edc7735a8",
+                    "label": "FOSPOLI"
+                  },
+                  {
+                    "concept": "ec420364-fde1-452d-9c48-fafb4ea73a58",
+                    "label": "Seguro privado"
+                  }
+                ]
               },
               "type": "obs",
               "hide": {
@@ -78,7 +104,7 @@
                 "concept": "b76a9a24-4905-4132-a215-8a567281852a",
                 "answers": [
                   {
-                    "concept": "e9225e6a-a4b4-489c-9658-1c37549f797b",
+                    "concept": "e1785011-8628-5dbf-a8b8-8d490d3f47ed",
                     "label": "A"
                   },
                   {
@@ -184,7 +210,7 @@
               "required": "false",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "f715a045-9c97-498f-99e0-8a9f86274667"
+                "concept": "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "type": "obs"
             },
@@ -438,7 +464,7 @@
                     "label": "Dx. Imag."
                   },
                   {
-                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
@@ -455,7 +481,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "especialidadDestino !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "especialidadDestino !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
               }
             }
           ]
@@ -525,7 +551,7 @@
                     "label": "Obstetriz"
                   },
                   {
-                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
@@ -542,7 +568,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "responsableReferenciaProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "responsableReferenciaProfesion !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
               }
             },
             {
@@ -586,7 +612,7 @@
                     "label": "Obstetriz"
                   },
                   {
-                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
@@ -603,7 +629,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "responsableEstablecimientoProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "responsableEstablecimientoProfesion !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
               }
             },
             {
@@ -647,7 +673,7 @@
                     "label": "Obstetriz"
                   },
                   {
-                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
@@ -664,7 +690,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "personalAcompanaProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "personalAcompanaProfesion !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
               }
             }
           ]
@@ -714,7 +740,7 @@
                     "label": "Obstetriz"
                   },
                   {
-                    "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
@@ -731,7 +757,7 @@
               },
               "type": "obs",
               "hide": {
-                "hideWhenExpression": "personalRecibeProfesion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "personalRecibeProfesion !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
               }
             },
             {

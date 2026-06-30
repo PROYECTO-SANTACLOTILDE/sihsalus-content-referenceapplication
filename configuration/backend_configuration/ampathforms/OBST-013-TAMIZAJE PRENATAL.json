@@ -40,18 +40,18 @@
               "id": "trimestreVIH",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "concept": "5c9a1853-729c-5a83-941c-6c8438d9ab4a",
                 "answers": [
                   {
-                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "concept": "65d987be-538a-5b54-af6c-48dd379c5347",
                     "label": "Primer Trimestre (< 14 sem)"
                   },
                   {
-                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "concept": "76af5842-5473-5306-8f68-b8171decde58",
                     "label": "Segundo Trimestre (14-27 sem)"
                   },
                   {
-                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "concept": "108ae639-6674-5af7-90be-d9abe0fdaa65",
                     "label": "Tercer Trimestre (≥ 28 sem)"
                   }
                 ]
@@ -96,18 +96,18 @@
               "id": "trimestreSifilis",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385",
+                "concept": "5c9a1853-729c-5a83-941c-6c8438d9ab4a",
                 "answers": [
                   {
-                    "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
+                    "concept": "65d987be-538a-5b54-af6c-48dd379c5347",
                     "label": "Primer Trimestre (< 14 sem)"
                   },
                   {
-                    "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
+                    "concept": "76af5842-5473-5306-8f68-b8171decde58",
                     "label": "Segundo Trimestre (14-27 sem)"
                   },
                   {
-                    "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
+                    "concept": "108ae639-6674-5af7-90be-d9abe0fdaa65",
                     "label": "Tercer Trimestre (≥ 28 sem)"
                   }
                 ]
@@ -174,7 +174,7 @@
               "id": "clasificacionAnemia",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "82e4809f-801f-4fc8-8872-f180cf7fcb3c",
+                "concept": "c6f3e07b-5200-5d58-8f02-d346e0ce8284",
                 "answers": [
                   {
                     "concept": "c69b424f-4d9c-4ba9-aeae-045ff5a5e530",

@@ -333,7 +333,7 @@
                 "concept": "450efcc9-ddcd-4ecd-b999-e585ccb583eb",
                 "answers": [
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   },
                   {
@@ -428,7 +428,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
-                "concept": "91cda2f0-87b8-44bd-920d-3192cc093821",
+                "concept": "03376f04-8e56-4385-818c-326bd2400478",
                 "min": "0",
                 "max": ""
               },
@@ -524,7 +524,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -562,7 +562,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -581,7 +581,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -652,7 +652,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -846,7 +846,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -993,7 +993,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -1034,7 +1034,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -1078,7 +1078,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]
@@ -1103,7 +1103,7 @@
                     "label": "Positivo"
                   },
                   {
-                    "concept": "8f053eee-b73e-4079-bf29-3101aee00f55",
+                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
                     "label": "Negativo"
                   }
                 ]

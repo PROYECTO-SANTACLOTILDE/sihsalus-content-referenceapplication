@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "e8ae9241-68c9-46d6-9821-0bcdb791e656"
+                "concept": "91f1681b-e9a7-5de7-8f2f-bf129fa6ba18"
               },
               "id": "hcmpGroup",
               "label": "HCMP",
@@ -46,7 +46,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "4dca8468-3c23-48b4-9595-1080bde6452a"
+                "concept": "cf906342-d5ce-596d-86e3-b4fd11c97824"
               },
               "id": "productoConcepcionGroup",
               "label": "Producto de la Concepción",
@@ -107,7 +107,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "56fdb8b4-4f2a-45f6-b720-7b76786c1ad1"
+                "concept": "67d3e2ed-2c0a-5375-b1c8-5e92c4725d06"
               },
               "id": "fechaHoraIngresoGroup",
               "label": "Fecha y Hora de Ingreso al Establecimiento",
@@ -128,7 +128,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "5bb8f8e0-7cd0-4b67-bdef-be81de4effe1"
+                "concept": "fda46f3b-1d35-5f46-9738-e7688c0064bf"
               },
               "id": "referenciaIngresoGroup",
               "label": "Referencia al Ingreso",
@@ -265,7 +265,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "4c481ae7-5629-4c99-9334-566fad97ae22"
+                "concept": "defed75d-68a9-5196-9498-f6f42db90f17"
               },
               "id": "evaluacionFetoGroup",
               "label": "Evaluación del Feto",
@@ -384,7 +384,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2d7b7ddc-8af4-4b70-a0f5-d9909fcd7573"
+                "concept": "01267662-9ec2-5398-8104-c0fe80b1991c"
               },
               "id": "evolucionTrabajoPartoGroup",
               "label": "Evolución del Trabajo de Parto",
@@ -449,7 +449,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "0eb6b0b9-331c-4a49-b9e3-84ce4cffb524",
+                    "concept": "8c7e81d4-8749-51b8-ab83-65afac45c670",
                     "answers": [
                       {
                         "concept": "087a658f-a254-41d2-8a89-1fff4795f933",
@@ -491,7 +491,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "b3536fdb-f149-4d69-97ff-70762e8015d1"
+                "concept": "b923e9b0-54c6-532e-81e2-9149bac9a2f0"
               },
               "id": "signosSintomasAlertaGroup",
               "label": "Signos y Síntomas de Alerta",
@@ -500,7 +500,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "checkbox",
-                    "concept": "b3536fdb-f149-4d69-97ff-70762e8015d1",
+                    "concept": "4a500a20-0171-56ea-99e1-08888eec0831",
                     "answers": [
                       {
                         "concept": "64881f17-b44c-4578-b9a5-df7b5e3cd3bd",
@@ -564,7 +564,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "d13aa37d-ed62-485f-8426-f6556693d29c"
+                "concept": "e2a3a696-8933-5e67-94b2-9bea14546ea1"
               },
               "id": "corticoidesAntenatalesGroup",
               "label": "Corticoides Antenatales",
@@ -573,7 +573,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "d13aa37d-ed62-485f-8426-f6556693d29c",
+                    "concept": "5c0fe819-57b1-5cca-8fb3-7143d6c5c923",
                     "answers": [
                       {
                         "concept": "598a8d66-2e39-4fe2-94a4-768cba5544ce",
@@ -627,7 +627,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "43bdd458-565e-4093-90ce-c3fbfbee1bfe"
+                "concept": "84ef48b8-88f1-5f55-9573-183b60b2d752"
               },
               "id": "fechaHoraTerminacionGroup",
               "label": "Fecha y Hora de Terminación",
@@ -648,7 +648,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "648098df-d25a-4305-a318-c828e18b8e86"
+                "concept": "06034ba3-4ad3-5611-a8f7-12803f6f8eba"
               },
               "id": "terminacionPartoGroup",
               "label": "Terminación del Parto",
@@ -803,7 +803,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "6de4fba1-3bfa-4e57-9695-1d37a885ecaf",
+                    "concept": "45811838-0bb2-598b-94ff-abbec0fafc39",
                     "answers": [
                       {
                         "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -884,7 +884,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "ee00490c-9481-4e4a-a098-d8dc481bc94b",
+                    "concept": "88262a00-746f-5d03-a00b-8451f2747608",
                     "answers": [
                       {
                         "concept": "d7fadc6e-7300-4588-9f60-bec27cb3cc9c",
@@ -943,7 +943,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "467f4fae-fbbf-4f63-9163-01b54514f1d5"
+                "concept": "4b661986-fa97-5262-a775-c93cb5410491"
               },
               "id": "tipoProcedimientoGroup",
               "label": "Tipo de Procedimiento",
@@ -952,7 +952,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "12f3c4d9-a91b-4fc9-9131-5d5611dd3432",
+                    "concept": "f3973246-0b72-5dd7-8e2e-704b65877fc2",
                     "answers": [
                       {
                         "concept": "cdbf8c56-a064-4664-96d4-0a23c9560475",
@@ -988,7 +988,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "096c5e6e-410a-4593-9f59-545813642c33",
+                "concept": "c26319dc-92d6-50bc-a466-637d97a3966b",
                 "answers": [
                   {
                     "concept": "096c5e6e-410a-4593-9f59-545813642c33",
@@ -1003,7 +1003,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "3ab5f91d-1ac4-40e9-b9a7-2e98b657d46b"
+                "concept": "753c175c-c270-58df-976c-bf43fab9e0b2"
               },
               "id": "medicacionPartoGroup",
               "label": "Medicación",
@@ -1023,7 +1023,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "72f0a143-8e60-4ce6-bcd8-33a1ac0e149e"
+                "concept": "d6105a8d-e7d4-5a63-9733-d6c36dcec9b7"
               },
               "id": "medicamentosPartoGroup",
               "label": "Medicamentos",
@@ -1054,7 +1054,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "5aebf764-e3d3-4710-a1cf-89b093411fbe"
+                "concept": "85945103-1e1c-577d-b9d2-3da32764f90d"
               },
               "id": "indicacionPartoOperatorioGroup",
               "label": "Indicación Principal Parto Operatorio",
@@ -1063,7 +1063,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "radio",
-                    "concept": "c0bd5819-02ec-4c57-94b1-23fe47af8a30",
+                    "concept": "8618fceb-624d-5372-aa9d-ad7f1895e0ac",
                     "answers": [
                       {
                         "concept": "c0bd5819-02ec-4c57-94b1-23fe47af8a30",
@@ -1100,7 +1100,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "1c7f61d9-74f7-4f93-bb97-f245252311bb"
+                "concept": "b06fa49a-5de5-531f-85ae-4a3f4ca1d232"
               },
               "id": "nivelAtencionGroup",
               "label": "Nivel Atención",
@@ -1132,7 +1132,7 @@
                         "label": "Domiciliario"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -1146,7 +1146,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "c6567881-4659-4624-8adf-ba0c15cbc4c6"
+                "concept": "84dc50aa-a46a-53b9-b04e-2fe24f66e712"
               },
               "id": "partoAtendidoPorGroup",
               "label": "Parto",
@@ -1194,7 +1194,7 @@
                         "label": "Familiar"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -1226,7 +1226,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "e5e538ba-c5a9-485e-bc49-7190f3e2700e"
+                "concept": "47de215b-ed3d-5f3f-8856-07bfdd4035c0"
               },
               "id": "neonatoGroup",
               "label": "Neonato",
@@ -1274,7 +1274,7 @@
                         "label": "Familiar"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]

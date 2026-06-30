@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "7f6dbe65-b515-46e3-ae22-a8d4305f9df8"
+                "concept": "f6d87b7a-bbcb-5f13-92a8-7c764a5a5cd9"
               },
               "id": "datosIngresoEgresoGroup",
               "label": "Datos de ingreso y egreso",
@@ -43,7 +43,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "d11ac920-16dc-46ae-bcea-a60595ae3d1c"
+                "concept": "29c4ccf1-f7d1-5a38-b8b9-95c76daf5de9"
               },
               "id": "ingresoGroup",
               "label": "Ingreso",
@@ -75,7 +75,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2e985f26-2f7b-4b18-a639-e1998d21a1a0"
+                "concept": "58e0241b-e7a8-5ce0-a885-3d43da386218"
               },
               "id": "examenesIntervencionesProcedimientosRealizadosGroup",
               "label": "Exámenes, Intervenciones y/o Procedimientos Realizados",
@@ -177,7 +177,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "7f6dbe65-b515-46e3-ae22-a8d4305f9df8"
+                "concept": "da22ae28-80eb-5efc-a4bc-fd8df6509820"
               },
               "id": "evolucionTratamiento",
               "label": "Evolución y Tratamiento",
@@ -208,7 +208,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "96758d0d-bb08-4ab3-a0ad-cefb271ec0c2"
+                "concept": "a0e562c6-142f-534f-82ec-dc12b21b0562"
               },
               "id": "egresoGroup",
               "label": "Egreso",
@@ -248,7 +248,7 @@
                         "label": "Fallecida"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otra"
                       }
                     ]
@@ -282,7 +282,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "de908063-228c-43ea-888c-9f437e5794ba"
+                "concept": "358fc148-5c69-5abd-9c59-635e052a7a38"
               },
               "id": "planificacionFamiliarGroup",
               "label": "Planificación Familiar",
@@ -302,7 +302,7 @@
                         "label": "Condón"
                       },
                       {
-                        "concept": "c24bc445-f105-4761-8bda-409acb91b0f2",
+                        "concept": "85c5929e-6482-4717-8748-507cdbd2611a",
                         "label": "Depoprovera"
                       },
                       {
@@ -322,7 +322,7 @@
                         "label": "T de Cobre"
                       },
                       {
-                        "concept": "f3ee2870-ef01-4cf7-8010-0f190777e349",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otra"
                       }
                     ]
@@ -336,7 +336,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "5941c0b5-54a4-46a5-b283-a22adfbfadc0"
+                "concept": "47de215b-ed3d-5f3f-8856-07bfdd4035c0"
               },
               "id": "recienNacidoGroup",
               "label": "Recién Nacido",
@@ -407,7 +407,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "text",
-                    "concept": "c1200bea-2db3-4c37-a1bd-6f8aed5b6e2e"
+                    "concept": "199b49db-3dd5-5484-b99a-d162107db205"
                   },
                   "id": "internoObstetriciaServicioNeonatologia",
                   "label": "Interno de Obstetricia/Servicio de Neonatología"
@@ -418,7 +418,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "8e718baa-ecf5-4a8a-9bcd-75986ef855a0"
+                "concept": "f3a2aa3f-9901-5c6f-bee6-2016af77cc0f"
               },
               "id": "servicioGroup",
               "label": "Servicio",

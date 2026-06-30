@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "fd7ae511-0f4d-4493-a3e7-941e0c5ec879"
+                "concept": "84001ce6-e3e6-5d31-980e-63cbac729141"
               },
               "id": "primeraConsultaGroup",
               "label": "1ra. Consulta",
@@ -160,7 +160,7 @@
                         "label": "Domicilio"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -175,7 +175,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "haDecididoDondeAtenderaSuParto !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "haDecididoDondeAtenderaSuParto !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarLugarPartoPlaneado",
                   "label": "Especificar (dónde atenderá su parto)"
@@ -195,7 +195,7 @@
                         "label": "Cuclillas"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -210,7 +210,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "enQuePosicionPrefeririaDarALuz !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "enQuePosicionPrefeririaDarALuz !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarPosicionLuzPlaneado",
                   "label": "Especificar (posición para dar a luz)"

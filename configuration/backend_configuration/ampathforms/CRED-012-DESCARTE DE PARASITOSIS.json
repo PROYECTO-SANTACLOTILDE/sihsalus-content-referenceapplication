@@ -31,7 +31,7 @@
               "id": "sintomasDigestivos",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "561c11ca-59a2-5608-b24c-4195c8365bcf",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -52,7 +52,7 @@
               "id": "examenSolicitado",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000006-0000-4000-8000-000000000006",
+                "concept": "e38d43a0-42ca-5905-ba2f-308714e8532d",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

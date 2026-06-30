@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "fd7ae511-0f4d-4493-a3e7-941e0c5ec879"
+                "concept": "84001ce6-e3e6-5d31-980e-63cbac729141"
               },
               "id": "primeraConsultaGroup",
               "label": "1ra. Consulta",
@@ -160,7 +160,7 @@
                         "label": "Domicilio"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -175,7 +175,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "haDecididoDondeAtenderaSuParto !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "haDecididoDondeAtenderaSuParto !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarLugarPartoPlaneado",
                   "label": "Especificar (dónde atenderá su parto)"
@@ -195,7 +195,7 @@
                         "label": "Cuclillas"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -210,7 +210,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "enQuePosicionPrefeririaDarALuz !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "enQuePosicionPrefeririaDarALuz !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarPosicionLuzPlaneado",
                   "label": "Especificar (posición para dar a luz)"
@@ -234,7 +234,7 @@
               "id": "transporte",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "830ecf86-edd6-41dd-9211-7785a930e995"
+                "concept": "2f70e923-6165-5ea9-9066-490ffae6897f"
               },
               "questions": [
                 {
@@ -266,7 +266,7 @@
                         "label": "Mototaxi"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -279,7 +279,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "transporte2 !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "transporte2 !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarTransporte",
                   "label": "Especificar (transporte)"
@@ -367,7 +367,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "be65db12-826c-461c-8374-5862f218dc12"
+                "concept": "d1275bf9-bc99-50f9-823f-8f46980168d4"
               },
               "id": "colaboradorA",
               "label": "Colaborador(a)",

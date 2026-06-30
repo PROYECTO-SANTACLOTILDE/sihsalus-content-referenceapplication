@@ -31,7 +31,7 @@
               "id": "lesionesOrales",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "0a1149eb-00b9-5f20-b55c-e67887f70eaa",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -52,7 +52,7 @@
               "id": "cariesVisible",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "bed48bcd-c552-59bd-b002-fe3ee3d05829",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

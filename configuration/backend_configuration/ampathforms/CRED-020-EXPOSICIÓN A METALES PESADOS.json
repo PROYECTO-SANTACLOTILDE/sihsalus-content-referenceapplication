@@ -31,7 +31,7 @@
               "id": "zonaRiesgo",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "6df5813c-715f-522e-bcd6-d66eaa4d7b89",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -63,7 +63,7 @@
               "id": "sintomasCompatibles",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "8ac0a77c-5580-5a95-a922-3ed52467fe5d",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -84,7 +84,7 @@
               "id": "laboratorioSolicitado",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000006-0000-4000-8000-000000000006",
+                "concept": "b8ec8f4d-2f23-5501-8b9e-b9d3d7aee54a",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
