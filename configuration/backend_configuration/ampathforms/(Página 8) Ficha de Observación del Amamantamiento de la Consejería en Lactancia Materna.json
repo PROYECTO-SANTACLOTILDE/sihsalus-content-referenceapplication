@@ -48,7 +48,7 @@
                   }
                 ]
               },
-              "id": "posicióNDelCuerpo",
+              "id": "posicionDelCuerpo",
               "label": "Posición del Cuerpo"
             },
             {
@@ -106,7 +106,7 @@
                   }
                 ]
               },
-              "id": "víNculoAfectivo",
+              "id": "vinculoAfectivo",
               "label": "Vínculo Afectivo"
             },
             {
@@ -133,7 +133,7 @@
                   }
                 ]
               },
-              "id": "anatomíA",
+              "id": "anatomia",
               "label": "Anatomía"
             },
             {
@@ -172,7 +172,7 @@
                   }
                 ]
               },
-              "id": "succióN",
+              "id": "succion",
               "label": "Succión"
             },
             {
@@ -198,7 +198,7 @@
                 "concept": "4cb55646-934c-44f5-a986-166654b44996",
                 "min": "0"
               },
-              "id": "tiempoQueElBebeMamó(Min)",
+              "id": "tiempoQueElBebeMamoMin",
               "label": "Tiempo que el bebe mamó (min)"
             },
             {

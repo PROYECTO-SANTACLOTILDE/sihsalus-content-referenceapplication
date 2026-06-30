@@ -14,7 +14,7 @@
                 "rendering": "group",
                 "concept": "ed550c2f-5ebf-425f-93f1-2e856d1d886e"
               },
-              "id": "antecedentesDePersonasMenoresDe18AñOs",
+              "id": "antecedentesDePersonasMenoresDe18Anos",
               "label": "Antecedentes de personas menores de 18 años",
               "questions": [
                 {
@@ -37,7 +37,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaAVacunarEstáEnfermaHoy?",
+                  "id": "laPersonaAVacunarEstaEnfermaHoy",
                   "label": "¿La persona a vacunar está enferma hoy?"
                 },
                 {
@@ -60,7 +60,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaAVacunarHaTenidoUnaReaccióNImportanteAAlgunaVacuna?",
+                  "id": "laPersonaAVacunarHaTenidoUnaReaccionImportanteAAlgunaVacuna",
                   "label": "¿La persona a vacunar ha tenido una reacción importante a alguna vacuna?"
                 },
                 {
@@ -83,7 +83,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaEsAléRgicaAMedicamentosY/OAlimentos?",
+                  "id": "laPersonaEsAlergicaAMedicamentosYOAlimentos",
                   "label": "¿La persona es alérgica a medicamentos y/o alimentos?"
                 },
                 {
@@ -106,7 +106,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaHaTenidoConvulsionesOAlgúNProblemaCerebral?",
+                  "id": "laPersonaHaTenidoConvulsionesOAlgunProblemaCerebral",
                   "label": "¿La persona ha tenido convulsiones o algún problema cerebral?"
                 },
                 {
@@ -129,7 +129,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaTieneCáNcer,Leucemia,SidaOCualquierOtroProblemaDelSistemaInmune?",
+                  "id": "laPersonaTieneCancerLeucemiaSidaOCualquierOtroProblemaDelSistemaInmune",
                   "label": "¿La persona tiene cáncer, leucemia, SIDA o cualquier otro problema del sistema inmune?"
                 },
                 {
@@ -152,7 +152,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaConviveConPersonasDeEdadAvanzadaOConCáNcer,TrasplantesOAlgunaOtraCircunstanciaQueAfecteALaInmunidad?",
+                  "id": "laPersonaConviveConPersonasDeEdadAvanzadaOConCancerTrasplantesOAlgunaOtraCircunstanciaQueAfecteALaInmunidad",
                   "label": "¿La persona convive con personas de edad avanzada o con cáncer, trasplantes o alguna otra circunstancia que afecte a la inmunidad?"
                 },
                 {
@@ -175,7 +175,7 @@
                       }
                     ]
                   },
-                  "id": "enElúLtimoAñO,¿LaPersonaHaRecibidoUnaTransfusióNSanguíNea,DeProductosHemáTicosOInmunoglobulinas?",
+                  "id": "enElUltimoAnoLaPersonaHaRecibidoUnaTransfusionSanguineaDeProductosHematicosOInmunoglobulinas",
                   "label": "En el último año, ¿la persona ha recibido una transfusión sanguínea, de productos hemáticos o inmunoglobulinas?"
                 },
                 {
@@ -198,7 +198,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaHaTomadoCorticoidesOMedicamentosAnticancerososOHaRecibidoTratamientoConRadioterapiaEnLosúLtimos3Meses?",
+                  "id": "laPersonaHaTomadoCorticoidesOMedicamentosAnticancerososOHaRecibidoTratamientoConRadioterapiaEnLosUltimos3Meses",
                   "label": "¿La persona ha tomado corticoides o medicamentos anticancerosos o ha recibido tratamiento con radioterapia en los últimos 3 meses?"
                 },
                 {
@@ -222,7 +222,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaEstáEmbarazadaOExisteLaPosibilidadDeQueSeQuedeEmbarazadaEnLasPróXimas4Semanas?",
+                  "id": "laPersonaEstaEmbarazadaOExisteLaPosibilidadDeQueSeQuedeEmbarazadaEnLasProximas4Semanas",
                   "label": "¿La persona está embarazada o existe la posibilidad de que se quede embarazada en las próximas 4 semanas?"
                 },
                 {
@@ -246,7 +246,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaEsPersonalDeSalud?",
+                  "id": "laPersonaEsPersonalDeSalud",
                   "label": "¿La persona es personal de salud?"
                 },
                 {
@@ -269,7 +269,7 @@
                       }
                     ]
                   },
-                  "id": "¿LaPersonaTieneAlgunaOtraEnfermedadCróNica?",
+                  "id": "laPersonaTieneAlgunaOtraEnfermedadCronica",
                   "label": "¿La persona tiene alguna otra enfermedad crónica?"
                 }
               ],
@@ -287,7 +287,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "responsableAtencióN",
+              "id": "responsableAtencion",
               "label": "Responsable atención",
               "type": "encounterProvider",
               "questionOptions": {

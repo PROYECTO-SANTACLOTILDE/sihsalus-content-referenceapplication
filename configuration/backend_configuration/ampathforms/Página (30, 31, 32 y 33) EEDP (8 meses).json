@@ -42,7 +42,7 @@
               "label": "Aprieta el dedo índice del examinador",
               "type": "obs",
               "required": false,
-              "id": "aprietaElDedoíNdiceDelExaminador",
+              "id": "aprietaElDedoIndiceDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -57,7 +57,7 @@
               "label": "Sigue con la vista la argolla (ang. 90°)",
               "type": "obs",
               "required": false,
-              "id": "sigueConLaVistaLaArgolla(Ang.90°)",
+              "id": "sigueConLaVistaLaArgollaAng90",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -72,7 +72,7 @@
               "label": "Movimiento de cabeza en posición prona",
               "type": "obs",
               "required": false,
-              "id": "movimientoDeCabezaEnPosicióNProna",
+              "id": "movimientoDeCabezaEnPosicionProna",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -93,7 +93,7 @@
               "label": "Mímica en respuesta al rostro del examinador",
               "type": "obs",
               "required": false,
-              "id": "míMicaEnRespuestaAlRostroDelExaminador",
+              "id": "mimicaEnRespuestaAlRostroDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -108,7 +108,7 @@
               "label": "Vocaliza en respuesta a la sonrisa y conversación del examinador",
               "type": "obs",
               "required": false,
-              "id": "vocalizaEnRespuestaALaSonrisaYConversacióNDelExaminador",
+              "id": "vocalizaEnRespuestaALaSonrisaYConversacionDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -138,7 +138,7 @@
               "label": "Intenta controlar la cabeza al ser llevado a posición sentada",
               "type": "obs",
               "required": false,
-              "id": "intentaControlarLaCabezaAlSerLlevadoAPosicióNSentada",
+              "id": "intentaControlarLaCabezaAlSerLlevadoAPosicionSentada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -174,7 +174,7 @@
               "label": "Sonríe en respuesta a la sonrisa del examinador",
               "type": "obs",
               "required": false,
-              "id": "sonríEEnRespuestaALaSonrisaDelExaminador",
+              "id": "sonrieEnRespuestaALaSonrisaDelExaminador",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -204,7 +204,7 @@
               "label": "Sigue con la vista la argolla (ang. 180°)",
               "type": "obs",
               "required": false,
-              "id": "sigueConLaVistaLaArgolla(Ang.180°)",
+              "id": "sigueConLaVistaLaArgollaAng180",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -219,7 +219,7 @@
               "label": "Mantiene la cabeza erguida al ser llevado a posición sentada",
               "type": "obs",
               "required": false,
-              "id": "mantieneLaCabezaErguidaAlSerLlevadoAPosicióNSentada",
+              "id": "mantieneLaCabezaErguidaAlSerLlevadoAPosicionSentada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -234,7 +234,7 @@
               "label": "Vocalización prolongada",
               "type": "obs",
               "required": false,
-              "id": "vocalizacióNProlongada",
+              "id": "vocalizacionProlongada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -285,7 +285,7 @@
               "label": "En posición prona se levanta a sí mismo",
               "type": "obs",
               "required": false,
-              "id": "enPosicióNPronaSeLevantaASíMismo",
+              "id": "enPosicionPronaSeLevantaASiMismo",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -300,7 +300,7 @@
               "label": "Levanta la cabeza y hombro al ser llevado a posición sentada",
               "type": "obs",
               "required": false,
-              "id": "levantaLaCabezaYHombroAlSerLlevadoAPosicióNSentada",
+              "id": "levantaLaCabezaYHombroAlSerLlevadoAPosicionSentada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -315,7 +315,7 @@
               "label": "Ríe a carcajadas",
               "type": "obs",
               "required": false,
-              "id": "ríEACarcajadas",
+              "id": "rieACarcajadas",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -366,7 +366,7 @@
               "label": "Intenta presión de la argolla",
               "type": "obs",
               "required": false,
-              "id": "intentaPresióNDeLaArgolla",
+              "id": "intentaPresionDeLaArgolla",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -381,7 +381,7 @@
               "label": "Empuja hasta lograr la posición sentada",
               "type": "obs",
               "required": false,
-              "id": "empujaHastaLograrLaPosicióNSentada",
+              "id": "empujaHastaLograrLaPosicionSentada",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -417,7 +417,7 @@
               "label": "Se mantiene sentado solo, momentáneamente",
               "type": "obs",
               "required": false,
-              "id": "seMantieneSentadoSolo,MomentáNeamente",
+              "id": "seMantieneSentadoSoloMomentaneamente",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -432,7 +432,7 @@
               "label": "Vuelve la cabeza hacia la cuchara caída",
               "type": "obs",
               "required": false,
-              "id": "vuelveLaCabezaHaciaLaCucharaCaíDa",
+              "id": "vuelveLaCabezaHaciaLaCucharaCaida",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -498,7 +498,7 @@
               "label": "Se mantiene sentado solo, por 30 seg. o más",
               "type": "obs",
               "required": false,
-              "id": "seMantieneSentadoSolo,Por30Seg.OMáS",
+              "id": "seMantieneSentadoSoloPor30SegOMas",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -558,7 +558,7 @@
               "label": "Coge dos cubos, uno en cada mano",
               "type": "obs",
               "required": false,
-              "id": "cogeDosCubos,UnoEnCadaMano",
+              "id": "cogeDosCubosUnoEnCadaMano",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -594,7 +594,7 @@
               "label": "Empuja hasta lograr la posición de pie",
               "type": "obs",
               "required": false,
-              "id": "empujaHastaLograrLaPosicióNDePie",
+              "id": "empujaHastaLograrLaPosicionDePie",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -609,7 +609,7 @@
               "label": "Iniciación de pasos sostenido bajo los brazos",
               "type": "obs",
               "required": false,
-              "id": "iniciacióNDePasosSostenidoBajoLosBrazos",
+              "id": "iniciacionDePasosSostenidoBajoLosBrazos",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,
@@ -639,7 +639,7 @@
               "label": "Dice 'da'-'da' o equivalente",
               "type": "obs",
               "required": false,
-              "id": "diceDa-DaOEquivalente",
+              "id": "diceDaDaOEquivalente",
               "questionOptions": {
                 "rendering": "number",
                 "step": 1,

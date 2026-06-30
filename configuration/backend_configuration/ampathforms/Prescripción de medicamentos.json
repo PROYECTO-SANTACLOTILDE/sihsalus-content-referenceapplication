@@ -48,7 +48,7 @@
               ]
             },
             {
-              "type": "obs",
+              "type": "control",
               "questionOptions": {
                 "rendering": "workspace-launcher",
                 "buttonLabel": "Añadir medicamentos",
@@ -58,7 +58,7 @@
               "label": "Prescripción de medicamentos"
             },
             {
-              "type": "obs",
+              "type": "control",
               "questionOptions": {
                 "rendering": "workspace-launcher",
                 "buttonLabel": "Añadir suplementos",

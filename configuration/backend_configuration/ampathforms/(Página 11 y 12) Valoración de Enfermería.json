@@ -14,7 +14,7 @@
                 "rendering": "repeating",
                 "concept": "c20d1f4e-d19a-47b6-b545-181a85477187"
               },
-              "id": "enElBebé",
+              "id": "enElBebe",
               "label": "EN EL BEBÉ",
               "questions": [
                 {
@@ -23,7 +23,7 @@
                     "rendering": "date",
                     "concept": "1fae4014-1838-461a-ad81-a508d607959e"
                   },
-                  "id": "fechaDeLaValorizacióN",
+                  "id": "fechaDeLaValorizacion",
                   "datePickerFormat": "calendar",
                   "label": "Fecha de la valorización"
                 },
@@ -135,7 +135,7 @@
                       }
                     ]
                   },
-                  "id": "succióN",
+                  "id": "succion",
                   "label": "Succión"
                 },
                 {
@@ -154,7 +154,7 @@
                       }
                     ]
                   },
-                  "id": "caracteríSticasDelAbdomen",
+                  "id": "caracteristicasDelAbdomen",
                   "label": "Características del Abdomen"
                 },
                 {
@@ -177,7 +177,7 @@
                       }
                     ]
                   },
-                  "id": "deglucióN",
+                  "id": "deglucion",
                   "label": "Deglución"
                 },
                 {
@@ -200,7 +200,7 @@
                       }
                     ]
                   },
-                  "id": "eliminacióN",
+                  "id": "eliminacion",
                   "label": "Eliminación"
                 },
                 {
@@ -212,7 +212,7 @@
                     "min": "0",
                     "max": "60"
                   },
-                  "id": "temperatura(°C)",
+                  "id": "temperaturaC",
                   "label": "Temperatura (°C)"
                 },
                 {
@@ -223,7 +223,7 @@
                     "concept": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "min": "0"
                   },
-                  "id": "frecuenciaRespiratoria(RespiracionesPorMinuto)",
+                  "id": "frecuenciaRespiratoriaRespiracionesPorMinuto",
                   "label": "Frecuencia respiratoria (respiraciones por minuto)"
                 },
                 {
@@ -234,7 +234,7 @@
                     "minLength": "",
                     "rows": 2
                   },
-                  "id": "diagnóSticoDeEnfermeríA",
+                  "id": "diagnosticoDeEnfermeria",
                   "label": "Diagnóstico de Enfermería"
                 },
                 {
@@ -244,7 +244,7 @@
                     "concept": "47a5ae3a-36a8-422c-a0b0-9b18bb44655f",
                     "rows": 3
                   },
-                  "id": "intervencióNDeEnfermeríA",
+                  "id": "intervencionDeEnfermeria",
                   "label": "Intervención de enfermería"
                 }
               ]

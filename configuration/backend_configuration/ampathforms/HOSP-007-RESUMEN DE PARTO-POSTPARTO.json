@@ -300,12 +300,12 @@
                         "label": "Inducido"
                       },
                       {
-                        "concept": "2844ec0e-5627-415e-9edf-452f577525ab",
+                        "concept": "3ffe774b-6974-4f75-ac14-fcea7802945c",
                         "label": "Instrumentado"
                       }
                     ]
                   },
-                  "id": "Terminación",
+                  "id": "terminacion",
                   "label": "Terminación"
                 },
                 {
@@ -384,7 +384,7 @@
                     "concept": "899e0cc8-5f6a-4334-b51d-c559f71ea550",
                     "answers": [
                       {
-                        "concept": "a9dfc6ac-e189-4661-ab27-bc42e8330c1a",
+                        "concept": "10bfedc9-23eb-45d9-8f36-6e0ed7aeadcf",
                         "label": "Cesárea"
                       },
                       {
@@ -393,7 +393,7 @@
                       }
                     ]
                   },
-                  "id": "TipoParto",
+                  "id": "tipoDeParto",
                   "label": "Tipo de Parto"
                 },
                 {
@@ -649,7 +649,7 @@
                 "rendering": "group",
                 "concept": "7f75f2a9-3531-4f9a-b2ac-eaf61d74f614"
               },
-              "id": "CordonAnexosGroup",
+              "id": "cordon",
               "label": "Cordón",
               "questions": [
                 {
@@ -903,7 +903,7 @@
                     "concept": "b1c5577c-8cd9-4994-aa4c-da7eb1ed8adf"
                   },
                   "datePickerFormat": "both",
-                  "id": "fecha/hora",
+                  "id": "fechaHora",
                   "label": "Fecha/hora"
                 },
                 {
@@ -933,7 +933,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNSistóLica",
+                  "id": "presionSistolicaMmhg",
                   "label": "Presión sistólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {
@@ -946,7 +946,7 @@
                   "hideSteppers": true
                 },
                 {
-                  "id": "presióNDiastóLica",
+                  "id": "presionDiastolicaMmhg",
                   "label": "Presión diastólica (mmHg)",
                   "type": "obs",
                   "questionOptions": {

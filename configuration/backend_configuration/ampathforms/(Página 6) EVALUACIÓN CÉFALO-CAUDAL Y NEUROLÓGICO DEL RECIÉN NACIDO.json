@@ -152,7 +152,7 @@
                 "rendering": "text",
                 "concept": "d29ccdb7-b8ab-4d29-8a58-751300875df4"
               },
-              "id": "otrosParaImplantacióN",
+              "id": "otrosParaImplantacion",
               "label": "Otros para implantación",
               "hide": {
                 "hideWhenExpression": "isEmpty(orejas) || orejas !== '37b6676a-b4a8-4296-b17d-ebe8f194527d'"
@@ -164,7 +164,7 @@
                 "rendering": "text",
                 "concept": "d29ccdb7-b8ab-4d29-8a58-751300875df4"
               },
-              "id": "otrosParaUbicacióN",
+              "id": "otrosParaUbicacion",
               "label": "Otros para ubicación",
               "hide": {
                 "hideWhenExpression": "isEmpty(orejas) || orejas !== 'f1476edc-eb9f-4d1c-8812-8af0f6ecb831'"
@@ -301,7 +301,7 @@
                   }
                 ]
               },
-              "id": "tóRax",
+              "id": "torax",
               "label": "Tórax"
             },
             {
@@ -331,7 +331,7 @@
                   }
                 ]
               },
-              "id": "clavíCula",
+              "id": "clavicula",
               "label": "Clavícula"
             },
             {
@@ -371,7 +371,7 @@
                   }
                 ]
               },
-              "id": "cordóNUmbilical",
+              "id": "cordonUmbilical",
               "label": "Cordón Umbilical"
             },
             {
@@ -398,7 +398,7 @@
                   }
                 ]
               },
-              "id": "caracteríSticasDelAbdomen",
+              "id": "caracteristicasDelAbdomen",
               "label": "Características del Abdomen"
             }
           ]
@@ -422,7 +422,7 @@
                 "rendering": "text",
                 "concept": "f947a4ad-3d8d-4516-8e6b-67b3dca4e227"
               },
-              "id": "observacióN",
+              "id": "observacion",
               "label": "Observación"
             },
             {
@@ -476,7 +476,7 @@
                   }
                 ]
               },
-              "id": "eliminacióNGenitoUrinario",
+              "id": "eliminacion",
               "label": "Eliminación"
             },
             {
@@ -485,10 +485,10 @@
                 "rendering": "text",
                 "concept": "d29ccdb7-b8ab-4d29-8a58-751300875df4"
               },
-              "id": "otrosParaEliminacióNGenitoUrinario",
+              "id": "otrosParaEliminacion",
               "label": "Otros para eliminación",
               "hide": {
-                "hideWhenExpression": "isEmpty(eliminacióNGenitoUrinario) || eliminacióNGenitoUrinario !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "isEmpty(eliminacion) || eliminacion !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
@@ -711,7 +711,7 @@
                   }
                 ]
               },
-              "id": "valoracióNNeurolóGica",
+              "id": "valoracionNeurologica",
               "label": "Valoración Neurológica"
             },
             {
@@ -720,10 +720,10 @@
                 "rendering": "text",
                 "concept": "d29ccdb7-b8ab-4d29-8a58-751300875df4"
               },
-              "id": "otrosParaValoracióNNeurolóGica",
+              "id": "otrosParaValoracionNeurologica",
               "label": "Otros para valoración neurológica",
               "hide": {
-                "hideWhenExpression": "isEmpty(valoracióNNeurolóGica) || valoracióNNeurolóGica !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                "hideWhenExpression": "isEmpty(valoracionNeurologica) || valoracionNeurologica !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
               }
             }
           ]
