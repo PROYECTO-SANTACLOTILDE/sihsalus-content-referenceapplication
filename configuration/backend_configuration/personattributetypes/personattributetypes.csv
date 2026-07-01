@@ -22,6 +22,21 @@ d3e5b4d9-93c2-461e-822e-3cecd64b1842,,Observación de Verificación de Identidad
 374b130f-7457-476f-87b1-f182aa77c434,,Código de Seguro,Código de afiliación o seguro del paciente,java.lang.String,,
 9b3df0a1-0c58-4f55-9868-9c38f1db1005,,Estado de Acreditación de Seguro,Estado de acreditación registrado para el seguro del paciente,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2005,true
 9b3df0a1-0c58-4f55-9868-9c38f1db1006,,Fecha y Hora de Acreditación de Seguro,Fecha y hora de la última acreditación de seguro registrada,java.lang.String,,
+4107a7e3-f8fe-4604-993a-a8c902410a0b,,Régimen SIS,"Código de régimen SIS reportado por SETISIS: 1 subsidiado, 2 semicontributivo o vacío cuando no corresponde.",java.lang.String,,true
+46f7527c-bd55-4960-9fe0-e35bd59d786c,,Código de Tipo de Seguro SIS,"Código de tipo de seguro SIS reportado por SETISIS: 01, 02, 03 o 04.",java.lang.String,,true
+4bf4517f-38f4-44a2-a6c4-52b2e797034a,,Descripción de Tipo de Seguro SIS,Descripción textual del tipo de seguro SIS reportada por SETISIS.,java.lang.String,,true
+4dc20ef3-a781-452c-8f70-39ac5861be38,,Fecha de Afiliación SIS,Fecha de afiliación SIS normalizada desde FecAfiliacion del servicio SETISIS.,java.lang.String,,
+1cea97ae-accc-4670-be6f-8d9110b70352,,Fecha de Caducidad SIS,Fecha de caducidad de la afiliación SIS normalizada desde FecCaducidad del servicio SETISIS.,java.lang.String,,
+0e7df671-58eb-4ea3-93b7-fd3fd93d6012,,DISA SIS,Primer código del contrato SIS usado para consulta de inscritos o temporales.,java.lang.String,,true
+32fa8f80-e2f4-4a63-a9f7-cb24ca24aad6,,Tipo de Formato SIS,Segundo código del contrato SIS usado para consulta de inscritos o temporales.,java.lang.String,,true
+fb4443d2-4c50-4e4b-824c-fd6237e1d292,,Número de Contrato SIS,Tercer código del contrato SIS usado para consulta de inscritos o temporales.,java.lang.String,,true
+b24a7cb3-f0be-487b-bb6c-a818fcd2dea5,,Correlativo SIS,Cuarto código del contrato SIS usado para consulta de inscritos o temporales.,java.lang.String,,true
+29e68b2b-7b9c-493a-b302-707b1e394695,,Tabla SIS,Código único de tabla de registro SIS reportado por SETISIS.,java.lang.String,,true
+5b8211e7-9154-4229-a0bc-c4a6ff621b3e,,Plan de Cobertura SIS,Código del plan de cobertura de salud SIS reportado por SETISIS.,java.lang.String,,true
+a354d153-2ee3-41f8-af5e-fac723a32f0a,,Grupo Poblacional SIS,Código de grupo poblacional SIS reportado por SETISIS.,java.lang.String,,true
+8dc2d805-aa5a-4af1-bc17-3ac419300b52,,Código REANES EESS SIS,Código REANES del establecimiento SIS asignado donde se atiende el asegurado.,java.lang.String,,true
+2b0382d9-5f7c-425d-ad6e-a4489dafd2f5,,Nombre EESS SIS,Descripción del establecimiento SIS asignado donde se atiende el asegurado.,java.lang.String,,true
+c78336df-f057-4a97-b0d7-4a70f7567aea,,UBIGEO EESS SIS,Código UBIGEO INEI del establecimiento SIS asignado donde se atiende el asegurado.,java.lang.String,,true
 9b3df0a1-0c58-4f55-9868-9c38f1db1003,,Estado de Historia Clínica,"Estado documental de la historia clínica: activa, pasiva o eliminada",org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2003,true
 9b3df0a1-0c58-4f55-9868-9c38f1db1004,,Tipo de Archivo de Historia Clínica,Clasificación de archivo de historia clínica: común o especial,org.openmrs.Concept,9b3df0a1-0c58-4f55-9868-9c38f1db2004,true
 787f1ea9-1792-45e5-9076-699b1a0638cb,,Estado de Identificación en Admisión,"Estado administrativo usado en admisión o emergencia para indicar si el paciente fue identificado durante el ingreso: no identificado, identificación parcial, identificación confirmada o fusionado con registro existente.",org.openmrs.Concept,e47c3ef7-c7e2-4d35-b2fa-934df43df2a5,true
