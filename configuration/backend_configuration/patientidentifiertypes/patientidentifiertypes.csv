@@ -5,3 +5,6 @@ Uuid,Void/Retire,Name,Description,Required,Format,Format description,Validator,L
 550e8400-e29b-41d4-a716-446655440003,FALSE,PASS,Pasaporte,FALSE,"^[A-Za-z0-9]{6,9}$","Entre 6 y 9 caracteres alfanuméricos",,NOT_USED,UNIQUE
 8d793bee-c2cc-11de-8d13-0010c6dffd0f,FALSE,DIE,Documento de Identidad Extranjero,FALSE,,"Sin validación específica",,NOT_USED,NON_UNIQUE
 8d79403a-c2cc-11de-8d13-0010c6dffd0f,FALSE,CNV,Certificado de Nacido Vivo,FALSE,"^[0-9]{12}$","12 dígitos numéricos",,NOT_USED,UNIQUE
+6ff8b876-0aea-4219-b03f-dfc428ae05f4,FALSE,SIS Idnumreg,Código único de registro SIS del asegurado devuelto por SETISIS,FALSE,"^[A-Za-z0-9.-]{1,30}$","Código SIS alfanumérico de hasta 30 caracteres",,NOT_USED,UNIQUE
+406574d4-396a-4787-9c4e-0bbfa30de39f,FALSE,SIS Contrato,Código único de contrato SIS del asegurado devuelto por SETISIS,FALSE,"^[A-Za-z0-9.-]{1,30}$","Código de contrato SIS alfanumérico de hasta 30 caracteres",,NOT_USED,UNIQUE
+97d1a1f2-6b38-4319-9ea2-46a8763ad671,FALSE,SIS Afiliación RN/Temporal,"Identificador compuesto para afiliación SIS de inscrito o temporal: DISA-TipoFormato-NroContrato-Correlativo",FALSE,"^[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+-[A-Za-z0-9]+$","DISA-TipoFormato-NroContrato-Correlativo normalizado",,NOT_USED,UNIQUE
