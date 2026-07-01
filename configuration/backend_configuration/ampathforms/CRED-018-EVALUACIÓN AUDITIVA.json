@@ -31,7 +31,7 @@
               "id": "metodo",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000006-0000-4000-8000-000000000006"
+                "concept": "17461595-613f-5a65-a3fd-f34308fc0a67"
               },
               "validators": []
             },
@@ -42,7 +42,7 @@
               "id": "factoresRiesgoAuditivo",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "171cbf0f-6411-5e27-b5b1-039fda90c553",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

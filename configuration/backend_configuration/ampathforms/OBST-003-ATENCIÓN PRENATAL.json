@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "5c4ebec7-d5e2-4a24-9a4c-1369e26f0f6d"
+                "concept": "09db4323-02b1-53b3-9198-a836a640dbda"
               },
               "id": "atencionPrenatalGroup",
               "label": "Atención prenatal",
@@ -508,7 +508,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "4c481ae7-5629-4c99-9334-566fad97ae22"
+                "concept": "defed75d-68a9-5196-9498-f6f42db90f17"
               },
               "id": "evaluacionDelFeto",
               "label": "Evaluación del Feto",

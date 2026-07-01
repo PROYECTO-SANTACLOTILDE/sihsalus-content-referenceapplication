@@ -14,7 +14,7 @@
               "id": "transporte",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "830ecf86-edd6-41dd-9211-7785a930e995"
+                "concept": "2f70e923-6165-5ea9-9066-490ffae6897f"
               },
               "questions": [
                 {
@@ -46,7 +46,7 @@
                         "label": "Mototaxi"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       }
                     ]
@@ -59,7 +59,7 @@
                     "rendering": "text"
                   },
                   "hide": {
-                    "hideWhenExpression": "transporte2 !== '6ce6afac-3714-46b9-8272-94a0525a7e08'"
+                    "hideWhenExpression": "transporte2 !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
                   },
                   "id": "especificarTransporte",
                   "label": "Especificar (transporte)"

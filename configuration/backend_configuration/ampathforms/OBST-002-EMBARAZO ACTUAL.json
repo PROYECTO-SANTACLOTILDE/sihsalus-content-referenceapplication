@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "21431d07-109d-4e19-92e2-0a40f3eede72"
+                "concept": "290e87e3-4f27-513f-bd86-63f4d345fd8e"
               },
               "id": "datosGeneralesEmbarazoActual",
               "label": "Datos generales del Embarazo Actual",
@@ -120,7 +120,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "57634c13-00a8-4764-93ec-dab90b6d20ce"
+                "concept": "7fd7a31f-9c62-5b69-bc1b-643c6c8bd3af"
               },
               "id": "fumGroup",
               "label": "FUM",
@@ -239,7 +239,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2dea5543-a686-4240-b4ea-3ec6a143c467"
+                "concept": "a3d2375b-3945-5ec6-b3e4-269fb081ed30"
               },
               "id": "antitetanicaGroup",
               "label": "Antitetánica",
@@ -501,7 +501,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2d83b0ce-cd5e-4431-a235-de9674319037"
+                "concept": "d0ae788d-1d96-5db5-a811-ef079414e8e3"
               },
               "id": "examenFisicoGroup",
               "label": "Examen Físico",
@@ -646,7 +646,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "d18507ca-8084-4ae6-bb4d-506d15a94e13"
+                "concept": "b71f2104-d278-528e-8ff4-237429b52eef"
               },
               "id": "hospitalizacionGroup",
               "label": "Hospitalización",
@@ -721,7 +721,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "e724bdb6-2c75-4b6f-a00c-d43f2c372974"
+                "concept": "aac466b7-90dc-57fa-983f-bbc5c6d4599d"
               },
               "id": "emergenciaGroup",
               "label": "Emergencia",

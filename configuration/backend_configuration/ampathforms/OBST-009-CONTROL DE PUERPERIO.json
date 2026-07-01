@@ -134,7 +134,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
+                "concept": "e1cd096a-b3c4-5741-a574-1720e7625f57"
               },
               "id": "anamnesisGroup",
               "label": "Anamnesis",
@@ -161,7 +161,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2eed3ae0-0a0f-4280-af03-9ca293948893"
+                "concept": "9d5e83e9-953a-5666-9918-729c422d177f"
               },
               "id": "signosSintomasPrincipalesGroup",
               "label": "Signos y síntomas principales",
@@ -192,7 +192,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2d83b0ce-cd5e-4431-a235-de9674319037"
+                "concept": "d0ae788d-1d96-5db5-a811-ef079414e8e3"
               },
               "id": "examenFisico",
               "label": "Examen Físico",
@@ -277,7 +277,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
+                "concept": "a0d0cca1-dff9-592f-b8cd-1d6ff6aa394f"
               },
               "id": "diagnosticosGroup",
               "label": "Diagnósticos",
@@ -308,7 +308,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "b762afd0-dfc6-430d-8963-0be05f77a12a"
+                "concept": "da58065c-bf1f-53da-906c-8325adcea0f9"
               },
               "id": "tratamientoYRecomendaciones",
               "label": "Tratamiento y Recomendaciones (Rp)",

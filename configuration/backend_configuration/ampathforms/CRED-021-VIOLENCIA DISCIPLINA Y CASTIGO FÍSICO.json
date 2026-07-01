@@ -31,7 +31,7 @@
               "id": "castigoFisico",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "b5d68059-5416-511b-a008-c398b8178689",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -52,7 +52,7 @@
               "id": "disciplinaHumillante",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "3d3cda0b-b53b-5f9c-900d-04ad6145c3e1",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -73,7 +73,7 @@
               "id": "negligencia",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "c70996c8-4f0a-526f-9cb9-b8e054a09bfc",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -94,7 +94,7 @@
               "id": "violenciaSexualSospecha",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "1690bc07-0f2e-58f6-852b-fb23bdf33632",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

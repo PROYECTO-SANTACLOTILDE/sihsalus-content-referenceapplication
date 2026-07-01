@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "96758d0d-bb08-4ab3-a0ad-cefb271ec0c2"
+                "concept": "a0e562c6-142f-534f-82ec-dc12b21b0562"
               },
               "id": "egresoMaternoGroup",
               "label": "Egreso Materno",
@@ -31,7 +31,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "96758d0d-bb08-4ab3-a0ad-cefb271ec0c2",
+                    "concept": "11e0b3bc-cf78-50fe-bac0-79bbdd5cfb14",
                     "answers": [
                       {
                         "concept": "ffb79ff9-5379-45ae-b7db-ced8246e7653",
@@ -120,7 +120,7 @@
                         "label": "Abstinencia Periódica"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       },
                       {

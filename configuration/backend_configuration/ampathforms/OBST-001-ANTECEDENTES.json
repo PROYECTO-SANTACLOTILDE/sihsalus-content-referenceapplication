@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6a8fd860-e741-4880-aeef-14ad23c4a05e"
+                "concept": "7e517ff5-31c1-50b0-b42a-185feb38f602"
               },
               "id": "antecedentesFamiliaresGroup",
               "label": "Antecedentes Familiares",
@@ -71,7 +71,7 @@
                         "label": "TBC Pulmonar"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -96,7 +96,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "68cf307b-bfb1-4f7a-8079-bb057b234dab"
+                "concept": "2f72dc12-58d3-5285-b2ed-bd5f28069d19"
               },
               "id": "antecedentesPersonalesGroup",
               "label": "Antecedentes Personales",
@@ -215,7 +215,7 @@
                         "label": "VIH/SIDA"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -457,7 +457,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "0864bc47-72e5-4e29-b5f8-b456f90c679e"
+                "concept": "b35980ff-8651-516f-92ae-15b4216b628d"
               },
               "id": "gestacionAnteriorGroup",
               "label": "Gestación Anterior",
@@ -546,19 +546,19 @@
                     "concept": "074a35ab-5566-4cfd-a932-170a789d3140",
                     "answers": [
                       {
-                        "concept": "2fe171ee-f2d3-4207-bfaf-f0aa0e9c3e4e",
+                        "concept": "590b162c-8e0e-487f-860c-00de0a9ddb31",
                         "label": "Aborto Incompleto"
                       },
                       {
-                        "concept": "544eeeac-4d59-402c-b232-8e15093d2699",
+                        "concept": "dd4ce8ac-ad9f-47bd-b8d3-a21d206b7b67",
                         "label": "Aborto Completo"
                       },
                       {
-                        "concept": "670c9f58-338c-408d-b11a-6e68fe6fa9ce",
+                        "concept": "d4cc3c34-6716-409c-833b-4b64c1d86a7a",
                         "label": "Aborto Frustro/Retenido"
                       },
                       {
-                        "concept": "3f83a57c-2fc5-4bac-8660-86c993f0f894",
+                        "concept": "b6dd01e4-bdb0-44b8-bb03-bd5337a7eea3",
                         "label": "Aborto Séptico"
                       },
                       {

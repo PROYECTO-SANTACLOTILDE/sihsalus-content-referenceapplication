@@ -44,7 +44,7 @@
                     "label": "Multimicronutrientes (MMN)"
                   },
                   {
-                    "concept": "48ff2056-5537-47fd-9c26-9e799d5a0e95",
+                    "concept": "bcd4067f-ed2c-46e4-9156-5a7795bae2f1",
                     "label": "Sulfato Ferroso"
                   }
                 ]
@@ -85,7 +85,7 @@
               },
               "hideSteppers": true,
               "hide": {
-                "hideWhenExpression": "tipoSuplemento !== '48ff2056-5537-47fd-9c26-9e799d5a0e95'"
+                "hideWhenExpression": "tipoSuplemento !== 'bcd4067f-ed2c-46e4-9156-5a7795bae2f1'"
               },
               "validators": []
             },

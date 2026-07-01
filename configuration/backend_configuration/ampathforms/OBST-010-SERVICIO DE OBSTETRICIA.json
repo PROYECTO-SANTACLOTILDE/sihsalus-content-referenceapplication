@@ -12,7 +12,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "5c4ebec7-d5e2-4a24-9a4c-1369e26f0f6d"
+                "concept": "09db4323-02b1-53b3-9198-a836a640dbda"
               },
               "id": "atencionPrenatalGroup",
               "label": "Atención prenatal",
@@ -169,7 +169,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6a8fd860-e741-4880-aeef-14ad23c4a05e"
+                "concept": "7e517ff5-31c1-50b0-b42a-185feb38f602"
               },
               "id": "antecedentesFamiliaresGroup",
               "label": "Antecedentes Familiares",
@@ -232,7 +232,7 @@
                         "label": "TBC Pulmonar"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -256,7 +256,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "68cf307b-bfb1-4f7a-8079-bb057b234dab"
+                "concept": "2f72dc12-58d3-5285-b2ed-bd5f28069d19"
               },
               "id": "antecedentesPersonalesGroup",
               "label": "Antecedentes Personales",
@@ -379,7 +379,7 @@
                         "label": "VIH/SIDA"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otros"
                       }
                     ]
@@ -403,7 +403,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "17159b83-a7e1-4071-9b74-5f0531696764"
+                "concept": "2d10478e-1d99-51eb-ab07-7083f431eb64"
               },
               "id": "enfermedadesPrevalentesGroup",
               "label": "Enfermedades Prevalentes (Preguntar si presenta signos y/o síntomas)",
@@ -447,7 +447,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "f2b2198b-3367-4a1a-8df8-61c7eda8c1db"
+                "concept": "22eade1e-8cab-5007-9da2-879dfd88ffc2"
               },
               "id": "enfermedadesMetaxenicas",
               "label": "Enfermedades Metaxénicas",
@@ -505,7 +505,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "62bc0e50-b094-4771-84cb-8d0218067238"
+                "concept": "0b878ffc-5334-5f2a-bc2b-daa6ee2f90d9"
               },
               "id": "signosDePeligroDelEmbarazoGroup",
               "label": "Signos de Peligro del Embarazo",
@@ -622,7 +622,7 @@
                         "label": "Abstinencia Periódica"
                       },
                       {
-                        "concept": "6ce6afac-3714-46b9-8272-94a0525a7e08",
+                        "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                         "label": "Otro"
                       },
                       {
@@ -690,7 +690,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "ed3443fe-b7d4-4e68-882f-d6a6901408c7"
+                "concept": "bbdfb8d8-e797-52cc-b2cf-38451250222f"
               },
               "id": "formulaObstetrica",
               "label": "F.O (Fórmula Obstétrica)",
@@ -728,7 +728,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "e98689eb-20ec-49b5-8815-934244622c89"
+                "concept": "12b52b87-0818-5ce2-bb3f-80b3402fb7ee"
               },
               "id": "embarazosAnteriores",
               "label": "Embarazos anteriores",
@@ -748,7 +748,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2dea5543-a686-4240-b4ea-3ec6a143c467"
+                "concept": "a3d2375b-3945-5ec6-b3e4-269fb081ed30"
               },
               "id": "antitetanicaGroup",
               "label": "Antitetánica",
@@ -785,7 +785,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9"
+                "concept": "e1cd096a-b3c4-5741-a574-1720e7625f57"
               },
               "id": "anamnesisGroup",
               "label": "Anamnesis",
@@ -817,7 +817,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "2d83b0ce-cd5e-4431-a235-de9674319037"
+                "concept": "d0ae788d-1d96-5db5-a811-ef079414e8e3"
               },
               "id": "examenFisico",
               "label": "Examen Físico",
@@ -923,7 +923,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "4c481ae7-5629-4c99-9334-566fad97ae22"
+                "concept": "defed75d-68a9-5196-9498-f6f42db90f17"
               },
               "id": "evaluacionDelFeto",
               "label": "Evaluación del Feto",
@@ -1036,7 +1036,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "repeating",
-                "concept": "c093c0ec-d1fd-406f-8c65-eeb079665853"
+                "concept": "a0d0cca1-dff9-592f-b8cd-1d6ff6aa394f"
               },
               "id": "diagnosticosGroup",
               "label": "Diagnósticos",
@@ -1094,7 +1094,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "06c33e98-fa02-4ac3-b670-75a40fe634e9"
+                "concept": "fdf96317-f9a6-5290-96ff-fde8162023b7"
               },
               "id": "indicaciones",
               "label": "Indicaciones",
@@ -1228,7 +1228,7 @@
               "type": "obsGroup",
               "questionOptions": {
                 "rendering": "group",
-                "concept": "6169f1fa-cf89-4a22-96e9-bb0f406b0577"
+                "concept": "b26c7c62-f8a5-5d1b-8fea-5324dee27cae"
               },
               "id": "suplementacionNutricional",
               "label": "Suplementación Nutricional",

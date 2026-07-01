@@ -106,7 +106,7 @@
               "id": "referenciaEfectivizada",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000006-0000-4000-8000-000000000006",
+                "concept": "f431daad-a4ed-5d59-b88d-ad06b20bf95a",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

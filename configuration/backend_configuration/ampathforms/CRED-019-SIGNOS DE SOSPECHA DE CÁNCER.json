@@ -31,7 +31,7 @@
               "id": "sintomasConstitucionales",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "364d98b9-d6b4-5303-9191-e6e4c986ce1b",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -52,7 +52,7 @@
               "id": "masasAdenopatias",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "fefa2c74-d2dd-54f8-857a-c3db6a4949e2",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -73,7 +73,7 @@
               "id": "sangradoMoretones",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "f3f6eb83-fd75-5919-8544-9e5649500a6a",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -94,7 +94,7 @@
               "id": "dolorOseoNeurologico",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "62575474-1083-549c-bec8-c50f1de911fa",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",

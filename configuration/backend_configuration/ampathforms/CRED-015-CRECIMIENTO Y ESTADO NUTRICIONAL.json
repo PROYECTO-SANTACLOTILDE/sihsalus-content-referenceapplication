@@ -172,7 +172,7 @@
               "id": "riesgoNutricional",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000008-0000-4000-8000-000000000008",
+                "concept": "24f06331-ea4e-54f3-8d24-08ec560b9c73",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
