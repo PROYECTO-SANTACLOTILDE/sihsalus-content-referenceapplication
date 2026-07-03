@@ -1,4 +1,4 @@
-Uuid,Void/Retire,Name,Description,Format,Foreign,Searchable
+Uuid,Void/Retire,Name,Description,Format,Foreign UUID,Searchable
 14d4f066-15f5-102d-96e4-000c29c2a5d7,,Número de Teléfono,Número de telefono de contacto de la persona,java.lang.String,,
 fee4e8ef-aef8-4bb9-8ed0-7ded6055c61f,,Número de Celular,Número de celular de contacto de la persona,java.lang.String,,
 4bdf3a33-2f63-11f0-8ab4-1a7535b1b3e8,,Correo Electrónico,Dirección de Correo Electrónico de la persona,java.lang.String,,
