@@ -7,8 +7,8 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "b0446b4e-1f2b-4e22-9a1a-79d797d4ce01",
-  "description": "Formulario de anamnesis para consulta externa. Registra motivo de consulta, tiempo de enfermedad, forma de inicio, curso y relato cronológico de la enfermedad actual según NTS 139-MINSA/2018/DGAIN y NTS 229-MINSA/DGIESP-2025.",
-  "version": "1.0.0",
+  "description": "Formulario de anamnesis para consulta externa. Registra motivo de consulta, tiempo de enfermedad, forma de inicio, curso y relato cronológico de la enfermedad actual según NTS 139-MINSA/2018/DGAIN y NTS 229-MINSA/DGIESP-2025. Incluye mejoras de usabilidad sin cambiar conceptos ni datos clínicos.",
+  "version": "1.0.3",
   "pages": [
     {
       "label": "Anamnesis",
@@ -31,7 +31,8 @@
                   "allowFutureDates": "false",
                   "message": "No puede ser una fecha futura"
                 }
-              ]
+              ],
+              "questionInfo": "Use la fecha y hora reales de la atención. No debe ser futura."
             },
             {
               "type": "encounterProvider",
@@ -40,7 +41,8 @@
                 "isSearchable": true
               },
               "id": "profesionalResponsable",
-              "label": "Profesional responsable"
+              "label": "Profesional responsable",
+              "questionInfo": "Responsable clínico que realiza o firma la atención."
             },
             {
               "type": "encounterLocation",
@@ -50,9 +52,11 @@
               },
               "id": "consultorio",
               "label": "Consultorio / Servicio",
-              "required": true
+              "required": true,
+              "questionInfo": "Ubicación donde se realiza esta consulta."
             }
-          ]
+          ],
+          "inlineRendering": "automatic"
         },
         {
           "label": "Motivo de consulta y enfermedad actual",
@@ -63,50 +67,64 @@
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "71b58cff-879b-4358-98d5-2165434d4324",
+                "enablePreviousValue": true,
                 "rows": 3
               },
               "id": "motivoConsulta",
               "label": "Motivo de consulta / Síntoma principal",
-              "required": true
+              "required": true,
+              "questionInfo": "Registre el motivo principal en palabras del paciente y el síntoma guía."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "577876b1-0b6e-4c57-b4c3-7af969a1d501"
+                "concept": "577876b1-0b6e-4c57-b4c3-7af969a1d501",
+                "enablePreviousValue": true,
+                "maxLength": "80"
               },
               "id": "tiempoEnfermedad",
-              "label": "Tiempo de enfermedad"
+              "label": "Tiempo de enfermedad",
+              "questionInfo": "Ejemplos: 3 días, 2 semanas, desde ayer, desde hace 1 mes."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "34e03399-cb72-484b-85b8-616ef19919c1"
+                "concept": "34e03399-cb72-484b-85b8-616ef19919c1",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "formaInicio",
-              "label": "Forma de inicio"
+              "label": "Forma de inicio",
+              "questionInfo": "Ejemplos: súbito, gradual, insidioso."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "e7d98188-16ba-4ef3-aed9-e891680bacf9"
+                "concept": "e7d98188-16ba-4ef3-aed9-e891680bacf9",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "cursoEnfermedad",
-              "label": "Curso"
+              "label": "Curso de la enfermedad",
+              "questionInfo": "Ejemplos: progresivo, intermitente, estacionario, recurrente."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9",
-                "rows": 5
+                "rows": 8,
+                "enablePreviousValue": true
               },
               "id": "relatoEnfermedadActual",
-              "label": "Relato cronológico de la enfermedad actual"
+              "label": "Relato cronológico de la enfermedad actual",
+              "questionInfo": "Describa cronología, síntomas asociados, factores desencadenantes, evolución, manejo previo y respuesta."
             }
-          ]
+          ],
+          "inlineRendering": "automatic"
         },
         {
           "label": "Funciones biológicas",
@@ -116,59 +134,79 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000182-0000-4000-8000-000000000182"
+                "concept": "f0000182-0000-4000-8000-000000000182",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "apetito",
-              "label": "Apetito"
+              "label": "Apetito",
+              "questionInfo": "Normal, aumentado, disminuido o detalle clínico breve."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000183-0000-4000-8000-000000000183"
+                "concept": "f0000183-0000-4000-8000-000000000183",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "sed",
-              "label": "Sed"
+              "label": "Sed",
+              "questionInfo": "Normal, aumentada, disminuida o detalle clínico breve."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000184-0000-4000-8000-000000000184"
+                "concept": "f0000184-0000-4000-8000-000000000184",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "sueno",
-              "label": "Sueño"
+              "label": "Sueño",
+              "questionInfo": "Conservado, alterado o detalle clínico breve."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000185-0000-4000-8000-000000000185"
+                "concept": "f0000185-0000-4000-8000-000000000185",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "estadoAnimo",
-              "label": "Estado de ánimo"
+              "label": "Estado de ánimo",
+              "questionInfo": "Eutímico, irritable, ansioso, triste o detalle clínico breve."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000186-0000-4000-8000-000000000186"
+                "concept": "f0000186-0000-4000-8000-000000000186",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "orina",
-              "label": "Orina"
+              "label": "Orina",
+              "questionInfo": "Normal o detalle de color, frecuencia, dolor, volumen u otros cambios."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000187-0000-4000-8000-000000000187"
+                "concept": "f0000187-0000-4000-8000-000000000187",
+                "enablePreviousValue": true,
+                "maxLength": "120"
               },
               "id": "deposiciones",
-              "label": "Deposiciones"
+              "label": "Deposiciones",
+              "questionInfo": "Normal o detalle de frecuencia, consistencia, sangre, diarrea, estreñimiento u otros cambios."
             }
-          ]
+          ],
+          "inlineRendering": "automatic"
         }
-      ]
+      ],
+      "inlineRendering": "automatic"
     }
   ]
 }
