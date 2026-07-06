@@ -8,10 +8,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Agrega los tags de ubicacion `Queue Location` y `Appointment Location` al content, y define tipos de servicio de cita para que agenda no quede sin duracion.
+- Agrega especialidades y servicios de cita para Medicina de Rehabilitacion, Hemodialisis y Nutricion y Dietetica, alineados con las colas y servicios facturables ya existentes.
 - Agrega tipos de procedimiento EMR API mediante el dominio Initializer `proceduretypes`, junto con los privilegios requeridos para leer y gestionar procedimientos en el módulo O3.
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Alinea ubicaciones UPSS con colas, citas y ADT: Central de Esterilizacion queda como soporte interno, Admission/Transfer se conserva para salas de hospitalizacion, y las UPSS de soporte programables quedan como ubicaciones de cita sin ADT.
+- Retira Emergencia del dominio de citas programadas; se conserva como cola operativa y servicio facturable.
 - Actualiza los exports OCL del bundle a sus versiones publicadas más recientes en la org SIHSALUS: `laboratorio` a `24-06-2026-2` (completo y `concepts-only`) y `prestacionales` a `2026-06-18-01`; el resto de sources se mantiene en su versión publicada vigente.
 - Agrega al bundle OCL el source `prestacionales` (`v2026-06-17-openmrs-current`) con 65 códigos prestacionales y un agrupador `CONCEPT-SET`, reclasificando los códigos como `Misc/N/A` y el set como `ConvSet/N/A`.
 - Reemplaza los conceptCodes CIEL de dispositions por conceptos locales ya cargados en SIHSALUS, evitando dependencia runtime de CIEL para admisión, alta, transferencia, fallecido y observación.
