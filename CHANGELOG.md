@@ -10,6 +10,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Agregado
 - Agrega los tags de ubicacion `Queue Location` y `Appointment Location` al content, y define tipos de servicio de cita para que agenda no quede sin duracion.
 - Agrega especialidades y servicios de cita para Medicina de Rehabilitacion, Hemodialisis y Nutricion y Dietetica, alineados con las colas y servicios facturables ya existentes.
+- Documenta en formato de release la actualización de la anamnesis (`CE-ANAM-001-ANAMNESIS`, versión `1.0.3`) y la actualización de la configuración de colas, citas y UPSS de soporte según revisión funcional.
 - Agrega tipos de procedimiento EMR API mediante el dominio Initializer `proceduretypes`, junto con los privilegios requeridos para leer y gestionar procedimientos en el módulo O3.
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
