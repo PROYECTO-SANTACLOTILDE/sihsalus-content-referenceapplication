@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 CONFIG_DIR = Path("configuration/backend_configuration")
+LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
+MODULE_PROVIDED_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 
 
 def main():
@@ -27,13 +29,24 @@ def main():
                     f"found {len(row)}"
                 )
 
+        if path == LOCATION_TAGS_PATH:
+            name_index = rows[0].index("Name")
+            for line_number, row in enumerate(rows[1:], start=2):
+                if len(row) <= name_index:
+                    continue
+                if row[name_index] in MODULE_PROVIDED_LOCATION_TAGS:
+                    errors.append(
+                        f"{path}:{line_number}: {row[name_index]!r} is provided by its OpenMRS "
+                        "module and must not be recreated by Initializer"
+                    )
+
     if errors:
         print("CSV width validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated column counts for {checked} CSV files.")
+    print(f"Validated column counts and reserved values for {checked} CSV files.")
     return 0
 
 
