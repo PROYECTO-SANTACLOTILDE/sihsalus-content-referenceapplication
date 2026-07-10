@@ -672,7 +672,7 @@
                 "step": 1,
                 "disallowDecimals": true
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true,
               "validators": []
             }
@@ -730,5 +730,5 @@
   "referencedForms": [],
   "uuid": "122a2501-321f-4227-9f64-821a606f1972",
   "description": "Pagina 30, 31, 32 y 33",
-  "version": "1.4"
+  "version": "1.5"
 }

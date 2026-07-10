@@ -1155,7 +1155,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "checkbox",
-                    "concept": "c6567881-4659-4624-8adf-ba0c15cbc4c6",
+                    "concept": "826c14ee-f979-4bc9-8b0b-f58ab6170056",
                     "answers": [
                       {
                         "concept": "6753099c-fe33-48a4-804a-d8a130c00549",
@@ -1200,7 +1200,7 @@
                     ]
                   },
                   "id": "partoAtendidoPor",
-                  "label": "Parto"
+                  "label": "Personal que atendió el parto"
                 },
                 {
                   "type": "obs",
@@ -1355,5 +1355,5 @@
   "referencedForms": [],
   "uuid": "902188cc-d9ec-493e-be5e-351a7ba1048b",
   "description": "Formulario para el registro del parto o aborto",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

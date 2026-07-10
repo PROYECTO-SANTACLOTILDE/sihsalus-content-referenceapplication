@@ -336,7 +336,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "radio",
-                    "concept": "47bb64cf-f63c-46a0-839a-9573bcedf9be",
+                    "concept": "5c21bb85-74b5-4929-8746-d2dfd533c51a",
                     "answers": [
                       {
                         "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -438,5 +438,5 @@
   "referencedForms": [],
   "uuid": "3c409e1e-7566-4d90-b44a-66b4bf300c39",
   "description": "El control de puerperio es la evaluación médica que se realiza a la madre después del parto para monitorear su recuperación y prevenir complicaciones.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

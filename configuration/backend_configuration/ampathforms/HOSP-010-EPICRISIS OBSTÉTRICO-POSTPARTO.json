@@ -111,8 +111,8 @@
                         "label": "Episiotomía"
                       },
                       {
-                        "concept": "b1588601-d7bf-4651-b9c3-a5ac08400e9b",
-                        "label": "Episiografía "
+                        "concept": "6e524f33-1055-5835-9886-7f2ae3ff5ee5",
+                        "label": "Episiorrafia"
                       },
                       {
                         "concept": "12f3c4d9-a91b-4fc9-9131-5d5611dd3432",
@@ -147,12 +147,12 @@
                         "label": "Ecografía"
                       },
                       {
-                        "concept": "15d7939e-a1ff-42f7-b809-f6aacc95285d",
-                        "label": "Cesárea + Histerectomía"
+                        "concept": "94a84f59-2734-5bac-a237-7a4e0e0a32b0",
+                        "label": "Histerectomía por cesárea"
                       },
                       {
-                        "concept": "9bd90e77-287b-4598-88b3-6f67e795e5d5",
-                        "label": "Test de Estres (TST)"
+                        "concept": "22580af1-2bdb-4959-adff-0c3bdf76cb6b",
+                        "label": "Test estresante fetal por contracción"
                       },
                       {
                         "concept": "4354abfe-71a1-4c45-add0-e78ee7d1fc56",
@@ -244,7 +244,7 @@
                         "label": "A su Solicitud"
                       },
                       {
-                        "concept": "41575d86-ce6d-4ddf-b9a0-8949add81c77",
+                        "concept": "830a8966-35e8-4d68-8ac4-5f891c6f3926",
                         "label": "Fallecida"
                       },
                       {
@@ -492,11 +492,11 @@
   ],
   "processor": "EncounterFormProcessor",
   "encounterType": "dc8c79e5-41cd-4c5b-ae71-6de503038407",
-  "encounter": "Hospitalización",
+  "encounter": "Epicrisis Médica HSC",
   "published": true,
   "retired": false,
   "referencedForms": [],
   "uuid": "1e8e1c31-2bd0-47a8-92b8-15c547b8df5c",
   "description": "Resumen de la evolución y tratamiento de un paciente durante su estancia en un centro de salud. En este caso, se trata de una epicrisis obstétrica, que recopila información sobre la atención brindada a una paciente durante el embarazo, parto o postparto.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

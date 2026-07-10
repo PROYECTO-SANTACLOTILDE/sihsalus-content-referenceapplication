@@ -67,7 +67,7 @@
                     "label": "Bajo"
                   },
                   {
-                    "concept": "3797e545-6b95-4f55-aa05-35f7eaaffbfb",
+                    "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
                     "label": "Normal"
                   },
                   {
@@ -294,5 +294,5 @@
   "referencedForms": [],
   "uuid": "c7f42b18-2709-467b-b34c-388be7ecdea5",
   "description": "Formulario para registro de datos del nacimiento del recién nacido",
-  "version": "1.1"
+  "version": "1.2"
 }

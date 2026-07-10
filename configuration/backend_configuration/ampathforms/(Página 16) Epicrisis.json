@@ -33,8 +33,7 @@
                 "step": 1,
                 "min": "0",
                 "max": "10",
-                "concept": "0f3be2f6-986f-4928-8761-b531044c1f36",
-                "answers": []
+                "concept": "0f3be2f6-986f-4928-8761-b531044c1f36"
               }
             },
             {
@@ -47,8 +46,7 @@
                 "step": 1,
                 "min": "0",
                 "max": "20",
-                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "answers": []
+                "concept": "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               }
             },
             {
@@ -345,5 +343,5 @@
   "referencedForms": [],
   "uuid": "33527610-a4b2-4a20-be55-7a82097d1fa6",
   "description": "Página 16",
-  "version": "1.5"
+  "version": "1.6"
 }

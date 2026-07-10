@@ -102,13 +102,13 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Administración de Micronutriente (sobres)",
+              "label": "Cantidad de sobres MMN entregados",
               "type": "obs",
               "required": false,
               "id": "micronutriente",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "d80c3551-2a6c-49ac-a541-0b17957f9657",
+                "concept": "c2010002-0000-4000-8000-000000000002",
                 "min": "0",
                 "max": "90",
                 "step": 1,
@@ -182,5 +182,5 @@
   "referencedForms": [],
   "uuid": "56805405-c308-429d-84d9-2a5447922734",
   "description": "Tamizaje de anemia en niños según NTS 137. Registra hemoglobina, clasificación y tratamiento.",
-  "version": "1.1.0"
+  "version": "1.1.1"
 }

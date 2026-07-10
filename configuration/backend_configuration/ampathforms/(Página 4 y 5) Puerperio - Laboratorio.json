@@ -1,11 +1,11 @@
 {
   "name": "(Página 4 y 5) Puerperio - Laboratorio",
   "description": "Pagina 4 y 5",
-  "version": "1.2",
+  "version": "1.3",
   "published": true,
   "uuid": "8c67c0a5-058e-440b-a69e-4c04041f5026",
   "retired": false,
-  "encounter": "Control Prenatal",
+  "encounter": "Control Postnatal",
   "pages": [
     {
       "label": "Laboratorio",
@@ -32,8 +32,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "0ffe780c-a3ee-4c9c-b4dd-bf2e0f79dc7f",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "hemoglobinaGDl",
               "label": "Hemoglobina (g/dl)"
@@ -44,8 +43,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "3980a989-a020-43a2-907a-100800cfa45f",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "recuentoDeLeucocitos",
               "label": "Recuento de leucocitos"
@@ -56,8 +54,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "e52402dc-b2ca-4436-b959-81c0ac3d3558",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "recuentoDePlaquetas",
               "label": "Recuento de plaquetas"
@@ -140,8 +137,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "496e0814-6017-4f01-b9d2-1cb8408adad4",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "velocidadDeSedimentacionGlobularMmH",
               "label": "Velocidad de Sedimentación Globular (mm/h)"
@@ -164,8 +160,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "5dc004b7-e1f1-4396-b286-7d1a23c56547",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "tiempoDeSangriaMin",
               "label": "Tiempo de Sangría (min)"
@@ -176,8 +171,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "96deeee8-fb0e-4baa-8e59-594cb1159208",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "tiempoDeCoagulacionMin",
               "label": "Tiempo de Coagulación (min)"
@@ -357,8 +351,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "96a1c868-1852-4606-9999-9602f1a93cd6",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "glucosa",
               "label": "Glucosa"
@@ -369,8 +362,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "0bb58218-8655-4a2c-b129-12fdf324e31f",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "colesterol",
               "label": "Colesterol"
@@ -381,8 +373,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "708fa3e7-01cd-4210-849c-81ccb54e8954",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "triglicerido",
               "label": "Triglicerido"
@@ -393,8 +384,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "738047f3-da9d-48b3-912d-48e83d8e2322",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "tgoTransaminasaGlutamicoOxalaceticaSerica",
               "label": "TGO (Transaminasa Glutámico-oxalacética Sérica)"
@@ -405,8 +395,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "1bf0fede-71bb-47cd-9a66-bebfc24d92e1",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "tgpTransaminasaGlutamicoPiruvica",
               "label": "TGP (Transaminasa Glutámico Pirúvica)"
@@ -417,8 +406,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "505cba12-346d-45e6-894b-3b90538fb052",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "bilirrubinaTotal",
               "label": "Bilirrubina Total"
@@ -429,8 +417,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "03376f04-8e56-4385-818c-326bd2400478",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "bilirrubinaDirecta",
               "label": "Bilirrubina Directa"
@@ -441,8 +428,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "88605444-0c75-4c6e-9383-43dd9d2a46ac",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "bilirrubinaIndirecta",
               "label": "Bilirrubina Indirecta"
@@ -453,8 +439,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "a45327ef-31bb-49a9-920f-302d46ff9f0b",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "creatinina",
               "label": "Creatinina"
@@ -465,8 +450,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "1de5c4fa-1475-466e-bfb3-293f3953a0eb",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "urea",
               "label": "Urea"
@@ -477,8 +461,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "a339baf8-4a50-46c3-8cc4-fa6c9256ee0a",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "lipasa",
               "label": "Lipasa"
@@ -489,8 +472,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "cdc4c3e0-f304-4522-ab12-9b4988017793",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "amilasa",
               "label": "Amilasa"
@@ -501,8 +483,7 @@
                 "rendering": "number",
                 "step": 1,
                 "concept": "9f989778-8321-4d79-b62d-b26fe8345245",
-                "min": "0",
-                "max": ""
+                "min": "0"
               },
               "id": "acidoUrico",
               "label": "Acido úrico"
@@ -520,12 +501,12 @@
                 "concept": "4193f447-2e92-45ad-8792-d88e217c6d82",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
-                    "label": "Positivo"
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
                   },
                   {
-                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
-                    "label": "Negativo"
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No reactivo"
                   }
                 ]
               },
@@ -558,12 +539,12 @@
                 "concept": "e2b38285-8dbd-427c-8fc3-e17e6d4c923c",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
-                    "label": "Positivo"
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
                   },
                   {
-                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
-                    "label": "Negativo"
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No reactivo"
                   }
                 ]
               },
@@ -577,12 +558,12 @@
                 "concept": "dcdfb1ee-75cb-4b58-8e78-1527a2c66268",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
-                    "label": "Positivo"
+                    "concept": "0acdaa4a-b1ca-45ae-b4a5-82f82b3588b0",
+                    "label": "Reactivo"
                   },
                   {
-                    "concept": "707bd07e-7d27-4571-ad92-ec419af1a0f4",
-                    "label": "Negativo"
+                    "concept": "24ee88ef-a6cf-4678-9322-78932f85b9bc",
+                    "label": "No reactivo"
                   }
                 ]
               },
@@ -648,7 +629,7 @@
                 "concept": "af0c5899-7386-4dc6-a2a5-d7970d7b0e6f",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {
@@ -842,7 +823,7 @@
                 "min": "0",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {
@@ -989,7 +970,7 @@
                 "concept": "1c5a887d-d09e-4563-b865-bdf2d0fd06ed",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {
@@ -1030,7 +1011,7 @@
                 "concept": "ed673347-c233-4bce-825d-148a44cce337",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {
@@ -1074,7 +1055,7 @@
                 "concept": "632d5add-e6f7-4148-ad81-4c3c519f7cf9",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {
@@ -1099,7 +1080,7 @@
                 "concept": "6372520f-5876-416d-b795-dcc83e13a485",
                 "answers": [
                   {
-                    "concept": "addc3906-f49a-4fe1-b3e2-5d667f984c30",
+                    "concept": "b4454bf6-5e67-4235-9507-6875d784656d",
                     "label": "Positivo"
                   },
                   {

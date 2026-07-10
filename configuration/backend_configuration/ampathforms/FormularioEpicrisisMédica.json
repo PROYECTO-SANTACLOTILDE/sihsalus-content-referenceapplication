@@ -1,7 +1,7 @@
 {
   "name": "Formulario Epicrisis Médica",
   "description": "Formulario para registrar la epicrisis médica del paciente hospitalizado.",
-  "version": "1.0",
+  "version": "1.1",
   "published": true,
   "retired": false,
   "encounter": "Epicrisis Médica HSC",
@@ -63,7 +63,7 @@
               "required": "true",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "832e4b4d-7c02-4cbd-bfda-270662838f3d"
+                "concept": "e911fe60-6d45-40c7-8d65-1ab93b3c77f4"
               },
               "type": "obs"
             },

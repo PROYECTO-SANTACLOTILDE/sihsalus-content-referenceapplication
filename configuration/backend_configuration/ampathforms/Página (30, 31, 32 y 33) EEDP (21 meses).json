@@ -1,8 +1,8 @@
 {
-  "name": "Página (30, 31, 32 y 33) EEDP (21 meses)",
+  "name": "Página (30, 31, 32 y 33) EEDP (24 meses)",
   "pages": [
     {
-      "label": "EEDP",
+      "label": "EEDP acumulada hasta 24 meses",
       "sections": [
         {
           "label": "1 Mes",
@@ -1239,7 +1239,7 @@
                 "step": 1,
                 "disallowDecimals": true
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true,
               "validators": []
             }
@@ -1296,6 +1296,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "45ea250f-e06b-4b1c-a7cd-87d7a7941e44",
-  "description": "Pagina 30, 31, 32 y 33",
-  "version": "1.7"
+  "description": "Registro acumulativo EEDP de 1 a 24 meses, incluidas las pautas y el puntaje de 24 meses. Se conserva el UUID del formulario para mantener la continuidad de los registros existentes.",
+  "version": "1.8"
 }

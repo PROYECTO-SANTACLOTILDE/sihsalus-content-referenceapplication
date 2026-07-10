@@ -25,7 +25,7 @@
               ]
             },
             {
-              "label": "Edad del niño (meses)",
+              "label": "Edad del niño (0 a 143 meses)",
               "type": "obs",
               "required": true,
               "id": "edadMeses",
@@ -33,7 +33,7 @@
                 "rendering": "number",
                 "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "min": "0",
-                "max": "60",
+                "max": "143",
                 "step": 1,
                 "disallowDecimals": true
               },
@@ -126,11 +126,11 @@
                 "max": "2",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
-              "label": "Puntaje obtenido (solo si corresponde al instrumento)",
+              "label": "Puntaje obtenido (0 a 720; según instrumento)",
               "type": "obs",
               "required": false,
               "id": "puntajeObtenido",
@@ -138,7 +138,7 @@
                 "rendering": "number",
                 "concept": "c4010003-0000-4000-8000-000000000003",
                 "min": "0",
-                "max": "100",
+                "max": "720",
                 "step": 1,
                 "disallowDecimals": false
               },
@@ -264,6 +264,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "6de41002-6b38-4fdc-9551-c78642256040",
-  "description": "Selector y registro resumido de instrumentos de desarrollo. Incluye Huanca, Lista de Habilidades, EDI y M-CHAT-R/F según NTS 238, además de EEDP, TEPSI y TPED como instrumentos legados habilitados para continuidad clínica.",
-  "version": "1.4.0"
+  "description": "Selector y registro resumido de instrumentos de desarrollo desde el nacimiento hasta los 11 años, 11 meses (143 meses). Admite puntajes de hasta 720 para no truncar la escala acumulada EEDP. Incluye Huanca, Lista de Habilidades, EDI y M-CHAT-R/F según NTS 238, además de EEDP, TEPSI y TPED como instrumentos legados habilitados para continuidad clínica.",
+  "version": "1.5.0"
 }

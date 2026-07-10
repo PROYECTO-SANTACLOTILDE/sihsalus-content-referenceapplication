@@ -430,7 +430,7 @@
                     "label": "Ratón"
                   },
                   {
-                    "concept": "b49694d2-3b36-487d-9944-beb65a85ca35",
+                        "concept": "fce43033-7532-49dc-b3c7-127877dfd569",
                     "label": "Mamá"
                   }
                 ]
@@ -794,5 +794,5 @@
   "referencedForms": [],
   "uuid": "256b2e7f-e803-45e5-a6ef-58dbc0ee44fd",
   "description": "Página 34, 35 y 36 (En el apartado RAZONA por analogías opuestas, el concepto de \"mamá\" podría tener un problema porque esta basado en el concepto Sí de CIEL)",
-  "version": "1.6"
+  "version": "1.7"
 }

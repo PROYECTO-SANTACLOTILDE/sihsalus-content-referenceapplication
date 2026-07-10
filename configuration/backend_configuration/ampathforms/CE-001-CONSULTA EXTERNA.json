@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "a8db00d0-8acd-4459-97a8-43827b0a23e8",
   "description": "Formulario de Consulta Externa ambulatoria. Registra motivo de consulta, examen clínico (SOAP), diagnóstico CIE-10, plan de tratamiento, financiador y pertenencia étnica. Basado en el FUA y la NTS N° 029-MINSA.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "pages": [
     {
       "label": "Motivo de Consulta",
@@ -312,22 +312,22 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "6b932638-242e-49ef-8ba7-0ae87199835c",
                 "answers": [
                   {
-                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "97c6e901-7570-4ab8-a9c0-9cf2b0f5bc0c",
                     "label": "SIS"
                   },
                   {
-                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "f38b048f-ee8b-4244-b3eb-a47a34c38f04",
                     "label": "EsSalud"
                   },
                   {
-                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "ec420364-fde1-452d-9c48-fafb4ea73a58",
                     "label": "Privado"
                   },
                   {
-                    "concept": "161631AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "cc72568e-d0d9-46a8-a618-91f0d679f518",
                     "label": "Particular"
                   }
                 ]
@@ -345,34 +345,34 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "70482c1e-181e-416d-a0c4-a93919f9f2ef",
                 "answers": [
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "80ae1464-9ac2-4f44-9865-cbb3262c4454",
                     "label": "Quechua"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "c79ac7a1-1cef-4524-bbc4-bb21fd5d5331",
                     "label": "Aimara"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "7bb475f1-79ca-49d4-9dd1-294922f9f2aa",
                     "label": "Nativo o Indígena de la Amazonía"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "80e7fb11-49d0-4cc8-9385-fcbe9ed1e764",
                     "label": "Negro / Moreno / Zambo / Mulato / Afro-peruano"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "196f94ad-0640-43ed-a04b-672f23e7cbbc",
                     "label": "Blanco"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "35299f60-660b-454f-9fae-626b17bbb616",
                     "label": "Mestizo"
                   },
                   {
-                    "concept": "160581AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
                     "label": "Otro"
                   }
                 ]
