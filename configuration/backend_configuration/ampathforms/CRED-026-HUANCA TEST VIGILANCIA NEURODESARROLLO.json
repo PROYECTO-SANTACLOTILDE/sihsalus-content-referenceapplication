@@ -46,6 +46,7 @@
               "type": "obs",
               "required": true,
               "id": "edadMeses",
+              "questionInfo": "La vigilancia programada corresponde a 2, 3, 4, 7, 12, 15, 21, 24 y 36 meses. No use una edad de tamizaje EDI como pauta Huanca.",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -106,21 +107,22 @@
               "validators": []
             },
             {
-              "label": "Pauta de edad aplicada",
+              "label": "Pauta registrada en versión anterior",
               "type": "obs",
-              "required": true,
-              "id": "pautaEdad",
+              "required": false,
+              "id": "pautaEdadLegada",
+              "questionInfo": "Campo histórico de solo lectura. La versión anterior mezclaba pautas Huanca y edades de tamizaje EDI; no debe usarse para registros nuevos.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380009-0000-4000-8000-000000000009",
                 "answers": [
                   {
                     "concept": "c2380121-0000-4000-8000-000000000121",
-                    "label": "Recién nacido"
+                    "label": "Recién nacido (legado)"
                   },
                   {
                     "concept": "c2380122-0000-4000-8000-000000000122",
-                    "label": "15 a 21 días"
+                    "label": "15 a 21 días (legado)"
                   },
                   {
                     "concept": "c2380123-0000-4000-8000-000000000123",
@@ -132,11 +134,11 @@
                   },
                   {
                     "concept": "c2380125-0000-4000-8000-000000000125",
-                    "label": "6 meses"
+                    "label": "6 meses (edad EDI legada)"
                   },
                   {
                     "concept": "c2380126-0000-4000-8000-000000000126",
-                    "label": "9 meses"
+                    "label": "9 meses (edad EDI legada)"
                   },
                   {
                     "concept": "c2380127-0000-4000-8000-000000000127",
@@ -144,7 +146,7 @@
                   },
                   {
                     "concept": "c2380128-0000-4000-8000-000000000128",
-                    "label": "18 meses"
+                    "label": "18 meses (edad EDI legada)"
                   },
                   {
                     "concept": "c2380129-0000-4000-8000-000000000129",
@@ -152,10 +154,14 @@
                   },
                   {
                     "concept": "c2380130-0000-4000-8000-000000000130",
-                    "label": "30 a 36 meses"
+                    "label": "30 a 36 meses (legado)"
                   }
                 ]
               },
+              "hide": {
+                "hideWhenExpression": "isEmpty(pautaEdadLegada)"
+              },
+              "readonly": true,
               "validators": []
             }
           ]
@@ -188,11 +194,14 @@
             {
               "label": "Detalle de preocupación",
               "type": "obs",
-              "required": false,
+              "required": "preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detallePreocupacion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380006-0000-4000-8000-000000000006"
+              },
+              "hide": {
+                "hideWhenExpression": "preocupacionCuidador !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             },
@@ -220,11 +229,14 @@
             {
               "label": "Detalle de regresión",
               "type": "obs",
-              "required": false,
+              "required": "regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "detalleRegresion",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380008-0000-4000-8000-000000000008"
+              },
+              "hide": {
+                "hideWhenExpression": "regresionHabilidades !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
               },
               "validators": []
             }
@@ -262,7 +274,7 @@
             {
               "label": "Hitos no logrados - motor grueso",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "noLogradosMotorGrueso",
               "questionOptions": {
                 "rendering": "number",
@@ -278,18 +290,21 @@
             {
               "label": "Detalle motor grueso",
               "type": "obs",
-              "required": false,
+              "required": "noLogradosMotorGrueso > 0",
               "id": "detalleMotorGrueso",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380016-0000-4000-8000-000000000016"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(noLogradosMotorGrueso) || noLogradosMotorGrueso === 0"
               },
               "validators": []
             },
             {
               "label": "Hitos no logrados - motor fino",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "noLogradosMotorFino",
               "questionOptions": {
                 "rendering": "number",
@@ -305,18 +320,21 @@
             {
               "label": "Detalle motor fino",
               "type": "obs",
-              "required": false,
+              "required": "noLogradosMotorFino > 0",
               "id": "detalleMotorFino",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380017-0000-4000-8000-000000000017"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(noLogradosMotorFino) || noLogradosMotorFino === 0"
               },
               "validators": []
             },
             {
               "label": "Hitos no logrados - social",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "noLogradosSocial",
               "questionOptions": {
                 "rendering": "number",
@@ -332,18 +350,21 @@
             {
               "label": "Detalle social",
               "type": "obs",
-              "required": false,
+              "required": "noLogradosSocial > 0",
               "id": "detalleSocial",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380018-0000-4000-8000-000000000018"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(noLogradosSocial) || noLogradosSocial === 0"
               },
               "validators": []
             },
             {
               "label": "Hitos no logrados - cognitivo",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "noLogradosCognitivo",
               "questionOptions": {
                 "rendering": "number",
@@ -359,18 +380,21 @@
             {
               "label": "Detalle cognitivo",
               "type": "obs",
-              "required": false,
+              "required": "noLogradosCognitivo > 0",
               "id": "detalleCognitivo",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380019-0000-4000-8000-000000000019"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(noLogradosCognitivo) || noLogradosCognitivo === 0"
               },
               "validators": []
             },
             {
               "label": "Hitos no logrados - habla",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "noLogradosHabla",
               "questionOptions": {
                 "rendering": "number",
@@ -386,11 +410,14 @@
             {
               "label": "Detalle habla",
               "type": "obs",
-              "required": false,
+              "required": "noLogradosHabla > 0",
               "id": "detalleHabla",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "c2380020-0000-4000-8000-000000000020"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(noLogradosHabla) || noLogradosHabla === 0"
               },
               "validators": []
             }
@@ -661,6 +688,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c2260000-0000-4000-8000-000000000026",
-  "description": "Vigilancia del neurodesarrollo con Huanca Test adaptado para niños hasta 36 meses según NTS 238-MINSA/DGIESP-2025. El total y el resultado se calculan desde los hitos no logrados de las cinco áreas; una evaluación incompleta queda como no concluyente.",
-  "version": "1.3.0"
+  "description": "Registro resumido de vigilancia Huanca según NTS 238. Usa edad cronológica/corregida, exige evaluar las cinco áreas y detallar todo hito no logrado. No sustituye la ficha oficial hito por hito.",
+  "version": "1.4.0"
 }

@@ -62,6 +62,7 @@
               "type": "obs",
               "required": true,
               "id": "pautaEdad",
+              "questionInfo": "Seleccione la tabla normativa correspondiente a la edad cronológica del niño.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380030-0000-4000-8000-000000000030",
@@ -100,6 +101,22 @@
                   }
                 ]
               },
+              "validators": []
+            },
+            {
+              "label": "Edad cronológica (meses cumplidos)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "48",
+                "max": "143",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
               "validators": []
             }
           ]
@@ -333,7 +350,7 @@
             {
               "label": "Factor de riesgo para desarrollo infantil",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "factorRiesgo",
               "questionOptions": {
                 "rendering": "radio",
@@ -435,6 +452,9 @@
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380042-0000-4000-8000-000000000042",
+                "calculate": {
+                  "calculateExpression": "isEmpty(resultadoLista) || isEmpty(factorRiesgo) ? undefined : (resultadoLista === 'c2380155-0000-4000-8000-000000000155' ? 'c2380165-0000-4000-8000-000000000165' : (resultadoLista === 'c2380154-0000-4000-8000-000000000154' && factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? (edadMeses <= 60 ? 'c2380163-0000-4000-8000-000000000163' : 'c2380164-0000-4000-8000-000000000164') : 'c2380161-0000-4000-8000-000000000161'))"
+                },
                 "answers": [
                   {
                     "concept": "c2380161-0000-4000-8000-000000000161",
@@ -454,6 +474,7 @@
                   }
                 ]
               },
+              "readonly": true,
               "validators": []
             },
             {
@@ -470,7 +491,7 @@
             {
               "label": "Requiere prueba EDI",
               "type": "obs",
-              "required": "resultadoLista === 'c2380154-0000-4000-8000-000000000154' || accionInmediata === 'c2380163-0000-4000-8000-000000000163'",
+              "required": "resultadoLista === 'c2380154-0000-4000-8000-000000000154' && factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' && edadMeses <= 60",
               "id": "requiereEdi",
               "questionOptions": {
                 "rendering": "radio",
@@ -487,14 +508,14 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "resultadoLista !== 'c2380154-0000-4000-8000-000000000154' && accionInmediata !== 'c2380163-0000-4000-8000-000000000163'"
+                "hideWhenExpression": "resultadoLista !== 'c2380154-0000-4000-8000-000000000154' || factorRiesgo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49' || edadMeses > 60"
               },
               "validators": []
             },
             {
               "label": "Requiere interconsulta o referencia",
               "type": "obs",
-              "required": "accionInmediata === 'c2380164-0000-4000-8000-000000000164'",
+              "required": "resultadoLista === 'c2380154-0000-4000-8000-000000000154' && factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' && edadMeses > 60",
               "id": "requiereInterconsulta",
               "questionOptions": {
                 "rendering": "radio",
@@ -511,7 +532,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "accionInmediata !== 'c2380164-0000-4000-8000-000000000164'"
+                "hideWhenExpression": "resultadoLista !== 'c2380154-0000-4000-8000-000000000154' || factorRiesgo !== 'f7e458ef-8dea-4e53-b429-81664cbeda49' || edadMeses <= 60"
               },
               "validators": []
             },
@@ -579,6 +600,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c2270000-0000-4000-8000-000000000027",
-  "description": "Lista de habilidades y conductas esperadas por edad para niños de 4 a 11 años, 11 meses y 29 días según NTS 238-MINSA/DGIESP-2025. El resultado se calcula desde las ausencias registradas en las cuatro áreas; las demás alertas se conservan separadas para orientar la intervención.",
-  "version": "1.3.0"
+  "description": "Registro resumido de habilidades y conductas esperadas de 4 a 11 años según NTS 238. Conserva pauta y edad en meses, exige detalle por área y calcula EDI hasta 60 meses o interconsulta después de esa edad cuando coexisten ausencia de habilidad y factor de riesgo. No sustituye la lista oficial habilidad por habilidad.",
+  "version": "1.4.0"
 }
