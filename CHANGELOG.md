@@ -8,6 +8,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Extiende la validación CI de OCL para rechazar mappings sin extremos, fuentes destino incompletas, referencias
+  internas no bundleadas y colisiones de nombres que puedan dejar un concepto sin nombre `FULLY_SPECIFIED`.
 - Publica los concepts de formulario que faltaban para inmunizaciones, referencias, acompañamiento, PPL/PRU, personal de parto, estado de ecografía y plan de parto; agrega las opciones de seguro SIS y particular sin reutilizar conceptos de otras preguntas.
 - Extiende la validación CI de formularios para resolver conceptos contra todos los ZIP OCL, comprobar `Q-AND-A` entre sources, detectar respuestas repetidas o autorreferenciales, datatypes incompatibles, renderers no soportados, expresiones con IDs inexistentes y discordancias de encounter type.
 - Agrega `CIEL 170800 - Procedure status` con UUIDs OpenMRS canónicos, ocho respuestas `Q-AND-A` ordenadas, localización clínica en español y mapping a SNOMED CT `416342005`; excluye explícitamente el set de estados de dispensación de medicamentos.
@@ -19,6 +21,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Publica y bundlea `procedimientos`, `laboratorio`, `lenguas` y `geografia` `2026-07-10-02`, y `sihsalus`
+  `2026-07-10-03`; restaura todos los extremos y fuentes destino requeridos por el importador OCL de OpenMRS y
+  actualiza la suscripción principal a la nueva release.
 - Publica y bundlea `sihsalus`, `seguros` y `laboratorio` `2026-07-10-01`; alinea 111 formularios con 3 641 referencias conceptuales, unifica el par activo Sí/No usado por O3 y limpia value sets mezclados sin eliminar observaciones históricas.
 - Corrige la lógica de CRED: M-CHAT-R/F, Huanca y Lista de Habilidades calculan resultados de solo lectura; `CRED-004` admite hasta 143 meses y puntajes EEDP acumulados; el formulario EEDP rotulado como 21 meses se documenta correctamente como acumulado hasta 24 meses.
 - Corrige campos semánticamente cruzados en Consulta Externa, inmunizaciones, obstetricia y hospitalización; reemplaza conceptos `N/A` usados para guardar fechas o números y separa estados, personas y hallazgos en preguntas propias.
