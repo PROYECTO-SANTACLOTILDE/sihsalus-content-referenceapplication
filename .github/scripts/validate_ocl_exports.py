@@ -14,7 +14,7 @@ GLOBAL_PROPERTIES_PATH = Path(
     "configuration/backend_configuration/globalproperties/globalproperties-sihsalus.xml"
 )
 EXPECTED_SIHSALUS_SUBSCRIPTION_URL = (
-    "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-10-01"
+    "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-10-03"
 )
 OCCUPATIONS_SOURCE = "ocupaciones"
 OCCUPATIONS_ROOT_URL = "/orgs/SIHSALUS/sources/ocupaciones/concepts/1/"
@@ -144,6 +144,9 @@ def main():
     occupation_mapping_targets = []
     concepts_by_source = defaultdict(dict)
     mappings_by_source = defaultdict(list)
+    concepts_by_url = {}
+    concept_records = []
+    mapping_records = []
 
     for zip_path in sorted(OCL_DIR.glob("*.zip")):
         with zipfile.ZipFile(zip_path) as archive:
@@ -160,9 +163,24 @@ def main():
             concept_id = concept.get("id")
             if source_id and concept_id:
                 concepts_by_source[source_id][concept_id] = concept
+            concept_records.append((zip_path, source_id, concept))
+
+            concept_url = normalize_ocl_url(concept.get("url"))
+            if concept_url:
+                existing = concepts_by_url.get(concept_url)
+                if existing and existing[2].get("external_id") != concept.get("external_id"):
+                    errors.append(
+                        f"{zip_path}: concept URL {concept_url} is duplicated by "
+                        f"{existing[0]} and {concept.get('external_id') or concept_id}"
+                    )
+                else:
+                    concepts_by_url[concept_url] = (zip_path, source_id, concept)
 
         if source_id:
             mappings_by_source[source_id].extend(export.get("mappings", []))
+            mapping_records.extend(
+                (zip_path, source_id, mapping) for mapping in export.get("mappings", [])
+            )
 
         for concept in export.get("concepts", []):
             checked += 1
@@ -272,6 +290,9 @@ def main():
         unexpected = sorted(set(occupation_mapping_targets) - occupation_unit_ids)
         errors.append(f"occupation mapping coverage mismatch: missing={missing}, unexpected={unexpected}")
 
+    validate_mapping_integrity(concepts_by_url, mapping_records, errors)
+    validate_default_name_collision_safety(concept_records, errors)
+
     validate_development_instruments(
         concepts_by_source[SIHSALUS_SOURCE], mappings_by_source[SIHSALUS_SOURCE], errors
     )
@@ -286,8 +307,112 @@ def main():
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated concept-name external IDs for {checked} OCL concepts.")
+    print(f"Validated {checked} OCL concepts and {len(mapping_records)} mapping endpoints.")
     return 0
+
+
+def normalize_ocl_url(url):
+    if not isinstance(url, str) or not url.strip():
+        return None
+    return url.strip().rstrip("/") + "/"
+
+
+def validate_mapping_integrity(concepts_by_url, mapping_records, errors):
+    internal_map_types = {"Q-AND-A", "CONCEPT-SET"}
+
+    for zip_path, source_id, mapping in mapping_records:
+        mapping_identifier = mapping.get("url") or mapping.get("external_id") or mapping.get("id")
+        prefix = f"{zip_path}: mapping {mapping_identifier}"
+
+        from_url = normalize_ocl_url(mapping.get("from_concept_url"))
+        if not from_url:
+            errors.append(f"{prefix} has no from_concept_url")
+        elif from_url not in concepts_by_url:
+            errors.append(f"{prefix} references unbundled origin concept {from_url}")
+
+        if mapping.get("map_type") in internal_map_types:
+            to_url = normalize_ocl_url(mapping.get("to_concept_url"))
+            if not to_url:
+                errors.append(
+                    f"{prefix} ({mapping.get('map_type')}) has no to_concept_url"
+                )
+            elif to_url not in concepts_by_url:
+                errors.append(f"{prefix} references unbundled target concept {to_url}")
+            continue
+
+        target_source_name = mapping.get("to_source_name") or mapping.get(
+            "to_source_name_resolved"
+        )
+        if not target_source_name:
+            errors.append(f"{prefix} has no target source name")
+        if not normalize_ocl_url(mapping.get("to_source_url")):
+            errors.append(f"{prefix} has no to_source_url")
+        if not str(mapping.get("to_concept_code") or "").strip():
+            errors.append(f"{prefix} has no to_concept_code")
+
+
+def normalize_name_type(name_type):
+    return re.sub(r"[-_]+", " ", str(name_type or "").strip().casefold())
+
+
+def normalize_concept_name(name):
+    return " ".join(str(name or "").strip().casefold().split())
+
+
+def validate_default_name_collision_safety(concept_records, errors):
+    default_names = defaultdict(list)
+
+    for zip_path, source_id, concept in concept_records:
+        if concept.get("retired"):
+            continue
+
+        active_names = [name for name in concept.get("names", []) if not name.get("retired")]
+        for name in active_names:
+            if normalize_name_type(name.get("name_type")) == "index term":
+                continue
+            if not (
+                name.get("locale_preferred")
+                or normalize_name_type(name.get("name_type")) == "fully specified"
+            ):
+                continue
+
+            key = (name.get("locale"), normalize_concept_name(name.get("name")))
+            default_names[key].append(
+                (zip_path, source_id, concept, active_names, name)
+            )
+
+    for key, matches in default_names.items():
+        concept_uuids = {
+            concept.get("external_id") or f"{source_id}:{concept.get('id')}"
+            for _, source_id, concept, _, _ in matches
+        }
+        if len(concept_uuids) < 2:
+            continue
+
+        for zip_path, source_id, concept, active_names, name in matches:
+            alternatives = [
+                candidate
+                for candidate in active_names
+                if normalize_name_type(candidate.get("name_type")) != "index term"
+                and (
+                    candidate.get("locale"),
+                    normalize_concept_name(candidate.get("name")),
+                )
+                != key
+            ]
+            if alternatives:
+                continue
+
+            rendered_matches = ", ".join(
+                f"{other_source}:{other_concept.get('id')} "
+                f"({other_name.get('name')!r})"
+                for _, other_source, other_concept, _, other_name in matches
+            )
+            errors.append(
+                f"{zip_path}: active concept {source_id}:{concept.get('id')} has no safe "
+                f"fully-specified-name fallback for case-insensitive default-name collision "
+                f"{name.get('name')!r}; matches: {rendered_matches}"
+            )
 
 
 def validate_development_instruments(concepts, mappings, errors):
