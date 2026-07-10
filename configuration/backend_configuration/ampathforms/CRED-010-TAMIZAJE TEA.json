@@ -42,10 +42,27 @@
               "validators": []
             },
             {
+              "label": "Edad del niño (meses cumplidos)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "18",
+                "max": "30",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
               "label": "Puntaje registrado",
               "type": "obs",
               "required": true,
               "id": "puntaje",
+              "questionInfo": "Sume un punto por cada respuesta de riesgo de los 20 ítems oficiales. Son invertidos los ítems 2, 5 y 12.",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "f0000007-0000-4000-8000-000000000007",
@@ -104,10 +121,11 @@
               "hideSteppers": true
             },
             {
-              "label": "Observaciones o respuestas de riesgo",
+              "label": "Ítems con respuesta de riesgo",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "senalesAlerta",
+              "questionInfo": "Registre los números de los ítems con respuesta de riesgo entre los 20 ítems oficiales, o «ninguno» cuando el puntaje sea cero. Esto permite auditar el puntaje sin presentar este resumen como el cuestionario completo.",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000008-0000-4000-8000-000000000008"
@@ -176,6 +194,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c1100000-0000-4000-8000-000000000010",
-  "description": "Registro del puntaje de 0 a 20 con clasificación de riesgo M-CHAT-R/F calculada automáticamente (0 a 2 bajo, 3 a 7 moderado y 8 a 20 alto) según NTS 238-MINSA/DGIESP-2025. No sustituye el cuestionario oficial de 20 ítems y su seguimiento.",
-  "version": "1.3.0"
+  "description": "Transcripción auditable del M-CHAT-R/F según NTS 238: exige edad, puntaje 0-20, números de ítems con respuesta de riesgo, clasificación calculada y plan. No sustituye el cuestionario oficial de 20 ítems.",
+  "version": "1.4.0"
 }

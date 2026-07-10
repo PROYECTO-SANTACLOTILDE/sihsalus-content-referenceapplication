@@ -41,6 +41,22 @@
               "validators": []
             },
             {
+              "label": "Edad del niño (meses cumplidos)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "143",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
               "label": "Talla/longitud (cm)",
               "type": "obs",
               "required": true,
@@ -59,7 +75,7 @@
             {
               "label": "Perímetro cefálico (cm)",
               "type": "obs",
-              "required": false,
+              "required": "edadMeses < 60",
               "id": "perimetroCefalicoCm",
               "questionOptions": {
                 "rendering": "number",
@@ -68,6 +84,51 @@
                 "max": "70",
                 "step": 0.1,
                 "disallowDecimals": false
+              },
+              "hide": {
+                "hideWhenExpression": "edadMeses >= 60"
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Índice de masa corporal (kg/m²)",
+              "type": "obs",
+              "required": "edadMeses >= 60",
+              "id": "imc",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5b877648-ae50-4d45-ad36-0196042baa1a",
+                "calculate": {
+                  "calculateExpression": "isEmpty(pesoKg) || isEmpty(tallaCm) ? undefined : (pesoKg / ((tallaCm / 100) * (tallaCm / 100)))"
+                },
+                "min": "5",
+                "max": "80",
+                "step": 0.01,
+                "disallowDecimals": false
+              },
+              "hide": {
+                "hideWhenExpression": "edadMeses < 60"
+              },
+              "readonly": true,
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Perímetro abdominal (cm)",
+              "type": "obs",
+              "required": "edadMeses >= 60",
+              "id": "perimetroAbdominalCm",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "18fcbd1f-5b4f-44ed-a664-8637a83cc7eb",
+                "min": "20",
+                "max": "200",
+                "step": 0.1,
+                "disallowDecimals": false
+              },
+              "hide": {
+                "hideWhenExpression": "edadMeses < 60"
               },
               "hideSteppers": true,
               "validators": []
@@ -78,93 +139,6 @@
           "label": "Clasificación",
           "isExpanded": "true",
           "questions": [
-            {
-              "label": "Peso para la edad",
-              "type": "obs",
-              "required": false,
-              "id": "clasificacionPesoEdad",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "f0000001-0000-4000-8000-000000000001",
-                "answers": [
-                  {
-                    "concept": "f0000101-0000-4000-8000-000000000101",
-                    "label": "Normal"
-                  },
-                  {
-                    "concept": "f0000102-0000-4000-8000-000000000102",
-                    "label": "Riesgo"
-                  },
-                  {
-                    "concept": "f0000103-0000-4000-8000-000000000103",
-                    "label": "Anormal"
-                  },
-                  {
-                    "concept": "f0000104-0000-4000-8000-000000000104",
-                    "label": "Referido"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Talla para la edad",
-              "type": "obs",
-              "required": false,
-              "id": "clasificacionTallaEdad",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "f0000001-0000-4000-8000-000000000001",
-                "answers": [
-                  {
-                    "concept": "f0000101-0000-4000-8000-000000000101",
-                    "label": "Normal"
-                  },
-                  {
-                    "concept": "f0000102-0000-4000-8000-000000000102",
-                    "label": "Riesgo"
-                  },
-                  {
-                    "concept": "f0000103-0000-4000-8000-000000000103",
-                    "label": "Anormal"
-                  },
-                  {
-                    "concept": "f0000104-0000-4000-8000-000000000104",
-                    "label": "Referido"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Peso para la talla / IMC para edad",
-              "type": "obs",
-              "required": false,
-              "id": "clasificacionPesoTalla",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "f0000001-0000-4000-8000-000000000001",
-                "answers": [
-                  {
-                    "concept": "f0000101-0000-4000-8000-000000000101",
-                    "label": "Normal"
-                  },
-                  {
-                    "concept": "f0000102-0000-4000-8000-000000000102",
-                    "label": "Riesgo"
-                  },
-                  {
-                    "concept": "f0000103-0000-4000-8000-000000000103",
-                    "label": "Anormal"
-                  },
-                  {
-                    "concept": "f0000104-0000-4000-8000-000000000104",
-                    "label": "Referido"
-                  }
-                ]
-              },
-              "validators": []
-            },
             {
               "label": "Riesgo nutricional identificado",
               "type": "obs",
@@ -189,8 +163,9 @@
             {
               "label": "Diagnóstico nutricional",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "diagnosticoNutricional",
+              "questionInfo": "Registre el indicador evaluado (P/E, T/E, P/T, IMC/E o PC/E), su z-score y la clasificación obtenida con el patrón OMS correspondiente a la edad y sexo.",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000002-0000-4000-8000-000000000002"
@@ -256,6 +231,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c2150000-0000-4000-8000-000000000015",
-  "description": "Registro de crecimiento, antropometría y clasificación nutricional CRED.",
-  "version": "1.0.0"
+  "description": "Registro antropométrico CRED según NTS 238 y RM 034-2024/MINSA. Diferencia perímetro cefálico en menores de 5 años e IMC/perímetro abdominal desde los 5 años. Las clasificaciones estructuradas quedan pendientes de conceptos específicos por indicador.",
+  "version": "1.1.0"
 }

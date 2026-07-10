@@ -5,7 +5,7 @@
       "label": "Evaluación del Desarrollo Infantil",
       "sections": [
         {
-          "label": "Resultado EDI",
+          "label": "Transcripción auditable del resultado EDI",
           "isExpanded": "true",
           "questions": [
             {
@@ -39,6 +39,57 @@
                   }
                 ]
               },
+              "validators": []
+            },
+            {
+              "label": "Edad cronológica (días)",
+              "type": "obs",
+              "required": true,
+              "id": "edadCronologicaDias",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380002-0000-4000-8000-000000000002",
+                "min": "29",
+                "max": "1859",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Semanas de prematuridad",
+              "type": "obs",
+              "required": false,
+              "id": "semanasPrematuridad",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380004-0000-4000-8000-000000000004",
+                "min": "0",
+                "max": "20",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Edad corregida (días)",
+              "type": "obs",
+              "required": "semanasPrematuridad > 0 && edadCronologicaDias < 730",
+              "id": "edadCorregidaDias",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c2380003-0000-4000-8000-000000000003",
+                "min": "0",
+                "max": "730",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(semanasPrematuridad) || semanasPrematuridad === 0 || edadCronologicaDias >= 730"
+              },
+              "hideSteppers": true,
               "validators": []
             },
             {
@@ -83,10 +134,11 @@
               "hideSteppers": true
             },
             {
-              "label": "Hallazgos y observaciones",
+              "label": "Resumen de los cinco ejes EDI",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "observaciones",
+              "questionInfo": "Documente los cinco ejes EDI: 1) áreas del desarrollo, 2) señales de alerta, 3) señales de alarma, 4) exploración neurológica y 5) factores de riesgo biológico. La clasificación global debe provenir de la ficha oficial.",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000002-0000-4000-8000-000000000002"
@@ -155,6 +207,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c1090000-0000-4000-8000-000000000009",
-  "description": "Registro estructurado de la clasificación Verde/Amarillo/Rojo de la Prueba EDI dentro de CRED. No reemplaza la aplicación clínica completa de sus cinco ejes.",
-  "version": "1.3.0"
+  "description": "Transcripción auditable del resultado EDI según NTS 238: conserva edad cronológica/corregida, resumen obligatorio de los cinco ejes, clasificación y plan. No reemplaza la ficha oficial ítem por ítem.",
+  "version": "1.4.0"
 }

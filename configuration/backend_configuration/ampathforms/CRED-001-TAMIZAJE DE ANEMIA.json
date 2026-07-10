@@ -31,6 +31,22 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Edad del niño al tamizaje (meses cumplidos)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "0",
+                "max": "143",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
               "label": "Hemoglobina (g/dL)",
               "type": "obs",
               "required": true,
@@ -44,12 +60,13 @@
                 "disallowDecimals": false
               },
               "hideSteppers": true,
+              "questionInfo": "Registre el valor medido sin corregir. La clasificación se realiza con la hemoglobina ajustada por altitud cuando corresponda.",
               "validators": []
             },
             {
-              "label": "Altitud del establecimiento (m.s.n.m.)",
+              "label": "Altitud aplicable para corrección (m.s.n.m.)",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "altitud",
               "questionOptions": {
                 "rendering": "number",
@@ -61,35 +78,36 @@
               },
               "hideSteppers": true,
               "alert": {
-                "alertWhenExpression": "altitud > 1000",
-                "message": "Se aplicará factor de corrección por altitud según tabla OMS"
+                "alertWhenExpression": "altitud > 500",
+                "message": "Debe corregir la hemoglobina por altitud antes de clasificar, según NTS 213 y RM 429-2024/MINSA."
               },
               "validators": []
             },
             {
-              "label": "Clasificación de Anemia",
+              "label": "Clasificación de anemia ajustada por edad y altitud",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "clasificacionAnemia",
+              "questionInfo": "Seleccione la clasificación después de aplicar la corrección por altitud y el punto de corte correspondiente a la edad. No clasifique usando únicamente la hemoglobina sin ajustar.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c6f3e07b-5200-5d58-8f02-d346e0ce8284",
                 "answers": [
                   {
                     "concept": "c69b424f-4d9c-4ba9-aeae-045ff5a5e530",
-                    "label": "Sin Anemia (≥ 11.0 g/dL)"
+                    "label": "Sin anemia"
                   },
                   {
                     "concept": "0c6478bd-ea06-40b2-a93f-a0a1f5c13b97",
-                    "label": "Anemia Leve (10.0 - 10.9 g/dL)"
+                    "label": "Anemia leve"
                   },
                   {
                     "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
-                    "label": "Anemia Moderada (7.0 - 9.9 g/dL)"
+                    "label": "Anemia moderada"
                   },
                   {
                     "concept": "b1b29870-eccd-4821-847c-668df29b4ad4",
-                    "label": "Anemia Severa (< 7.0 g/dL)"
+                    "label": "Anemia severa"
                   }
                 ]
               },
@@ -181,6 +199,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "56805405-c308-429d-84d9-2a5447922734",
-  "description": "Tamizaje de anemia en niños según NTS 137. Registra hemoglobina, clasificación y tratamiento.",
-  "version": "1.1.1"
+  "description": "Registro de tamizaje de anemia según NTS 213-MINSA/DGIESP-2024 y RM 429-2024/MINSA. Exige edad y altitud y conserva la hemoglobina medida; la clasificación debe realizarse con el valor ajustado y el corte por edad.",
+  "version": "1.2.0"
 }
