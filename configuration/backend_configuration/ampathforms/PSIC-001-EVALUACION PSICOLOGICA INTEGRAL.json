@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "8015414e-6f0c-46b8-9845-42cd48431cd2",
   "description": "Evaluación psicológica integral para consulta ambulatoria de salud mental. Basado en la NTS N° 138-MINSA/2017/DGIESP y orientaciones técnicas MINSA de salud mental.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "pages": [
     {
       "label": "Datos y motivo",
@@ -280,7 +280,7 @@
                 "max": "3",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             }
           ]

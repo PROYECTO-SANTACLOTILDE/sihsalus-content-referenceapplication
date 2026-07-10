@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "901a3851-fac2-4214-b7a7-47522b8f2548",
   "description": "Registro del plan de atención individualizado de salud mental con objetivos, intervenciones, red de apoyo y seguimiento. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "pages": [
     {
       "label": "Datos del PAI",
@@ -167,7 +167,7 @@
                 "max": "3",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             }
           ]

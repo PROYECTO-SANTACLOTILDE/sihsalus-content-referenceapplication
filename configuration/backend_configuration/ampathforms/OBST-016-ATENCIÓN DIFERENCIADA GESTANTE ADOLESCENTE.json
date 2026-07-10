@@ -74,7 +74,7 @@
               "required": false,
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "f0000005-0000-4000-8000-000000000005",
+                "concept": "68baf46d-ca08-4257-93c2-b6248ae1616f",
                 "answers": [
                   {
                     "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
@@ -210,5 +210,5 @@
   "referencedForms": [],
   "uuid": "b1160000-0000-4000-8000-000000000016",
   "description": "Atención integral y diferenciada de la gestante adolescente según NTS 130-MINSA.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

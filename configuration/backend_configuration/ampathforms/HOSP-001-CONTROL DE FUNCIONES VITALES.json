@@ -183,11 +183,11 @@
   ],
   "processor": "EncounterFormProcessor",
   "encounterType": "3942f612-fea0-4414-b7a6-eaf24413e145",
-  "encounter": "Hospitalización",
+  "encounter": "Nota de Evolución de Hospitalización",
   "published": true,
   "retired": false,
   "referencedForms": [],
   "uuid": "7fc592ec-c52d-4ddb-b5fe-56fa62533b1b",
   "description": "Este formulario se utiliza para el registro de las funciones vitales de los pacientes hospitalizados. Incluye mediciones periódicas de temperatura, presión arterial, frecuencia cardíaca, frecuencia respiratoria y saturación de oxígeno, permitiendo un monitoreo continuo del estado clínico del paciente. ",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

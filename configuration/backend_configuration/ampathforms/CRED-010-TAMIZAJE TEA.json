@@ -58,13 +58,17 @@
               "validators": []
             },
             {
-              "label": "Clasificación de riesgo M-CHAT-R/F",
+              "label": "Clasificación calculada de riesgo M-CHAT-R/F",
               "type": "obs",
               "required": true,
               "id": "resultadoGlobal",
+              "questionInfo": "Se calcula automáticamente: 0 a 2, riesgo bajo; 3 a 7, riesgo moderado; 8 a 20, riesgo alto.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380208-0000-4000-8000-000000000208",
+                "calculate": {
+                  "calculateExpression": "isEmpty(puntaje) ? undefined : (puntaje <= 2 ? 'c2380209-0000-4000-8000-000000000209' : (puntaje <= 7 ? 'c2380210-0000-4000-8000-000000000210' : 'c2380211-0000-4000-8000-000000000211'))"
+                },
                 "answers": [
                   {
                     "concept": "c2380209-0000-4000-8000-000000000209",
@@ -80,6 +84,7 @@
                   }
                 ]
               },
+              "readonly": true,
               "validators": []
             },
             {
@@ -89,13 +94,13 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'c2380211-0000-4000-8000-000000000211' ? 2 : (resultadoGlobal === 'c2380210-0000-4000-8000-000000000210' ? 1 : 0))"
+                  "calculateExpression": "isEmpty(puntaje) ? undefined : (puntaje <= 2 ? 0 : (puntaje <= 7 ? 1 : 2))"
                 },
                 "min": "0",
                 "max": "2",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
@@ -171,6 +176,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c1100000-0000-4000-8000-000000000010",
-  "description": "Registro del puntaje de 0 a 20 y de la clasificación de riesgo M-CHAT-R/F según NTS 238-MINSA/DGIESP-2025. No sustituye el cuestionario oficial de 20 ítems y su seguimiento.",
-  "version": "1.2.0"
+  "description": "Registro del puntaje de 0 a 20 con clasificación de riesgo M-CHAT-R/F calculada automáticamente (0 a 2 bajo, 3 a 7 moderado y 8 a 20 alto) según NTS 238-MINSA/DGIESP-2025. No sustituye el cuestionario oficial de 20 ítems y su seguimiento.",
+  "version": "1.3.0"
 }

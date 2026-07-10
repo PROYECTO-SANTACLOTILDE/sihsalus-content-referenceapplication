@@ -41,6 +41,21 @@
                   }
                 },
                 {
+                  "label": "Talla (cm)",
+                  "type": "obs",
+                  "required": false,
+                  "id": "talla",
+                  "questionOptions": {
+                    "rendering": "number",
+                    "concept": "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "disallowDecimals": false,
+                    "min": "10",
+                    "max": "271"
+                  },
+                  "hideSteppers": true,
+                  "validators": []
+                },
+                {
                   "id": "pesoMadreKg",
                   "label": "Peso Madre (Kg)",
                   "type": "obs",
@@ -166,7 +181,7 @@
                         "label": "Leve"
                       },
                       {
-                        "concept": "001d0ad1-9aec-4969-ab35-b3ca3da82924",
+                        "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
                         "label": "Moderado"
                       },
                       {
@@ -199,7 +214,7 @@
                         "label": "Leve"
                       },
                       {
-                        "concept": "001d0ad1-9aec-4969-ab35-b3ca3da82924",
+                        "concept": "aed747d5-fba0-49fc-9e29-ebc56b62fb22",
                         "label": "Moderado"
                       },
                       {
@@ -355,11 +370,11 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "select",
-                    "concept": "d95b40d4-c72b-4a40-bc8e-a44f25fe81bb",
+                    "concept": "e357dc20-3fe7-4a77-8fc7-f1f5becbe678",
                     "answers": [
                       {
-                        "concept": "15d48477-1095-4822-8283-a83ffe350e25",
-                        "label": "Edad gestacional en semanas según ecografía"
+                        "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
+                        "label": "Realizada"
                       },
                       {
                         "concept": "ed38dc0c-3d91-4b61-9d83-fce06de092d5",
@@ -386,7 +401,7 @@
                   },
                   "hideSteppers": true,
                   "hide": {
-                    "hideWhenExpression": "ecografiaDeControl !== '15d48477-1095-4822-8283-a83ffe350e25'"
+                    "hideWhenExpression": "ecografiaDeControl !== 'f7e458ef-8dea-4e53-b429-81664cbeda49'"
                   }
                 },
                 {
@@ -473,11 +488,11 @@
                     "concept": "47bb64cf-f63c-46a0-839a-9573bcedf9be",
                     "answers": [
                       {
-                        "concept": "6a1214d4-b30c-4569-9a32-85d81724c62f",
+                        "concept": "ecb13870-d385-46d2-b7f7-c88bd5794aa4",
                         "label": "Control"
                       },
                       {
-                        "concept": "b0e281a7-2ae7-4b0c-b3fe-5d42dd2ce4b1",
+                        "concept": "e3162a12-7379-4e0a-b238-fa654670c2d7",
                         "label": "Visita"
                       },
                       {
@@ -689,5 +704,5 @@
   "referencedForms": [],
   "uuid": "d4525c09-e23b-46ed-8d95-a1bbf0dcb8a0",
   "description": "Recopila los datos indespensables que se toman en cada control prenatal",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

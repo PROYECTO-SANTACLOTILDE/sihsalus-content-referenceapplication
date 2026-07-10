@@ -372,23 +372,43 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "(preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0)"
+                  "calculateExpression": "isEmpty(preocupacionCuidador) || isEmpty(regresionHabilidades) || isEmpty(ausenciaMotorSensorial) || isEmpty(ausenciaSocioemocional) || isEmpty(ausenciaLenguaje) || isEmpty(ausenciaCognitivo) ? undefined : (preocupacionCuidador === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (regresionHabilidades === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (factorRiesgo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0)"
                 },
                 "min": "0",
                 "max": "7",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
-              "label": "Resultado de lista de habilidades",
+              "label": "Ausencias de habilidades calculadas",
+              "type": "control",
+              "id": "ausenciasHabilidadesCalculadas",
+              "questionOptions": {
+                "rendering": "number",
+                "calculate": {
+                  "calculateExpression": "isEmpty(ausenciaMotorSensorial) || isEmpty(ausenciaSocioemocional) || isEmpty(ausenciaLenguaje) || isEmpty(ausenciaCognitivo) ? undefined : (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0) + (ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 1 : 0)"
+                },
+                "min": "0",
+                "max": "4",
+                "step": 1
+              },
+              "readonly": true,
+              "hideSteppers": true
+            },
+            {
+              "label": "Resultado calculado de lista de habilidades",
               "type": "obs",
               "required": true,
               "id": "resultadoLista",
+              "questionInfo": "Se calcula solo desde las cuatro áreas de habilidades. Las preocupaciones, la regresión y los factores de riesgo se contabilizan como alertas, pero no se registran por sí solos como ausencia de una habilidad.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380041-0000-4000-8000-000000000041",
+                "calculate": {
+                  "calculateExpression": "isEmpty(ausenciaMotorSensorial) || isEmpty(ausenciaSocioemocional) || isEmpty(ausenciaLenguaje) || isEmpty(ausenciaCognitivo) ? 'c2380155-0000-4000-8000-000000000155' : (ausenciaMotorSensorial === 'f7e458ef-8dea-4e53-b429-81664cbeda49' || ausenciaSocioemocional === 'f7e458ef-8dea-4e53-b429-81664cbeda49' || ausenciaLenguaje === 'f7e458ef-8dea-4e53-b429-81664cbeda49' || ausenciaCognitivo === 'f7e458ef-8dea-4e53-b429-81664cbeda49' ? 'c2380154-0000-4000-8000-000000000154' : 'c2380151-0000-4000-8000-000000000151')"
+                },
                 "answers": [
                   {
                     "concept": "c2380151-0000-4000-8000-000000000151",
@@ -404,6 +424,7 @@
                   }
                 ]
               },
+              "readonly": true,
               "validators": []
             },
             {
@@ -558,6 +579,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c2270000-0000-4000-8000-000000000027",
-  "description": "Lista de habilidades y conductas esperadas por edad para niños de 4 a 11 años, 11 meses y 29 días según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.2.0"
+  "description": "Lista de habilidades y conductas esperadas por edad para niños de 4 a 11 años, 11 meses y 29 días según NTS 238-MINSA/DGIESP-2025. El resultado se calcula desde las ausencias registradas en las cuatro áreas; las demás alertas se conservan separadas para orientar la intervención.",
+  "version": "1.3.0"
 }

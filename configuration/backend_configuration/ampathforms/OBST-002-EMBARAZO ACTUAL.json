@@ -62,7 +62,7 @@
                     "min": "10",
                     "max": "100"
                   },
-                  "editable": false,
+                  "readonly": true,
                   "hideSteppers": true,
                   "validators": []
                 },
@@ -255,8 +255,7 @@
                     "min": "0",
                     "max": "5",
                     "concept": "58970d9f-7bd1-484b-92f0-b5f4d85103f9",
-                    "step": 1,
-                    "answers": []
+                    "step": 1
                   }
                 },
                 {
@@ -294,8 +293,7 @@
                     "min": "1",
                     "max": "9",
                     "step": 1,
-                    "concept": "72a9c171-0f45-4757-862c-7553db5e9548",
-                    "answers": []
+                    "concept": "72a9c171-0f45-4757-862c-7553db5e9548"
                   },
                   "hideSteppers": true,
                   "hide": {
@@ -337,8 +335,7 @@
                     "min": "1",
                     "max": "9",
                     "step": 1,
-                    "concept": "a69dccb1-6f7a-40cb-b841-7cefe276a10b",
-                    "answers": []
+                    "concept": "a69dccb1-6f7a-40cb-b841-7cefe276a10b"
                   },
                   "hideSteppers": true,
                   "hide": {
@@ -835,5 +832,5 @@
   "referencedForms": [],
   "uuid": "8616c1b5-126a-4ff9-addf-f15909f60e79",
   "description": "Registro de datos generales del embarazo actual",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

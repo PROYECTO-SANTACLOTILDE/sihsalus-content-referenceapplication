@@ -151,7 +151,7 @@
                 "step": 1,
                 "disallowDecimals": true
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true,
               "validators": []
             },
@@ -168,7 +168,7 @@
                 "max": "3",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
@@ -231,5 +231,5 @@
   "referencedForms": [],
   "uuid": "4dedb62b-a318-4a81-bd9c-c9bae9a17185",
   "description": "Registro de la escala de coma de Glasgow con puntaje total calculado.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "b6aed790-f935-45af-8c95-7adb82ee00ff",
   "description": "Registro de sesión de intervención psicológica, psicoterapia, psicoeducación o seguimiento comunitario. Basado en la NTS N° 138-MINSA/2017/DGIESP.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "pages": [
     {
       "label": "Sesión",
@@ -291,7 +291,7 @@
                 "max": "3",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {

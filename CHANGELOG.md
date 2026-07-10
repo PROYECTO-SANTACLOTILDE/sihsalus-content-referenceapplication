@@ -8,6 +8,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Publica los concepts de formulario que faltaban para inmunizaciones, referencias, acompañamiento, PPL/PRU, personal de parto, estado de ecografía y plan de parto; agrega las opciones de seguro SIS y particular sin reutilizar conceptos de otras preguntas.
+- Extiende la validación CI de formularios para resolver conceptos contra todos los ZIP OCL, comprobar `Q-AND-A` entre sources, detectar respuestas repetidas o autorreferenciales, datatypes incompatibles, renderers no soportados, expresiones con IDs inexistentes y discordancias de encounter type.
 - Agrega `CIEL 170800 - Procedure status` con UUIDs OpenMRS canónicos, ocho respuestas `Q-AND-A` ordenadas, localización clínica en español y mapping a SNOMED CT `416342005`; excluye explícitamente el set de estados de dispensación de medicamentos.
 - Agrega `CRED-028-TPED`, con 12 líneas y 89 hitos estructurados, y validación CI de la cardinalidad de los mappings y formularios de desarrollo.
 - Conserva los tags de ubicación `Queue Location` y `Appointment Location` en Initializer, y define tipos de servicio de cita para que agenda no quede sin duración.
@@ -17,6 +19,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Publica y bundlea `sihsalus`, `seguros` y `laboratorio` `2026-07-10-01`; alinea 111 formularios con 3 641 referencias conceptuales, unifica el par activo Sí/No usado por O3 y limpia value sets mezclados sin eliminar observaciones históricas.
+- Corrige la lógica de CRED: M-CHAT-R/F, Huanca y Lista de Habilidades calculan resultados de solo lectura; `CRED-004` admite hasta 143 meses y puntajes EEDP acumulados; el formulario EEDP rotulado como 21 meses se documenta correctamente como acumulado hasta 24 meses.
+- Corrige campos semánticamente cruzados en Consulta Externa, inmunizaciones, obstetricia y hospitalización; reemplaza conceptos `N/A` usados para guardar fechas o números y separa estados, personas y hallazgos en preguntas propias.
+- Migra los campos calculados de `editable: false` a `readonly: true`, soportado por el form engine O3, y corrige renderers, etiquetas, encounter types, BMI y condiciones de visibilidad detectadas en la auditoría final.
 - Evita la colisión de Initializer con `Queue Location` y `Appointment Location`: las filas sin UUID se resuelven por nombre contra los tags creados por sus módulos, sin recrearlos ni migrar la base de datos.
 - Publica y bundlea `SIHSALUS/sihsalus` `2026-07-09-02` con 4 459 conceptos y 5 635 mappings: conecta las 12 líneas y 89 hitos TPED, convierte TPED, Huanca, Lista, EDI y M-CHAT-R/F en sets navegables, conserva EEDP, TEPSI y TPED habilitados, e incorpora la terminología requerida por procedimientos O3.
 - Completa `CIEL 1732 - Duration units` como `CONCEPT-SET` de ocho miembros, corrige los UUIDs OpenMRS de sus unidades, fija el orden oficial y localiza el conjunto como `Unidades de duración`.

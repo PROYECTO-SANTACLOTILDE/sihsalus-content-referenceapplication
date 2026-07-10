@@ -29,7 +29,7 @@
                 {
                   "type": "obs",
                   "questionOptions": {
-                    "rendering": "datatime",
+                    "rendering": "datetime",
                     "concept": "2c67cd3d-407c-4f4d-bdf7-0f32b42ccfb4"
                   },
                   "id": "hora",
@@ -251,5 +251,5 @@
   "referencedForms": [],
   "uuid": "39899e9d-7939-42cf-9fe7-42a5dd2cdda5",
   "description": "Hoja de Monitorización Obstétrica realizada durante el tiempo de hospitalización.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

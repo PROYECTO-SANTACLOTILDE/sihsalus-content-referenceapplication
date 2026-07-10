@@ -83,7 +83,7 @@
                     "min": "10",
                     "max": "100"
                   },
-                  "editable": false,
+                  "readonly": true,
                   "hideSteppers": true,
                   "validators": []
                 },
@@ -764,8 +764,7 @@
                     "min": "0",
                     "max": "5",
                     "concept": "58970d9f-7bd1-484b-92f0-b5f4d85103f9",
-                    "step": 1,
-                    "answers": []
+                    "step": 1
                   }
                 }
               ]
@@ -1344,5 +1343,5 @@
   "referencedForms": [],
   "uuid": "0c6a8b9a-eea4-4350-9014-5c98756f29b7",
   "description": "Atención del Servicio de Obstetricia",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

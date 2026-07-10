@@ -401,22 +401,23 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Total de hitos no logrados",
+              "label": "Total calculado de hitos no logrados",
               "type": "obs",
-              "required": true,
+              "required": false,
               "id": "totalHitosNoLogrados",
+              "questionInfo": "Se calcula cuando las cinco áreas tienen un conteo. Si alguna queda sin evaluar, el resultado Huanca se registra como no concluyente.",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "c2380021-0000-4000-8000-000000000021",
                 "calculate": {
-                  "calculateExpression": "(isEmpty(noLogradosMotorGrueso) ? 0 : noLogradosMotorGrueso) + (isEmpty(noLogradosMotorFino) ? 0 : noLogradosMotorFino) + (isEmpty(noLogradosSocial) ? 0 : noLogradosSocial) + (isEmpty(noLogradosCognitivo) ? 0 : noLogradosCognitivo) + (isEmpty(noLogradosHabla) ? 0 : noLogradosHabla)"
+                  "calculateExpression": "isEmpty(noLogradosMotorGrueso) || isEmpty(noLogradosMotorFino) || isEmpty(noLogradosSocial) || isEmpty(noLogradosCognitivo) || isEmpty(noLogradosHabla) ? undefined : noLogradosMotorGrueso + noLogradosMotorFino + noLogradosSocial + noLogradosCognitivo + noLogradosHabla"
                 },
                 "min": "0",
-                "max": "50",
+                "max": "100",
                 "step": 1,
                 "disallowDecimals": true
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true,
               "validators": []
             },
@@ -427,23 +428,27 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "totalHitosNoLogrados >= 2 ? 2 : totalHitosNoLogrados"
+                  "calculateExpression": "isEmpty(noLogradosMotorGrueso) || isEmpty(noLogradosMotorFino) || isEmpty(noLogradosSocial) || isEmpty(noLogradosCognitivo) || isEmpty(noLogradosHabla) ? undefined : (noLogradosMotorGrueso + noLogradosMotorFino + noLogradosSocial + noLogradosCognitivo + noLogradosHabla >= 2 ? 2 : noLogradosMotorGrueso + noLogradosMotorFino + noLogradosSocial + noLogradosCognitivo + noLogradosHabla)"
                 },
                 "min": "0",
                 "max": "2",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
-              "label": "Resultado Huanca Test",
+              "label": "Resultado calculado Huanca Test",
               "type": "obs",
               "required": true,
               "id": "resultadoHuanca",
+              "questionInfo": "Se calcula a partir del total de hitos no logrados. Si falta evaluar alguna de las cinco áreas, el resultado es no concluyente.",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2380022-0000-4000-8000-000000000022",
+                "calculate": {
+                  "calculateExpression": "isEmpty(noLogradosMotorGrueso) || isEmpty(noLogradosMotorFino) || isEmpty(noLogradosSocial) || isEmpty(noLogradosCognitivo) || isEmpty(noLogradosHabla) ? 'c2380155-0000-4000-8000-000000000155' : (noLogradosMotorGrueso + noLogradosMotorFino + noLogradosSocial + noLogradosCognitivo + noLogradosHabla === 0 ? 'c2380151-0000-4000-8000-000000000151' : (noLogradosMotorGrueso + noLogradosMotorFino + noLogradosSocial + noLogradosCognitivo + noLogradosHabla === 1 ? 'c2380152-0000-4000-8000-000000000152' : 'c2380153-0000-4000-8000-000000000153'))"
+                },
                 "answers": [
                   {
                     "concept": "c2380151-0000-4000-8000-000000000151",
@@ -463,6 +468,7 @@
                   }
                 ]
               },
+              "readonly": true,
               "validators": []
             },
             {
@@ -655,6 +661,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c2260000-0000-4000-8000-000000000026",
-  "description": "Vigilancia del neurodesarrollo con Huanca Test adaptado para niños hasta 36 meses según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.2.0"
+  "description": "Vigilancia del neurodesarrollo con Huanca Test adaptado para niños hasta 36 meses según NTS 238-MINSA/DGIESP-2025. El total y el resultado se calculan desde los hitos no logrados de las cinco áreas; una evaluación incompleta queda como no concluyente.",
+  "version": "1.3.0"
 }

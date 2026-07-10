@@ -79,7 +79,7 @@
                 "max": "2",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
@@ -156,5 +156,5 @@
   "referencedForms": [],
   "uuid": "c1090000-0000-4000-8000-000000000009",
   "description": "Registro estructurado de la clasificación Verde/Amarillo/Rojo de la Prueba EDI dentro de CRED. No reemplaza la aplicación clínica completa de sus cinco ejes.",
-  "version": "1.2.0"
+  "version": "1.3.0"
 }

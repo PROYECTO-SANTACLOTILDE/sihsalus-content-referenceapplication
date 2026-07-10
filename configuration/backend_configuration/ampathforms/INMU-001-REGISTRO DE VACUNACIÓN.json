@@ -57,7 +57,7 @@
               "id": "estadoAplicacion",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000182-0000-4000-8000-000000000182"
+                "concept": "af2ec074-87e5-4651-8e7f-5578bd111cf9"
               },
               "validators": []
             },
@@ -68,7 +68,7 @@
               "id": "motivoNoAplicacion",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "f0000183-0000-4000-8000-000000000183"
+                "concept": "9dab3f0d-b9da-45c3-beea-5ec3182e53be"
               },
               "validators": []
             },
@@ -79,7 +79,7 @@
               "id": "contextoMinsa",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "f0000184-0000-4000-8000-000000000184"
+                "concept": "5c45d979-90aa-4f27-94de-0fc76c3e4d7d"
               },
               "validators": []
             }
@@ -157,5 +157,5 @@
   "referencedForms": [],
   "uuid": "c1120000-0000-4000-8000-000000000011",
   "description": "Contrato AMPATH usado por la UI especializada del calendario de vacunación para persistir dosis, lotes, estado y próxima dosis.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

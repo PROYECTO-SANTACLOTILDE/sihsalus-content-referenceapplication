@@ -116,7 +116,7 @@
             {
               "type": "obs",
               "questionOptions": {
-                "rendering": "time",
+                "rendering": "datetime",
                 "concept": "d6c11be0-b3b2-4969-bba3-e020dcf382eb"
               },
               "id": "hora",
@@ -221,12 +221,12 @@
                     "concept": "c6567881-4659-4624-8adf-ba0c15cbc4c6",
                     "answers": [
                       {
-                        "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
-                        "label": "Normal"
+                        "concept": "7303702f-f67e-4fd2-bf41-f58fb364b132",
+                        "label": "Eutócico"
                       },
                       {
-                        "concept": "522ddb92-8615-4a7a-8833-0429d06c9828",
-                        "label": "Anormal"
+                        "concept": "3d233e4b-d756-498c-9a2a-99bec850fbac",
+                        "label": "Distócico"
                       }
                     ]
                   },
@@ -242,7 +242,7 @@
                   "id": "especificarParto",
                   "label": "Especificar",
                   "hide": {
-                    "hideWhenExpression": "parto !== '522ddb92-8615-4a7a-8833-0429d06c9828'"
+                    "hideWhenExpression": "parto !== '3d233e4b-d756-498c-9a2a-99bec850fbac'"
                   }
                 }
               ]
@@ -300,8 +300,8 @@
                         "label": "Inducido"
                       },
                       {
-                        "concept": "3ffe774b-6974-4f75-ac14-fcea7802945c",
-                        "label": "Instrumentado"
+                        "concept": "31a08354-dcc8-4e95-8a6e-e99d3b4adbe4",
+                        "label": "Vacuum"
                       }
                     ]
                   },
@@ -1189,7 +1189,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "checkbox",
-                    "concept": "c6567881-4659-4624-8adf-ba0c15cbc4c6",
+                    "concept": "826c14ee-f979-4bc9-8b0b-f58ab6170056",
                     "answers": [
                       {
                         "concept": "710bfe59-8020-4564-84c0-afd9bbbff6c8",
@@ -1222,7 +1222,7 @@
                     ]
                   },
                   "id": "partoAtendidoPor",
-                  "label": "Parto"
+                  "label": "Personal que atendió el parto"
                 }
               ]
             },
@@ -1407,5 +1407,5 @@
   "referencedForms": [],
   "uuid": "af13983c-fd5e-49a1-8795-5e8b150fbed8",
   "description": "Resumen de Parto realizado por el obstetra",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

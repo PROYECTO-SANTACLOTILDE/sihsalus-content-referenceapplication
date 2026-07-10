@@ -1,7 +1,7 @@
 {
   "name": "Formulario Hoja de Referencia",
   "description": "Formulario para registrar la hoja de referencia institucional del paciente.",
-  "version": "1.0",
+  "version": "1.1",
   "published": true,
   "retired": false,
   "encounter": "Referencia del Paciente HSC",
@@ -32,7 +32,7 @@
               "required": "true",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "0a39b49c-8fea-4002-a251-c6c032dbb76f"
+                "concept": "a95e8470-7af9-47c0-9784-345153db2a39"
               },
               "type": "obs"
             },
@@ -230,7 +230,7 @@
               "required": "false",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "54c7e500-2455-46ff-a994-03440d3a96e3"
+                "concept": "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "type": "obs"
             },
@@ -240,7 +240,7 @@
               "required": "false",
               "questionOptions": {
                 "rendering": "number",
-                "concept": "a3baae53-6f82-4ed9-847c-94ddfd724a3c"
+                "concept": "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
               "type": "obs"
             },
@@ -401,7 +401,7 @@
               "required": "false",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "1790d2db-5a6d-426d-ab33-4375294424a6"
+                "concept": "7e177b55-a3a1-4760-bde9-f42e32e7670e"
               },
               "type": "obs",
               "hide": {
@@ -766,7 +766,7 @@
               "required": "false",
               "questionOptions": {
                 "rendering": "datetime",
-                "concept": "b2c5bec3-fc6b-440e-866e-54ba6fe25567"
+                "concept": "a115484d-1181-4326-9ef8-40fcd07698b1"
               },
               "type": "obs"
             },

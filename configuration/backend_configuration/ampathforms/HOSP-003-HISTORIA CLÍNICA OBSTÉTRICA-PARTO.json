@@ -448,7 +448,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "checkbox",
-                    "concept": "4068bc02-11ae-4a14-803d-656325bd3477",
+                    "concept": "ea517bfa-1657-41fa-aaef-07995ed43535",
                     "answers": [
                       {
                         "concept": "37a86155-b34e-4be0-bfd4-86c393628de8",
@@ -961,5 +961,5 @@
   "referencedForms": [],
   "uuid": "6c7784c2-382f-48ab-b29f-33ac41cc29f2",
   "description": "Historia Clínica Obstétrica realizada durante el tiempo de hospitalización.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

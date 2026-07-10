@@ -77,7 +77,7 @@
                 "max": "2",
                 "step": 1
               },
-              "editable": false,
+              "readonly": true,
               "hideSteppers": true
             },
             {
@@ -154,5 +154,5 @@
   "referencedForms": [],
   "uuid": "b1140000-0000-4000-8000-000000000014",
   "description": "Tamizaje resumido de salud mental perinatal para gestante o puérpera.",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

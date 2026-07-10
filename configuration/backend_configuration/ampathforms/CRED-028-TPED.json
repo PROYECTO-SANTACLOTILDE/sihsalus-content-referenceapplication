@@ -653,11 +653,11 @@
                 "concept": "c4010005-0000-4000-8000-000000000005",
                 "answers": [
                   {
-                    "concept": "372a262c-8d57-4b57-ad29-b24a2941b749",
+                    "concept": "f7e458ef-8dea-4e53-b429-81664cbeda49",
                     "label": "Sí"
                   },
                   {
-                    "concept": "5b2a0f81-22df-4ee1-ae2e-3c547cd7ec9f",
+                    "concept": "17455a61-ab7d-4bfb-a8d2-68f75a10d5f0",
                     "label": "No"
                   }
                 ]
@@ -667,7 +667,7 @@
             {
               "label": "Plan de intervención",
               "type": "obs",
-              "required": "resultadoGlobal === 'c4010021-0000-4000-8000-000000000021' || resultadoGlobal === 'c4010022-0000-4000-8000-000000000022' || requiereDerivacion === '372a262c-8d57-4b57-ad29-b24a2941b749'",
+              "required": "resultadoGlobal === 'c4010021-0000-4000-8000-000000000021' || resultadoGlobal === 'c4010022-0000-4000-8000-000000000022' || requiereDerivacion === 'f7e458ef-8dea-4e53-b429-81664cbeda49'",
               "id": "planIntervencion",
               "questionOptions": {
                 "rendering": "textarea",
@@ -724,5 +724,5 @@
   "referencedForms": [],
   "uuid": "c2280000-0000-4000-8000-000000000028",
   "description": "Registro estructurado del perfil de 12 líneas del TPED mediante el mayor hito alcanzado por línea. Instrumento legado de la NTS 137, conservado como apoyo complementario; no reemplaza Huanca ni EDI bajo la NTS 238.",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
