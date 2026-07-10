@@ -18,13 +18,13 @@ Se revisaron las versiones publicadas de los sources OCL de la organizacion `SIH
 | `etnias` | `2026-06-30` | 62 | 64 |
 | `seguros` | `2026-06-30` | 14 | 20 |
 | `religiones` | `2026-06-30` | 12 | 24 |
-| `sihsalus` | `2026-06-30-02` | 4441 | 5458 |
+| `sihsalus` | `2026-07-09-02` | 4459 | 5635 |
 | `lenguas` | `2026-06-30-02` | 63 | 121 |
-| `ocupaciones` | `2026-06-30-02` | 12 | 11 |
+| `ocupaciones` | `2026-07-09-01` | 448 | 447 |
 | `estado-civil` | `2026-06-30` | 6 | 8 |
 | `educacion` | `2026-06-30` | 12 | 13 |
 
-Total bundleado: 31914 conceptos OCL.
+Total bundleado: 32368 conceptos OCL.
 
 ## ZIPs refrescados
 
@@ -35,28 +35,49 @@ Solo se reemplazaron los ZIPs con diferencias reales de contenido, ignorando cam
 - `03_SIHSALUS_laboratorio_concepts_2026-06-30.zip`
 - `53_SIHSALUS_laboratorio_mappings_2026-06-30.zip`
 - `56_SIHSALUS_geografia_mappings_2026-06-30.zip`
-- `60_SIHSALUS_sihsalus_mappings_2026-06-30-02.zip`
+- `10_SIHSALUS_sihsalus_concepts_2026-07-09-02.zip`
+- `60_SIHSALUS_sihsalus_mappings_2026-07-09-02.zip`
 - `61_SIHSALUS_lenguas_mappings_2026-06-30-02.zip`
-- `12_SIHSALUS_ocupaciones_concepts_2026-06-30-02.zip`
-- `62_SIHSALUS_ocupaciones_mappings_2026-06-30-02.zip`
+- `12_SIHSALUS_ocupaciones_concepts_2026-07-09-01.zip`
+- `62_SIHSALUS_ocupaciones_mappings_2026-07-09-01.zip`
 
-Nota operativa: el source `ocupaciones` publicado actualmente por OCL contiene 12 conceptos y 11 mappings. El ZIP previamente bundleado en este repo contenia 448 conceptos bajo el mismo version ID `2026-06-30-02`; esos conceptos granulares CIUO-08 tenian nombres en ingles como parte del rotulo. El refresh deja el content package alineado con el estado publicado actual de OCL, pero el equipo debe validar si el catalogo funcional de ocupacion requiere reintroducir niveles granulares ya traducidos.
+### Correccion de ocupaciones
+
+El primer refresh encontro que tanto HEAD como la release `2026-06-30-02` de `ocupaciones` contenian solo
+12 conceptos y 11 mappings: el agrupador, los 10 grandes grupos, una opcion retirada y las relaciones base. El ZIP
+granular que habia estado bundleado localmente no provenia del estado publicado en OCL y sus 436 nombres marcados
+como `es` conservaban el texto en ingles.
+
+Se reconstruyo el catalogo remoto con la estructura oficial
+[CIUO-08 en espanol de la OIT](https://webapps.ilo.org/public/spanish/bureau/stat/isco/isco08/) y se publico la
+release `2026-07-09-01`:
+
+- 436 grupos unitarios de cuatro digitos, desde `0110` hasta `9629`.
+- Un nombre preferido oficial en `es`, el nombre ISCO-08 en `en` y el codigo como nombre corto para cada grupo.
+- 436 mappings `CONCEPT-SET` directos desde `Ocupaciones CIUO-08`, ademas de los 11 mappings base.
+- UUIDs OpenMRS de conceptos, nombres, descripciones y mappings preservados desde el export granular anterior.
+
+El resultado publicado y bundleado contiene 448 conceptos (447 activos y uno retirado) y 447 mappings activos.
+
+### Terminología de procedimientos O3
+
+Se incorporó el set `CIEL 170800 - Procedure status` con su UUID OpenMRS canónico, ocho respuestas locales con
+UUIDs CIEL/OpenMRS, nombres preferidos en español y mappings `Q-AND-A` ordenados. También se completó
+`CIEL 1732 - Duration units`: sus ocho miembros usan ahora UUIDs canónicos y mappings `CONCEPT-SET` con el orden
+oficial. El detalle de localización y las colisiones controladas se documenta en
+[`2026-07-09-procedure-status-duration-units.md`](2026-07-09-procedure-status-duration-units.md).
 
 ## Cobertura de formularios
 
-Se cruzaron 110 formularios AMPATH contra los conceptos bundleados en OCL:
+Se cruzaron 111 formularios AMPATH contra los conceptos bundleados en OCL:
 
-- Referencias unicas de conceptos en formularios: 1713.
+- Referencias unicas de conceptos en formularios: 1839.
 - Referencias sin concepto bundleado: 0.
 
 ## Cobertura de nombres en espanol
 
-Conceptos activos revisados: 31912.
+Conceptos activos revisados: 32365.
 
-Brecha encontrada:
-
-| Source | ID OCL | UUID OpenMRS (`external_id`) | Nombre actual | Observacion |
-| --- | --- | --- | --- | --- |
-| `sihsalus` | `4306` | `30de01cb-1457-50dc-80c1-5a88a7a2e9b7` | `Fetal lie` | No tiene nombre activo en locale `es`; debe corregirse en OCL como `Situacion fetal` o el termino clinico aprobado por el equipo. |
-
-No se modifica OCL remoto desde este repo; la correccion debe publicarse como nueva version del source OCL y luego re-exportarse.
+No quedan conceptos activos sin al menos un nombre en locale `es`. El concepto `4306 - Fetal lie`, señalado en
+la primera pasada de la auditoría, llegó retirado en la release `sihsalus/2026-07-09-02` y ya no constituye una
+brecha activa del bundle.

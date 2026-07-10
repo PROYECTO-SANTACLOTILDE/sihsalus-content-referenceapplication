@@ -1,0 +1,728 @@
+{
+  "name": "CRED-028-TPED",
+  "pages": [
+    {
+      "label": "Test Peruano de Evaluación del Desarrollo del Niño (TPED)",
+      "sections": [
+        {
+          "label": "Datos de evaluación",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Fecha y hora de evaluación",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "fechaEvaluacion",
+              "questionOptions": {
+                "rendering": "datetime"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false",
+                  "message": "No puede ser una fecha futura"
+                }
+              ]
+            },
+            {
+              "label": "Instrumento aplicado",
+              "type": "obs",
+              "required": true,
+              "id": "instrumento",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c4010001-0000-4000-8000-000000000001",
+                "answers": [
+                  {
+                    "concept": "c4010013-0000-4000-8000-000000000013",
+                    "label": "Test Peruano de Evaluación del Desarrollo del Niño (TPED)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Edad del niño (meses)",
+              "type": "obs",
+              "required": true,
+              "id": "edadMeses",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1410AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "min": "1",
+                "max": "30",
+                "step": 1,
+                "disallowDecimals": true
+              },
+              "hideSteppers": true,
+              "validators": []
+            },
+            {
+              "label": "Fuente principal de evaluación",
+              "type": "obs",
+              "required": true,
+              "id": "fuenteEvaluacion",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2380010-0000-4000-8000-000000000010",
+                "answers": [
+                  {
+                    "concept": "c2380111-0000-4000-8000-000000000111",
+                    "label": "Observación directa"
+                  },
+                  {
+                    "concept": "c2380112-0000-4000-8000-000000000112",
+                    "label": "Reporte del cuidador"
+                  },
+                  {
+                    "concept": "c2380113-0000-4000-8000-000000000113",
+                    "label": "Observación y reporte"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Perfil por líneas de desarrollo",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Línea A — Control de cabeza y tronco sentado",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaA",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "baaa6548-d4bf-4cbd-9898-a6b6b2445bd1",
+                "answers": [
+                  {
+                    "concept": "b0cfdf5f-ac0b-46fe-a384-8673698c0cd2",
+                    "label": "Movimientos asimétricos de brazos y piernas"
+                  },
+                  {
+                    "concept": "7ccba2dd-3d93-4b37-9db5-d20365ca7319",
+                    "label": "La cabeza acompaña al movimiento del tronco, no cae"
+                  },
+                  {
+                    "concept": "a94a5a5e-ad7f-44f9-9c44-ce0774589c60",
+                    "label": "Dorso recto, apoyo hacia adelante con descarga de peso"
+                  },
+                  {
+                    "concept": "6d503703-913d-40ad-aeee-d067d16515b3",
+                    "label": "Sentado sin apoyo"
+                  },
+                  {
+                    "concept": "21509e68-067e-4042-80dc-849a2e2b5b5f",
+                    "label": "Sentado en el suelo, se para solo"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea B — Control de cabeza y tronco rotaciones",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaB",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2b387211-23d5-4ae8-8a5e-8a988dc030d5",
+                "answers": [
+                  {
+                    "concept": "bbc790c6-14df-4f2e-90eb-d68144512624",
+                    "label": "Levanta la cabeza por momentos"
+                  },
+                  {
+                    "concept": "fd13267f-4487-4f42-8c43-7ed20d3365b1",
+                    "label": "Apoyo inestable sobre antebrazos"
+                  },
+                  {
+                    "concept": "3f460c0b-9a12-4273-be66-b8b95b40acef",
+                    "label": "Gira sobre su cuerpo fácilmente"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea C — Control de cabeza y tronco de marcha",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaC",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "0faf2142-305d-4bb2-9365-b6c3b0829b63",
+                "answers": [
+                  {
+                    "concept": "4cf027c7-1193-4883-869c-a2e9240b2b20",
+                    "label": "Puesto de pie extiende las piernas"
+                  },
+                  {
+                    "concept": "92f5c6d6-6277-4308-9552-21e2ffca713e",
+                    "label": "Parado no sostiene el peso de su cuerpo"
+                  },
+                  {
+                    "concept": "290b1e56-84e7-42da-825c-b488ed851ec0",
+                    "label": "Comienza a pararse"
+                  },
+                  {
+                    "concept": "71c48927-978f-438d-a647-471974130aca",
+                    "label": "Camina apoyándose en las cosas"
+                  },
+                  {
+                    "concept": "3da906f2-73a4-4d33-ae09-fb944e07fc00",
+                    "label": "Camina solo con pobre equilibrio y piernas separadas"
+                  },
+                  {
+                    "concept": "f9182450-1491-46b5-9c3f-aacbbf44b1d1",
+                    "label": "Corre (NO es caminar rápido)"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea D — Uso de brazo y mano",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaD",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "972e2002-7b37-4574-8a09-e6a1a120bf5f",
+                "answers": [
+                  {
+                    "concept": "732403df-7668-4769-9b62-3cdd1aa39334",
+                    "label": "Aprieta cualquier objeto colocado en su mano"
+                  },
+                  {
+                    "concept": "c7029808-2ac3-41a5-ac69-1e544f954a3a",
+                    "label": "Manos abiertas abre brazos ante objeto"
+                  },
+                  {
+                    "concept": "080fbbb2-d089-4dbd-ac2b-27e561b7d93c",
+                    "label": "Une sus brazos en línea media y toma un objeto con ambas manos"
+                  },
+                  {
+                    "concept": "0e5a7225-5973-4356-8868-2b86750b8644",
+                    "label": "Coge un objeto en cada mano"
+                  },
+                  {
+                    "concept": "7634e0b0-4522-4289-96e6-ef2ce95c3670",
+                    "label": "Pinza índice pulgar torpe"
+                  },
+                  {
+                    "concept": "cb27319d-921a-4bdf-aa5d-9b1533a93833",
+                    "label": "Pinza fina"
+                  },
+                  {
+                    "concept": "19ef2e50-27ab-436a-8a19-32cd3233ed3c",
+                    "label": "Mete un frijol en un frasco"
+                  },
+                  {
+                    "concept": "1326af4d-c2bf-4a8d-916d-ec10027a2857",
+                    "label": "Hace torres de 3 cubos"
+                  },
+                  {
+                    "concept": "40b9bac2-910f-49ad-81df-87b1574293af",
+                    "label": "Hace torres de 5 cubos"
+                  },
+                  {
+                    "concept": "2772207f-0542-478f-b227-12e609961785",
+                    "label": "Hace torres de 7 cubos"
+                  },
+                  {
+                    "concept": "5113bcf1-8fb9-4d7d-ba97-58eff971d21e",
+                    "label": "Hace puentes de 3 cubos"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea E — Visión",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaE",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f92d4a82-ee56-4363-bc5e-454695be0a01",
+                "answers": [
+                  {
+                    "concept": "cfcc29e3-aff4-496a-b136-e224649e3b9a",
+                    "label": "Frunce el ceño y rechaza con parpadeo la luz intensa"
+                  },
+                  {
+                    "concept": "f1fcfb7b-f6b9-4c9c-89a7-5e52ec0e98de",
+                    "label": "Sigue con la mirada objetos sin sonido en ángulo de 90°"
+                  },
+                  {
+                    "concept": "017ce37d-b80f-4fa5-8030-29524174863d",
+                    "label": "Sigue con la mirada objetos sin sonido en ángulo de 180°"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea F — Audición",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaF",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "80decb4e-1063-4810-b9ce-981d1b82dc0f",
+                "answers": [
+                  {
+                    "concept": "98e4e516-c054-46e4-9416-654edac38587",
+                    "label": "Detiene sus movimientos al oír un sonido"
+                  },
+                  {
+                    "concept": "38dc3b09-09f7-4797-be29-038560e7e96e",
+                    "label": "Voltea al oír el sonido de la campana"
+                  },
+                  {
+                    "concept": "5f421a86-8901-4328-9a1b-51ae5ceaef79",
+                    "label": "Localiza, diferencia y reacciona ante diferentes sonidos con movimientos completos de cabeza"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea G — Lenguaje comprensivo",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaG",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "be329f81-1ab2-452b-abd8-cea3e4852e57",
+                "answers": [
+                  {
+                    "concept": "e528da0f-9ae4-47f5-8be1-aa2e4ee2224f",
+                    "label": "Sonríe con la voz de su madre"
+                  },
+                  {
+                    "concept": "5a526dc6-73a3-4dbb-a7e5-46b377b5cc7f",
+                    "label": "Reconoce su nombre"
+                  },
+                  {
+                    "concept": "cf6009d7-5dbb-42b5-b9ea-9931052aa9ec",
+                    "label": "Comprende \"upa\", \"ven\", \"chau\""
+                  },
+                  {
+                    "concept": "e41b4436-9f38-4a94-a224-fc2ab2f1a79e",
+                    "label": "Comprende el \"NO\""
+                  },
+                  {
+                    "concept": "d949d89f-5da5-452f-8e4f-6e248cbf8a7f",
+                    "label": "Responde a una orden simple e identifica objetos"
+                  },
+                  {
+                    "concept": "e2876144-9dff-48b1-bde2-5865b859371e",
+                    "label": "Distingue entre tú y yo"
+                  },
+                  {
+                    "concept": "d09efb99-005d-4a30-a804-17c5e928d372",
+                    "label": "Comprende dos frases sencillas consecutivas: «Recoge el cubo y dámelo»"
+                  },
+                  {
+                    "concept": "aee1aa77-315f-44fc-9381-4874aaf4f61a",
+                    "label": "Comprende tres frases: «Siéntate, quítate los zapatos, dámelos»"
+                  },
+                  {
+                    "concept": "4b5e6473-16b1-45d7-8574-eb860fc0b55f",
+                    "label": "Pasa página, elige figura del libro y las nomina"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea H — Lenguaje expresivo",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaH",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "88205613-ccb2-483a-b245-ae95074a5018",
+                "answers": [
+                  {
+                    "concept": "ca926701-8cb6-46fa-bc53-33846ce5a9c2",
+                    "label": "Llora por una causa: hambre, frío, sueño"
+                  },
+                  {
+                    "concept": "717fd397-a8e3-49d0-9928-8d3039a54677",
+                    "label": "Emite sonidos o \"agu\" cuando se le habla"
+                  },
+                  {
+                    "concept": "2d8f9075-ef80-4a9b-9471-721c817ff711",
+                    "label": "Se repite a sí mismo y en respuesta a los demás"
+                  },
+                  {
+                    "concept": "3cf2d4ed-4c08-4863-b6ce-07825aa3ffb4",
+                    "label": "Dice \"pa-pa\", \"ma-ma\" a cualquier persona"
+                  },
+                  {
+                    "concept": "9a40e2d6-4fa9-4c1a-aea7-9f70e3d5a5ba",
+                    "label": "Dice \"pa-pa\", \"ma-ma\""
+                  },
+                  {
+                    "concept": "af3426f8-6ab6-4aa8-bce1-a034db27ddf1",
+                    "label": "Dice dos palabras sueltas, además de papá y mamá"
+                  },
+                  {
+                    "concept": "6b5e25bf-a7ac-44ba-bcc2-e2f65532a958",
+                    "label": "Palabras frases \"mamá teta\""
+                  },
+                  {
+                    "concept": "f3bac135-395f-4a6d-9a56-90aba0245b76",
+                    "label": "Dice oraciones simples: \"Mamá vamo calle\",\"Mamá quiero pan\""
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea I — Comportamiento social",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaI",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2c7a9f10-c641-47a8-9ace-97adef4e6712",
+                "answers": [
+                  {
+                    "concept": "603c33cb-97dd-4f74-840a-7da7fc5b7c96",
+                    "label": "Cuando llora se tranquiliza al ser alzado o acariciado"
+                  },
+                  {
+                    "concept": "36b43461-2b2f-428f-bdcd-0332801931c3",
+                    "label": "Sonríe ante cualquier rostro"
+                  },
+                  {
+                    "concept": "e91f33ab-c805-4320-be9d-f36f819a16b2",
+                    "label": "Responde diferente a la voz molesta y a la voz alegre"
+                  },
+                  {
+                    "concept": "929f0a31-2af8-4402-a7f4-798c7c978978",
+                    "label": "Toca su imagen en el espejo"
+                  },
+                  {
+                    "concept": "4f657682-d7b5-4add-8255-4e79a5ef17fc",
+                    "label": "Llama o grita para establecer contacto con otros"
+                  },
+                  {
+                    "concept": "fd22a019-ed44-4328-98e4-5eb63d8e67bc",
+                    "label": "Imita gestos"
+                  },
+                  {
+                    "concept": "deb3b224-037f-4e10-b202-fb2ac4c196b3",
+                    "label": "Ofrece un juguete"
+                  },
+                  {
+                    "concept": "b7984c78-0505-440b-a22b-c3ed270f777b",
+                    "label": "Come en la mesa con los demás"
+                  },
+                  {
+                    "concept": "a2007f90-a5be-4f22-97e2-e525bf16b202",
+                    "label": "Imita tareas simples de la casa"
+                  },
+                  {
+                    "concept": "8c55bbcb-75b3-4355-ac15-18fcaad2cdaa",
+                    "label": "Desenrosca un tapón para mirar dentro"
+                  },
+                  {
+                    "concept": "7823bba2-6961-491c-9217-5f5a89187c31",
+                    "label": "Intenta enroscar"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea J — Alimentación, vestido e higiene",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaJ",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5969824e-894c-4268-bf31-ac4131437591",
+                "answers": [
+                  {
+                    "concept": "79f70424-d594-414b-9c7f-92f458f8a385",
+                    "label": "Chupa"
+                  },
+                  {
+                    "concept": "dc86db3e-8ecc-4a21-9354-380160aa7e33",
+                    "label": "Toma algo que se le ponga en la cuchara"
+                  },
+                  {
+                    "concept": "28acd9f4-37e0-41a4-bd69-5b6dfccf5498",
+                    "label": "Lleva a la boca algo que se le pone en la mano"
+                  },
+                  {
+                    "concept": "e89a7090-e875-4dba-841a-cab10a0d734c",
+                    "label": "Bebe del vaso con ayuda"
+                  },
+                  {
+                    "concept": "4dfd2238-85c2-4532-9122-646b79e56eb8",
+                    "label": "Come del plato con sus manos"
+                  },
+                  {
+                    "concept": "2cd5e747-29de-4e13-a197-9d8c82c28a44",
+                    "label": "Forcejea hasta quitarse los zapatos"
+                  },
+                  {
+                    "concept": "8f06557d-16ff-4089-95e8-bfe4cff333a5",
+                    "label": "Avisa sus necesidades"
+                  },
+                  {
+                    "concept": "a1df88cc-5d31-4bb4-be39-30106042a731",
+                    "label": "Intenta quitarse prendas inferiores"
+                  },
+                  {
+                    "concept": "721ddbfd-b1fe-4421-a441-b2666f264b31",
+                    "label": "Se pone alguna ropa"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea K — Juego",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaK",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f6389ccc-8033-4ef5-bf98-c45b35dba09e",
+                "answers": [
+                  {
+                    "concept": "18406dc7-75e6-4331-8ca9-8304d3c239e5",
+                    "label": "Juega con sus manos"
+                  },
+                  {
+                    "concept": "4216f775-1558-4dcf-aad3-20a440655444",
+                    "label": "Lleva los juguetes a la boca"
+                  },
+                  {
+                    "concept": "32684f01-4a17-411f-a870-5e633c921ac8",
+                    "label": "Juega con sus manos y pies"
+                  },
+                  {
+                    "concept": "c7f567cb-9b83-4fd2-a708-4b67770f67bb",
+                    "label": "Coge y golpea objetos y repite seriadamente el golpe"
+                  },
+                  {
+                    "concept": "05f894df-2578-486d-be91-49d0ead3a3e0",
+                    "label": "Lanza objetos a cierta distancia y disfruta con el sonido"
+                  },
+                  {
+                    "concept": "c866ca8f-0223-4e39-85d3-c8610877d3f8",
+                    "label": "Sujeto de la mano, empuja la pelota con el pie"
+                  },
+                  {
+                    "concept": "b9336382-1d40-4089-b37e-111e41f03a29",
+                    "label": "Arrastra juguetes"
+                  },
+                  {
+                    "concept": "6d5d8543-e679-4090-8958-8d78879f8f43",
+                    "label": "Defiende su juguete"
+                  },
+                  {
+                    "concept": "6c236de2-47c3-4cf3-b7c8-cec01c883754",
+                    "label": "Juega con otros niños"
+                  },
+                  {
+                    "concept": "c9db399e-d337-45bf-8ff4-b70abe6896d3",
+                    "label": "Juego social: sabe esperar su turno"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Línea L — Inteligencia y aprendizaje",
+              "type": "obs",
+              "required": false,
+              "id": "tpedLineaL",
+              "questionInfo": "Seleccione el mayor hito alcanzado. Deje el campo vacío si no alcanzó ninguno de los hitos de la línea.",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dafad1f6-4476-4196-94e3-61006434bdc0",
+                "answers": [
+                  {
+                    "concept": "951461ff-066e-455b-9497-abbc20cc8d8e",
+                    "label": "Demuestra estar atento"
+                  },
+                  {
+                    "concept": "cccf1489-aed9-4643-b0b2-cbf64acab8fa",
+                    "label": "Al contacto con un objeto abre y cierra la mano"
+                  },
+                  {
+                    "concept": "99a196a7-ed43-4065-acfb-7d55ffa1c09c",
+                    "label": "Se alegra cuando le van a dar el pecho"
+                  },
+                  {
+                    "concept": "3c053385-de41-467a-9a6d-3a4fda2fe69c",
+                    "label": "Mira cuando cae un objeto"
+                  },
+                  {
+                    "concept": "8a3f1f2e-2d9a-4a90-b858-5f8a77a94741",
+                    "label": "Encuentra objetos ocultos"
+                  },
+                  {
+                    "concept": "4221d250-8744-41ed-9164-fb2abd994866",
+                    "label": "Busca el juguete en la caja"
+                  },
+                  {
+                    "concept": "69ab225a-16a6-4183-8960-ddc6c7ad812f",
+                    "label": "Explora su juguete"
+                  },
+                  {
+                    "concept": "a53422ea-ad59-487a-94da-84af752ca973",
+                    "label": "Hace garabatos"
+                  },
+                  {
+                    "concept": "9e420973-b5de-4f6a-9223-5c44b0894d90",
+                    "label": "Identifica figuras de objetos comunes"
+                  },
+                  {
+                    "concept": "7e8880dc-fab4-49a3-b501-d3c88820cecf",
+                    "label": "Utiliza un objeto para alcanzar otro"
+                  },
+                  {
+                    "concept": "b87ed190-4833-4100-8e9a-455d9aee5fd3",
+                    "label": "Coloca los aros en orden de tamaño"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Resultado e intervención",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Resultado global TPED",
+              "type": "obs",
+              "required": true,
+              "id": "resultadoGlobal",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c4010002-0000-4000-8000-000000000002",
+                "answers": [
+                  {
+                    "concept": "118fe066-b4a0-4978-b5b0-bb4ed7f4b80a",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "c4010021-0000-4000-8000-000000000021",
+                    "label": "Riesgo"
+                  },
+                  {
+                    "concept": "c4010022-0000-4000-8000-000000000022",
+                    "label": "Retraso"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Requiere derivación a especialista",
+              "type": "obs",
+              "required": true,
+              "id": "requiereDerivacion",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "c4010005-0000-4000-8000-000000000005",
+                "answers": [
+                  {
+                    "concept": "372a262c-8d57-4b57-ad29-b24a2941b749",
+                    "label": "Sí"
+                  },
+                  {
+                    "concept": "5b2a0f81-22df-4ee1-ae2e-3c547cd7ec9f",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Plan de intervención",
+              "type": "obs",
+              "required": "resultadoGlobal === 'c4010021-0000-4000-8000-000000000021' || resultadoGlobal === 'c4010022-0000-4000-8000-000000000022' || requiereDerivacion === '372a262c-8d57-4b57-ad29-b24a2941b749'",
+              "id": "planIntervencion",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "c4010006-0000-4000-8000-000000000006"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Responsable",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "id": "responsableAtencion",
+              "label": "Responsable atención",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "rolDelResponsable",
+              "label": "Rol del responsable",
+              "type": "encounterRole",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            },
+            {
+              "id": "lugarAtencion",
+              "label": "Lugar de atención",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "isSearchable": true
+              },
+              "required": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "processor": "EncounterFormProcessor",
+  "encounterType": "a990eabc-3405-419f-bfb1-96ca2d8279b8",
+  "encounter": "Control de Niño Sano",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
+  "uuid": "c2280000-0000-4000-8000-000000000028",
+  "description": "Registro estructurado del perfil de 12 líneas del TPED mediante el mayor hito alcanzado por línea. Instrumento legado de la NTS 137, conservado como apoyo complementario; no reemplaza Huanca ni EDI bajo la NTS 238.",
+  "version": "1.0.0"
+}

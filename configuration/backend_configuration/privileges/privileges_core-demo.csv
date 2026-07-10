@@ -74,7 +74,7 @@ c54b6749-cf2d-46a9-8200-97c37ea61293,app:clinical.chart,Permite acceder a la his
 b0b5445a-08f2-463d-901f-79aa44efea0e,app:cred.cursoVida,Permite ver la navegacion general y los componentes de lectura del modulo CRED / Curso de Vida del Nino.,
 1ed0cb12-1f36-4ab8-a554-8271b082d2d0,app:cred.cursoVida.edit,"Permite registrar y editar acciones generales del flujo CRED, incluyendo controles, citas y selector de formularios.",
 cd5ea392-dfb7-4745-9903-4296285083b5,app:cred.earlyStim,Permite ver el dashboard de estimulacion temprana y los componentes de lectura de desarrollo infantil.,
-8abd953f-c572-4e99-8e95-516732248013,app:cred.earlyStim.edit,"Permite registrar o editar evaluaciones y formularios de estimulacion temprana, TEPSI y Test Peruano.",
+8abd953f-c572-4e99-8e95-516732248013,app:cred.earlyStim.edit,"Permite registrar o editar evaluaciones y formularios de desarrollo: Huanca, Lista de Habilidades, EDI, M-CHAT-R/F, EEDP, TEPSI y TPED.",
 93b5349c-ae50-4bee-bf3c-87155e1e5fac,app:cred.immunization,Permite ver el dashboard de inmunizacion infantil y sus componentes de lectura dentro de CRED.,
 d23e3e33-5adb-4a7e-b58b-fa59d7ee9ee6,app:cred.immunization.edit,"Permite registrar, actualizar o eliminar inmunizaciones y reacciones adversas desde las superficies integradas con CRED.",
 dff30659-5e91-4ea4-8442-e34793f584bf,app:cred.neonatal,"Permite ver el dashboard neonatal y sus componentes de lectura, incluyendo monitoreo, registro perinatal y consejeria.",

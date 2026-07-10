@@ -40,7 +40,7 @@
         <globalProperty>
             <property>openconceptlab.subscriptionUrl</property>
             <value
-            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-06-30-02</value>
+            >https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-09-02</value>
         </globalProperty>
 
         <!-- ENV VARIABLE: OMRS_OCL_TOKEN -->
