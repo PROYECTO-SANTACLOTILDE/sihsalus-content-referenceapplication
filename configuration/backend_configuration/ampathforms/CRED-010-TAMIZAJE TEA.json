@@ -2,10 +2,10 @@
   "name": "CRED-010-TAMIZAJE TEA",
   "pages": [
     {
-      "label": "Tamizaje TEA",
+      "label": "M-CHAT-R/F",
       "sections": [
         {
-          "label": "Resultado del tamizaje",
+          "label": "Resultado M-CHAT-R/F",
           "isExpanded": "true",
           "questions": [
             {
@@ -35,7 +35,7 @@
                 "answers": [
                   {
                     "concept": "f0000112-0000-4000-8000-000000000112",
-                    "label": "Tamizaje TEA"
+                    "label": "M-CHAT-R/F versión peruana"
                   }
                 ]
               },
@@ -44,13 +44,13 @@
             {
               "label": "Puntaje registrado",
               "type": "obs",
-              "required": false,
+              "required": true,
               "id": "puntaje",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "f0000007-0000-4000-8000-000000000007",
                 "min": "0",
-                "max": "100",
+                "max": "20",
                 "step": 1,
                 "disallowDecimals": true
               },
@@ -58,29 +58,25 @@
               "validators": []
             },
             {
-              "label": "Resultado global",
+              "label": "Clasificación de riesgo M-CHAT-R/F",
               "type": "obs",
               "required": true,
               "id": "resultadoGlobal",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000001-0000-4000-8000-000000000001",
+                "concept": "c2380208-0000-4000-8000-000000000208",
                 "answers": [
                   {
-                    "concept": "f0000101-0000-4000-8000-000000000101",
-                    "label": "Normal"
+                    "concept": "c2380209-0000-4000-8000-000000000209",
+                    "label": "Bajo riesgo o tamizaje negativo (0 a 2 puntos)"
                   },
                   {
-                    "concept": "f0000102-0000-4000-8000-000000000102",
-                    "label": "Riesgo"
+                    "concept": "c2380210-0000-4000-8000-000000000210",
+                    "label": "Riesgo moderado (3 a 7 puntos)"
                   },
                   {
-                    "concept": "f0000103-0000-4000-8000-000000000103",
-                    "label": "Anormal"
-                  },
-                  {
-                    "concept": "f0000104-0000-4000-8000-000000000104",
-                    "label": "Referido"
+                    "concept": "c2380211-0000-4000-8000-000000000211",
+                    "label": "Riesgo alto (8 a 20 puntos)"
                   }
                 ]
               },
@@ -93,7 +89,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104' ? 2 : (resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' ? 1 : 0))"
+                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'c2380211-0000-4000-8000-000000000211' ? 2 : (resultadoGlobal === 'c2380210-0000-4000-8000-000000000210' ? 1 : 0))"
                 },
                 "min": "0",
                 "max": "2",
@@ -103,7 +99,7 @@
               "hideSteppers": true
             },
             {
-              "label": "Señales de alerta observadas",
+              "label": "Observaciones o respuestas de riesgo",
               "type": "obs",
               "required": false,
               "id": "senalesAlerta",
@@ -116,14 +112,14 @@
             {
               "label": "Plan, interconsulta o referencia",
               "type": "obs",
-              "required": "resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' || resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104'",
+              "required": "resultadoGlobal === 'c2380210-0000-4000-8000-000000000210' || resultadoGlobal === 'c2380211-0000-4000-8000-000000000211'",
               "id": "plan",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000003-0000-4000-8000-000000000003"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(resultadoGlobal) || resultadoGlobal === 'f0000101-0000-4000-8000-000000000101'"
+                "hideWhenExpression": "isEmpty(resultadoGlobal) || resultadoGlobal === 'c2380209-0000-4000-8000-000000000209'"
               },
               "validators": []
             }
@@ -175,6 +171,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c1100000-0000-4000-8000-000000000010",
-  "description": "Registro estructurado de tamizaje de señales de TEA en CRED según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.1.0"
+  "description": "Registro del puntaje de 0 a 20 y de la clasificación de riesgo M-CHAT-R/F según NTS 238-MINSA/DGIESP-2025. No sustituye el cuestionario oficial de 20 ítems y su seguimiento.",
+  "version": "1.2.0"
 }

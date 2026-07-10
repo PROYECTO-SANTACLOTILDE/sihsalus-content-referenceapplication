@@ -35,52 +35,32 @@
                 "answers": [
                   {
                     "concept": "f0000111-0000-4000-8000-000000000111",
-                    "label": "EDI"
+                    "label": "Prueba de Evaluación del Desarrollo Infantil (EDI)"
                   }
                 ]
               },
               "validators": []
             },
             {
-              "label": "Puntaje o resultado registrado",
-              "type": "obs",
-              "required": false,
-              "id": "puntaje",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "f0000007-0000-4000-8000-000000000007",
-                "min": "0",
-                "max": "100",
-                "step": 1,
-                "disallowDecimals": true
-              },
-              "hideSteppers": true,
-              "validators": []
-            },
-            {
-              "label": "Resultado global",
+              "label": "Resultado de la Prueba EDI",
               "type": "obs",
               "required": true,
               "id": "resultadoGlobal",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "f0000001-0000-4000-8000-000000000001",
+                "concept": "c2380203-0000-4000-8000-000000000203",
                 "answers": [
                   {
-                    "concept": "f0000101-0000-4000-8000-000000000101",
-                    "label": "Normal"
+                    "concept": "c2380204-0000-4000-8000-000000000204",
+                    "label": "Verde: desarrollo normal"
                   },
                   {
-                    "concept": "f0000102-0000-4000-8000-000000000102",
-                    "label": "Riesgo"
+                    "concept": "c2380205-0000-4000-8000-000000000205",
+                    "label": "Amarillo: rezago en el desarrollo"
                   },
                   {
-                    "concept": "f0000103-0000-4000-8000-000000000103",
-                    "label": "Anormal"
-                  },
-                  {
-                    "concept": "f0000104-0000-4000-8000-000000000104",
-                    "label": "Referido"
+                    "concept": "c2380206-0000-4000-8000-000000000206",
+                    "label": "Rojo: riesgo de retraso en el desarrollo"
                   }
                 ]
               },
@@ -93,7 +73,7 @@
               "questionOptions": {
                 "rendering": "number",
                 "calculate": {
-                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104' ? 2 : (resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' ? 1 : 0))"
+                  "calculateExpression": "isEmpty(resultadoGlobal) ? undefined : (resultadoGlobal === 'c2380206-0000-4000-8000-000000000206' ? 2 : (resultadoGlobal === 'c2380205-0000-4000-8000-000000000205' ? 1 : 0))"
                 },
                 "min": "0",
                 "max": "2",
@@ -116,14 +96,14 @@
             {
               "label": "Plan de seguimiento",
               "type": "obs",
-              "required": "resultadoGlobal === 'f0000102-0000-4000-8000-000000000102' || resultadoGlobal === 'f0000103-0000-4000-8000-000000000103' || resultadoGlobal === 'f0000104-0000-4000-8000-000000000104'",
+              "required": "resultadoGlobal === 'c2380205-0000-4000-8000-000000000205' || resultadoGlobal === 'c2380206-0000-4000-8000-000000000206'",
               "id": "planSeguimiento",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "f0000003-0000-4000-8000-000000000003"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(resultadoGlobal) || resultadoGlobal === 'f0000101-0000-4000-8000-000000000101'"
+                "hideWhenExpression": "isEmpty(resultadoGlobal) || resultadoGlobal === 'c2380204-0000-4000-8000-000000000204'"
               },
               "validators": []
             }
@@ -175,6 +155,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "c1090000-0000-4000-8000-000000000009",
-  "description": "Registro estructurado del EDI dentro de CRED. No reemplaza la aplicación clínica completa del instrumento oficial.",
-  "version": "1.1.0"
+  "description": "Registro estructurado de la clasificación Verde/Amarillo/Rojo de la Prueba EDI dentro de CRED. No reemplaza la aplicación clínica completa de sus cinco ejes.",
+  "version": "1.2.0"
 }

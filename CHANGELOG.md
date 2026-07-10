@@ -8,6 +8,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Agrega `CIEL 170800 - Procedure status` con UUIDs OpenMRS canónicos, ocho respuestas `Q-AND-A` ordenadas, localización clínica en español y mapping a SNOMED CT `416342005`; excluye explícitamente el set de estados de dispensación de medicamentos.
+- Agrega `CRED-028-TPED`, con 12 líneas y 89 hitos estructurados, y validación CI de la cardinalidad de los mappings y formularios de desarrollo.
 - Agrega los tags de ubicacion `Queue Location` y `Appointment Location` al content, y define tipos de servicio de cita para que agenda no quede sin duracion.
 - Agrega especialidades y servicios de cita para Medicina de Rehabilitacion, Hemodialisis y Nutricion y Dietetica, alineados con las colas y servicios facturables ya existentes.
 - Documenta en formato de release la actualización de la anamnesis (`CE-ANAM-001-ANAMNESIS`, versión `1.0.3`) y la actualización de la configuración de colas, citas y UPSS de soporte según revisión funcional.
@@ -15,7 +17,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
-- Refresca los exports OCL bundleados desde las versiones publicadas vigentes en `SIHSALUS`, actualiza `openconceptlab.subscriptionUrl` a `SIHSALUS/sihsalus/2026-06-30-02` y documenta la auditoría de cobertura de formularios contra conceptos.
+- Publica y bundlea `SIHSALUS/sihsalus` `2026-07-09-02` con 4 459 conceptos y 5 635 mappings: conecta las 12 líneas y 89 hitos TPED, convierte TPED, Huanca, Lista, EDI y M-CHAT-R/F en sets navegables, conserva EEDP, TEPSI y TPED habilitados, e incorpora la terminología requerida por procedimientos O3.
+- Completa `CIEL 1732 - Duration units` como `CONCEPT-SET` de ocho miembros, corrige los UUIDs OpenMRS de sus unidades, fija el orden oficial y localiza el conjunto como `Unidades de duración`.
+- Alinea `CRED-004`, `CRED-009`, `CRED-010`, `CRED-026` y `CRED-027` con los nombres y resultados normativos: EDI Verde/Amarillo/Rojo, M-CHAT-R/F de 0 a 20 puntos y Huanca con pauta de 30 a 36 meses.
+- Publica y bundlea `SIHSALUS/ocupaciones` `2026-07-09-01` con los 436 grupos unitarios CIUO-08, nombres oficiales preferidos en español, nombres ISCO-08 en inglés y 436 mappings `CONCEPT-SET` hacia el agrupador de ocupaciones.
+- Refresca los exports OCL bundleados desde las versiones publicadas vigentes en `SIHSALUS`, actualiza `openconceptlab.subscriptionUrl` a `SIHSALUS/sihsalus/2026-07-09-02` y documenta la auditoría de cobertura de formularios contra conceptos.
 - Alinea ubicaciones UPSS con colas, citas y ADT: Central de Esterilizacion queda como soporte interno, Admission/Transfer se conserva para salas de hospitalizacion, y las UPSS de soporte programables quedan como ubicaciones de cita sin ADT.
 - Retira Emergencia del dominio de citas programadas; se conserva como cola operativa y servicio facturable.
 - Actualiza los exports OCL del bundle a sus versiones publicadas más recientes en la org SIHSALUS: `laboratorio` a `24-06-2026-2` (completo y `concepts-only`) y `prestacionales` a `2026-06-18-01`; el resto de sources se mantiene en su versión publicada vigente.
