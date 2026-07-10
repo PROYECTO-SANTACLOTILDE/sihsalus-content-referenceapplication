@@ -5,3 +5,5 @@ f5b9737b-14d5-402b-8475-dd558808e172,,Admission Location,"Los pacientes solo pue
 9783aba6-df7b-4969-be6e-1e03e7a08965,,Transfer Location,"Los pacientes solo pueden ser transferidos a atención hospitalaria en una ubicación con esta etiqueta."
 36671c44-ce2d-47fb-b88e-bace6c85d801,,Visit Location,"Una ubicación donde un paciente puede tener una visita."
 7283b326-ffa7-11ef-a541-6e848aeeeeea,,Extramural,"Una ubicación fuera del hospital"
+,,Queue Location,"Una ubicación donde se gestiona una cola operativa de atención."
+,,Appointment Location,"Una ubicación donde se programan servicios de cita."

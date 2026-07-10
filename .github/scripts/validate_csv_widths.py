@@ -6,7 +6,7 @@ from pathlib import Path
 
 CONFIG_DIR = Path("configuration/backend_configuration")
 LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
-MODULE_PROVIDED_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
+MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 
 
 def main():
@@ -30,14 +30,25 @@ def main():
                 )
 
         if path == LOCATION_TAGS_PATH:
+            uuid_index = rows[0].index("Uuid")
             name_index = rows[0].index("Name")
-            for line_number, row in enumerate(rows[1:], start=2):
-                if len(row) <= name_index:
-                    continue
-                if row[name_index] in MODULE_PROVIDED_LOCATION_TAGS:
+            module_tag_rows = {
+                name: [
+                    row
+                    for row in rows[1:]
+                    if len(row) > name_index and row[name_index] == name
+                ]
+                for name in MODULE_LOCATION_TAGS
+            }
+            for name, matching_rows in sorted(module_tag_rows.items()):
+                if len(matching_rows) != 1:
                     errors.append(
-                        f"{path}:{line_number}: {row[name_index]!r} is provided by its OpenMRS "
-                        "module and must not be recreated by Initializer"
+                        f"{path}: expected exactly one {name!r} row, found {len(matching_rows)}"
+                    )
+                elif matching_rows[0][uuid_index]:
+                    errors.append(
+                        f"{path}: {name!r} must have an empty UUID so Initializer "
+                        "resolves the module-created tag by name"
                     )
 
     if errors:
@@ -46,7 +57,7 @@ def main():
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated column counts and reserved values for {checked} CSV files.")
+    print(f"Validated column counts and module-owned location tags for {checked} CSV files.")
     return 0
 
 
