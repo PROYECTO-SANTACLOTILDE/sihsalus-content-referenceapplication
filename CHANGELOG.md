@@ -10,13 +10,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Agregado
 - Agrega `CIEL 170800 - Procedure status` con UUIDs OpenMRS canónicos, ocho respuestas `Q-AND-A` ordenadas, localización clínica en español y mapping a SNOMED CT `416342005`; excluye explícitamente el set de estados de dispensación de medicamentos.
 - Agrega `CRED-028-TPED`, con 12 líneas y 89 hitos estructurados, y validación CI de la cardinalidad de los mappings y formularios de desarrollo.
-- Agrega los tags de ubicacion `Queue Location` y `Appointment Location` al content, y define tipos de servicio de cita para que agenda no quede sin duracion.
+- Conserva los tags de ubicación `Queue Location` y `Appointment Location` en Initializer, y define tipos de servicio de cita para que agenda no quede sin duración.
 - Agrega especialidades y servicios de cita para Medicina de Rehabilitacion, Hemodialisis y Nutricion y Dietetica, alineados con las colas y servicios facturables ya existentes.
 - Documenta en formato de release la actualización de la anamnesis (`CE-ANAM-001-ANAMNESIS`, versión `1.0.3`) y la actualización de la configuración de colas, citas y UPSS de soporte según revisión funcional.
 - Agrega tipos de procedimiento EMR API mediante el dominio Initializer `proceduretypes`, junto con los privilegios requeridos para leer y gestionar procedimientos en el módulo O3.
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Evita la colisión de Initializer con `Queue Location` y `Appointment Location`: las filas sin UUID se resuelven por nombre contra los tags creados por sus módulos, sin recrearlos ni migrar la base de datos.
 - Publica y bundlea `SIHSALUS/sihsalus` `2026-07-09-02` con 4 459 conceptos y 5 635 mappings: conecta las 12 líneas y 89 hitos TPED, convierte TPED, Huanca, Lista, EDI y M-CHAT-R/F en sets navegables, conserva EEDP, TEPSI y TPED habilitados, e incorpora la terminología requerida por procedimientos O3.
 - Completa `CIEL 1732 - Duration units` como `CONCEPT-SET` de ocho miembros, corrige los UUIDs OpenMRS de sus unidades, fija el orden oficial y localiza el conjunto como `Unidades de duración`.
 - Alinea `CRED-004`, `CRED-009`, `CRED-010`, `CRED-026` y `CRED-027` con los nombres y resultados normativos: EDI Verde/Amarillo/Rojo, M-CHAT-R/F de 0 a 20 puntos y Huanca con pauta de 30 a 36 meses.
