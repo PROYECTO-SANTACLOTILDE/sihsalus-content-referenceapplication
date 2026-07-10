@@ -35,7 +35,7 @@
                 "answers": [
                   {
                     "concept": "c2380101-0000-4000-8000-000000000101",
-                    "label": "Huanca Test adaptado"
+                    "label": "Test de Vigilancia del Neurodesarrollo (Huanca Test)"
                   }
                 ]
               },
@@ -152,7 +152,7 @@
                   },
                   {
                     "concept": "c2380130-0000-4000-8000-000000000130",
-                    "label": "30 meses"
+                    "label": "30 a 36 meses"
                   }
                 ]
               },
@@ -451,11 +451,11 @@
                   },
                   {
                     "concept": "c2380152-0000-4000-8000-000000000152",
-                    "label": "Alerta por un hito no logrado"
+                    "label": "Hallazgo positivo: un hito no logrado"
                   },
                   {
                     "concept": "c2380153-0000-4000-8000-000000000153",
-                    "label": "Alerta por dos o más hitos no logrados"
+                    "label": "Hallazgo positivo: dos o más hitos no logrados"
                   },
                   {
                     "concept": "c2380155-0000-4000-8000-000000000155",
@@ -656,5 +656,5 @@
   "referencedForms": [],
   "uuid": "c2260000-0000-4000-8000-000000000026",
   "description": "Vigilancia del neurodesarrollo con Huanca Test adaptado para niños hasta 36 meses según NTS 238-MINSA/DGIESP-2025.",
-  "version": "1.1.0"
+  "version": "1.2.0"
 }

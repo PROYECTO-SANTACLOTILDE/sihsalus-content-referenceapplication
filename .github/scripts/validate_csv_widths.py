@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 CONFIG_DIR = Path("configuration/backend_configuration")
+LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
+MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 
 
 def main():
@@ -27,13 +29,35 @@ def main():
                     f"found {len(row)}"
                 )
 
+        if path == LOCATION_TAGS_PATH:
+            uuid_index = rows[0].index("Uuid")
+            name_index = rows[0].index("Name")
+            module_tag_rows = {
+                name: [
+                    row
+                    for row in rows[1:]
+                    if len(row) > name_index and row[name_index] == name
+                ]
+                for name in MODULE_LOCATION_TAGS
+            }
+            for name, matching_rows in sorted(module_tag_rows.items()):
+                if len(matching_rows) != 1:
+                    errors.append(
+                        f"{path}: expected exactly one {name!r} row, found {len(matching_rows)}"
+                    )
+                elif matching_rows[0][uuid_index]:
+                    errors.append(
+                        f"{path}: {name!r} must have an empty UUID so Initializer "
+                        "resolves the module-created tag by name"
+                    )
+
     if errors:
         print("CSV width validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated column counts for {checked} CSV files.")
+    print(f"Validated column counts and module-owned location tags for {checked} CSV files.")
     return 0
 
 
