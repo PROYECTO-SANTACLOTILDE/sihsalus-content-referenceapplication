@@ -13,6 +13,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Patients",
     "Edit Patient Identifiers",
     "Edit Patients",
+    "Get Concept Sources",
     "Get Concepts",
     "Get Patient Identifiers",
 }
