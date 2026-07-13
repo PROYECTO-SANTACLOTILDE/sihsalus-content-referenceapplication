@@ -8,6 +8,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Alinea el ciclo operativo cita-visita-cola: asigna el privilegio específico a admisión, registro de citas, gestión
+  de colas y personal clínico; médicos y enfermería pueden completar el flujo sin recibir administración genérica
+  de colas, y se mantienen fuera de los roles operativos el reinicio de estados y la purga de datos.
+- Añade `Generate Fua from Visit` para que médicos y enfermería generen o reintenten la FUA de una consulta
+  finalizada sin recibir `Manage Fua`; alinea además la navegación y lectura de visitas del digitador FUA, y el rol
+  técnico de backend conserva la misma capacidad de recuperación.
+- Define `Personal de Emergencia` como rol operativo directo para búsqueda y alta rápida, visitas, triaje,
+  atención y movimientos de cola. Puede cerrar de forma coordinada registros legados vinculados a citas, sin
+  heredar los permisos amplios de consulta externa ni recibir configuración, purga o borrado clínico.
+- Copia a cada definición de servicio la duración de su único tipo activo, sin inventar horarios ni cupos, y deja
+  auditados seis mapeos automáticos y nueve selecciones manuales entre servicios de cita y colas.
 - Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
   paciente, evitando que la pantalla quede vacía por el error `HAPI-0389`.
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
@@ -16,6 +27,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   de gestión de conceptos.
 
 ### Agregado
+- Agrega el privilegio `Manage Appointment Queue Lifecycle`, el atributo de visita `Número de turno de cola`, sus
+  propiedades globales y una validación CI de RBAC, metadata, duración y mapeo de colas; fija la zona operativa en
+  `America/Lima`.
+- Agrega el privilegio estrecho `Generate Fua from Visit` y valida que solo se asigne directamente al rol clínico,
+  digitadores FUA y rol técnico de backend.
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en
   anemia, trazabilidad de instrumentos resumidos, antropometría escolar y decisiones de desarrollo por edad.
 - Extiende la validación CI de OCL para rechazar mappings sin extremos, fuentes destino incompletas, referencias
