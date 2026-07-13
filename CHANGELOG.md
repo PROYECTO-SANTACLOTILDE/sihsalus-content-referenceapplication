@@ -8,9 +8,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
+  paciente, evitando que la pantalla quede vacía por el error `HAPI-0389`.
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
-  grado de instrucción y etnia durante el registro de pacientes, y valida que conserve `Get Patient Identifiers` y
-  `Edit Patient Identifiers`; ninguno de estos permisos otorga acceso de gestión de conceptos.
+  grado de instrucción y etnia durante el registro de pacientes, y valida que conserve `Add Patients`,
+  `Edit Patients`, `Get Patient Identifiers` y `Edit Patient Identifiers`; ninguno de estos permisos otorga acceso
+  de gestión de conceptos.
 
 ### Agregado
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en

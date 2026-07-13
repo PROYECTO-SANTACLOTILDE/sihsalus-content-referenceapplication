@@ -10,7 +10,10 @@ ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
 ADMISSION_REQUIRED_PRIVILEGES = {
+    "Add Patients",
     "Edit Patient Identifiers",
+    "Edit Patients",
+    "Get Concept Sources",
     "Get Concepts",
     "Get Patient Identifiers",
 }
