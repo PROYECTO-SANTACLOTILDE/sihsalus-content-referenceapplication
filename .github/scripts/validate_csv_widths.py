@@ -16,6 +16,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "Get Concept Sources",
     "Get Concepts",
     "Get Patient Identifiers",
+    "Get Providers",
 }
 
 

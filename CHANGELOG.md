@@ -8,6 +8,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Protege `Get Providers` como privilegio requerido del rol `Admision` para que pueda listar doctores y
+  proveedores mediante la API REST.
 - Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
   paciente, evitando que la pantalla quede vacía por el error `HAPI-0389`.
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
