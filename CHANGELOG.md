@@ -9,8 +9,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ### Corregido
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
-  grado de instrucción y etnia durante el registro de pacientes, y valida que conserve `Get Patient Identifiers`;
-  ninguno de estos permisos otorga acceso de gestión.
+  grado de instrucción y etnia durante el registro de pacientes, y valida que conserve `Get Patient Identifiers` y
+  `Edit Patient Identifiers`; ninguno de estos permisos otorga acceso de gestión de conceptos.
 
 ### Agregado
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en

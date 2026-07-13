@@ -9,7 +9,11 @@ LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
 ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
-ADMISSION_REQUIRED_PRIVILEGES = {"Get Concepts", "Get Patient Identifiers"}
+ADMISSION_REQUIRED_PRIVILEGES = {
+    "Edit Patient Identifiers",
+    "Get Concepts",
+    "Get Patient Identifiers",
+}
 
 
 def main():
