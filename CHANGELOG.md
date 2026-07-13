@@ -19,6 +19,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   heredar los permisos amplios de consulta externa ni recibir configuración, purga o borrado clínico.
 - Copia a cada definición de servicio la duración de su único tipo activo, sin inventar horarios ni cupos, y deja
   auditados seis mapeos automáticos y nueve selecciones manuales entre servicios de cita y colas.
+- Protege `Get Providers` como privilegio requerido del rol `Admision` para que pueda listar doctores y
+  proveedores mediante la API REST.
 - Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
   paciente, evitando que la pantalla quede vacía por el error `HAPI-0389`.
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
