@@ -6,7 +6,10 @@ from pathlib import Path
 
 CONFIG_DIR = Path("configuration/backend_configuration")
 LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
+ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
+ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
+ADMISSION_REQUIRED_PRIVILEGES = {"Get Concepts", "Get Patient Identifiers"}
 
 
 def main():
@@ -51,13 +54,48 @@ def main():
                         "resolves the module-created tag by name"
                     )
 
+        if path == ROLES_CORE_PATH:
+            uuid_index = rows[0].index("Uuid")
+            role_index = rows[0].index("Role name")
+            privileges_index = rows[0].index("Privileges")
+            admission_rows = [
+                row
+                for row in rows[1:]
+                if len(row) > role_index and row[role_index] == "Admision"
+            ]
+            if len(admission_rows) != 1:
+                errors.append(
+                    f"{path}: expected exactly one 'Admision' role, "
+                    f"found {len(admission_rows)}"
+                )
+            else:
+                admission_row = admission_rows[0]
+                if admission_row[uuid_index] != ADMISSION_ROLE_UUID:
+                    errors.append(
+                        f"{path}: 'Admision' must keep UUID {ADMISSION_ROLE_UUID}"
+                    )
+                privileges = {
+                    privilege.strip()
+                    for privilege in admission_row[privileges_index].split(";")
+                    if privilege.strip()
+                }
+                missing_privileges = ADMISSION_REQUIRED_PRIVILEGES - privileges
+                if missing_privileges:
+                    errors.append(
+                        f"{path}: 'Admision' is missing required privileges: "
+                        f"{', '.join(sorted(missing_privileges))}"
+                    )
+
     if errors:
         print("CSV width validation failed:", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Validated column counts and module-owned location tags for {checked} CSV files.")
+    print(
+        "Validated column counts, module-owned location tags, and admission "
+        f"role invariants for {checked} CSV files."
+    )
     return 0
 
 
