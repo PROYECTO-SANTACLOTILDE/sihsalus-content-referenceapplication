@@ -32,9 +32,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Agregado
 - Agrega los atributos de visita `Número de turno de cola` y `UUID de cita vinculada`, la propiedad global del
   número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y mapeos exactos por
-  UUID y tipo de visita; declara la zona operativa en `America/Lima`, documenta que Queue 3.0 requiere además
-  `TZ=America/Lima` en la JVM/contenedor y exige selección manual sin inferencias por nombre cuando no existe
-  coincidencia inequívoca.
+  UUID y tipo de visita; declara `America/Lima` como zona operativa para los consumidores SIHSALUS, conserva UTC
+  en servidor/JVM según la convención de OpenMRS y documenta el corte UTC del correlativo diario de Queue 3.0 como
+  limitación upstream. Exige selección manual sin inferencias por nombre cuando no existe coincidencia inequívoca.
+- Agrega privilegios frontend específicos para la tabla de consultas activas, resumen de consulta, formularios
+  clínicos, canasta de órdenes y lista de tareas. Los asigna a consulta externa y, de forma acotada, a los roles
+  clínicos que ya tenían el acceso funcional equivalente; `Enfermera` los hereda de `Doctor Consulta Externa`.
 - Agrega el privilegio estrecho `Generate Fua from Visit` y valida que solo se asigne directamente al rol clínico,
   digitadores FUA y rol técnico de backend.
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en

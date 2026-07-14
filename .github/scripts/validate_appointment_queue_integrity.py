@@ -47,6 +47,20 @@ QUEUE_READER_ROLE_UUID = "7f9a9321-0c35-4130-895c-dbca7401be64"
 QUEUE_READER_ROLE_NAME = "Colas Servicio Medico"
 NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
 NURSE_ROLE_NAME = "Enfermera"
+FRONTEND_UI_PRIVILEGES = {
+    "app:home.tabla.consultas.activas": "4cbcf36e-ea9b-4b55-86eb-5e5061922410",
+    "app:hoja.clinica.resumenConsulta": "017238da-7b23-48ae-934e-f8eb1835d39a",
+    "app:hoja.clinica.formulariosClinicos": "b3e9c57b-82a9-4d27-a568-763bd7ac1918",
+    "app:hoja.clinica.canastaOrdenes": "4fe1d19e-615e-4b0b-ac16-68ad57ef61d0",
+    "app:hoja.clinica.listaTareas": "1314dc5d-e183-4787-8400-67c98d11b870",
+}
+FRONTEND_UI_ROLE_GRANTS = {
+    CLINICAL_ROLE_UUID: set(FRONTEND_UI_PRIVILEGES),
+    "cf627580-0372-47fc-87b6-319d4a4d4973": {
+        "app:home.tabla.consultas.activas",
+        "app:hoja.clinica.formulariosClinicos",
+    },
+}
 ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
     CLINICAL_ROLE_UUID,
     SUPER_ADMIN_ROLE_UUID,
@@ -211,11 +225,41 @@ def validate_privilege_and_roles(errors):
             f"{GENERATE_FUA_PRIVILEGE_UUID}"
         )
 
+    for privilege_name, privilege_uuid in FRONTEND_UI_PRIVILEGES.items():
+        matching_uuid = [row for row in privilege_rows if row["Uuid"] == privilege_uuid]
+        matching_name = [
+            row for row in privilege_rows if row["Privilege name"] == privilege_name
+        ]
+        if len(matching_uuid) != 1 or len(matching_name) != 1:
+            errors.append(
+                f"{PRIVILEGES_PATH}: frontend privilege {privilege_name!r} must have "
+                "one UUID and one name row"
+            )
+        elif matching_uuid[0] is not matching_name[0]:
+            errors.append(
+                f"{PRIVILEGES_PATH}: {privilege_name!r} must use UUID {privilege_uuid}"
+            )
+
     role_rows = []
     for path in sorted((CONFIG_DIR / "roles").glob("*.csv")):
         for row in read_csv(path):
             row["_path"] = str(path)
             role_rows.append(row)
+
+    for role_uuid, required_privileges in FRONTEND_UI_ROLE_GRANTS.items():
+        matching_roles = [row for row in role_rows if row["Uuid"] == role_uuid]
+        if len(matching_roles) != 1:
+            errors.append(
+                f"roles: expected exactly one frontend UI role row with UUID {role_uuid}"
+            )
+            continue
+        role = matching_roles[0]
+        missing = required_privileges - split_privileges(role.get("Privileges", ""))
+        if missing:
+            errors.append(
+                f"{role['_path']}: {role['Role name']!r} is missing frontend workflow "
+                "privileges: " + ", ".join(sorted(missing))
+            )
 
     obsolete_assignments = {
         row["Uuid"]
@@ -807,6 +851,7 @@ def main():
         "queue-mutation assignments, one inherited clinical role, one read-only queue "
         "role, "
         f"{len(ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS)} narrow FUA generation assignments, "
+        f"{len(FRONTEND_UI_PRIVILEGES)} frontend workflow privileges, "
         "queue-number and appointment-link metadata, "
         f"{aligned_durations} unambiguous durations, {automatic_mappings} automatic "
         f"queue mappings, {frontend_mappings} frontend mappings, and "
