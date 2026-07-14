@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import csv
+import json
 import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -17,15 +18,19 @@ SERVICE_DEFINITIONS_PATH = (
 )
 SERVICE_TYPES_PATH = CONFIG_DIR / "appointmentservicetypes" / "servicetypes.csv"
 QUEUES_PATH = CONFIG_DIR / "queues" / "sihsalus-queues.csv"
+VISIT_TYPES_PATH = CONFIG_DIR / "visittypes" / "sihsalus-visittypes.csv"
 MAPPING_AUDIT_PATH = (
     Path("docs/audits/2026-07-13-appointment-service-queue-mapping.csv")
 )
+FRONTEND_CONFIG_PATH = Path("configuration/frontend_configuration/config.json")
 
-LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
-LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
+OBSOLETE_LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
+OBSOLETE_LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
+QUEUE_ENTRY_MUTATION_PRIVILEGE = "Manage Queue Entries"
 GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
+APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
 
 TARGET_ROLES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "Admision",
@@ -38,7 +43,25 @@ CLINICAL_ROLE_NAME = "Doctor Consulta Externa"
 FUA_OPERATOR_ROLE_UUID = "68256ae6-d81c-4ef9-bda9-fc1471022cd3"
 FUA_OPERATOR_ROLE_NAME = "Digitadores FUA"
 SUPER_ADMIN_ROLE_UUID = "227fa2ff-f7ed-49f8-9fec-3ca63814df9e"
-ALLOWED_DIRECT_ASSIGNMENTS = set(TARGET_ROLES) | {
+QUEUE_READER_ROLE_UUID = "7f9a9321-0c35-4130-895c-dbca7401be64"
+QUEUE_READER_ROLE_NAME = "Colas Servicio Medico"
+NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
+NURSE_ROLE_NAME = "Enfermera"
+FRONTEND_UI_PRIVILEGES = {
+    "app:home.tabla.consultas.activas": "4cbcf36e-ea9b-4b55-86eb-5e5061922410",
+    "app:hoja.clinica.resumenConsulta": "017238da-7b23-48ae-934e-f8eb1835d39a",
+    "app:hoja.clinica.formulariosClinicos": "b3e9c57b-82a9-4d27-a568-763bd7ac1918",
+    "app:hoja.clinica.canastaOrdenes": "4fe1d19e-615e-4b0b-ac16-68ad57ef61d0",
+    "app:hoja.clinica.listaTareas": "1314dc5d-e183-4787-8400-67c98d11b870",
+}
+FRONTEND_UI_ROLE_GRANTS = {
+    CLINICAL_ROLE_UUID: set(FRONTEND_UI_PRIVILEGES),
+    "cf627580-0372-47fc-87b6-319d4a4d4973": {
+        "app:home.tabla.consultas.activas",
+        "app:hoja.clinica.formulariosClinicos",
+    },
+}
+ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
     CLINICAL_ROLE_UUID,
     SUPER_ADMIN_ROLE_UUID,
 }
@@ -48,7 +71,7 @@ ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS = {
     SUPER_ADMIN_ROLE_UUID,
 }
 COMMON_OPERATIONAL_PRIVILEGES = {
-    LIFECYCLE_PRIVILEGE,
+    QUEUE_ENTRY_MUTATION_PRIVILEGE,
     "Add Visits",
     "Edit Visits",
     "Get Concepts",
@@ -61,10 +84,19 @@ COMMON_OPERATIONAL_PRIVILEGES = {
     "View Locations",
 }
 ROLE_REQUIRED_PRIVILEGES = {
-    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {"app:home.citas.editar"},
-    "75abd7e6-9dcd-446d-8468-04837f314c4f": {"app:home.citas.editar"},
+    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
+        "Manage Appointments",
+        "Manage Own Appointments",
+        "View Appointments",
+        "app:home.citas.editar",
+    },
+    "75abd7e6-9dcd-446d-8468-04837f314c4f": {
+        "Manage Appointments",
+        "Manage Own Appointments",
+        "View Appointments",
+        "app:home.citas.editar",
+    },
     "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": {
-        "Manage Queue Entries",
         "View Appointments",
         "app:home.colasAtencion",
         "app:home.colasAtencion.editar",
@@ -86,7 +118,6 @@ ROLE_REQUIRED_PRIVILEGES = {
         "Get Patient Identifiers",
         "Get Patients",
         "Get People",
-        "Manage Queue Entries",
         "View Encounters",
         "View Forms",
         "View Identifier Types",
@@ -103,7 +134,6 @@ ROLE_FORBIDDEN_PRIVILEGES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
         "Get Global Properties",
         "Manage Queue Rooms",
-        "Manage Queue Entries",
         "Manage Queues",
         "Purge Queue Entries",
         "Purge Queue Rooms",
@@ -115,7 +145,6 @@ ROLE_FORBIDDEN_PRIVILEGES = {
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Get Global Properties",
         "Manage Queue Rooms",
-        "Manage Queue Entries",
         "Manage Queues",
         "Purge Queue Entries",
         "Purge Queue Rooms",
@@ -168,20 +197,16 @@ def split_privileges(value):
 
 def validate_privilege_and_roles(errors):
     privilege_rows = read_csv(PRIVILEGES_PATH)
-    matching_uuid = [
-        row for row in privilege_rows if row["Uuid"] == LIFECYCLE_PRIVILEGE_UUID
+    obsolete_privilege_rows = [
+        row
+        for row in privilege_rows
+        if row["Uuid"] == OBSOLETE_LIFECYCLE_PRIVILEGE_UUID
+        or row["Privilege name"] == OBSOLETE_LIFECYCLE_PRIVILEGE
     ]
-    matching_name = [
-        row for row in privilege_rows if row["Privilege name"] == LIFECYCLE_PRIVILEGE
-    ]
-    if len(matching_uuid) != 1 or len(matching_name) != 1:
+    if obsolete_privilege_rows:
         errors.append(
-            f"{PRIVILEGES_PATH}: lifecycle privilege must have one UUID and one name row"
-        )
-    elif matching_uuid[0] is not matching_name[0]:
-        errors.append(
-            f"{PRIVILEGES_PATH}: {LIFECYCLE_PRIVILEGE!r} must use UUID "
-            f"{LIFECYCLE_PRIVILEGE_UUID}"
+            f"{PRIVILEGES_PATH}: remove obsolete privilege "
+            f"{OBSOLETE_LIFECYCLE_PRIVILEGE!r}; OpenMRS has no endpoint that authorizes it"
         )
 
     matching_fua_uuid = [
@@ -200,23 +225,69 @@ def validate_privilege_and_roles(errors):
             f"{GENERATE_FUA_PRIVILEGE_UUID}"
         )
 
+    for privilege_name, privilege_uuid in FRONTEND_UI_PRIVILEGES.items():
+        matching_uuid = [row for row in privilege_rows if row["Uuid"] == privilege_uuid]
+        matching_name = [
+            row for row in privilege_rows if row["Privilege name"] == privilege_name
+        ]
+        if len(matching_uuid) != 1 or len(matching_name) != 1:
+            errors.append(
+                f"{PRIVILEGES_PATH}: frontend privilege {privilege_name!r} must have "
+                "one UUID and one name row"
+            )
+        elif matching_uuid[0] is not matching_name[0]:
+            errors.append(
+                f"{PRIVILEGES_PATH}: {privilege_name!r} must use UUID {privilege_uuid}"
+            )
+
     role_rows = []
     for path in sorted((CONFIG_DIR / "roles").glob("*.csv")):
         for row in read_csv(path):
             row["_path"] = str(path)
             role_rows.append(row)
 
-    direct_assignments = {
+    for role_uuid, required_privileges in FRONTEND_UI_ROLE_GRANTS.items():
+        matching_roles = [row for row in role_rows if row["Uuid"] == role_uuid]
+        if len(matching_roles) != 1:
+            errors.append(
+                f"roles: expected exactly one frontend UI role row with UUID {role_uuid}"
+            )
+            continue
+        role = matching_roles[0]
+        missing = required_privileges - split_privileges(role.get("Privileges", ""))
+        if missing:
+            errors.append(
+                f"{role['_path']}: {role['Role name']!r} is missing frontend workflow "
+                "privileges: " + ", ".join(sorted(missing))
+            )
+
+    obsolete_assignments = {
         row["Uuid"]
         for row in role_rows
-        if LIFECYCLE_PRIVILEGE in split_privileges(row.get("Privileges", ""))
+        if OBSOLETE_LIFECYCLE_PRIVILEGE
+        in split_privileges(row.get("Privileges", ""))
     }
-    if direct_assignments != ALLOWED_DIRECT_ASSIGNMENTS:
+    if obsolete_assignments:
         errors.append(
-            "lifecycle privilege direct assignments must match the approved "
-            "admission, appointment, queue, emergency, clinical, and backend-admin roles; "
-            "found UUIDs: "
-            + ", ".join(sorted(direct_assignments))
+            f"roles: remove obsolete privilege {OBSOLETE_LIFECYCLE_PRIVILEGE!r} from "
+            "role UUIDs: " + ", ".join(sorted(obsolete_assignments))
+        )
+
+    direct_queue_mutation_assignments = {
+        row["Uuid"]
+        for row in role_rows
+        if QUEUE_ENTRY_MUTATION_PRIVILEGE
+        in split_privileges(row.get("Privileges", ""))
+    }
+    if (
+        direct_queue_mutation_assignments
+        != ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS
+    ):
+        errors.append(
+            f"{QUEUE_ENTRY_MUTATION_PRIVILEGE!r} direct assignments must match the "
+            "approved admission, appointment check-in, queue, emergency, clinical, "
+            "and backend-admin roles; found UUIDs: "
+            + ", ".join(sorted(direct_queue_mutation_assignments))
         )
 
     direct_fua_generation_assignments = {
@@ -250,7 +321,7 @@ def validate_privilege_and_roles(errors):
         forbidden = ROLE_FORBIDDEN_PRIVILEGES[role_uuid] & privileges
         if missing:
             errors.append(
-                f"{row['_path']}: {expected_name!r} is missing lifecycle privileges: "
+                f"{row['_path']}: {expected_name!r} is missing workflow privileges: "
                 + ", ".join(sorted(missing))
             )
         if forbidden:
@@ -269,20 +340,23 @@ def validate_privilege_and_roles(errors):
         clinical = clinical_matches[0]
         privileges = split_privileges(clinical["Privileges"])
         required = {
+            "Add Visits",
             GENERATE_FUA_PRIVILEGE,
-            LIFECYCLE_PRIVILEGE,
             "Edit Visits",
             "Get Queue Entries",
             "Get Queues",
             "Get Visits",
             "Manage Appointments",
+            "Manage Own Appointments",
+            QUEUE_ENTRY_MUTATION_PRIVILEGE,
             "Read Fua",
+            "View Appointments",
             "app:hoja.clinica.citas.editar",
         }
         forbidden = {
             "Get Global Properties",
             "Manage Fua",
-            "Manage Queue Entries",
+            "Manage Queue Rooms",
             "Manage Queues",
             "Purge Queue Entries",
             "Update Fua",
@@ -290,7 +364,7 @@ def validate_privilege_and_roles(errors):
         }
         if required - privileges:
             errors.append(
-                f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} is missing lifecycle "
+                f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} is missing workflow "
                 "privileges: " + ", ".join(sorted(required - privileges))
             )
         if forbidden & privileges:
@@ -298,6 +372,65 @@ def validate_privilege_and_roles(errors):
                 f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} has forbidden queue "
                 "administration privileges: "
                 + ", ".join(sorted(forbidden & privileges))
+            )
+
+    queue_reader_matches = [
+        row for row in role_rows if row["Uuid"] == QUEUE_READER_ROLE_UUID
+    ]
+    if len(queue_reader_matches) != 1:
+        errors.append(
+            f"roles: expected exactly one {QUEUE_READER_ROLE_NAME!r} row with UUID "
+            f"{QUEUE_READER_ROLE_UUID}"
+        )
+    else:
+        queue_reader = queue_reader_matches[0]
+        privileges = split_privileges(queue_reader["Privileges"])
+        required = {
+            "Get Queue Entries",
+            "Get Queue Rooms",
+            "Get Queues",
+            "app:home.colasAtencion",
+        }
+        forbidden = {
+            "Add Visits",
+            "Edit Visits",
+            QUEUE_ENTRY_MUTATION_PRIVILEGE,
+            "Manage Queue Rooms",
+            "Manage Queues",
+            "Purge Queue Entries",
+            "Purge Queue Rooms",
+            "app:home.colasAtencion.editar",
+        }
+        if required - privileges:
+            errors.append(
+                f"{queue_reader['_path']}: {QUEUE_READER_ROLE_NAME!r} is missing "
+                "read-only queue privileges: "
+                + ", ".join(sorted(required - privileges))
+            )
+        if forbidden & privileges:
+            errors.append(
+                f"{queue_reader['_path']}: {QUEUE_READER_ROLE_NAME!r} has forbidden "
+                "queue mutation privileges: "
+                + ", ".join(sorted(forbidden & privileges))
+            )
+
+    nurse_matches = [row for row in role_rows if row["Uuid"] == NURSE_ROLE_UUID]
+    if len(nurse_matches) != 1:
+        errors.append(
+            f"roles: expected exactly one {NURSE_ROLE_NAME!r} row with UUID "
+            f"{NURSE_ROLE_UUID}"
+        )
+    else:
+        nurse = nurse_matches[0]
+        inherited_roles = {
+            role.strip()
+            for role in nurse.get("Inherited roles", "").split(";")
+            if role.strip()
+        }
+        if CLINICAL_ROLE_NAME not in inherited_roles:
+            errors.append(
+                f"{nurse['_path']}: {NURSE_ROLE_NAME!r} must inherit "
+                f"{CLINICAL_ROLE_NAME!r} to preserve visit and queue closure access"
             )
 
     fua_operator_matches = [
@@ -342,7 +475,7 @@ def validate_privilege_and_roles(errors):
             )
 
 
-def validate_queue_number_metadata(errors):
+def validate_visit_attribute_metadata(errors):
     rows = read_csv(ATTRIBUTE_TYPES_PATH)
     matches = [row for row in rows if row["Uuid"] == QUEUE_NUMBER_ATTRIBUTE_UUID]
     if len(matches) != 1:
@@ -364,6 +497,30 @@ def validate_queue_number_metadata(errors):
                 errors.append(
                     f"{ATTRIBUTE_TYPES_PATH}: queue-number attribute {column!r} must be "
                     f"{value!r}, found {row[column]!r}"
+                )
+
+    appointment_matches = [
+        row for row in rows if row["Uuid"] == APPOINTMENT_UUID_ATTRIBUTE_UUID
+    ]
+    if len(appointment_matches) != 1:
+        errors.append(
+            f"{ATTRIBUTE_TYPES_PATH}: expected one appointment-UUID visit attribute row"
+        )
+    else:
+        row = appointment_matches[0]
+        expected = {
+            "Void/Retire": "",
+            "Entity name": "Visit",
+            "Name": "UUID de cita vinculada",
+            "Min occurs": "0",
+            "Max occurs": "",
+            "Datatype classname": "org.openmrs.customdatatype.datatype.FreeTextDatatype",
+        }
+        for column, value in expected.items():
+            if row[column] != value:
+                errors.append(
+                    f"{ATTRIBUTE_TYPES_PATH}: appointment-UUID attribute {column!r} "
+                    f"must be {value!r}, found {row[column]!r}"
                 )
 
     root = ET.parse(GLOBAL_PROPERTIES_PATH).getroot()
@@ -480,7 +637,7 @@ def validate_documented_queue_mapping(errors):
             errors.append(
                 f"{MAPPING_AUDIT_PATH}: service name for {service_uuid} is stale"
             )
-        if row["Location Uuid"] != definition["Location"]:
+        if row["Appointment Location Uuid"] != definition["Location"]:
             errors.append(
                 f"{MAPPING_AUDIT_PATH}: location for {definition['Name']!r} is stale"
             )
@@ -514,23 +671,30 @@ def validate_documented_queue_mapping(errors):
                 errors.append(
                     f"{MAPPING_AUDIT_PATH}: queue name for {queue_uuid} is stale"
                 )
-            automatic_pairs.add((service_uuid, queue_uuid))
+            if row["Queue Location Uuid"] != queue["Location"]:
+                errors.append(
+                    f"{MAPPING_AUDIT_PATH}: queue location for {queue_uuid} is stale"
+                )
+            automatic_pairs.add(
+                (
+                    service_uuid,
+                    definition["Location"],
+                    queue_uuid,
+                    queue["Location"],
+                )
+            )
         elif resolution == "manual-required":
             manual_count += 1
-            if queue_uuid and queue is None:
+            populated_queue_fields = {
+                column: row[column]
+                for column in ("Queue Uuid", "Queue Location Uuid", "Queue")
+                if row[column]
+            }
+            if populated_queue_fields:
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: manual candidate {queue_uuid} for "
-                    f"{definition['Name']!r} is not an active queue"
-                )
-            if queue and row["Queue"] != queue["Name"]:
-                errors.append(
-                    f"{MAPPING_AUDIT_PATH}: manual candidate queue name for {queue_uuid} "
-                    "is stale"
-                )
-            if queue and queue["Service"] == service_uuid and queue["Location"] == definition["Location"]:
-                errors.append(
-                    f"{MAPPING_AUDIT_PATH}: {definition['Name']!r} now has an exact queue "
-                    "mapping and must be reviewed as automatic"
+                    f"{MAPPING_AUDIT_PATH}: manual mapping for {definition['Name']!r} "
+                    "must not suggest a queue by name; populated fields: "
+                    + ", ".join(sorted(populated_queue_fields))
                 )
         else:
             errors.append(
@@ -539,7 +703,12 @@ def validate_documented_queue_mapping(errors):
             )
 
     configured_exact_pairs = {
-        (definition_uuid, queue["Uuid"])
+        (
+            definition_uuid,
+            definition["Location"],
+            queue["Uuid"],
+            queue["Location"],
+        )
         for definition_uuid, definition in definitions.items()
         for queue in queues.values()
         if queue["Service"] == definition_uuid
@@ -558,12 +727,118 @@ def validate_documented_queue_mapping(errors):
     return len(automatic_pairs), manual_count
 
 
+def validate_frontend_appointment_config(errors):
+    try:
+        config = json.loads(FRONTEND_CONFIG_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"{FRONTEND_CONFIG_PATH}: unable to read valid JSON: {error}")
+        return 0
+
+    module_config = config.get("@sihsalus/esm-appointments-app")
+    if not isinstance(module_config, dict):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-appointments-app object"
+        )
+        return 0
+
+    if (
+        module_config.get("appointmentVisitAttributeTypeUuid")
+        != APPOINTMENT_UUID_ATTRIBUTE_UUID
+    ):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentVisitAttributeTypeUuid must be "
+            f"{APPOINTMENT_UUID_ATTRIBUTE_UUID}"
+        )
+
+    required_mapping_fields = (
+        "appointmentServiceUuid",
+        "appointmentLocationUuid",
+        "queueUuid",
+        "queueLocationUuid",
+        "requiredVisitTypeUuid",
+    )
+    active_visit_types = {
+        row["Uuid"]: row
+        for row in read_csv(VISIT_TYPES_PATH)
+        if not is_retired(row["Void/Retire"])
+    }
+    automatic_audit_rows = [
+        row for row in read_csv(MAPPING_AUDIT_PATH) if row["Resolution"] == "automatic"
+    ]
+    for row in automatic_audit_rows:
+        visit_type_uuid = row["Required Visit Type Uuid"]
+        visit_type = active_visit_types.get(visit_type_uuid)
+        if not visit_type:
+            errors.append(
+                f"{MAPPING_AUDIT_PATH}: automatic mapping for "
+                f"{row['Appointment Service Uuid']} must reference an active visit type"
+            )
+        elif visit_type["Name"] != row["Required Visit Type"]:
+            errors.append(
+                f"{MAPPING_AUDIT_PATH}: visit type name for {visit_type_uuid} must match "
+                f"{VISIT_TYPES_PATH}"
+            )
+    expected_mappings = {
+        (
+            row["Appointment Service Uuid"],
+            row["Appointment Location Uuid"],
+            row["Queue Uuid"],
+            row["Queue Location Uuid"],
+            row["Required Visit Type Uuid"],
+        )
+        for row in automatic_audit_rows
+    }
+
+    configured_rows = module_config.get("appointmentQueueMappings")
+    if not isinstance(configured_rows, list):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must be an array"
+        )
+        return 0
+
+    configured_mappings = []
+    for index, row in enumerate(configured_rows):
+        if not isinstance(row, dict):
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] must be an object"
+            )
+            continue
+        missing = [field for field in required_mapping_fields if not row.get(field)]
+        extra = set(row) - set(required_mapping_fields)
+        if missing:
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] is missing: "
+                + ", ".join(missing)
+            )
+            continue
+        if extra:
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] has "
+                "unsupported fields: " + ", ".join(sorted(extra))
+            )
+            continue
+        configured_mappings.append(tuple(row[field] for field in required_mapping_fields))
+
+    configured_mapping_set = set(configured_mappings)
+    if len(configured_mappings) != len(configured_mapping_set):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings contains duplicates"
+        )
+    if configured_mapping_set != expected_mappings:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must contain exactly "
+            "the UUID-verified automatic mappings from the audit CSV"
+        )
+    return len(configured_mapping_set)
+
+
 def main():
     errors = []
     validate_privilege_and_roles(errors)
-    validate_queue_number_metadata(errors)
+    validate_visit_attribute_metadata(errors)
     aligned_durations = validate_service_durations(errors)
     automatic_mappings, manual_mappings = validate_documented_queue_mapping(errors)
+    frontend_mappings = validate_frontend_appointment_config(errors)
 
     if errors:
         print("Appointment/visit/queue integrity validation failed:", file=sys.stderr)
@@ -572,11 +847,15 @@ def main():
         return 1
 
     print(
-        f"Validated {len(TARGET_ROLES) + 1} least-privilege lifecycle workflow roles, "
+        f"Validated {len(ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS)} direct official "
+        "queue-mutation assignments, one inherited clinical role, one read-only queue "
+        "role, "
         f"{len(ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS)} narrow FUA generation assignments, "
-        "queue-number metadata, "
+        f"{len(FRONTEND_UI_PRIVILEGES)} frontend workflow privileges, "
+        "queue-number and appointment-link metadata, "
         f"{aligned_durations} unambiguous durations, {automatic_mappings} automatic "
-        f"queue mappings, and {manual_mappings} manual mappings."
+        f"queue mappings, {frontend_mappings} frontend mappings, and "
+        f"{manual_mappings} manual mappings."
     )
     return 0
 
