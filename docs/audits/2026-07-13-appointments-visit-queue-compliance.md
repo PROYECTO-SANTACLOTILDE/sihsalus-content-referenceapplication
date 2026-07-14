@@ -40,11 +40,20 @@ capacidad bajo una supuesta exigencia normativa.
   (`2293389f-8595-491f-b842-5da867f59608`).
 - Atributo de visita: `Número de turno de cola`
   (`06a0b8c6-cbdf-4b42-9cbd-871129db8758`), `FreeText`, cardinalidad `0..1`.
-- Propiedad global: `sihsalus.queue.visitQueueNumberAttributeUuid` apunta al atributo anterior.
+- Atributo de visita: `UUID de cita vinculada`
+  (`193508ab-20c6-5291-9f23-0257335eaabd`), `FreeText`, cardinalidad `0..*`.
+- Propiedad global: `sihsalus.queue.visitQueueNumberAttributeUuid` apunta a `Número de turno de cola`.
 - Propiedad global: `sihsalus.timezone=America/Lima` fija la zona operativa para citas, visitas y colas.
+- Configuración O3: `@sihsalus/esm-appointments-app.appointmentVisitAttributeTypeUuid` publica el UUID del vínculo
+  cita-visita y `appointmentQueueMappings` contiene únicamente los pares automáticos verificados.
 
-El atributo es opcional a nivel del modelo de visita porque no toda visita ingresa por una cola. El flujo de check-in
-de citas debe exigir la entrada de cola; otras visitas pueden seguir existiendo sin número de turno.
+El número de turno es opcional a nivel del modelo de visita porque no toda visita ingresa por una cola. El flujo de
+check-in de citas debe exigir la entrada de cola; otras visitas pueden seguir existiendo sin número de turno.
+
+Una visita activa puede atender más de una cita, por eso `UUID de cita vinculada` no tiene máximo. En Initializer
+2.12.0 el campo `Max occurs` vacío se carga como `null`, que OpenMRS Core 2.8.7 interpreta como ilimitado. Cada valor
+conserva un UUID de cita y el cliente debe evitar duplicar el mismo UUID. Es un enlace de trazabilidad entre recursos,
+no una llave foránea: por sí solo no valida que la cita exista ni vuelve atómicas las escrituras.
 
 No existe en OpenMRS Core 2.8.7, Queue OMOD 3.0.0 ni Appointments OMOD 2.1.0 un privilegio o endpoint transaccional
 denominado `Manage Appointment Queue Lifecycle`. Ese privilegio local fue retirado porque no autorizaba ninguna de
@@ -120,13 +129,20 @@ idénticos a los del servicio de cita. Con la configuración actual hay seis map
 - Ecografía general y Doppler -> Cola de Diagnóstico por Imágenes.
 - Atención en farmacia clínica -> Cola de Farmacia.
 
-Los otros nueve servicios requieren selección explícita. Rehabilitación, hemodiálisis y nutrición tienen una cola
-relacionada por nombre y ubicación, pero usan un concepto de servicio diferente; asociarlos automáticamente sería
-una inferencia no respaldada por la metadata. Los otros seis no tienen una cola exacta configurada. No se usa la
-ubicación como fallback porque una ubicación puede contener varias colas.
+Los otros nueve servicios requieren selección explícita. Rehabilitación, hemodiálisis y nutrición usan conceptos de
+servicio distintos a los de las colas disponibles; los otros seis no tienen una cola exacta configurada. El
+inventario deja vacíos sus campos de cola: no infiere equivalencias por nombre y tampoco usa la ubicación como
+fallback, porque una ubicación puede contener varias colas.
 
 El inventario completo y verificable está en
 [`2026-07-13-appointment-service-queue-mapping.csv`](2026-07-13-appointment-service-queue-mapping.csv).
+Los seis pares automáticos se publican también en
+[`configuration/frontend_configuration/config.json`](../../configuration/frontend_configuration/config.json) con
+UUIDs de servicio, ubicación de cita, cola y ubicación de cola. Los nueve casos manuales no aparecen en el arreglo.
+El distro productivo actual construye `/openmrs/spa/frontend.json` desde el repositorio frontend y todavía no copia
+`spa_config` del paquete de contenido al contenedor web. Hasta que ese ensamblaje cambie, estos mismos valores deben
+permanecer sincronizados en `sihsalus-frontend/config/frontend.json`; el archivo de content funciona como contrato
+empaquetado y no activa por sí solo la configuración en producción.
 
 ## Validación
 
@@ -140,10 +156,12 @@ El inventario completo y verificable está en
 - el personal clínico pierde el permiso oficial para cerrar una cola/visita, o recibe configuración o purga;
 - `Enfermera` deja de heredar el contrato clínico, o `Colas Servicio Medico` deja de ser de solo lectura;
 - falta un permiso operativo mínimo o aparece un permiso administrativo prohibido;
-- cambia el UUID, datatype o cardinalidad del número de turno;
+- cambia el UUID, datatype o cardinalidad del número de turno o del vínculo cita-visita;
 - faltan las propiedades globales o cambia la zona horaria;
 - una duración base difiere de su único tipo activo;
-- el inventario de mapeos omite un servicio, marca como automático un mapeo ambiguo o queda desactualizado.
+- el inventario de mapeos omite un servicio, sugiere una cola para un caso manual, marca como automático un mapeo
+  ambiguo o deja de coincidir por UUID con servicio, cola y ambas ubicaciones.
+- la configuración O3 usa otro atributo, duplica pares o difiere de los seis mapeos automáticos auditados.
 
 ## Decisiones locales pendientes
 

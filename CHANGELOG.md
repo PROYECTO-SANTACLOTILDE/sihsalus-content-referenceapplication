@@ -30,8 +30,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   de gestión de conceptos.
 
 ### Agregado
-- Agrega el atributo de visita `Número de turno de cola`, sus propiedades globales y una validación CI de RBAC con
-  privilegios oficiales, metadata, duración y mapeo de colas; fija la zona operativa en `America/Lima`.
+- Agrega los atributos de visita `Número de turno de cola` y `UUID de cita vinculada`, la propiedad global del
+  número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y mapeos exactos por
+  UUID; fija la zona operativa en `America/Lima` y exige selección manual sin inferencias por nombre cuando no
+  existe coincidencia inequívoca.
 - Agrega el privilegio estrecho `Generate Fua from Visit` y valida que solo se asigne directamente al rol clínico,
   digitadores FUA y rol técnico de backend.
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en

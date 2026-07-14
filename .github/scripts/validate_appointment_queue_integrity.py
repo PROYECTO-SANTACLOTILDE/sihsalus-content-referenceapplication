@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import csv
+import json
 import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -20,6 +21,7 @@ QUEUES_PATH = CONFIG_DIR / "queues" / "sihsalus-queues.csv"
 MAPPING_AUDIT_PATH = (
     Path("docs/audits/2026-07-13-appointment-service-queue-mapping.csv")
 )
+FRONTEND_CONFIG_PATH = Path("configuration/frontend_configuration/config.json")
 
 OBSOLETE_LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
 OBSOLETE_LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
@@ -27,6 +29,7 @@ QUEUE_ENTRY_MUTATION_PRIVILEGE = "Manage Queue Entries"
 GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
+APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
 
 TARGET_ROLES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "Admision",
@@ -427,7 +430,7 @@ def validate_privilege_and_roles(errors):
             )
 
 
-def validate_queue_number_metadata(errors):
+def validate_visit_attribute_metadata(errors):
     rows = read_csv(ATTRIBUTE_TYPES_PATH)
     matches = [row for row in rows if row["Uuid"] == QUEUE_NUMBER_ATTRIBUTE_UUID]
     if len(matches) != 1:
@@ -449,6 +452,30 @@ def validate_queue_number_metadata(errors):
                 errors.append(
                     f"{ATTRIBUTE_TYPES_PATH}: queue-number attribute {column!r} must be "
                     f"{value!r}, found {row[column]!r}"
+                )
+
+    appointment_matches = [
+        row for row in rows if row["Uuid"] == APPOINTMENT_UUID_ATTRIBUTE_UUID
+    ]
+    if len(appointment_matches) != 1:
+        errors.append(
+            f"{ATTRIBUTE_TYPES_PATH}: expected one appointment-UUID visit attribute row"
+        )
+    else:
+        row = appointment_matches[0]
+        expected = {
+            "Void/Retire": "",
+            "Entity name": "Visit",
+            "Name": "UUID de cita vinculada",
+            "Min occurs": "0",
+            "Max occurs": "",
+            "Datatype classname": "org.openmrs.customdatatype.datatype.FreeTextDatatype",
+        }
+        for column, value in expected.items():
+            if row[column] != value:
+                errors.append(
+                    f"{ATTRIBUTE_TYPES_PATH}: appointment-UUID attribute {column!r} "
+                    f"must be {value!r}, found {row[column]!r}"
                 )
 
     root = ET.parse(GLOBAL_PROPERTIES_PATH).getroot()
@@ -565,7 +592,7 @@ def validate_documented_queue_mapping(errors):
             errors.append(
                 f"{MAPPING_AUDIT_PATH}: service name for {service_uuid} is stale"
             )
-        if row["Location Uuid"] != definition["Location"]:
+        if row["Appointment Location Uuid"] != definition["Location"]:
             errors.append(
                 f"{MAPPING_AUDIT_PATH}: location for {definition['Name']!r} is stale"
             )
@@ -599,23 +626,30 @@ def validate_documented_queue_mapping(errors):
                 errors.append(
                     f"{MAPPING_AUDIT_PATH}: queue name for {queue_uuid} is stale"
                 )
-            automatic_pairs.add((service_uuid, queue_uuid))
+            if row["Queue Location Uuid"] != queue["Location"]:
+                errors.append(
+                    f"{MAPPING_AUDIT_PATH}: queue location for {queue_uuid} is stale"
+                )
+            automatic_pairs.add(
+                (
+                    service_uuid,
+                    definition["Location"],
+                    queue_uuid,
+                    queue["Location"],
+                )
+            )
         elif resolution == "manual-required":
             manual_count += 1
-            if queue_uuid and queue is None:
+            populated_queue_fields = {
+                column: row[column]
+                for column in ("Queue Uuid", "Queue Location Uuid", "Queue")
+                if row[column]
+            }
+            if populated_queue_fields:
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: manual candidate {queue_uuid} for "
-                    f"{definition['Name']!r} is not an active queue"
-                )
-            if queue and row["Queue"] != queue["Name"]:
-                errors.append(
-                    f"{MAPPING_AUDIT_PATH}: manual candidate queue name for {queue_uuid} "
-                    "is stale"
-                )
-            if queue and queue["Service"] == service_uuid and queue["Location"] == definition["Location"]:
-                errors.append(
-                    f"{MAPPING_AUDIT_PATH}: {definition['Name']!r} now has an exact queue "
-                    "mapping and must be reviewed as automatic"
+                    f"{MAPPING_AUDIT_PATH}: manual mapping for {definition['Name']!r} "
+                    "must not suggest a queue by name; populated fields: "
+                    + ", ".join(sorted(populated_queue_fields))
                 )
         else:
             errors.append(
@@ -624,7 +658,12 @@ def validate_documented_queue_mapping(errors):
             )
 
     configured_exact_pairs = {
-        (definition_uuid, queue["Uuid"])
+        (
+            definition_uuid,
+            definition["Location"],
+            queue["Uuid"],
+            queue["Location"],
+        )
         for definition_uuid, definition in definitions.items()
         for queue in queues.values()
         if queue["Service"] == definition_uuid
@@ -643,12 +682,96 @@ def validate_documented_queue_mapping(errors):
     return len(automatic_pairs), manual_count
 
 
+def validate_frontend_appointment_config(errors):
+    try:
+        config = json.loads(FRONTEND_CONFIG_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"{FRONTEND_CONFIG_PATH}: unable to read valid JSON: {error}")
+        return 0
+
+    module_config = config.get("@sihsalus/esm-appointments-app")
+    if not isinstance(module_config, dict):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-appointments-app object"
+        )
+        return 0
+
+    if (
+        module_config.get("appointmentVisitAttributeTypeUuid")
+        != APPOINTMENT_UUID_ATTRIBUTE_UUID
+    ):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentVisitAttributeTypeUuid must be "
+            f"{APPOINTMENT_UUID_ATTRIBUTE_UUID}"
+        )
+
+    required_mapping_fields = (
+        "appointmentServiceUuid",
+        "appointmentLocationUuid",
+        "queueUuid",
+        "queueLocationUuid",
+    )
+    expected_mappings = {
+        (
+            row["Appointment Service Uuid"],
+            row["Appointment Location Uuid"],
+            row["Queue Uuid"],
+            row["Queue Location Uuid"],
+        )
+        for row in read_csv(MAPPING_AUDIT_PATH)
+        if row["Resolution"] == "automatic"
+    }
+
+    configured_rows = module_config.get("appointmentQueueMappings")
+    if not isinstance(configured_rows, list):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must be an array"
+        )
+        return 0
+
+    configured_mappings = []
+    for index, row in enumerate(configured_rows):
+        if not isinstance(row, dict):
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] must be an object"
+            )
+            continue
+        missing = [field for field in required_mapping_fields if not row.get(field)]
+        extra = set(row) - set(required_mapping_fields)
+        if missing:
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] is missing: "
+                + ", ".join(missing)
+            )
+            continue
+        if extra:
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] has "
+                "unsupported fields: " + ", ".join(sorted(extra))
+            )
+            continue
+        configured_mappings.append(tuple(row[field] for field in required_mapping_fields))
+
+    configured_mapping_set = set(configured_mappings)
+    if len(configured_mappings) != len(configured_mapping_set):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings contains duplicates"
+        )
+    if configured_mapping_set != expected_mappings:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must contain exactly "
+            "the UUID-verified automatic mappings from the audit CSV"
+        )
+    return len(configured_mapping_set)
+
+
 def main():
     errors = []
     validate_privilege_and_roles(errors)
-    validate_queue_number_metadata(errors)
+    validate_visit_attribute_metadata(errors)
     aligned_durations = validate_service_durations(errors)
     automatic_mappings, manual_mappings = validate_documented_queue_mapping(errors)
+    frontend_mappings = validate_frontend_appointment_config(errors)
 
     if errors:
         print("Appointment/visit/queue integrity validation failed:", file=sys.stderr)
@@ -661,9 +784,10 @@ def main():
         "queue-mutation assignments, one inherited clinical role, one read-only queue "
         "role, "
         f"{len(ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS)} narrow FUA generation assignments, "
-        "queue-number metadata, "
+        "queue-number and appointment-link metadata, "
         f"{aligned_durations} unambiguous durations, {automatic_mappings} automatic "
-        f"queue mappings, and {manual_mappings} manual mappings."
+        f"queue mappings, {frontend_mappings} frontend mappings, and "
+        f"{manual_mappings} manual mappings."
     )
     return 0
 
