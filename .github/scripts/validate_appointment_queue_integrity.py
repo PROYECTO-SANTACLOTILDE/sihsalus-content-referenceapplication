@@ -18,6 +18,7 @@ SERVICE_DEFINITIONS_PATH = (
 )
 SERVICE_TYPES_PATH = CONFIG_DIR / "appointmentservicetypes" / "servicetypes.csv"
 QUEUES_PATH = CONFIG_DIR / "queues" / "sihsalus-queues.csv"
+VISIT_TYPES_PATH = CONFIG_DIR / "visittypes" / "sihsalus-visittypes.csv"
 MAPPING_AUDIT_PATH = (
     Path("docs/audits/2026-07-13-appointment-service-queue-mapping.csv")
 )
@@ -710,16 +711,38 @@ def validate_frontend_appointment_config(errors):
         "appointmentLocationUuid",
         "queueUuid",
         "queueLocationUuid",
+        "requiredVisitTypeUuid",
     )
+    active_visit_types = {
+        row["Uuid"]: row
+        for row in read_csv(VISIT_TYPES_PATH)
+        if not is_retired(row["Void/Retire"])
+    }
+    automatic_audit_rows = [
+        row for row in read_csv(MAPPING_AUDIT_PATH) if row["Resolution"] == "automatic"
+    ]
+    for row in automatic_audit_rows:
+        visit_type_uuid = row["Required Visit Type Uuid"]
+        visit_type = active_visit_types.get(visit_type_uuid)
+        if not visit_type:
+            errors.append(
+                f"{MAPPING_AUDIT_PATH}: automatic mapping for "
+                f"{row['Appointment Service Uuid']} must reference an active visit type"
+            )
+        elif visit_type["Name"] != row["Required Visit Type"]:
+            errors.append(
+                f"{MAPPING_AUDIT_PATH}: visit type name for {visit_type_uuid} must match "
+                f"{VISIT_TYPES_PATH}"
+            )
     expected_mappings = {
         (
             row["Appointment Service Uuid"],
             row["Appointment Location Uuid"],
             row["Queue Uuid"],
             row["Queue Location Uuid"],
+            row["Required Visit Type Uuid"],
         )
-        for row in read_csv(MAPPING_AUDIT_PATH)
-        if row["Resolution"] == "automatic"
+        for row in automatic_audit_rows
     }
 
     configured_rows = module_config.get("appointmentQueueMappings")

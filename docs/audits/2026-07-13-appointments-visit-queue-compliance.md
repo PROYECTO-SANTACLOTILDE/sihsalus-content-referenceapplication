@@ -43,9 +43,13 @@ capacidad bajo una supuesta exigencia normativa.
 - Atributo de visita: `UUID de cita vinculada`
   (`193508ab-20c6-5291-9f23-0257335eaabd`), `FreeText`, cardinalidad `0..*`.
 - Propiedad global: `sihsalus.queue.visitQueueNumberAttributeUuid` apunta a `Número de turno de cola`.
-- Propiedad global: `sihsalus.timezone=America/Lima` fija la zona operativa para citas, visitas y colas.
+- Propiedad global: `sihsalus.timezone=America/Lima` declara la zona operativa para los consumidores SIHSALUS.
+  Queue OMOD 3.0.0 no lee esta propiedad: calcula el día del número de turno con la zona por defecto de la JVM.
+  El despliegue debe configurar también la JVM o el contenedor con `TZ=America/Lima`; la propiedad global por sí
+  sola no controla el corte diario de Queue.
 - Configuración O3: `@sihsalus/esm-appointments-app.appointmentVisitAttributeTypeUuid` publica el UUID del vínculo
-  cita-visita y `appointmentQueueMappings` contiene únicamente los pares automáticos verificados.
+  cita-visita y `appointmentQueueMappings` contiene únicamente los pares automáticos verificados, cada uno con el
+  tipo de visita requerido.
 
 El número de turno es opcional a nivel del modelo de visita porque no toda visita ingresa por una cola. El flujo de
 check-in de citas debe exigir la entrada de cola; otras visitas pueden seguir existiendo sin número de turno.
@@ -138,7 +142,8 @@ El inventario completo y verificable está en
 [`2026-07-13-appointment-service-queue-mapping.csv`](2026-07-13-appointment-service-queue-mapping.csv).
 Los seis pares automáticos se publican también en
 [`configuration/frontend_configuration/config.json`](../../configuration/frontend_configuration/config.json) con
-UUIDs de servicio, ubicación de cita, cola y ubicación de cola. Los nueve casos manuales no aparecen en el arreglo.
+UUIDs de servicio, ubicación de cita, cola, ubicación de cola y tipo de visita requerido. Los nueve casos manuales
+no aparecen en el arreglo.
 El distro productivo actual construye `/openmrs/spa/frontend.json` desde el repositorio frontend y todavía no copia
 `spa_config` del paquete de contenido al contenedor web. Hasta que ese ensamblaje cambie, estos mismos valores deben
 permanecer sincronizados en `sihsalus-frontend/config/frontend.json`; el archivo de content funciona como contrato
@@ -157,11 +162,14 @@ empaquetado y no activa por sí solo la configuración en producción.
 - `Enfermera` deja de heredar el contrato clínico, o `Colas Servicio Medico` deja de ser de solo lectura;
 - falta un permiso operativo mínimo o aparece un permiso administrativo prohibido;
 - cambia el UUID, datatype o cardinalidad del número de turno o del vínculo cita-visita;
-- faltan las propiedades globales o cambia la zona horaria;
+- faltan las propiedades globales o cambia la zona horaria declarada; la verificación de `TZ=America/Lima` en la
+  JVM/contenedor corresponde al despliegue, porque Queue 3.0.0 usa `ZoneId.systemDefault()`;
 - una duración base difiere de su único tipo activo;
 - el inventario de mapeos omite un servicio, sugiere una cola para un caso manual, marca como automático un mapeo
-  ambiguo o deja de coincidir por UUID con servicio, cola y ambas ubicaciones.
-- la configuración O3 usa otro atributo, duplica pares o difiere de los seis mapeos automáticos auditados.
+  ambiguo o deja de coincidir por UUID con servicio, cola y ambas ubicaciones;
+- un mapeo automático no referencia un tipo de visita activo o su nombre no coincide con el catálogo;
+- la configuración O3 usa otro atributo, omite el tipo de visita, duplica pares o difiere de los seis mapeos
+  automáticos auditados.
 
 ## Decisiones locales pendientes
 
