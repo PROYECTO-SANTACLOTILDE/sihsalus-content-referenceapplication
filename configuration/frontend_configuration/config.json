@@ -45,5 +45,8 @@
         "requiredVisitTypeUuid": "110001d9-7f3a-4e7b-91a2-580b216a7c42"
       }
     ]
+  },
+  "@sihsalus/esm-patient-chart-app": {
+    "visitPersistenceTokenAttributeTypeUuid": "eb8b793b-f259-451d-9c09-53aa0ffd0d3f"
   }
 }
