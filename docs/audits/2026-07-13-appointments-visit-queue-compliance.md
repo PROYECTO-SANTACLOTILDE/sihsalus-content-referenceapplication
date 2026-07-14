@@ -1,6 +1,6 @@
 # Citas, visitas y colas: alineamiento operativo y normativo
 
-Fecha de revisión: 2026-07-13
+Fecha de revisión: 2026-07-14
 
 ## Alcance
 
@@ -31,8 +31,11 @@ capacidad bajo una supuesta exigencia normativa.
 
 ## Contrato de metadata
 
-- Privilegio operativo: `Manage Appointment Queue Lifecycle`
-  (`ef67b22e-25c8-4d0f-ab6e-427be7f72cc4`).
+- OpenMRS Core: `Add Visits` y `Edit Visits` para crear y cerrar visitas.
+- Queue OMOD: `Get Queues`, `Get Queue Entries` y `Manage Queue Entries` para crear, actualizar, transicionar o
+  cerrar entradas de cola.
+- Appointments OMOD: `View Appointments`, `Manage Appointments` y `Manage Own Appointments` para consultar y
+  cambiar el estado de las citas que corresponden al operador.
 - Privilegio clinico de FUA: `Generate Fua from Visit`
   (`2293389f-8595-491f-b842-5da867f59608`).
 - Atributo de visita: `Número de turno de cola`
@@ -43,13 +46,16 @@ capacidad bajo una supuesta exigencia normativa.
 El atributo es opcional a nivel del modelo de visita porque no toda visita ingresa por una cola. El flujo de check-in
 de citas debe exigir la entrada de cola; otras visitas pueden seguir existiendo sin número de turno.
 
+No existe en OpenMRS Core 2.8.7, Queue OMOD 3.0.0 ni Appointments OMOD 2.1.0 un privilegio o endpoint transaccional
+denominado `Manage Appointment Queue Lifecycle`. Ese privilegio local fue retirado porque no autorizaba ninguna de
+las operaciones oficiales. Sin un OMOD de integración, el frontend debe orquestar los recursos oficiales y permitir
+reintentos; la metadata no convierte las tres escrituras en una única transacción de base de datos.
+
 ## Mínimo privilegio
 
-El privilegio de ciclo de vida se asigna directamente a `Admision`,
-`Application: Register Appointments`, `Application: Gestionar Colas Servicio`, `Personal de Emergencia` y
-`Doctor Consulta Externa`. El rol `Enfermera` lo hereda de `Doctor Consulta Externa`. El rol técnico
-`super admin back privileges` también lo recibe para que la incorporación de un privilegio nuevo no reduzca
-inadvertidamente sus capacidades administrativas.
+`Manage Queue Entries` se asigna directamente solo a `Admision`, `Application: Register Appointments`,
+`Application: Gestionar Colas Servicio`, `Personal de Emergencia`, `Doctor Consulta Externa` y al rol técnico
+`super admin back privileges`. El rol `Enfermera` lo hereda de `Doctor Consulta Externa`.
 
 Los roles operativos reciben los permisos mínimos que requieren para crear visitas o trabajar con colas:
 
@@ -59,29 +65,31 @@ Los roles operativos reciben los permisos mínimos que requieren para crear visi
 - lectura de ubicaciones.
 
 `Admision` y `Application: Register Appointments` conservan `app:home.citas.editar`, pero no reciben
-`app:home.colasAtencion` ni `app:home.colasAtencion.editar`: el componente embebido autoriza el flujo desde Citas
-con el privilegio específico del ciclo de vida, sin otorgar el dashboard ni `Manage Queue Entries` para mutaciones
-genéricas. Tampoco reciben
+`app:home.colasAtencion` ni `app:home.colasAtencion.editar`. Reciben `Manage Queue Entries` porque el POST y las
+transiciones de Queue OMOD 3.0.0 lo exigen cuando el check-in crea la entrada de cola. El privilegio upstream es más
+amplio que la navegación de Citas; por ello su asignación queda limitada a estos roles operativos y el frontend no
+les expone el dashboard general de colas. Tampoco reciben
 `Reset Appointment Status`, `Manage Queues`, gestión de salas ni permisos de purga.
 
 `Application: Gestionar Colas Servicio` conserva su dashboard y la administración de catálogos de colas y salas.
-Recibe `app:home.colasAtencion.editar`, `Manage Queue Entries` y `View Appointments`, pero no `Manage Appointments`: el privilegio de ciclo
-de vida solo le permite completar la cita enlazada al cerrar una entrada. No recibe reinicio de estado ni purga.
-`Colas Servicio Medico` permanece en modo de lectura y no recibe el privilegio de ciclo de vida.
+Recibe `app:home.colasAtencion.editar`, `Manage Queue Entries` y `View Appointments`, pero no `Manage Appointments`:
+cerrar una entrada no cambia por sí solo la cita asociada. No recibe reinicio de estado ni purga.
+`Colas Servicio Medico` permanece en modo de lectura y no recibe `Manage Queue Entries`, edición de visitas ni
+privilegios de configuración o purga.
 
 `Personal de Emergencia` es un rol directo y no hereda `Doctor Consulta Externa`. Puede buscar y registrar
 pacientes, crear y editar la visita, registrar triaje y atención, y crear, actualizar o transicionar entradas de
-cola. El privilegio de ciclo de vida solo se usa si encuentra un registro histórico de emergencia vinculado a una
-cita; las nuevas emergencias continúan como atención inmediata y cola operativa, no como citas programadas. No
-recibe `Manage Appointments`, `Manage Queues`, gestión de salas, reinicio de estados, purga ni borrado de pacientes,
-visitas, encuentros u observaciones.
+cola mediante `Manage Queue Entries`. Las nuevas emergencias continúan como atención inmediata y cola operativa,
+no como citas programadas. No recibe `Manage Appointments`, `Manage Queues`, gestión de salas, reinicio de estados,
+purga ni borrado de pacientes, visitas, encuentros u observaciones.
 
 `Doctor Consulta Externa` y su rol heredero `Enfermera` pueden iniciar y finalizar una atención vinculada desde la
-hoja clínica mediante el privilegio específico. También pueden generar o reintentar la FUA de la visita con
+hoja clínica. Reciben `Manage Queue Entries` porque Queue OMOD 3.0.0 exige ese privilegio tanto para transicionar la
+entrada como para el manejador que la cierra al finalizar una visita activa. También pueden generar o reintentar la
+FUA de la visita con
 `Generate Fua from Visit`, sin recibir `Manage Fua` ni `Update Fua`. La generación conserva un registro pendiente
 por visita antes de invocar al generador externo, de modo que una caída no pierda la trazabilidad ni cree duplicados
-al reintentar. No reciben `Manage Queue Entries`, `Manage Queues` ni permisos de purga: el endpoint de ciclo de vida
-usa una operación interna controlada, mientras las mutaciones genéricas de cola siguen prohibidas para estos roles.
+al reintentar. No reciben `Manage Queues`, gestión de salas ni permisos de purga.
 
 `Digitadores FUA` recibe navegación a la superficie FUA, lectura de visitas y el mismo privilegio estrecho de
 generación porque su bandeja permite generación individual y masiva desde visitas. Conserva los permisos de gestión
@@ -124,11 +132,13 @@ El inventario completo y verificable está en
 
 `.github/scripts/validate_appointment_queue_integrity.py` falla en CI si:
 
-- las asignaciones directas del privilegio difieren de los roles operativos, de emergencia, clínico y
+- reaparece el privilegio local obsoleto en el catálogo o en un rol;
+- las asignaciones directas de `Manage Queue Entries` difieren de los roles operativos, de emergencia, clínico y
   administrativo aprobados;
 - el privilegio estrecho de generación FUA falta en el rol clínico, digitador FUA o rol técnico, aparece en otro
   rol, o el personal clínico recibe administración general de FUA;
-- el personal clínico pierde el ciclo de vida o recibe administración genérica de colas;
+- el personal clínico pierde el permiso oficial para cerrar una cola/visita, o recibe configuración o purga;
+- `Enfermera` deja de heredar el contrato clínico, o `Colas Servicio Medico` deja de ser de solo lectura;
 - falta un permiso operativo mínimo o aparece un permiso administrativo prohibido;
 - cambia el UUID, datatype o cardinalidad del número de turno;
 - faltan las propiedades globales o cambia la zona horaria;

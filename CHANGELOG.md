@@ -8,9 +8,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
-- Alinea el ciclo operativo cita-visita-cola: asigna el privilegio específico a admisión, registro de citas, gestión
-  de colas y personal clínico; médicos y enfermería pueden completar el flujo sin recibir administración genérica
-  de colas, y se mantienen fuera de los roles operativos el reinicio de estados y la purga de datos.
+- Corrige el RBAC de cita-visita-cola para OpenMRS Core y los OMOD oficiales: retira el privilegio local sin
+  consumidor `Manage Appointment Queue Lifecycle` y asigna `Manage Queue Entries` solo a admisión, registro de
+  citas, gestión de colas, emergencia, consulta externa y administración técnica. Conserva fuera de esos roles la
+  configuración de colas, el reinicio de estados y la purga de datos.
 - Añade `Generate Fua from Visit` para que médicos y enfermería generen o reintenten la FUA de una consulta
   finalizada sin recibir `Manage Fua`; alinea además la navegación y lectura de visitas del digitador FUA, y el rol
   técnico de backend conserva la misma capacidad de recuperación.
@@ -29,9 +30,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   de gestión de conceptos.
 
 ### Agregado
-- Agrega el privilegio `Manage Appointment Queue Lifecycle`, el atributo de visita `Número de turno de cola`, sus
-  propiedades globales y una validación CI de RBAC, metadata, duración y mapeo de colas; fija la zona operativa en
-  `America/Lima`.
+- Agrega el atributo de visita `Número de turno de cola`, sus propiedades globales y una validación CI de RBAC con
+  privilegios oficiales, metadata, duración y mapeo de colas; fija la zona operativa en `America/Lima`.
 - Agrega el privilegio estrecho `Generate Fua from Visit` y valida que solo se asigne directamente al rol clínico,
   digitadores FUA y rol técnico de backend.
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en

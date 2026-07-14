@@ -33,7 +33,6 @@ ebd9f8fe-f3f1-4742-91ec-1c23dc2ccb82,Manage Indicator Definitions,Add/Edit/Remov
 6b19d4ee-f6ae-4191-a60f-a70fcef5c461,Manage Scheduled Report Tasks,Manage Task Scheduling in Reporting Module,
 0a12b76e-2175-4eb7-af0b-498129ea1cac,Run Reports,Schedule the running of a report,
 a98c5b27-8d44-42b6-9b84-626cbcc5a227,Manage OrderTemplates,Base privilege for add/edit/delete order templates,
-ef67b22e-25c8-4d0f-ab6e-427be7f72cc4,Manage Appointment Queue Lifecycle,Permite ejecutar de forma coordinada el check-in y check-out de una cita con su visita y entrada de cola.,
 2293389f-8595-491f-b842-5da867f59608,Generate Fua from Visit,Permite generar o reintentar la FUA de una visita finalizada sin otorgar administracion general de FUA.,
 2258e376-e1f9-4e89-a06b-b9fb815bd470,app:home.admision,Permite acceder a las superficies administrativas de admision para buscar y registrar pacientes.,
 151de993-1e40-4fdd-b5fc-22edcfc90008,app:home.citas,Permite ver el home de citas sus tableros y paneles de consulta del modulo.,

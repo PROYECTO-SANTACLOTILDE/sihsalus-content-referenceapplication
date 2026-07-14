@@ -21,8 +21,9 @@ MAPPING_AUDIT_PATH = (
     Path("docs/audits/2026-07-13-appointment-service-queue-mapping.csv")
 )
 
-LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
-LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
+OBSOLETE_LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
+OBSOLETE_LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
+QUEUE_ENTRY_MUTATION_PRIVILEGE = "Manage Queue Entries"
 GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
@@ -38,7 +39,11 @@ CLINICAL_ROLE_NAME = "Doctor Consulta Externa"
 FUA_OPERATOR_ROLE_UUID = "68256ae6-d81c-4ef9-bda9-fc1471022cd3"
 FUA_OPERATOR_ROLE_NAME = "Digitadores FUA"
 SUPER_ADMIN_ROLE_UUID = "227fa2ff-f7ed-49f8-9fec-3ca63814df9e"
-ALLOWED_DIRECT_ASSIGNMENTS = set(TARGET_ROLES) | {
+QUEUE_READER_ROLE_UUID = "7f9a9321-0c35-4130-895c-dbca7401be64"
+QUEUE_READER_ROLE_NAME = "Colas Servicio Medico"
+NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
+NURSE_ROLE_NAME = "Enfermera"
+ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
     CLINICAL_ROLE_UUID,
     SUPER_ADMIN_ROLE_UUID,
 }
@@ -48,7 +53,7 @@ ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS = {
     SUPER_ADMIN_ROLE_UUID,
 }
 COMMON_OPERATIONAL_PRIVILEGES = {
-    LIFECYCLE_PRIVILEGE,
+    QUEUE_ENTRY_MUTATION_PRIVILEGE,
     "Add Visits",
     "Edit Visits",
     "Get Concepts",
@@ -61,10 +66,19 @@ COMMON_OPERATIONAL_PRIVILEGES = {
     "View Locations",
 }
 ROLE_REQUIRED_PRIVILEGES = {
-    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {"app:home.citas.editar"},
-    "75abd7e6-9dcd-446d-8468-04837f314c4f": {"app:home.citas.editar"},
+    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
+        "Manage Appointments",
+        "Manage Own Appointments",
+        "View Appointments",
+        "app:home.citas.editar",
+    },
+    "75abd7e6-9dcd-446d-8468-04837f314c4f": {
+        "Manage Appointments",
+        "Manage Own Appointments",
+        "View Appointments",
+        "app:home.citas.editar",
+    },
     "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": {
-        "Manage Queue Entries",
         "View Appointments",
         "app:home.colasAtencion",
         "app:home.colasAtencion.editar",
@@ -86,7 +100,6 @@ ROLE_REQUIRED_PRIVILEGES = {
         "Get Patient Identifiers",
         "Get Patients",
         "Get People",
-        "Manage Queue Entries",
         "View Encounters",
         "View Forms",
         "View Identifier Types",
@@ -103,7 +116,6 @@ ROLE_FORBIDDEN_PRIVILEGES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
         "Get Global Properties",
         "Manage Queue Rooms",
-        "Manage Queue Entries",
         "Manage Queues",
         "Purge Queue Entries",
         "Purge Queue Rooms",
@@ -115,7 +127,6 @@ ROLE_FORBIDDEN_PRIVILEGES = {
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Get Global Properties",
         "Manage Queue Rooms",
-        "Manage Queue Entries",
         "Manage Queues",
         "Purge Queue Entries",
         "Purge Queue Rooms",
@@ -168,20 +179,16 @@ def split_privileges(value):
 
 def validate_privilege_and_roles(errors):
     privilege_rows = read_csv(PRIVILEGES_PATH)
-    matching_uuid = [
-        row for row in privilege_rows if row["Uuid"] == LIFECYCLE_PRIVILEGE_UUID
+    obsolete_privilege_rows = [
+        row
+        for row in privilege_rows
+        if row["Uuid"] == OBSOLETE_LIFECYCLE_PRIVILEGE_UUID
+        or row["Privilege name"] == OBSOLETE_LIFECYCLE_PRIVILEGE
     ]
-    matching_name = [
-        row for row in privilege_rows if row["Privilege name"] == LIFECYCLE_PRIVILEGE
-    ]
-    if len(matching_uuid) != 1 or len(matching_name) != 1:
+    if obsolete_privilege_rows:
         errors.append(
-            f"{PRIVILEGES_PATH}: lifecycle privilege must have one UUID and one name row"
-        )
-    elif matching_uuid[0] is not matching_name[0]:
-        errors.append(
-            f"{PRIVILEGES_PATH}: {LIFECYCLE_PRIVILEGE!r} must use UUID "
-            f"{LIFECYCLE_PRIVILEGE_UUID}"
+            f"{PRIVILEGES_PATH}: remove obsolete privilege "
+            f"{OBSOLETE_LIFECYCLE_PRIVILEGE!r}; OpenMRS has no endpoint that authorizes it"
         )
 
     matching_fua_uuid = [
@@ -206,17 +213,33 @@ def validate_privilege_and_roles(errors):
             row["_path"] = str(path)
             role_rows.append(row)
 
-    direct_assignments = {
+    obsolete_assignments = {
         row["Uuid"]
         for row in role_rows
-        if LIFECYCLE_PRIVILEGE in split_privileges(row.get("Privileges", ""))
+        if OBSOLETE_LIFECYCLE_PRIVILEGE
+        in split_privileges(row.get("Privileges", ""))
     }
-    if direct_assignments != ALLOWED_DIRECT_ASSIGNMENTS:
+    if obsolete_assignments:
         errors.append(
-            "lifecycle privilege direct assignments must match the approved "
-            "admission, appointment, queue, emergency, clinical, and backend-admin roles; "
-            "found UUIDs: "
-            + ", ".join(sorted(direct_assignments))
+            f"roles: remove obsolete privilege {OBSOLETE_LIFECYCLE_PRIVILEGE!r} from "
+            "role UUIDs: " + ", ".join(sorted(obsolete_assignments))
+        )
+
+    direct_queue_mutation_assignments = {
+        row["Uuid"]
+        for row in role_rows
+        if QUEUE_ENTRY_MUTATION_PRIVILEGE
+        in split_privileges(row.get("Privileges", ""))
+    }
+    if (
+        direct_queue_mutation_assignments
+        != ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS
+    ):
+        errors.append(
+            f"{QUEUE_ENTRY_MUTATION_PRIVILEGE!r} direct assignments must match the "
+            "approved admission, appointment check-in, queue, emergency, clinical, "
+            "and backend-admin roles; found UUIDs: "
+            + ", ".join(sorted(direct_queue_mutation_assignments))
         )
 
     direct_fua_generation_assignments = {
@@ -250,7 +273,7 @@ def validate_privilege_and_roles(errors):
         forbidden = ROLE_FORBIDDEN_PRIVILEGES[role_uuid] & privileges
         if missing:
             errors.append(
-                f"{row['_path']}: {expected_name!r} is missing lifecycle privileges: "
+                f"{row['_path']}: {expected_name!r} is missing workflow privileges: "
                 + ", ".join(sorted(missing))
             )
         if forbidden:
@@ -269,20 +292,23 @@ def validate_privilege_and_roles(errors):
         clinical = clinical_matches[0]
         privileges = split_privileges(clinical["Privileges"])
         required = {
+            "Add Visits",
             GENERATE_FUA_PRIVILEGE,
-            LIFECYCLE_PRIVILEGE,
             "Edit Visits",
             "Get Queue Entries",
             "Get Queues",
             "Get Visits",
             "Manage Appointments",
+            "Manage Own Appointments",
+            QUEUE_ENTRY_MUTATION_PRIVILEGE,
             "Read Fua",
+            "View Appointments",
             "app:hoja.clinica.citas.editar",
         }
         forbidden = {
             "Get Global Properties",
             "Manage Fua",
-            "Manage Queue Entries",
+            "Manage Queue Rooms",
             "Manage Queues",
             "Purge Queue Entries",
             "Update Fua",
@@ -290,7 +316,7 @@ def validate_privilege_and_roles(errors):
         }
         if required - privileges:
             errors.append(
-                f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} is missing lifecycle "
+                f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} is missing workflow "
                 "privileges: " + ", ".join(sorted(required - privileges))
             )
         if forbidden & privileges:
@@ -298,6 +324,65 @@ def validate_privilege_and_roles(errors):
                 f"{clinical['_path']}: {CLINICAL_ROLE_NAME!r} has forbidden queue "
                 "administration privileges: "
                 + ", ".join(sorted(forbidden & privileges))
+            )
+
+    queue_reader_matches = [
+        row for row in role_rows if row["Uuid"] == QUEUE_READER_ROLE_UUID
+    ]
+    if len(queue_reader_matches) != 1:
+        errors.append(
+            f"roles: expected exactly one {QUEUE_READER_ROLE_NAME!r} row with UUID "
+            f"{QUEUE_READER_ROLE_UUID}"
+        )
+    else:
+        queue_reader = queue_reader_matches[0]
+        privileges = split_privileges(queue_reader["Privileges"])
+        required = {
+            "Get Queue Entries",
+            "Get Queue Rooms",
+            "Get Queues",
+            "app:home.colasAtencion",
+        }
+        forbidden = {
+            "Add Visits",
+            "Edit Visits",
+            QUEUE_ENTRY_MUTATION_PRIVILEGE,
+            "Manage Queue Rooms",
+            "Manage Queues",
+            "Purge Queue Entries",
+            "Purge Queue Rooms",
+            "app:home.colasAtencion.editar",
+        }
+        if required - privileges:
+            errors.append(
+                f"{queue_reader['_path']}: {QUEUE_READER_ROLE_NAME!r} is missing "
+                "read-only queue privileges: "
+                + ", ".join(sorted(required - privileges))
+            )
+        if forbidden & privileges:
+            errors.append(
+                f"{queue_reader['_path']}: {QUEUE_READER_ROLE_NAME!r} has forbidden "
+                "queue mutation privileges: "
+                + ", ".join(sorted(forbidden & privileges))
+            )
+
+    nurse_matches = [row for row in role_rows if row["Uuid"] == NURSE_ROLE_UUID]
+    if len(nurse_matches) != 1:
+        errors.append(
+            f"roles: expected exactly one {NURSE_ROLE_NAME!r} row with UUID "
+            f"{NURSE_ROLE_UUID}"
+        )
+    else:
+        nurse = nurse_matches[0]
+        inherited_roles = {
+            role.strip()
+            for role in nurse.get("Inherited roles", "").split(";")
+            if role.strip()
+        }
+        if CLINICAL_ROLE_NAME not in inherited_roles:
+            errors.append(
+                f"{nurse['_path']}: {NURSE_ROLE_NAME!r} must inherit "
+                f"{CLINICAL_ROLE_NAME!r} to preserve visit and queue closure access"
             )
 
     fua_operator_matches = [
@@ -572,7 +657,9 @@ def main():
         return 1
 
     print(
-        f"Validated {len(TARGET_ROLES) + 1} least-privilege lifecycle workflow roles, "
+        f"Validated {len(ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS)} direct official "
+        "queue-mutation assignments, one inherited clinical role, one read-only queue "
+        "role, "
         f"{len(ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS)} narrow FUA generation assignments, "
         "queue-number metadata, "
         f"{aligned_durations} unambiguous durations, {automatic_mappings} automatic "
