@@ -33,13 +33,13 @@ QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
 APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
 
 TARGET_ROLES = {
-    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "Admision",
+    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "SIHSALUS Admision",
     "75abd7e6-9dcd-446d-8468-04837f314c4f": "Application: Register Appointments",
     "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": "Application: Gestionar Colas Servicio",
     "cf627580-0372-47fc-87b6-319d4a4d4973": "Personal de Emergencia",
 }
-CLINICAL_ROLE_UUID = "7a4dd4c0-8f45-49f2-91b8-a4349952d07b"
-CLINICAL_ROLE_NAME = "Doctor Consulta Externa"
+CLINICAL_ROLE_UUID = "e832327b-7fc2-4e64-a527-7e6ae0cdd041"
+CLINICAL_ROLE_NAME = "SIHSALUS Consulta Externa"
 FUA_OPERATOR_ROLE_UUID = "68256ae6-d81c-4ef9-bda9-fc1471022cd3"
 FUA_OPERATOR_ROLE_NAME = "Digitadores FUA"
 SUPER_ADMIN_ROLE_UUID = "227fa2ff-f7ed-49f8-9fec-3ca63814df9e"
@@ -66,7 +66,6 @@ ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
     SUPER_ADMIN_ROLE_UUID,
 }
 ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS = {
-    CLINICAL_ROLE_UUID,
     FUA_OPERATOR_ROLE_UUID,
     SUPER_ADMIN_ROLE_UUID,
 }
@@ -133,14 +132,7 @@ ROLE_REQUIRED_PRIVILEGES = {
 ROLE_FORBIDDEN_PRIVILEGES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
         "Get Global Properties",
-        "Manage Queue Rooms",
-        "Manage Queues",
-        "Purge Queue Entries",
-        "Purge Queue Rooms",
-        "Reset Appointment Status",
         "View Global Properties",
-        "app:home.colasAtencion",
-        "app:home.colasAtencion.editar",
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Get Global Properties",
@@ -297,8 +289,8 @@ def validate_privilege_and_roles(errors):
     }
     if direct_fua_generation_assignments != ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS:
         errors.append(
-            "FUA generation privilege direct assignments must match the approved clinical "
-            "and backend-admin roles; found UUIDs: "
+            "FUA generation privilege direct assignments must match the approved FUA "
+            "operator and backend-admin roles; found UUIDs: "
             + ", ".join(sorted(direct_fua_generation_assignments))
         )
 
@@ -341,7 +333,6 @@ def validate_privilege_and_roles(errors):
         privileges = split_privileges(clinical["Privileges"])
         required = {
             "Add Visits",
-            GENERATE_FUA_PRIVILEGE,
             "Edit Visits",
             "Get Queue Entries",
             "Get Queues",
@@ -349,7 +340,6 @@ def validate_privilege_and_roles(errors):
             "Manage Appointments",
             "Manage Own Appointments",
             QUEUE_ENTRY_MUTATION_PRIVILEGE,
-            "Read Fua",
             "View Appointments",
             "app:hoja.clinica.citas.editar",
         }
