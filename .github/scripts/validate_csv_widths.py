@@ -69,18 +69,18 @@ def main():
             admission_rows = [
                 row
                 for row in rows[1:]
-                if len(row) > role_index and row[role_index] == "Admision"
+                if len(row) > role_index and row[role_index] == "SIHSALUS Admision"
             ]
             if len(admission_rows) != 1:
                 errors.append(
-                    f"{path}: expected exactly one 'Admision' role, "
+                    f"{path}: expected exactly one 'SIHSALUS Admision' role, "
                     f"found {len(admission_rows)}"
                 )
             else:
                 admission_row = admission_rows[0]
                 if admission_row[uuid_index] != ADMISSION_ROLE_UUID:
                     errors.append(
-                        f"{path}: 'Admision' must keep UUID {ADMISSION_ROLE_UUID}"
+                        f"{path}: 'SIHSALUS Admision' must keep UUID {ADMISSION_ROLE_UUID}"
                     )
                 privileges = {
                     privilege.strip()
@@ -90,7 +90,7 @@ def main():
                 missing_privileges = ADMISSION_REQUIRED_PRIVILEGES - privileges
                 if missing_privileges:
                     errors.append(
-                        f"{path}: 'Admision' is missing required privileges: "
+                        f"{path}: 'SIHSALUS Admision' is missing required privileges: "
                         f"{', '.join(sorted(missing_privileges))}"
                     )
 
