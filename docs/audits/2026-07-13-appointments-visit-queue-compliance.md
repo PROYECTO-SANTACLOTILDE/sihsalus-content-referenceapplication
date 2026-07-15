@@ -69,8 +69,8 @@ reintentos; la metadata no convierte las tres escrituras en una única transacci
 ## Mínimo privilegio
 
 `Manage Queue Entries` se asigna directamente solo a `Admision`, `Application: Register Appointments`,
-`Application: Gestionar Colas Servicio`, `Personal de Emergencia`, `Doctor Consulta Externa` y al rol técnico
-`super admin back privileges`. El rol `Enfermera` lo hereda de `Doctor Consulta Externa`.
+`Application: Gestionar Colas Servicio`, `Personal de Emergencia`, `SIHSALUS Consulta Externa` y al rol técnico
+`super admin back privileges`. El rol `Enfermera` lo hereda de `SIHSALUS Consulta Externa`.
 
 Los roles operativos reciben los permisos mínimos que requieren para crear visitas o trabajar con colas:
 
@@ -92,13 +92,13 @@ cerrar una entrada no cambia por sí solo la cita asociada. No recibe reinicio d
 `Colas Servicio Medico` permanece en modo de lectura y no recibe `Manage Queue Entries`, edición de visitas ni
 privilegios de configuración o purga.
 
-`Personal de Emergencia` es un rol directo y no hereda `Doctor Consulta Externa`. Puede buscar y registrar
+`Personal de Emergencia` es un rol directo y no hereda `SIHSALUS Consulta Externa`. Puede buscar y registrar
 pacientes, crear y editar la visita, registrar triaje y atención, y crear, actualizar o transicionar entradas de
 cola mediante `Manage Queue Entries`. Las nuevas emergencias continúan como atención inmediata y cola operativa,
 no como citas programadas. No recibe `Manage Appointments`, `Manage Queues`, gestión de salas, reinicio de estados,
 purga ni borrado de pacientes, visitas, encuentros u observaciones.
 
-`Doctor Consulta Externa` y su rol heredero `Enfermera` pueden iniciar y finalizar una atención vinculada desde la
+`SIHSALUS Consulta Externa` y su rol heredero `Enfermera` pueden iniciar y finalizar una atención vinculada desde la
 hoja clínica. Reciben `Manage Queue Entries` porque Queue OMOD 3.0.0 exige ese privilegio tanto para transicionar la
 entrada como para el manejador que la cierra al finalizar una visita activa. También pueden generar o reintentar la
 FUA de la visita con
