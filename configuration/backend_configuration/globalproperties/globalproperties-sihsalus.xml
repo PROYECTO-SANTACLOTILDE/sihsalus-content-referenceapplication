@@ -80,6 +80,23 @@
         </globalProperty>
 
         <globalProperty>
+            <property>sihsalus.queue.visitQueueNumberAttributeUuid</property>
+            <value>06a0b8c6-cbdf-4b42-9cbd-871129db8758</value>
+            <description>
+                UUID del tipo de atributo de visita usado para conservar el número de turno de
+                cola.
+            </description>
+        </globalProperty>
+
+        <globalProperty>
+            <property>sihsalus.timezone</property>
+            <value>America/Lima</value>
+            <description>
+                Zona horaria operativa de SIH SALUS para citas, visitas y colas.
+            </description>
+        </globalProperty>
+
+        <globalProperty>
             <property>concept.causeOfDeath</property>
             <value>9272a14b-7260-4353-9e5b-5787b5dead9d</value>
         </globalProperty>

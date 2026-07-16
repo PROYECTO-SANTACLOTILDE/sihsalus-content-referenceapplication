@@ -28,6 +28,8 @@ jobs:
         run: python3 .github/scripts/validate_ampath_forms.py
       - name: Validate CSV widths
         run: python3 .github/scripts/validate_csv_widths.py
+      - name: Validate appointment visit queue integrity
+        run: python3 .github/scripts/validate_appointment_queue_integrity.py
       - name: Validate OCL exports
         run: python3 .github/scripts/validate_ocl_exports.py
       - name: Validate reference ranges

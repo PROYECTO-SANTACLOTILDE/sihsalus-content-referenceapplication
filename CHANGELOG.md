@@ -8,12 +8,38 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Corrige el RBAC de cita-visita-cola para OpenMRS Core y los OMOD oficiales: retira el privilegio local sin
+  consumidor `Manage Appointment Queue Lifecycle` y asigna `Manage Queue Entries` solo a admisión, registro de
+  citas, gestión de colas, emergencia, consulta externa y administración técnica. Conserva fuera de esos roles la
+  configuración de colas, el reinicio de estados y la purga de datos.
+- Añade `Generate Fua from Visit` para que médicos y enfermería generen o reintenten la FUA de una consulta
+  finalizada sin recibir `Manage Fua`; alinea además la navegación y lectura de visitas del digitador FUA, y el rol
+  técnico de backend conserva la misma capacidad de recuperación.
+- Define `Personal de Emergencia` como rol operativo directo para búsqueda y alta rápida, visitas, triaje,
+  atención y movimientos de cola. Puede cerrar de forma coordinada registros legados vinculados a citas, sin
+  heredar los permisos amplios de consulta externa ni recibir configuración, purga o borrado clínico.
+- Copia a cada definición de servicio la duración de su único tipo activo, sin inventar horarios ni cupos, y deja
+  auditados seis mapeos automáticos y nueve selecciones manuales entre servicios de cita y colas.
+- Protege `Get Providers` como privilegio requerido del rol `Admision` para que pueda listar doctores y
+  proveedores mediante la API REST.
+- Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
+  paciente, evitando que la pantalla quede vacía por el error `HAPI-0389`.
 - Agrega `Get Concepts` al rol `Admision` para cargar los conjuntos codificados de ocupación, idioma, religión,
   grado de instrucción y etnia durante el registro de pacientes, y valida que conserve `Add Patients`,
   `Edit Patients`, `Get Patient Identifiers` y `Edit Patient Identifiers`; ninguno de estos permisos otorga acceso
   de gestión de conceptos.
 
 ### Agregado
+- Agrega los atributos de visita `Número de turno de cola` y `UUID de cita vinculada`, la propiedad global del
+  número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y mapeos exactos por
+  UUID y tipo de visita; declara `America/Lima` como zona operativa para los consumidores SIHSALUS, conserva UTC
+  en servidor/JVM según la convención de OpenMRS y documenta el corte UTC del correlativo diario de Queue 3.0 como
+  limitación upstream. Exige selección manual sin inferencias por nombre cuando no existe coincidencia inequívoca.
+- Agrega privilegios frontend específicos para la tabla de consultas activas, resumen de consulta, formularios
+  clínicos, canasta de órdenes y lista de tareas. Los asigna a consulta externa y, de forma acotada, a los roles
+  clínicos que ya tenían el acceso funcional equivalente; `Enfermera` los hereda de `Doctor Consulta Externa`.
+- Agrega el privilegio estrecho `Generate Fua from Visit` y valida que solo se asigne directamente al rol clínico,
+  digitadores FUA y rol técnico de backend.
 - Agrega validaciones clínicas de regresión para CRED-001, 009, 010, 011, 015, 026 y 027: exige edad/altitud en
   anemia, trazabilidad de instrumentos resumidos, antropometría escolar y decisiones de desarrollo por edad.
 - Extiende la validación CI de OCL para rechazar mappings sin extremos, fuentes destino incompletas, referencias
@@ -29,6 +55,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Consolida `Hospital Santa Clotilde` como única ubicación de inicio de sesión y conserva las UPSS y salas
+  como ubicaciones asistenciales de citas, colas, visitas, admisión o transferencia según su función, sin
+  modificar la configuración de Casita Azul. Fija además `UPSS - FARMACIA` como ubicación operativa de
+  dispensación y configura `UPSS - CONSULTA EXTERNA` como ubicación prevista para citas CRED, separadas de la
+  instalación usada para iniciar sesión. La generación de citas CRED sigue condicionada a configurar un
+  `credScheduling.appointmentServiceUuid` canónico.
 - Alinea los formularios CRED resumidos con NTS 238 y NTS 213/RM 429-2024: elimina umbrales fijos de anemia,
   identifica el instrumento de salud mental, retira clasificaciones nutricionales semánticamente ambiguas,
   corrige la pauta Huanca y hace auditables los resúmenes EDI y M-CHAT-R/F.
