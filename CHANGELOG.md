@@ -55,6 +55,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Consolida `Hospital Santa Clotilde` como única ubicación de inicio de sesión y conserva las UPSS y salas
+  como ubicaciones asistenciales de citas, colas, visitas, admisión o transferencia según su función, sin
+  modificar la configuración de Casita Azul.
 - Alinea los formularios CRED resumidos con NTS 238 y NTS 213/RM 429-2024: elimina umbrales fijos de anemia,
   identifica el instrumento de salud mental, retira clasificaciones nutricionales semánticamente ambiguas,
   corrige la pauta Huanca y hace auditables los resúmenes EDI y M-CHAT-R/F.
