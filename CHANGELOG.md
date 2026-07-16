@@ -7,6 +7,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Agregado
+- Aprovisiona las dos colas del flujo de emergencia del frontend en `sihsalus-queues.csv`: **Cola de Triaje de
+  Emergencia** (`b1c5bb01-…`, prioridades = nuevo set *Clasificación Pre-Triaje*: Emergencia/Urgencia) y **Cola de
+  Atención de Emergencia** (`ebd44a3d-…`, prioridades = *Sistema de Triaje de Cinco Niveles* con Prioridades I-IV),
+  ambas en UPSS - EMERGENCIA con el set estándar de estados de cola. Sin esto, el flujo de emergencia del frontend
+  solo funcionaba en servidores con colas creadas a mano.
+- Nuevo concepto set `Clasificación Pre-Triaje` (`3f4db8e2-241c-45ef-8e52-cea8dc4118f0`, OCL id 4472) con miembros
+  Emergencia (`e724bdb6-…`) y Urgencia (`89f8fab4-…`), según NT N.° 042-MINSA/DGSP-V.01.
+- Actualiza los exports OCL de `SIHSALUS/sihsalus` a la versión liberada `2026-07-16-01` (4 472 conceptos,
+  5 677 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
+
 ### Corregido
 - Corrige el RBAC de cita-visita-cola para OpenMRS Core y los OMOD oficiales: retira el privilegio local sin
   consumidor `Manage Appointment Queue Lifecycle` y asigna `Manage Queue Entries` solo a admisión, registro de

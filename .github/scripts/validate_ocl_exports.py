@@ -14,7 +14,7 @@ GLOBAL_PROPERTIES_PATH = Path(
     "configuration/backend_configuration/globalproperties/globalproperties-sihsalus.xml"
 )
 EXPECTED_SIHSALUS_SUBSCRIPTION_URL = (
-    "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-10-03"
+    "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-16-01"
 )
 OCCUPATIONS_SOURCE = "ocupaciones"
 OCCUPATIONS_ROOT_URL = "/orgs/SIHSALUS/sources/ocupaciones/concepts/1/"
