@@ -67,26 +67,21 @@ Pediátrico preescolar:
   `ConceptNumeric` incluido en el export OCL. Quedan vacíos cuando el concepto no define ese lado;
   no se derivan de los intervalos normales ni de la NT 042.
 - La frecuencia respiratoria infantil se alinea a la norma separando `0 - <2 meses` y `2 meses - <1 año`.
-- Las 26 filas rotuladas como `gestante` **no están operativas**. Sus criterios llaman
-  `getValueBoolean()` sobre `Actualmente embarazada` (`abaf7d91-...`), pero el export OCL lo
-  publica como datatype `N/A`; OpenMRS Core devuelve `null` para esa llamada. Es una deuda
-  preexistente en `main`, descubierta por esta auditoría, no una regresión introducida por este PR.
-- Esas mismas filas consultan `Edad gestacional` (`0f053bc0-...`), concepto que no escribe ningún
-  formulario bundleado. Siete formularios obstétricos escriben en cambio
-  `Edad gestacional (semanas actuales)` (`1e35f0dd-...`). Ambos conceptos tienen mapping
-  `SAME-AS` a SNOMED CT `57036006`, pero OpenMRS no los trata como la misma pregunta.
+- Las 26 filas rotuladas como `gestante` requieren sexo femenino, una inscripción activa en el
+  programa `Madre Gestante` evaluada en `$date` y una observación previa de
+  `Edad gestacional (semanas actuales)` (`1e35f0dd-...`). Este concepto sí es producido por siete
+  formularios obstétricos. La selección inline de SpEL comprueba null/datatype y ejecuta
+  `getLatestObs` una sola vez por criterio.
+- `Actualmente embarazada` (`abaf7d91-...`) permanece correctamente como respuesta `N/A` de una
+  pregunta coded; ya no se invoca como una pregunta Boolean. Tampoco se usa en estos rangos el
+  duplicado `Edad gestacional` (`0f053bc0-...`), que no tiene productores bundleados.
 - El rango no representa la alternativa de PAD `30 mmHg` sobre el basal ni la condición
   “sin fiebre” de la FR preescolar; el módulo de emergencia debe evaluar esos contextos y el resto
   de criterios de Prioridad I de forma explícita.
-- OpenMRS Core 2.8.7 combinaría campo por campo los límites más estrictos si coincidieran el rango
-  por edad y uno obstétrico. Hoy no sucede porque los 26 criterios obstétricos son inertes. Antes de
-  activarlos también se debe resolver `Critical low == Normal low == 90` en las tres bandas de PAS:
-  Core clasifica `90` como `NORMAL` por orden de evaluación, mientras los helpers actuales del
-  frontend prueban crítico primero.
-- Cada llamada a `$fn.getLatestObs` ejecuta una consulta de observaciones. Si solo se sustituyeran
-  los conceptos sin rediseñar el criterio, las tres bandas de cada uno de los seis signos vitales
-  comunes pueden producir hasta 84 búsquedas de Obs por resolución; hace falta un contrato de
-  episodio o contexto calculado una vez por request.
+- OpenMRS Core 2.8.7 combina campo por campo los límites más estrictos cuando coinciden el rango por
+  edad y uno obstétrico. En las tres bandas de PAS gestante se almacena `Critical low=89` y
+  `Normal low=90`: así `90` es normal y `<90` es crítico para conceptos enteros, sin divergencia por
+  el orden de evaluación de Core.
 
 ## Pendiente
 
@@ -94,11 +89,11 @@ Implementar en el módulo embebido de emergencia un flujo que calcule Prioridad 
 la clasificación completa de la NT 042-MINSA/DGSP-V.01. No se agregará un formulario JSON al
 content package para este flujo. Los rangos de referencia no deben reemplazar esa regla de negocio.
 
-Antes de considerar definitivo el catálogo, corregir y republicar la terminología de embarazo,
-unificar el concepto productor/consumidor de edad gestacional, decidir el borde PAS `90`, hacer
-conscientes de fecha las bandas etarias y definir el inicio/cierre del episodio obstétrico. Un
-registro retrospectivo o un embarazo sin cierre explícito no debe seleccionar rangos del contexto
-equivocado.
+La edad gestacional debe existir antes de guardar el vital y la inscripción `Madre Gestante` debe
+cerrarse al parto o aborto. El motor `getLatestObs` ordena por `dateCreated`, no resuelve la última
+observación dentro del episodio ni “as of” `$date`; por ello los registros retrospectivos y los
+embarazos múltiples requieren un helper backend consciente del episodio antes de considerar
+definitivo el catálogo. Las bandas etarias también deben hacerse conscientes de fecha.
 
 Este candidato estrecha `Absolute high` en 60 filas para alinearlo con los `ConceptNumeric` actuales
 (PAS `250`, PAD `150`, FR `99`, FC `230`, temperatura `47`). Antes de desplegar sobre una base con
