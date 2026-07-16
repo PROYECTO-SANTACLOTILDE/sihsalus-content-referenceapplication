@@ -16,6 +16,11 @@ from pathlib import Path
 repo_root = Path(sys.argv[1])
 range_dir = repo_root / "configuration/backend_configuration/conceptreferencerange"
 ocl_dir = repo_root / "configuration/backend_configuration/ocl"
+programs_path = (
+    repo_root
+    / "configuration/backend_configuration/programs/programs-package-peruhce.csv"
+)
+roles_dir = repo_root / "configuration/backend_configuration/roles"
 
 csv_paths = sorted(range_dir.glob("*.csv"))
 zip_paths = sorted(ocl_dir.glob("*.zip"))
@@ -45,13 +50,15 @@ for zip_path in zip_paths:
             concepts_by_identifier.setdefault(external_id, concept)
 
 errors = []
-warnings = []
 checked = 0
 range_uuids = []
 range_rows_by_label = {}
-inert_pregnancy_criteria = []
+pregnancy_criteria = []
 
 CURRENTLY_PREGNANT_UUID = "abaf7d91-e9cb-4569-ab65-2b2ab8226a2c"
+LEGACY_GESTATIONAL_AGE_UUID = "0f053bc0-1cc4-4114-a08e-f31d18012e0b"
+CANONICAL_GESTATIONAL_AGE_UUID = "1e35f0dd-3bbb-4b45-96fd-2fc590c1b385"
+MATERNAL_PROGRAM_UUID = "3cb4ffd6-1b67-4c52-8398-4bf9844a415e"
 BOOLEAN_OBS_RE = re.compile(
     r'getLatestObs\(\s*["\']([^"\']+)["\']\s*,[^)]*\)\.getValueBoolean\(\)'
 )
@@ -195,35 +202,119 @@ for csv_path in csv_paths:
                 )
 
             criteria = row.get("Criteria") or ""
-            if "gestante" in label.lower() and "getLatestObs" in criteria and "!= null" not in criteria:
-                errors.append(
-                    f"{csv_path}:{line_number}: {label}: gestante criteria must guard "
-                    "getLatestObs(...) with != null"
-                )
+            if (
+                csv_path.name == "conceptreferencerange_vital_signs.csv"
+                and "gestante" in label.lower()
+            ):
+                pregnancy_criteria.append((csv_path, line_number, label, criteria))
+                required_fragments = [
+                    '$patient.getGender().equals("F")',
+                    f'$fn.isEnrolledInProgram("{MATERNAL_PROGRAM_UUID}", $patient, $date)',
+                    f'{{$fn.getLatestObs("{CANONICAL_GESTATIONAL_AGE_UUID}", $patient)}}.?[',
+                    "#this != null",
+                    "#this.getValueNumeric() != null",
+                    "].size() == 1",
+                ]
+                for fragment in required_fragments:
+                    if fragment not in criteria:
+                        errors.append(
+                            f"{csv_path}:{line_number}: {label}: pregnancy criteria "
+                            f"must contain {fragment!r}"
+                        )
+                if criteria.count("getLatestObs(") != 1:
+                    errors.append(
+                        f"{csv_path}:{line_number}: {label}: pregnancy criteria must "
+                        "resolve gestational age exactly once"
+                    )
+                for obsolete_uuid in [CURRENTLY_PREGNANT_UUID, LEGACY_GESTATIONAL_AGE_UUID]:
+                    if obsolete_uuid in criteria:
+                        errors.append(
+                            f"{csv_path}:{line_number}: {label}: pregnancy criteria "
+                            f"must not use obsolete concept {obsolete_uuid}"
+                        )
+
+                if "0 - <14 wks" in label:
+                    expected_band = (
+                        "#this.getValueNumeric() >= 0 && "
+                        "#this.getValueNumeric() < 14"
+                    )
+                elif "14 - <28 wks" in label:
+                    expected_band = (
+                        "#this.getValueNumeric() >= 14 && "
+                        "#this.getValueNumeric() < 28"
+                    )
+                elif "28 - <40 wks" in label:
+                    expected_band = (
+                        "#this.getValueNumeric() >= 28 && "
+                        "#this.getValueNumeric() < 40"
+                    )
+                else:
+                    expected_band = None
+                    errors.append(
+                        f"{csv_path}:{line_number}: {label}: unknown pregnancy band"
+                    )
+                if expected_band and expected_band not in criteria:
+                    errors.append(
+                        f"{csv_path}:{line_number}: {label}: pregnancy criteria "
+                        f"must contain exact band {expected_band!r}"
+                    )
 
             for boolean_concept_uuid in BOOLEAN_OBS_RE.findall(criteria):
                 boolean_concept = concepts_by_identifier.get(boolean_concept_uuid)
                 datatype = boolean_concept.get("datatype") if boolean_concept else None
                 if datatype == "Boolean":
                     continue
-                if boolean_concept_uuid == CURRENTLY_PREGNANT_UUID:
-                    inert_pregnancy_criteria.append((csv_path, line_number, label))
-                else:
-                    errors.append(
-                        f"{csv_path}:{line_number}: {label}: getValueBoolean() references "
-                        f"{boolean_concept_uuid} with OCL datatype {datatype!r}, not Boolean"
-                    )
+                errors.append(
+                    f"{csv_path}:{line_number}: {label}: getValueBoolean() references "
+                    f"{boolean_concept_uuid} with OCL datatype {datatype!r}, not Boolean"
+                )
 
-if inert_pregnancy_criteria:
-    if len(inert_pregnancy_criteria) != 26:
-        errors.append(
-            "Known inert pregnancy-range debt changed unexpectedly: expected 26 "
-            f"getValueBoolean() criteria, found {len(inert_pregnancy_criteria)}"
-        )
-    warnings.append(
-        f"{len(inert_pregnancy_criteria)} pregnancy criteria are inert: "
-        f"{CURRENTLY_PREGNANT_UUID} is bundled as N/A, so Obs.getValueBoolean() returns null"
+if len(pregnancy_criteria) != 26:
+    errors.append(
+        f"Expected exactly 26 operational pregnancy ranges, found {len(pregnancy_criteria)}"
     )
+
+canonical_gestational_age = concepts_by_identifier.get(CANONICAL_GESTATIONAL_AGE_UUID)
+if not canonical_gestational_age or canonical_gestational_age.get("datatype") != "Numeric":
+    errors.append(
+        f"Canonical gestational age {CANONICAL_GESTATIONAL_AGE_UUID} must be an active Numeric concept"
+    )
+
+with programs_path.open(newline="", encoding="utf-8-sig") as handle:
+    maternal_programs = [
+        row
+        for row in csv.DictReader(handle)
+        if (row.get("Uuid") or "").strip() == MATERNAL_PROGRAM_UUID
+        and (row.get("Void/Retire") or "").strip().lower() not in {"true", "1", "yes"}
+    ]
+if len(maternal_programs) != 1:
+    errors.append(
+        f"Expected one active Madre Gestante program {MATERNAL_PROGRAM_UUID}, "
+        f"found {len(maternal_programs)}"
+    )
+
+emergency_roles = []
+for roles_path in sorted(roles_dir.glob("*.csv")):
+    with roles_path.open(newline="", encoding="utf-8-sig") as handle:
+        for row in csv.DictReader(handle):
+            if (row.get("Role name") or "").strip() == "Personal de Emergencia":
+                emergency_roles.append((roles_path, row))
+if len(emergency_roles) != 1:
+    errors.append(
+        f"Expected one Personal de Emergencia role, found {len(emergency_roles)}"
+    )
+else:
+    roles_path, emergency_role = emergency_roles[0]
+    privileges = {
+        privilege.strip()
+        for privilege in (emergency_role.get("Privileges") or "").split(";")
+        if privilege.strip()
+    }
+    if "Get Patient Programs" not in privileges:
+        errors.append(
+            f"{roles_path}: Personal de Emergencia requires Get Patient Programs "
+            "to evaluate pregnancy episode criteria"
+        )
 
 duplicates = [uuid for uuid, count in Counter(uuid for uuid, _, _ in range_uuids).items() if count > 1]
 if duplicates:
@@ -298,6 +389,10 @@ for suffix in adult_labels:
     require_at_most(f"Frecuencia respiratoria {suffix}", "Absolute low", 9)
     require_at_least(f"Frecuencia respiratoria {suffix}", "Absolute high", 36)
 
+for suffix in ["0 - <14 wks", "14 - <28 wks", "28 - <40 wks"]:
+    require_value(f"Presion sistolica gestante {suffix}", "Critical low", 89)
+    require_value(f"Presion sistolica gestante {suffix}", "Normal low", 90)
+
 for label in ["0 - <6 wks", "6 - <1 yrs"]:
     require_value(f"Frecuencia cardiaca {label}", "Critical low", 60)
     require_value(f"Frecuencia cardiaca {label}", "Critical high", 200)
@@ -319,9 +414,6 @@ if errors:
     for error in errors:
         print(f"- {error}", file=sys.stderr)
     raise SystemExit(1)
-
-for warning in warnings:
-    print(f"Reference range validation warning: {warning}", file=sys.stderr)
 
 print(
     f"Validated {checked} reference range rows against "

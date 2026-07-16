@@ -184,20 +184,23 @@ produce varias filas REST, pero sí combina ambos contratos. Se verificó en el 
 - Recurso REST 3.5.0:
   `https://github.com/openmrs/openmrs-module-webservices.rest/blob/3.5.0/omod/src/main/java/org/openmrs/module/webservices/rest/web/v1_0/resource/openmrs2_8/ConceptReferenceRangeResource2_8.java`
 
-Hay un bloqueo previo a cualquier uso obstétrico: las 26 filas `gestante` llaman
-`getValueBoolean()` sobre `Actualmente embarazada` (`abaf7d91-...`), cuyo datatype bundleado es
-`N/A`. `Obs.getValueBoolean()` solo devuelve un valor cuando el concepto es Boolean, por lo que hoy
-esas 26 expresiones siempre son falsas. Además consultan `Edad gestacional` (`0f053bc0-...`), que no
-es escrito por ningún formulario bundleado; siete formularios usan el duplicado `1e35f0dd-...`. Es una
-deuda preexistente en `main` que esta auditoría hace visible; este PR no introdujo esos predicados.
+Las 26 filas `gestante` usan ahora un contrato operativo y fail-closed: sexo femenino, inscripción
+activa en `Madre Gestante` a la fecha del contexto y una observación numérica previa de
+`Edad gestacional (semanas actuales)` (`1e35f0dd-...`), producida por siete formularios. Una lista
+inline de SpEL resuelve esa observación una sola vez por criterio y divide las bandas en
+`[0,14)`, `[14,28)` y `[28,40)`. El marcador `Actualmente embarazada` (`abaf7d91-...`) sigue siendo
+una respuesta coded `N/A`; deja de tratarse incorrectamente como una pregunta Boolean. El UUID
+`0f053bc0-...`, sin productores bundleados, deja de consumirse.
 
-No es seguro arreglarlo sustituyendo UUIDs de forma mecánica. Primero se debe publicar un contrato
-terminológico de embarazo/episodio y unificar el concepto productor/consumidor de edad gestacional.
-Luego hay que resolver la frontera PAS `90`: las tres bandas gestantes tienen
-`Critical low == Normal low == 90`; Core evalúa `NORMAL` antes de `CRITICALLY_LOW`, mientras el
-frontend actual evalúa crítico primero. Los criterios también calculan edad al día de hoy, ignoran
-la fecha clínica y repetirían hasta 84 consultas de Obs para resolver los seis signos vitales
-comunes si se activaran tal como están.
+La frontera PAS gestante también queda inequívoca: `Critical low=89` y `Normal low=90`, codificación
+entera de la regla estricta `<90`. Core y el frontend ya no pueden clasificar `90` de forma distinta
+por el orden de comparación.
+
+El contrato aún exige disciplina de flujo: la edad gestacional debe estar persistida antes del
+vital y la inscripción debe cerrarse al parto/aborto. `getLatestObs` ordena por `dateCreated`, no
+limita por episodio ni por `$date`; un registro retrospectivo o un segundo embarazo necesita un
+helper backend “as of/episode” para quedar resuelto sin ambigüedad. No se modifica manualmente OCL
+ni se migran observaciones históricas en este cambio.
 
 Código oficial relevante:
 
@@ -305,10 +308,11 @@ y normativa antes de modificar terminología o datos.
   acordada; no editar manualmente el ZIP exportado.
 - Resolver clínicamente el concepto y las reglas completas de prioridad de emergencia, incluidos
   los contextos que no caben en `conceptreferencerange`.
-- Hacer conscientes de fecha las bandas etarias y vincular los rangos obstétricos a un episodio
-  activo; corregir antes el datatype de embarazo y unificar el UUID de edad gestacional.
-- Resolver la divergencia de PAS gestante `90`, reducir las llamadas repetidas a `getLatestObs` y
-  auditar observaciones históricas contra los nuevos límites absolutos antes de release.
+- Automatizar el cierre de `Madre Gestante` al parto/aborto y agregar un helper backend que resuelva
+  edad gestacional por episodio y fecha clínica; el criterio actual falla cerrado, pero depende de
+  una observación previamente persistida.
+- Hacer conscientes de fecha las bandas etarias y auditar observaciones históricas contra los
+  nuevos límites absolutos antes de release.
 - Corregir en `esm-service-queues-app` la interpretación inclusiva de límites absolutos; el servidor
   considera válidos los valores exactamente iguales al mínimo o máximo técnico.
 - Mover la validación runtime de SIHSALUS a un gate previo a publicación/merge. El workflow actual

@@ -18,9 +18,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Codifica sin sobreclasificar las fronteras estrictas de Prioridad I de la NT N.° 042 en campos
   críticos inclusivos para valores enteros (`<50` como `low=49`, `>150` como `high=151`, y sus
   equivalentes de presión y frecuencia respiratoria); documenta los contextos que el rango no cubre.
-- Hace explícito que las 26 reglas obstétricas existentes siguen inertes por incompatibilidad entre
-  `getValueBoolean()` y el datatype OCL `N/A`, y que consumen un UUID de edad gestacional distinto
-  del que escriben los formularios. El validador lo reporta como deuda conocida sin simular un fix.
+- Activa las 26 reglas obstétricas mediante la inscripción fechada `Madre Gestante` y el concepto de
+  edad gestacional que sí escriben los formularios. Elimina el uso Boolean inválido de una respuesta
+  `N/A`, resuelve una sola observación por criterio y fija PAS gestante `<90` como crítico (`89` para
+  captura entera), dejando `90` como normal. Otorga a `Personal de Emergencia` únicamente
+  `Get Patient Programs`, requerido por Core para evaluar la inscripción sin ampliar su gestión.
 - Corrige la referencia normativa del tipo de encuentro y del tipo de visita de emergencia a la
   NT N.° 042-MINSA/DGSP-V.01; conserva intacto el tipo histórico mixto `Triaje` para no reetiquetar
   encuentros existentes.
