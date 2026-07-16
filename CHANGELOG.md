@@ -8,6 +8,25 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Documenta y valida el contrato de ubicación de los identificadores con
+  `Location behavior = NOT_USED`: el consumidor debe omitir `identifiers[].location` en vez de
+  enviar `null` o inventar una ubicación de sesión. La implementación del payload corresponde al
+  frontend y queda como requisito de integración para evitar la excepción REST al guardar.
+- Separa límites técnicos de captura y rangos clínicos: alinea los límites absolutos de signos
+  vitales con cada `ConceptNumeric`, admite límites absolutos ausentes y deja vacío el crítico alto
+  de saturación de oxígeno para que la metadata no clasifique `100%` como críticamente alto.
+- Codifica sin sobreclasificar las fronteras estrictas de Prioridad I de la NT N.° 042 en campos
+  críticos inclusivos para valores enteros (`<50` como `low=49`, `>150` como `high=151`, y sus
+  equivalentes de presión y frecuencia respiratoria); documenta los contextos que el rango no cubre.
+- Hace explícito que las 26 reglas obstétricas existentes siguen inertes por incompatibilidad entre
+  `getValueBoolean()` y el datatype OCL `N/A`, y que consumen un UUID de edad gestacional distinto
+  del que escriben los formularios. El validador lo reporta como deuda conocida sin simular un fix.
+- Corrige la referencia normativa del tipo de encuentro y del tipo de visita de emergencia a la
+  NT N.° 042-MINSA/DGSP-V.01; conserva intacto el tipo histórico mixto `Triaje` para no reetiquetar
+  encuentros existentes.
+- Endurece la clasificación de logs de validación para tratar logs con bytes NUL como texto y
+  bloquear también errores de `BaseFileLoader`, incluidos JSON o archivos binarios duplicados y
+  corruptos que no aparecían en el resumen CSV de Initializer; agrega fixtures de regresión en CI.
 - Corrige el RBAC de cita-visita-cola para OpenMRS Core y los OMOD oficiales: retira el privilegio local sin
   consumidor `Manage Appointment Queue Lifecycle` y asigna `Manage Queue Entries` solo a admisión, registro de
   citas, gestión de colas, emergencia, consulta externa y administración técnica. Conserva fuera de esos roles la
@@ -30,6 +49,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   de gestión de conceptos.
 
 ### Agregado
+- Separa el registro longitudinal de signos vitales y antropometría del triaje de emergencia mediante
+  tipos de encuentro y roles de proveedor distintos, sin formularios JSON ni migración automática de
+  históricos. Agrega un contrato de ubicación/RBAC para el frontend y una validación CI de regresión.
 - Agrega los atributos de visita `Número de turno de cola` y `UUID de cita vinculada`, la propiedad global del
   número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y mapeos exactos por
   UUID y tipo de visita; declara `America/Lima` como zona operativa para los consumidores SIHSALUS, conserva UTC
