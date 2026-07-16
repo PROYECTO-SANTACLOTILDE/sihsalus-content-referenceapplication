@@ -10,6 +10,9 @@ LOCATIONS_PATH = CONFIG_DIR / "locations" / "sihsalus-locations.csv"
 ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 HOSPITAL_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b72c1602"
+CASITA_AZUL_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b72c1603"
+CONSULTA_EXTERNA_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
+PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
 ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
 ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Patients",
@@ -72,6 +75,7 @@ def main():
             uuid_index = rows[0].index("Uuid")
             retired_index = rows[0].index("Void/Retire")
             name_index = rows[0].index("Name")
+            parent_index = rows[0].index("Parent")
             active_rows = [
                 row
                 for row in rows[1:]
@@ -121,6 +125,91 @@ def main():
                     f"{path}: Hospital Santa Clotilde must be the only active Login "
                     f"Location; found: {login_locations or 'none'}"
                 )
+
+            active_location_names = {row[name_index] for row in active_rows}
+            for row in active_rows:
+                parent = row[parent_index].strip()
+                if parent and parent not in active_location_names:
+                    errors.append(
+                        f"{path}: active location {row[name_index]} references missing or "
+                        f"retired parent {parent}"
+                    )
+
+            protected_locations = {
+                CASITA_AZUL_LOCATION_UUID: {
+                    "name": "Casita Azul",
+                    "parent": "",
+                    "tags": {
+                        "Tag|Login Location": False,
+                        "Tag|Visit Location": False,
+                        "Tag|Facility Location": True,
+                        "Tag|Queue Location": True,
+                        "Tag|Admission Location": False,
+                        "Tag|Transfer Location": False,
+                        "Tag|Appointment Location": False,
+                    },
+                },
+                CONSULTA_EXTERNA_LOCATION_UUID: {
+                    "name": "UPSS - CONSULTA EXTERNA",
+                    "parent": "Hospital Santa Clotilde",
+                    "tags": {
+                        "Tag|Login Location": False,
+                        "Tag|Visit Location": True,
+                        "Tag|Facility Location": False,
+                        "Tag|Queue Location": True,
+                        "Tag|Admission Location": False,
+                        "Tag|Transfer Location": False,
+                        "Tag|Appointment Location": True,
+                    },
+                },
+            }
+            for location_uuid, expected in protected_locations.items():
+                matching_rows = [row for row in active_rows if row[uuid_index] == location_uuid]
+                if len(matching_rows) != 1:
+                    errors.append(
+                        f"{path}: expected exactly one active {expected['name']} row with "
+                        f"UUID {location_uuid}, found {len(matching_rows)}"
+                    )
+                    continue
+
+                location_row = matching_rows[0]
+                if location_row[name_index] != expected["name"]:
+                    errors.append(
+                        f"{path}: location {location_uuid} must keep the name "
+                        f"{expected['name']!r}"
+                    )
+                if location_row[parent_index] != expected["parent"]:
+                    errors.append(
+                        f"{path}: {expected['name']} must have parent "
+                        f"{expected['parent'] or '<root>'}"
+                    )
+                for column, expected_value in expected["tags"].items():
+                    actual = is_true(location_row[rows[0].index(column)])
+                    if actual != expected_value:
+                        errors.append(
+                            f"{path}: {expected['name']} must have {column}="
+                            f"{'TRUE' if expected_value else 'FALSE'}"
+                        )
+
+            pharmacy_rows = [
+                row for row in active_rows if row[uuid_index] == PHARMACY_LOCATION_UUID
+            ]
+            if len(pharmacy_rows) != 1:
+                errors.append(
+                    f"{path}: expected exactly one active UPSS - FARMACIA row with "
+                    f"UUID {PHARMACY_LOCATION_UUID}, found {len(pharmacy_rows)}"
+                )
+            else:
+                pharmacy_row = pharmacy_rows[0]
+                for column in ("Tag|Visit Location", "Tag|Queue Location"):
+                    if not is_true(pharmacy_row[rows[0].index(column)]):
+                        errors.append(
+                            f"{path}: UPSS - FARMACIA must have {column}=TRUE"
+                        )
+                if is_true(pharmacy_row[login_index]):
+                    errors.append(
+                        f"{path}: UPSS - FARMACIA must not be a Login Location"
+                    )
 
         if path == ROLES_CORE_PATH:
             uuid_index = rows[0].index("Uuid")
