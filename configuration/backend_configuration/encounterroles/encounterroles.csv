@@ -1,7 +1,8 @@
 Uuid,Void/Retire,Name,Description
 a0b03050-c99b-11e0-9572-0800200c9a66,,Unknown,"Encounter role para proveedores heredados sin rol definido"
 240b26f9-dd88-4172-823d-4a8bfeb7841f,,Médico Responsable,"Profesional médico responsable de la atención según Ley N° 29414"
-bd16c32b-6784-45e6-9504-df1cfe0b62e5,,Enfermera de Triaje,"Profesional de enfermería capacitado en clasificación de riesgo según NTS N° 042-MINSA/DGSP (Servicios de Emergencia)"
+bd16c32b-6784-45e6-9504-df1cfe0b62e5,,Enfermera de Triaje,"Profesional de enfermería capacitado en clasificación de riesgo según la NT N° 042-MINSA/DGSP-V.01"
+bebe2266-abbb-4f3c-b28b-a5b47406fff5,,Responsable del registro de signos vitales,"Profesional o personal asistencial responsable de tomar y registrar los signos vitales y mediciones antropométricas en la historia clínica"
 575ba98e-4b6a-40af-b8ca-5516328fd747,,Médico Especialista,"Médico especialista colegiado según requerimiento del caso"
 58eb4671-31b5-45c1-82b5-b7315f4856ae,,Técnico de Enfermería,"Personal técnico capacitado para procedimientos según R.M. N° 310-2021-MINSA"
 80112eb0-fc04-4163-9886-f5dac188c8a0,,Obstetra,"Profesional obstetra para control prenatal y atención del parto (NTS N° 050-MINSA)"

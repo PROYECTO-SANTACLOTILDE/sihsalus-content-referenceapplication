@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.15.4**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.19.0**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -39,7 +39,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.15.4**.
+Versión del paquete: **1.19.0**.
 
 ## Cobertura MINSA (Categoría II)
 
@@ -47,9 +47,11 @@ Este paquete ya incluye formularios para consulta externa, obstetricia, salud me
 
 Cobertura estimada (categoría II-1 / II-2):
 
-1. Cubierto en el paquete de formularios
+1. Cubierto por formularios o metadata de este paquete
    - Atención ambulatoria y consulta externa: `CE-*`, `PSIC-*`
-   - Urgencia: en tipos de encuentro existe en `encountertypes`, pero no hay formulario específico de triaje y atención en `/ampathforms`
+   - Signos vitales y urgencia: metadata y contrato separados para el registro longitudinal del
+     chart, el triaje de emergencia y la atención posterior. La captura debe implementarse en el
+     frontend como módulo embebido; este paquete no agrega un formulario JSON en `/ampathforms`.
    - Obstetricia y neonatal: `OBST-*`, partograma, RN y puerperio
    - Hospitalización: `HOSP-001`, `HOSP-004`, `HOSP-008`, `HOSP-009`, `HOSP-012`, `FormularioEpicrisisMédica`
    - Referencia/contrarreferencia: `CE-REF-*`
@@ -66,7 +68,8 @@ Cobertura estimada (categoría II-1 / II-2):
    - UCI y cirugía/electiva: revisar visittypes y módulos de urgencia/cirugía habilitados
 
 1. Pendientes prioritarios para documentación MINSA por categoría II
-   - Formularios de urgencia (triaje, atención inicial, observación/evolución, reanimación)
+   - Documentación completa de urgencia más allá de la metadata de triaje: atención inicial,
+     observación/evolución y reanimación
    - Formularios quirúrgicos y anestésicos (pre-operatorio, consentimiento, nota operatoria, anestesia, recuperación)
    - Solicitud de laboratorio + toma y trazabilidad de muestra
    - Solicitud e informe de imagen diagnóstica
