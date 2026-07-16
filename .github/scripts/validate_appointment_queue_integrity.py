@@ -31,6 +31,8 @@ GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
 APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
+PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
+CRED_APPOINTMENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 
 TARGET_ROLES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "SIHSALUS Admision",
@@ -723,6 +725,29 @@ def validate_frontend_appointment_config(errors):
     except (OSError, json.JSONDecodeError) as error:
         errors.append(f"{FRONTEND_CONFIG_PATH}: unable to read valid JSON: {error}")
         return 0
+
+    dispensing_config = config.get("@sihsalus/esm-dispensing-app")
+    if not isinstance(dispensing_config, dict):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-dispensing-app object"
+        )
+    elif dispensing_config.get("dispensingLocationUuid") != PHARMACY_LOCATION_UUID:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: dispensingLocationUuid must be "
+            f"{PHARMACY_LOCATION_UUID} (UPSS - FARMACIA)"
+        )
+
+    cred_config = config.get("@sihsalus/esm-crecimiento-desarrollo-app")
+    cred_scheduling = cred_config.get("credScheduling") if isinstance(cred_config, dict) else None
+    if not isinstance(cred_scheduling, dict):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: missing CRED credScheduling configuration"
+        )
+    elif cred_scheduling.get("appointmentLocationUuid") != CRED_APPOINTMENT_LOCATION_UUID:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: CRED appointmentLocationUuid must be "
+            f"{CRED_APPOINTMENT_LOCATION_UUID} (UPSS - CONSULTA EXTERNA)"
+        )
 
     module_config = config.get("@sihsalus/esm-appointments-app")
     if not isinstance(module_config, dict):

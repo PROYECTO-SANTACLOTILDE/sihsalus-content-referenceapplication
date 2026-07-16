@@ -57,7 +57,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Cambiado
 - Consolida `Hospital Santa Clotilde` como única ubicación de inicio de sesión y conserva las UPSS y salas
   como ubicaciones asistenciales de citas, colas, visitas, admisión o transferencia según su función, sin
-  modificar la configuración de Casita Azul.
+  modificar la configuración de Casita Azul. Fija además `UPSS - FARMACIA` como ubicación operativa de
+  dispensación y configura `UPSS - CONSULTA EXTERNA` como ubicación prevista para citas CRED, separadas de la
+  instalación usada para iniciar sesión. La generación de citas CRED sigue condicionada a configurar un
+  `credScheduling.appointmentServiceUuid` canónico.
 - Alinea los formularios CRED resumidos con NTS 238 y NTS 213/RM 429-2024: elimina umbrales fijos de anemia,
   identifica el instrumento de salud mental, retira clasificaciones nutricionales semánticamente ambiguas,
   corrige la pauta Huanca y hace auditables los resúmenes EDI y M-CHAT-R/F.
