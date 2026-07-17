@@ -49,6 +49,13 @@
   "@sihsalus/esm-patient-chart-app": {
     "visitPersistenceTokenAttributeTypeUuid": "eb8b793b-f259-451d-9c09-53aa0ffd0d3f"
   },
+  "@sihsalus/esm-patient-registration-app": {
+    "hiddenPatientIdentifierTypeUuids": [
+      "6ff8b876-0aea-4219-b03f-dfc428ae05f4",
+      "406574d4-396a-4787-9c4e-0bbfa30de39f",
+      "97d1a1f2-6b38-4319-9ea2-46a8763ad671"
+    ]
+  },
   "@sihsalus/esm-dispensing-app": {
     "dispensingLocationUuid": "35d2234e-129a-4c40-abb2-1ae0b2400007"
   },
