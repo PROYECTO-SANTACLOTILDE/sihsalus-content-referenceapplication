@@ -8,6 +8,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Person attribute **Método de Verificación de Seguro** (`bc1e5c92-e46a-4bc9-8cba-d9093a0eb659`, FreeText):
+  traza cómo se verificó la afiliación (manual-web / setisis / siteds), requerido por la
+  verificación SIS manual interina del frontend (sihsalus-frontend PR #623, plan PR #606).
+
+
+### Agregado
 - Catálogo canónico de financiadores (tipología IAFAS/RIAFAS): el set `Tipo de seguro`
   (`6b932638-…`) incorpora **EPS** (`9348006a-…`), **SOAT/AFOCAT** (`08a4d37a-…`),
   **Prepaga de salud** (`3fa0e9a8-…`), **Autoseguro de salud** (`1cf576eb-…`) y
