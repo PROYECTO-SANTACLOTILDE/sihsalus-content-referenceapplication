@@ -474,16 +474,36 @@ def validate_rbac(errors):
 
     if admission is not None:
         admission_effective = effective_privileges(admission)
-        admission_mutations = {
+        admission_clinical_rest = {
             "Add Encounters",
             "Add Observations",
+            "Delete Encounters",
+            "Delete Notes",
+            "Delete Observations",
             "Edit Encounters",
+            "Edit Notes",
             "Edit Observations",
+            "Get Diagnoses",
+            "Get Encounters",
+            "Get Notes",
+            "Get Observations",
+            "View Encounters",
+            "View Observations",
         } & admission_effective
-        if admission_mutations:
+        admission_clinical_ui = {
+            privilege
+            for privilege in admission_effective
+            if privilege == "app:hoja.clinica"
+            or privilege.startswith("app:hoja.clinica.")
+        }
+        admission_clinical_access = (
+            admission_clinical_rest | admission_clinical_ui
+        )
+        if admission_clinical_access:
             errors.append(
-                f"{admission['_path']}: SIHSALUS Admision must not mutate clinical "
-                f"encounters/observations: {', '.join(sorted(admission_mutations))}"
+                f"{admission['_path']}: SIHSALUS Admision must not access clinical "
+                "chart, encounter, note, diagnosis, or observation capabilities: "
+                f"{', '.join(sorted(admission_clinical_access))}"
             )
         location_management = {
             "Manage Locations",

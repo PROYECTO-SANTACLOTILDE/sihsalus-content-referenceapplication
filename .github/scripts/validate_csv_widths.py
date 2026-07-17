@@ -16,12 +16,53 @@ PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
 ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
 ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Patients",
+    "Add Patient Identifiers",
+    "Add People",
+    "Add Relationships",
+    "Add Visits",
+    "Appointments: Invite Providers",
     "Edit Patient Identifiers",
     "Edit Patients",
+    "Edit People",
+    "Edit Relationships",
+    "Edit Visits",
     "Get Concept Sources",
     "Get Concepts",
+    "Get Identifier Types",
+    "Get Location Attribute Types",
+    "Get Locations",
     "Get Patient Identifiers",
+    "Get Patients",
+    "Get People",
+    "Get Person Attribute Types",
     "Get Providers",
+    "Get Queue Entries",
+    "Get Queues",
+    "Get Relationship Types",
+    "Get Relationships",
+    "Get Visit Attribute Types",
+    "Get Visit Types",
+    "Get Visits",
+    "Manage Appointments",
+    "Manage Own Appointments",
+    "Manage Queue Entries",
+    "View Appointment Services",
+    "View Appointments",
+    "View Identifier Types",
+    "View Locations",
+    "View Navigation Menu",
+    "View Patient Identifiers",
+    "View Patients",
+    "View People",
+    "View Person Attribute Types",
+    "View Relationship Types",
+    "View Relationships",
+    "app:home",
+    "app:home.admision",
+    "app:home.citas",
+    "app:home.citas.editar",
+    "app:opciones.busquedaPaciente",
+    "app:opciones.registrarPaciente",
 }
 
 
@@ -115,7 +156,14 @@ def main():
                         )
 
             login_index = rows[0].index("Tag|Login Location")
+            facility_index = rows[0].index("Tag|Facility Location")
             active_login_rows = [row for row in active_rows if is_true(row[login_index])]
+            for row in active_login_rows:
+                if not is_true(row[facility_index]):
+                    errors.append(
+                        f"{path}: active Login Location {row[name_index]} "
+                        f"({row[uuid_index]}) must also be a Facility Location"
+                    )
             active_login_uuids = [row[uuid_index] for row in active_login_rows]
             if active_login_uuids != [HOSPITAL_LOCATION_UUID]:
                 login_locations = ", ".join(
@@ -214,6 +262,7 @@ def main():
         if path == ROLES_CORE_PATH:
             uuid_index = rows[0].index("Uuid")
             role_index = rows[0].index("Role name")
+            inherited_roles_index = rows[0].index("Inherited roles")
             privileges_index = rows[0].index("Privileges")
             admission_rows = [
                 row
@@ -231,6 +280,12 @@ def main():
                     errors.append(
                         f"{path}: 'SIHSALUS Admision' must keep UUID {ADMISSION_ROLE_UUID}"
                     )
+                inherited_roles = admission_row[inherited_roles_index].strip()
+                if inherited_roles:
+                    errors.append(
+                        f"{path}: 'SIHSALUS Admision' must not inherit roles; "
+                        f"found: {inherited_roles}"
+                    )
                 privileges = {
                     privilege.strip()
                     for privilege in admission_row[privileges_index].split(";")
@@ -241,6 +296,12 @@ def main():
                     errors.append(
                         f"{path}: 'SIHSALUS Admision' is missing required privileges: "
                         f"{', '.join(sorted(missing_privileges))}"
+                    )
+                unapproved_privileges = privileges - ADMISSION_REQUIRED_PRIVILEGES
+                if unapproved_privileges:
+                    errors.append(
+                        f"{path}: 'SIHSALUS Admision' has unapproved privileges: "
+                        f"{', '.join(sorted(unapproved_privileges))}"
                     )
 
     if errors:

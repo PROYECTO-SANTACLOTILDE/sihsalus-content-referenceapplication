@@ -85,6 +85,9 @@ transiciones de Queue OMOD 3.0.0 lo exigen cuando el check-in crea la entrada de
 amplio que la navegación de Citas; por ello su asignación queda limitada a estos roles operativos y el frontend no
 les expone el dashboard general de colas. Tampoco reciben
 `Reset Appointment Status`, `Manage Queues`, gestión de salas ni permisos de purga.
+La ubicación operativa proviene de la cita y de su mapeo exacto a cola; la ubicación de sesión identifica la
+instalación de login y no reemplaza ese destino. El flujo de check-in muestra la ubicación derivada como solo lectura
+y no ofrece a Admisión un selector de ubicación de cola.
 
 `Application: Gestionar Colas Servicio` conserva su dashboard y la administración de catálogos de colas y salas.
 Recibe `app:home.colasAtencion.editar`, `Manage Queue Entries` y `View Appointments`, pero no `Manage Appointments`:
