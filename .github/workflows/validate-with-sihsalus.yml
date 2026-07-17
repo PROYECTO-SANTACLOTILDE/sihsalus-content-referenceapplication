@@ -16,7 +16,7 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 100
     steps:
       - name: Checkout content package
         uses: actions/checkout@v4
@@ -38,11 +38,11 @@ jobs:
       - name: Verify content package is published
         run: |
           URL="https://repo1.maven.org/maven2/io/github/proyecto-santaclotilde/sihsalus-content/${{ steps.content.outputs.version }}/sihsalus-content-${{ steps.content.outputs.version }}.zip"
-          for attempt in $(seq 1 30); do
+          for attempt in $(seq 1 90); do
             if curl -fsI "$URL"; then
               exit 0
             fi
-            echo "Content package is not available yet in Maven Central; retry ${attempt}/30."
+            echo "Content package is not available yet in Maven Central; retry ${attempt}/90."
             sleep 30
           done
           echo "Content package did not become available in Maven Central: $URL"
