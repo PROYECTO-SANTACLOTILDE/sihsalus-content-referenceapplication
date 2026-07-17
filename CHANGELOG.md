@@ -15,10 +15,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   solo funcionaba en servidores con colas creadas a mano.
 - Nuevo concepto set `Clasificación Pre-Triaje` (`3f4db8e2-241c-45ef-8e52-cea8dc4118f0`, OCL id 4472) con miembros
   Emergencia (`e724bdb6-…`) y Urgencia (`89f8fab4-…`), según NT N.° 042-MINSA/DGSP-V.01.
-- Actualiza los exports OCL de `SIHSALUS/sihsalus` a la versión liberada `2026-07-16-01` (4 472 conceptos,
-  5 677 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
+- Actualiza los exports OCL de `SIHSALUS/sihsalus` a la versión liberada `2026-07-16-02` (4 472 conceptos,
+  5 679 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
 
 ### Corregido
+- Cura el set OCL `Signos Vitales` para que sus 13 miembros activos coincidan con el contrato longitudinal:
+  reutiliza los conceptos numéricos existentes de perímetro abdominal y torácico, y retira del set Karnofsky
+  y las cuatro observaciones Glasgow sin eliminar su historia ni crear conceptos duplicados.
 - Documenta y valida el contrato de ubicación de los identificadores con
   `Location behavior = NOT_USED`: el consumidor debe omitir `identifiers[].location` en vez de
   enviar `null` o inventar una ubicación de sesión. La implementación del payload corresponde al

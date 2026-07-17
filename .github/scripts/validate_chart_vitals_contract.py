@@ -116,24 +116,10 @@ CHART_CONTEXT_OBSERVATION_CONCEPT_UUIDS = (
 )
 
 VITAL_SIGNS_SET_UUID = "1114AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-EXPECTED_VITAL_SIGNS_SET_MEMBERS = {
-    "5242AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "c4d39248-c896-433a-bc69-e24d04b7f0e5",
-    "5283AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5088AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5092AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5087AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5086AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "5085AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "7e540048-19b4-4261-af10-3b20712a92ef",
-    "67f9449e-e7ef-436c-9eb7-837b5afe30e4",
-    "98bfda0d-2a22-4ca4-8bc9-b0b6c6505899",
-    "9ba86e50-a4fd-48b7-b8b2-f537fde5a382",
-}
+EXPECTED_VITAL_SIGNS_SET_MEMBERS = set(
+    CHART_NUMERIC_OBSERVATION_CONCEPT_UUIDS
+    + CHART_CONTEXT_OBSERVATION_CONCEPT_UUIDS
+)
 
 FORBIDDEN_CHART_CONCEPT_UUIDS = {
     "5283AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -635,6 +621,7 @@ def validate_ocl_chart_contract(errors):
         if (
             mapping.get("map_type") != "CONCEPT-SET"
             or mapping.get("from_concept_url") != set_url
+            or mapping.get("retired") is True
         ):
             continue
         member_url = mapping.get("to_concept_url")
@@ -653,7 +640,7 @@ def validate_ocl_chart_contract(errors):
         missing = EXPECTED_VITAL_SIGNS_SET_MEMBERS - actual_members
         extra = actual_members - EXPECTED_VITAL_SIGNS_SET_MEMBERS
         errors.append(
-            "OCL: Signos Vitales membership debt changed without updating the contract; "
+            "OCL: Signos Vitales active membership must match the chart contract; "
             f"missing={sorted(missing)}, extra={sorted(extra)}"
         )
 
@@ -805,8 +792,8 @@ def main():
 
     print(
         "Validated chart-vitals/emergency encounter separation, RBAC, identifier/"
-        "encounter location invariants, explicit observation allowlists, OCL set "
-        "debt, and zero JSON-form coupling."
+        "encounter location invariants, explicit observation allowlists, curated OCL "
+        "set membership, and zero JSON-form coupling."
     )
 
 
