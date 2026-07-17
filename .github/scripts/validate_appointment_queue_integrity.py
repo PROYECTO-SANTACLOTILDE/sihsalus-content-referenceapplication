@@ -52,6 +52,7 @@ NURSE_ROLE_NAME = "Enfermera"
 FRONTEND_UI_PRIVILEGES = {
     "app:home.tabla.consultas.activas": "4cbcf36e-ea9b-4b55-86eb-5e5061922410",
     "app:hoja.clinica.resumenConsulta": "017238da-7b23-48ae-934e-f8eb1835d39a",
+    "app:hoja.clinica.resumenConsulta.editar": "7e6ad9c9-3842-4a99-95ba-bb16fa2a7bfd",
     "app:hoja.clinica.formulariosClinicos": "b3e9c57b-82a9-4d27-a568-763bd7ac1918",
     "app:hoja.clinica.canastaOrdenes": "4fe1d19e-615e-4b0b-ac16-68ad57ef61d0",
     "app:hoja.clinica.listaTareas": "1314dc5d-e183-4787-8400-67c98d11b870",
@@ -133,8 +134,38 @@ ROLE_REQUIRED_PRIVILEGES = {
 }
 ROLE_FORBIDDEN_PRIVILEGES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
+        "Add HL7 Inbound Queue",
+        "Configure Visits",
+        "Delete Visits",
         "Get Global Properties",
+        "Get HL7 Inbound Queue",
+        "Get Observations",
+        "Get Patient Programs",
+        "Get Provider Attribute Types",
+        "Get Provider Roles",
+        "Get Queue Rooms",
+        "Manage Appointment Services",
+        "Manage Appointment Specialities",
+        "Manage Queue Rooms",
+        "Manage Queues",
+        "Manage Visit Attribute Types",
+        "Manage Visit Types",
+        "Purge Queue Entries",
+        "Purge Queue Rooms",
+        "Purge Queues",
+        "Reset Appointment Status",
         "View Global Properties",
+        "app:appointments:manageServiceAvailability",
+        "app:appointments:manageServices",
+        "app:hoja.clinica",
+        "app:hoja.clinica.citas",
+        "app:hoja.clinica.citas.editar",
+        "app:hoja.clinica.resumen",
+        "app:hoja.clinica.visitas",
+        "app:hoja.clinica.visitas.editar",
+        "app:home.colasAtencion",
+        "app:home.colasAtencion.editar",
+        "app:home.editar",
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Get Global Properties",
@@ -240,6 +271,25 @@ def validate_privilege_and_roles(errors):
             row["_path"] = str(path)
             role_rows.append(row)
 
+    roles_by_name = {row["Role name"]: row for row in role_rows}
+    effective_privilege_cache = {}
+
+    def effective_privileges(role, stack=()):
+        role_uuid = role.get("Uuid")
+        if role_uuid in effective_privilege_cache:
+            return effective_privilege_cache[role_uuid]
+        role_name = role.get("Role name", "")
+        if role_name in stack:
+            return set()
+
+        privileges = split_privileges(role.get("Privileges", ""))
+        for inherited_name in split_privileges(role.get("Inherited roles", "")):
+            inherited = roles_by_name.get(inherited_name)
+            if inherited is not None:
+                privileges |= effective_privileges(inherited, (*stack, role_name))
+        effective_privilege_cache[role_uuid] = privileges
+        return privileges
+
     for role_uuid, required_privileges in FRONTEND_UI_ROLE_GRANTS.items():
         matching_roles = [row for row in role_rows if row["Uuid"] == role_uuid]
         if len(matching_roles) != 1:
@@ -309,7 +359,7 @@ def validate_privilege_and_roles(errors):
             errors.append(
                 f"{row['_path']}: role UUID {role_uuid} must be named {expected_name!r}"
             )
-        privileges = split_privileges(row["Privileges"])
+        privileges = effective_privileges(row)
         required = COMMON_OPERATIONAL_PRIVILEGES | ROLE_REQUIRED_PRIVILEGES[role_uuid]
         missing = required - privileges
         forbidden = ROLE_FORBIDDEN_PRIVILEGES[role_uuid] & privileges

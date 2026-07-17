@@ -91,10 +91,11 @@ cambia explícitamente su `Location behavior` y se versiona un contrato distinto
 
 ### Límite de enforcement para visitas
 
-`SIHSALUS Admision` conserva `Edit Visits` y `Configure Visits` porque necesita operar el ciclo de
-la visita. REST no ofrece un privilegio separado por campo y permite actualizar `visit.location`
-con esa capacidad. Por tanto, el content package no puede garantizar por sí solo la inmutabilidad
-de ese campo sin retirar funciones legítimas de admisión.
+`SIHSALUS Admision` conserva `Add Visits` y `Edit Visits` porque necesita operar el ciclo de la
+visita durante el check-in. No recibe `Configure Visits`, administración de tipos de visita ni
+privilegios del chart. REST no ofrece un privilegio separado por campo y `Edit Visits` permite
+actualizar `visit.location`; por tanto, el content package no puede garantizar por sí solo la
+inmutabilidad de ese campo sin retirar funciones legítimas de admisión.
 
 El frontend debe ocultar el selector, preservar la ubicación original en toda actualización y
 cubrirlo con pruebas E2E. Si se requiere enforcement incluso contra llamadas REST directas, hace
