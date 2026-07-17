@@ -98,6 +98,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Agrega privilegios de frontend para admision (`app:adt`), citas, colas, modulos operativos del home, vacunacion independiente (`app:immunization`, `app:immunization.edit`) y FUA (`Fua Privilege`, `Read Fua`, `Manage Fua`, `Update Fua`), junto con roles de navegacion operativa y roles de vacunacion de lectura y edicion.
 
 ### Cambiado
+- Presenta el identificador interoperable `DIE` como cédula de identidad emitida por el país de origen en la
+  experiencia de registro, sin cambiar su UUID ni el concepto OCL. Conserva el código canónico de
+  **Documento de Identidad Extranjero** definido por SUSALUD/RENHICE y deja explícito que su formato depende
+  del país emisor.
 - Consolida `Hospital Santa Clotilde` como única ubicación de inicio de sesión y conserva las UPSS y salas
   como ubicaciones asistenciales de citas, colas, visitas, admisión o transferencia según su función, sin
   modificar la configuración de Casita Azul. Fija además `UPSS - FARMACIA` como ubicación operativa de
