@@ -65,28 +65,44 @@
                 "concept": "6b932638-242e-49ef-8ba7-0ae87199835c",
                 "answers": [
                   {
-                    "concept": "b61a9ff9-1485-4388-9f67-9c341f847f85",
-                    "label": "SIS Gratuito"
-                  },
-                  {
-                    "concept": "e43e0a71-0b5d-4fc2-b599-a76e4562ae5a",
-                    "label": "SIS Semicontributivo"
-                  },
-                  {
-                    "concept": "cc6958d9-7948-4f29-b244-4ff896c0b2ee",
-                    "label": "SIS Emprendedor"
+                    "concept": "97c6e901-7570-4ab8-a9c0-9cf2b0f5bc0c",
+                    "label": "Seguro Integral de Salud (SIS)"
                   },
                   {
                     "concept": "f38b048f-ee8b-4244-b3eb-a47a34c38f04",
-                    "label": "ESSALUD"
+                    "label": "EsSalud"
+                  },
+                  {
+                    "concept": "9348006a-0ed8-4251-a848-8045af20d4ed",
+                    "label": "EPS (Entidad Prestadora de Salud)"
+                  },
+                  {
+                    "concept": "ec420364-fde1-452d-9c48-fafb4ea73a58",
+                    "label": "Seguro privado"
+                  },
+                  {
+                    "concept": "3fa0e9a8-c351-4ae8-89ff-bc93e653bf4b",
+                    "label": "Prepaga de salud"
+                  },
+                  {
+                    "concept": "1cf576eb-be4b-46d9-9096-faed5ddd28d7",
+                    "label": "Autoseguro de salud"
+                  },
+                  {
+                    "concept": "08a4d37a-a420-4292-8fb7-39e968934c92",
+                    "label": "SOAT / AFOCAT"
+                  },
+                  {
+                    "concept": "e94d4d1a-6959-4ba2-ab4b-aac3027b41e9",
+                    "label": "Sanidad de las Fuerzas Armadas"
                   },
                   {
                     "concept": "4e4f62f9-2171-4eef-8d67-1c7edc7735a8",
                     "label": "FOSPOLI"
                   },
                   {
-                    "concept": "ec420364-fde1-452d-9c48-fafb4ea73a58",
-                    "label": "Seguro privado"
+                    "concept": "cc72568e-d0d9-46a8-a618-91f0d679f518",
+                    "label": "Particular / Sin seguro"
                   }
                 ]
               },

@@ -1,5 +1,5 @@
 Uuid,Void/Retire,Entity name,Name,Description,Min occurs,Max occurs,Datatype classname,Datatype config,Preferred handler classname,Handler config,_order:1000
-3a988e33-a6c0-4b76-b924-01abb998944b,,Visit,Financiador,"El esquema de seguro que el paciente usa para cubrir los servicios de salud (se espera un UUID).",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,355ee63a-a773-47ab-9841-2505b71dec13,,,
+3a988e33-a6c0-4b76-b924-01abb998944b,,Visit,Financiador,"El esquema de seguro que el paciente usa para cubrir los servicios de salud (se espera un UUID).",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,6b932638-242e-49ef-8ba7-0ae87199835c,,,
 aac48226-d143-4274-80e0-264db4e368ee,,Visit,Número de Seguro,"Número de la póliza de seguro de salud del paciente.",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
 5e13e902-2030-4f65-b9d5-9a4810c9a603,,Visit,Estado de Acreditación SIS,"Estado de acreditación SIS usado para la atención o FUA de esta visita.",0,1,org.openmrs.customdatatype.datatype.ConceptDatatype,9b3df0a1-0c58-4f55-9868-9c38f1db2005,,,
 8c406bf8-d808-4b0b-9487-441f19537867,,Visit,Código de Tipo de Seguro SIS,"Código de tipo de seguro SIS (reportado por SETISIS: 01, 02, 03 o 04) usado para la atención o FUA de esta visita.",0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,
