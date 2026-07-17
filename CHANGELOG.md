@@ -8,6 +8,28 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Catálogo canónico de financiadores (tipología IAFAS/RIAFAS): el set `Tipo de seguro`
+  (`6b932638-…`) incorpora **EPS** (`9348006a-…`), **SOAT/AFOCAT** (`08a4d37a-…`),
+  **Prepaga de salud** (`3fa0e9a8-…`), **Autoseguro de salud** (`1cf576eb-…`) y
+  **Sanidad de las Fuerzas Armadas** (`e94d4d1a-…`). FOSPOLI se mantiene como IAFAS policial.
+- Nueva pregunta **`Producto SIS`** (`72b9edbf-1ec8-4b1a-8957-b1597aab8757`) con respuestas
+  SIS Gratuito, SIS Semicontributivo (legado), SIS Emprendedor, **SIS Para Todos**
+  (`b23298e2-…`), **SIS Independiente** (`efd89ed6-…`) y **SIS Microempresas** (`dc8cbea7-…`),
+  con la codificación FUA (2/3/E/9/R/8) documentada en las descripciones.
+- Exports OCL de `SIHSALUS/seguros` actualizados a la versión liberada `2026-07-17-01`
+  (25 conceptos, 33 mapeos).
+
+### Cambiado
+- Los productos SIS (Gratuito/Semicontributivo/Emprendedor) **dejan el primer nivel** de
+  `Tipo de seguro` (mapeos retirados) y pasan a ser respuestas de `Producto SIS`: el
+  financiador es SIS y el producto se registra por separado.
+
+### Corregido
+- El visit attribute **`Financiador`** (`3a988e33-…`) apuntaba al concepto inexistente
+  `355ee63a-…`; ahora referencia el set canónico `Tipo de seguro` (`6b932638-…`), con lo
+  que el atributo de visita vuelve a ser utilizable por admisión, facturación y FUA.
+
+### Agregado
 - Aprovisiona las dos colas del flujo de emergencia del frontend en `sihsalus-queues.csv`: **Cola de Triaje de
   Emergencia** (`b1c5bb01-…`, prioridades = nuevo set *Clasificación Pre-Triaje*: Emergencia/Urgencia) y **Cola de
   Atención de Emergencia** (`ebd44a3d-…`, prioridades = *Sistema de Triaje de Cinco Niveles* con Prioridades I-IV),
