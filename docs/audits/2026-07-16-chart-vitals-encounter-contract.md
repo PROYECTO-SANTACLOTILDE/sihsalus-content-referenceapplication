@@ -288,24 +288,22 @@ en este paquete, pero eso no las autoriza automáticamente en el encuentro gené
 permanecer en un flujo obstétrico con contrato propio. Del mismo modo, disponer de un rango no hace
 que un concepto pertenezca a este tipo de encuentro.
 
-El set OCL `Signos Vitales` no es todavía un contrato seguro para el chart: contiene Karnofsky y
-cuatro membresías de Glasgow además de la nota general, y omite los perímetros abdominal y torácico
-de la allowlist numérica. Los tres conceptos obstétricos con rangos tampoco pertenecen a ese set ni
-al contrato genérico del chart. La limpieza del set requiere una nueva publicación OCL y no se
-resuelve editando manualmente un ZIP exportado.
+La release OCL `2026-07-16-02` deja `Signos Vitales` alineado con el contrato longitudinal: sus 13
+miembros activos son los 12 conceptos numéricos de la allowlist y la nota general. Reutiliza los
+conceptos existentes de perímetro abdominal y torácico; Karnofsky y las cuatro observaciones de
+Glasgow quedan retirados únicamente de este set y conservan su historia y sus flujos propios. Los
+tres conceptos obstétricos con rangos tampoco pertenecen al set ni al contrato genérico del chart.
 
 Tampoco se fija todavía un concepto de prioridad: el paquete contiene un valor binario de cola, un
 set de cinco niveles y documentación histórica I-IV. Esa decisión requiere una resolución clínica
 y normativa antes de modificar terminología o datos.
 
-## Deuda explícita antes de un merge definitivo
+## Deuda explícita restante
 
 - Implementar en `sihsalus-frontend` el payload sin `identifiers[].location`, la ubicación del
   encuentro derivada de la visita y las allowlists separadas, con aserciones de red en Playwright.
 - Añadir un validador o política backend si “admisión nunca cambia `visit.location`” también debe
   resistir llamadas REST directas; el content package solo puede garantizar RBAC por recurso.
-- Republicar el set OCL `Signos Vitales` sin Karnofsky/Glasgow y con la membresía longitudinal
-  acordada; no editar manualmente el ZIP exportado.
 - Resolver clínicamente el concepto y las reglas completas de prioridad de emergencia, incluidos
   los contextos que no caben en `conceptreferencerange`.
 - Automatizar el cierre de `Madre Gestante` al parto/aborto y agregar un helper backend que resuelva
