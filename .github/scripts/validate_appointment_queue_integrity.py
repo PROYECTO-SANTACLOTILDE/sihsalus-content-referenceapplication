@@ -665,6 +665,7 @@ def validate_documented_queue_mapping(errors):
         )
 
     automatic_pairs = set()
+    exact_automatic_pairs = set()
     manual_count = 0
     for service_uuid, rows in rows_by_service.items():
         if len(rows) != 1 or service_uuid not in definitions:
@@ -691,23 +692,38 @@ def validate_documented_queue_mapping(errors):
         resolution = row["Resolution"]
         queue_uuid = row["Queue Uuid"]
         queue = queues.get(queue_uuid) if queue_uuid else None
-        if resolution == "automatic":
+        if resolution in {"automatic", "automatic-shared"}:
             if queue is None:
                 errors.append(
                     f"{MAPPING_AUDIT_PATH}: automatic mapping for {definition['Name']!r} "
                     "must reference an active queue"
                 )
                 continue
-            exact_matches = [
-                candidate
-                for candidate in queues.values()
-                if candidate["Service"] == service_uuid
-                and candidate["Location"] == definition["Location"]
-            ]
-            if len(exact_matches) != 1 or exact_matches[0]["Uuid"] != queue_uuid:
+            if queue["Location"] != definition["Location"]:
                 errors.append(
                     f"{MAPPING_AUDIT_PATH}: automatic mapping for {definition['Name']!r} "
-                    "must be the unique queue with the same service UUID and location"
+                    "must use a queue in the appointment location"
+                )
+            if resolution == "automatic":
+                exact_matches = [
+                    candidate
+                    for candidate in queues.values()
+                    if candidate["Service"] == service_uuid
+                    and candidate["Location"] == definition["Location"]
+                ]
+                if len(exact_matches) != 1 or exact_matches[0]["Uuid"] != queue_uuid:
+                    errors.append(
+                        f"{MAPPING_AUDIT_PATH}: automatic mapping for "
+                        f"{definition['Name']!r} must be the unique queue with the same "
+                        "service UUID and location"
+                    )
+                exact_automatic_pairs.add(
+                    (
+                        service_uuid,
+                        definition["Location"],
+                        queue_uuid,
+                        queue["Location"],
+                    )
                 )
             if row["Queue"] != queue["Name"]:
                 errors.append(
@@ -756,9 +772,9 @@ def validate_documented_queue_mapping(errors):
         if queue["Service"] == definition_uuid
         and queue["Location"] == definition["Location"]
     }
-    if automatic_pairs != configured_exact_pairs:
+    if exact_automatic_pairs != configured_exact_pairs:
         errors.append(
-            f"{MAPPING_AUDIT_PATH}: documented automatic mappings do not match the "
+            f"{MAPPING_AUDIT_PATH}: documented exact automatic mappings do not match the "
             "configured service-and-location pairs"
         )
     if not automatic_pairs or not manual_count:
@@ -828,7 +844,9 @@ def validate_frontend_appointment_config(errors):
         if not is_retired(row["Void/Retire"])
     }
     automatic_audit_rows = [
-        row for row in read_csv(MAPPING_AUDIT_PATH) if row["Resolution"] == "automatic"
+        row
+        for row in read_csv(MAPPING_AUDIT_PATH)
+        if row["Resolution"] in {"automatic", "automatic-shared"}
     ]
     for row in automatic_audit_rows:
         visit_type_uuid = row["Required Visit Type Uuid"]

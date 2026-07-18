@@ -132,26 +132,29 @@ requieren aprobación local. La duración existente tampoco se declara como dura
 
 ## Mapeo de servicio de cita a cola
 
-La preselección automática solo es segura cuando existe una única cola cuyo concepto de servicio y ubicación son
-idénticos a los del servicio de cita. Con la configuración actual hay seis mapeos automáticos:
+La preselección automática se infiere solo cuando existe una única cola cuyo concepto de servicio y ubicación son
+idénticos a los del servicio de cita. También puede existir una asignación compartida explícita cuando el
+establecimiento aprueba que varios servicios usen la misma cola dentro de una UPSS y cada uno conserva su tipo de
+visita. Con la configuración actual hay seis mapeos exactos y uno compartido:
 
 - Consulta ambulatoria por médico general -> Cola de Consulta Externa.
+- Atención ambulatoria por cirujano dentista -> Cola de Consulta Externa (asignación compartida explícita).
 - Atención ambulatoria por obstetra -> Cola de Centro Obstétrico.
 - Hospitalización de Cirugía General -> Cola de Centro Quirúrgico.
 - Procedimientos de Laboratorio Clínico Tipo II-1 -> Cola de Laboratorio.
 - Ecografía general y Doppler -> Cola de Diagnóstico por Imágenes.
 - Atención en farmacia clínica -> Cola de Farmacia.
 
-Los otros nueve servicios requieren selección explícita. Rehabilitación, hemodiálisis y nutrición usan conceptos de
-servicio distintos a los de las colas disponibles; los otros seis no tienen una cola exacta configurada. El
+Los otros ocho servicios requieren selección explícita. Rehabilitación, hemodiálisis y nutrición usan conceptos de
+servicio distintos a los de las colas disponibles; los otros cinco no tienen una cola exacta configurada. El
 inventario deja vacíos sus campos de cola: no infiere equivalencias por nombre y tampoco usa la ubicación como
 fallback, porque una ubicación puede contener varias colas.
 
 El inventario completo y verificable está en
 [`2026-07-13-appointment-service-queue-mapping.csv`](2026-07-13-appointment-service-queue-mapping.csv).
-Los seis pares automáticos se publican también en
+Los siete pares automáticos se publican también en
 [`configuration/frontend_configuration/config.json`](../../configuration/frontend_configuration/config.json) con
-UUIDs de servicio, ubicación de cita, cola, ubicación de cola y tipo de visita requerido. Los nueve casos manuales
+UUIDs de servicio, ubicación de cita, cola, ubicación de cola y tipo de visita requerido. Los ocho casos manuales
 no aparecen en el arreglo. El frontend fija la ubicación de cola a la ubicación de la cita antes de permitir una
 selección manual. Si ya existe una visita activa, no permite reutilizarla sin un tipo de visita aprobado para el
 servicio: el operador debe regularizarla o iniciar la atención cuando ya no exista otra visita activa.
@@ -176,10 +179,10 @@ empaquetado y no activa por sí solo la configuración en producción.
 - faltan las propiedades globales o cambia la zona operativa declarada; la JVM permanece en UTC y Queue 3.0.0 usa
   `ZoneId.systemDefault()`, por lo que su correlativo diario sigue el día UTC;
 - una duración base difiere de su único tipo activo;
-- el inventario de mapeos omite un servicio, sugiere una cola para un caso manual, marca como automático un mapeo
-  ambiguo o deja de coincidir por UUID con servicio, cola y ambas ubicaciones;
+- el inventario de mapeos omite un servicio, sugiere una cola para un caso manual, infiere un mapeo ambiguo o una
+  asignación compartida apunta fuera de la ubicación de la cita;
 - un mapeo automático no referencia un tipo de visita activo o su nombre no coincide con el catálogo;
-- la configuración O3 usa otro atributo, omite el tipo de visita, duplica pares o difiere de los seis mapeos
+- la configuración O3 usa otro atributo, omite el tipo de visita, duplica pares o difiere de los siete mapeos
   automáticos auditados.
 
 ## Decisiones locales pendientes

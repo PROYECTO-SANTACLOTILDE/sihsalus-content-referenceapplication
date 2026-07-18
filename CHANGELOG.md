@@ -47,6 +47,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   5 679 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
 
 ### Corregido
+- Mapea las citas de cirujano dentista en UPSS Consulta Externa a la cola compartida de Consulta Externa y exige el
+  tipo de visita `Consulta Ambulatoria - Odontología`, permitiendo que Admisión encole sin mezclar el contexto
+  clínico de la consulta.
 - Mantiene el nombre estable `Admision` para que Initializer pueda actualizar el rol existente por UUID, reemplazar
   su herencia y aplicar la allowlist de registro, citas y check-in. Esto restaura la lectura necesaria para encolar
   desde Citas y retira historia clínica, dashboard/configuración/purgas de colas, administración de catálogos y
