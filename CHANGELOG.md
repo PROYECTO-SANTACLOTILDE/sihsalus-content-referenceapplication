@@ -47,9 +47,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   5 679 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
 
 ### Corregido
-- Reduce `SIHSALUS Admision` a capacidades de registro, citas y check-in: restaura la metadata de lectura necesaria
-  para registrar pacientes y retira historia clínica, dashboard/configuración/purgas de colas, administración de
-  catálogos y acciones destructivas. CI exige su allowlist exacto y prohíbe ampliar el rol mediante herencia.
+- Mantiene el nombre estable `Admision` para que Initializer pueda actualizar el rol existente por UUID, reemplazar
+  su herencia y aplicar la allowlist de registro, citas y check-in. Esto restaura la lectura necesaria para encolar
+  desde Citas y retira historia clínica, dashboard/configuración/purgas de colas, administración de catálogos y
+  acciones destructivas. CI exige la identidad y privilegios exactos del rol.
 - Separa la visualización del resumen de consulta de su edición mediante
   `app:hoja.clinica.resumenConsulta.editar`, evitando que un permiso de lectura habilite el formulario clínico.
 - Cura el set OCL `Signos Vitales` para que sus 13 miembros activos coincidan con el contrato longitudinal:

@@ -68,6 +68,10 @@ reintentos; la metadata no convierte las tres escrituras en una única transacci
 
 ## Mínimo privilegio
 
+El nombre técnico `Admision` se mantiene estable porque OpenMRS no permite renombrar un rol existente. Initializer
+lo actualiza por el UUID `71dcb611-756a-4ad3-a9bb-73b6cfe28066`, reemplaza su herencia y aplica la lista exacta de
+privilegios; cambiar el nombre impediría corregir instalaciones existentes.
+
 `Manage Queue Entries` se asigna directamente solo a `Admision`, `Application: Register Appointments`,
 `Application: Gestionar Colas Servicio`, `Personal de Emergencia`, `SIHSALUS Consulta Externa` y al rol técnico
 `super admin back privileges`. El rol `Enfermera` lo hereda de `SIHSALUS Consulta Externa`.

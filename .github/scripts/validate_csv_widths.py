@@ -14,6 +14,9 @@ CASITA_AZUL_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b72c1603"
 CONSULTA_EXTERNA_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
 ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
+# OpenMRS treats the role name as immutable. Keep the production identity stable
+# so Initializer can update the UUID-matched role instead of rejecting the row.
+ADMISSION_ROLE_NAME = "Admision"
 ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Patients",
     "Add Patient Identifiers",
@@ -267,23 +270,23 @@ def main():
             admission_rows = [
                 row
                 for row in rows[1:]
-                if len(row) > role_index and row[role_index] == "SIHSALUS Admision"
+                if len(row) > role_index and row[role_index] == ADMISSION_ROLE_NAME
             ]
             if len(admission_rows) != 1:
                 errors.append(
-                    f"{path}: expected exactly one 'SIHSALUS Admision' role, "
+                    f"{path}: expected exactly one {ADMISSION_ROLE_NAME!r} role, "
                     f"found {len(admission_rows)}"
                 )
             else:
                 admission_row = admission_rows[0]
                 if admission_row[uuid_index] != ADMISSION_ROLE_UUID:
                     errors.append(
-                        f"{path}: 'SIHSALUS Admision' must keep UUID {ADMISSION_ROLE_UUID}"
+                        f"{path}: {ADMISSION_ROLE_NAME!r} must keep UUID {ADMISSION_ROLE_UUID}"
                     )
                 inherited_roles = admission_row[inherited_roles_index].strip()
                 if inherited_roles:
                     errors.append(
-                        f"{path}: 'SIHSALUS Admision' must not inherit roles; "
+                        f"{path}: {ADMISSION_ROLE_NAME!r} must not inherit roles; "
                         f"found: {inherited_roles}"
                     )
                 privileges = {
@@ -294,13 +297,13 @@ def main():
                 missing_privileges = ADMISSION_REQUIRED_PRIVILEGES - privileges
                 if missing_privileges:
                     errors.append(
-                        f"{path}: 'SIHSALUS Admision' is missing required privileges: "
+                        f"{path}: {ADMISSION_ROLE_NAME!r} is missing required privileges: "
                         f"{', '.join(sorted(missing_privileges))}"
                     )
                 unapproved_privileges = privileges - ADMISSION_REQUIRED_PRIVILEGES
                 if unapproved_privileges:
                     errors.append(
-                        f"{path}: 'SIHSALUS Admision' has unapproved privileges: "
+                        f"{path}: {ADMISSION_ROLE_NAME!r} has unapproved privileges: "
                         f"{', '.join(sorted(unapproved_privileges))}"
                     )
 

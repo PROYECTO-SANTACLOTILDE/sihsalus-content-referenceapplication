@@ -35,7 +35,7 @@ PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
 CRED_APPOINTMENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 
 TARGET_ROLES = {
-    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "SIHSALUS Admision",
+    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "Admision",
     "75abd7e6-9dcd-446d-8468-04837f314c4f": "Application: Register Appointments",
     "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": "Application: Gestionar Colas Servicio",
     "cf627580-0372-47fc-87b6-319d4a4d4973": "Personal de Emergencia",
