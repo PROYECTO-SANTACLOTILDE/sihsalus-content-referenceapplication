@@ -91,7 +91,7 @@ cambia explícitamente su `Location behavior` y se versiona un contrato distinto
 
 ### Límite de enforcement para visitas
 
-`SIHSALUS Admision` conserva `Add Visits` y `Edit Visits` porque necesita operar el ciclo de la
+`Admision` conserva `Add Visits` y `Edit Visits` porque necesita operar el ciclo de la
 visita durante el check-in. No recibe `Configure Visits`, administración de tipos de visita ni
 privilegios del chart. REST no ofrece un privilegio separado por campo y `Edit Visits` permite
 actualizar `visit.location`; por tanto, el content package no puede garantizar por sí solo la
@@ -152,7 +152,7 @@ la autorización del servidor y la capacidad mostrada por el frontend no diverja
 
 `SIHSALUS Consulta Externa` tiene lectura y edición de signos vitales; `Enfermera` los hereda.
 `Personal de Emergencia` conserva los dos pares porque ya puede consultar y registrar desde el
-chart además de operar emergencia. `SIHSALUS Admision` no tiene ninguno de esos cuatro privilegios,
+chart además de operar emergencia. `Admision` no tiene ninguno de esos cuatro privilegios,
 ni permisos para crear encuentros u observaciones, y no debe recibirlos por esta funcionalidad. No
 se debe usar `Application: Enters Vitals`, porque hereda `Privilege Level: High` y excede este
 alcance.

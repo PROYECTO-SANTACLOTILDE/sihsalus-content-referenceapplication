@@ -501,7 +501,7 @@ def validate_rbac(errors):
         )
         if admission_clinical_access:
             errors.append(
-                f"{admission['_path']}: SIHSALUS Admision must not access clinical "
+                f"{admission['_path']}: Admision must not access clinical "
                 "chart, encounter, note, diagnosis, or observation capabilities: "
                 f"{', '.join(sorted(admission_clinical_access))}"
             )
@@ -511,7 +511,7 @@ def validate_rbac(errors):
         } & admission_effective
         if location_management:
             errors.append(
-                f"{admission['_path']}: SIHSALUS Admision must not manage locations: "
+                f"{admission['_path']}: Admision must not manage locations: "
                 f"{', '.join(sorted(location_management))}"
             )
 
