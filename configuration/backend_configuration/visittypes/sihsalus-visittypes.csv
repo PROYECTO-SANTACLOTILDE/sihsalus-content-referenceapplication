@@ -2,5 +2,5 @@ Uuid,Void/Retire,Name,Description,_version:1
 b1f0e8a1-9c5d-4f0e-8892-81f3140fbc09,,Atención Ambulatoria,"Ámbito de atención sin hospitalización. El servicio, la prestación y la categoría de agenda se conservan fuera de VisitType.",1
 23939157-9af0-457b-8f6c-211eb5459311,,Sesión Grupal Ambulatoria,"Ámbito ambulatorio para una sesión clínica grupal. No representa una especialidad.",1
 e4c8b6d9-7f3a-4e7b-91a2-58b9f6c2d4b5,,Hospitalización,"Ámbito de atención que requiere ingreso y permanencia en una UPSS Hospitalización.",1
-c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98,,Emergencia,"Ámbito de atención inmediata en una UPSS Emergencia.",1
+c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98,,Emergencia,"Ámbito de atención inmediata en una UPSS Emergencia. Conforme a la NT N° 042-MINSA/DGSP-V.01.",1
 c80410d7-e0cb-488f-9b23-be78bd244548,,Atención Extramural,"Ámbito de atención realizado fuera del establecimiento de salud.",1
