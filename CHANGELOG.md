@@ -8,6 +8,40 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Contrato canónico versionado `docs/contracts/hsc-care-routing.csv` para los 16 servicios
+  registrados. Define por UUID la categoría de agenda, ubicación, política de llegada, cola y
+  ámbito de atención; 13 servicios quedan programables, 11 permiten cola y dos son de atención
+  directa.
+- Categoría local de agenda `Odontología general`, separada de la especialidad reconocida
+  `Cirugía Bucal y Maxilofacial`, y atributo multivaluado de proveedor para habilitar categorías
+  de agenda con validación frontend configurable (`off`, `warn` o `strict`).
+- Conceptos dedicados para servicios de cola. `Queue.service` deja de reutilizar UUIDs de
+  `AppointmentServiceDefinition`, que pertenecen a otro tipo de recurso.
+
+### Cambiado
+- `VisitType` representa únicamente el ámbito: Atención Ambulatoria, Sesión Grupal Ambulatoria,
+  Hospitalización, Emergencia o Atención Extramural. La especialidad y la prestación permanecen
+  en el servicio de cita y el encuentro clínico.
+- Obstetricia y nutrición ambulatorias se ubican en UPSS Consulta Externa; hospitalización de
+  cirugía general se ubica en UPSS Hospitalización; Hemodiálisis usa UPSS Diálisis.
+- Rehabilitación, hemodiálisis y nutrición tienen equivalencias explícitas con sus colas. El
+  registro de llegada ya no depende de coincidencias por nombre ni de selección manual.
+- Los tipos de servicio uno-a-uno se eliminan del paquete; la duración operativa vive en la definición
+  del servicio hasta que el hospital configure variantes reales, como primera consulta o control.
+
+### Retirado
+- Servicios de cita para emergencia, atención inmediata del recién nacido y aplicación de
+  inyectables. Son flujos no programables o requieren confirmar cartera y UPSS antes de activarse.
+- Tipos de atención que codificaban especialidades, dispensación o diagnóstico dentro de
+  `VisitType`, y el atributo ficticio `Parent Visit Type` que OpenMRS Core nunca interpretó, se
+  eliminan del paquete canónico y no se recrean en instalaciones nuevas.
+
+### Validación
+- CI comprueba que content y configuración frontend reproduzcan exactamente el contrato, que las
+  colas usen Concepts dedicados, que no reaparezcan tipos especializados y que odontología general
+  nunca quede asociada a Cirugía Bucal y Maxilofacial.
+
+### Agregado
 - Person attribute **Método de Verificación de Seguro** (`bc1e5c92-e46a-4bc9-8cba-d9093a0eb659`, FreeText):
   traza cómo se verificó la afiliación (manual-web / setisis / siteds), requerido por la
   verificación SIS manual interina del frontend (sihsalus-frontend PR #623, plan PR #606).
@@ -47,9 +81,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   5 679 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
 
 ### Corregido
-- Mapea las citas de cirujano dentista en UPSS Consulta Externa a la cola compartida de Consulta Externa y exige el
-  tipo de visita `Consulta Ambulatoria - Odontología`, permitiendo que Admisión encole sin mezclar el contexto
-  clínico de la consulta.
+- Mapea las citas de cirujano dentista general en UPSS Consulta Externa a la cola compartida y usa el ámbito
+  `Atención Ambulatoria`; la categoría `Odontología general` conserva el contexto sin duplicarlo en `VisitType`.
 - Mantiene el nombre estable `Admision` para que Initializer pueda actualizar el rol existente por UUID, reemplazar
   su herencia y aplicar la allowlist de registro, citas y check-in. Esto restaura la lectura necesaria para encolar
   desde Citas y retira historia clínica, dashboard/configuración/purgas de colas, administración de catálogos y
@@ -90,8 +123,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Define `Personal de Emergencia` como rol operativo directo para búsqueda y alta rápida, visitas, triaje,
   atención y movimientos de cola. Puede cerrar de forma coordinada registros legados vinculados a citas, sin
   heredar los permisos amplios de consulta externa ni recibir configuración, purga o borrado clínico.
-- Copia a cada definición de servicio la duración de su único tipo activo, sin inventar horarios ni cupos, y deja
-  auditados seis mapeos automáticos y nueve selecciones manuales entre servicios de cita y colas.
+- Conserva una duración base positiva en cada definición de servicio sin inventar horarios ni cupos, retira los
+  tipos de servicio redundantes y publica reglas explícitas para todos los servicios programables.
 - Protege `Get Providers` como privilegio requerido del rol `Admision` para que pueda listar doctores y
   proveedores mediante la API REST.
 - Agrega `Get Concept Sources` al rol `Admision` para que FHIR pueda cargar los datos existentes al editar un
@@ -106,10 +139,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   tipos de encuentro y roles de proveedor distintos, sin formularios JSON ni migración automática de
   históricos. Agrega un contrato de ubicación/RBAC para el frontend y una validación CI de regresión.
 - Agrega los atributos de visita `Número de turno de cola` y `UUID de cita vinculada`, la propiedad global del
-  número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y mapeos exactos por
-  UUID y tipo de visita; declara `America/Lima` como zona operativa para los consumidores SIHSALUS, conserva UTC
-  en servidor/JVM según la convención de OpenMRS y documenta el corte UTC del correlativo diario de Queue 3.0 como
-  limitación upstream. Exige selección manual sin inferencias por nombre cuando no existe coincidencia inequívoca.
+  número de turno y una validación CI de RBAC con privilegios oficiales, metadata, duración y rutas exactas por
+  UUID; declara `America/Lima` como zona operativa para los consumidores SIHSALUS y conserva UTC en servidor/JVM
+  según la convención de OpenMRS.
 - Agrega privilegios frontend específicos para la tabla de consultas activas, resumen de consulta, formularios
   clínicos, canasta de órdenes y lista de tareas. Los asigna a consulta externa y, de forma acotada, a los roles
   clínicos que ya tenían el acceso funcional equivalente; `Enfermera` los hereda de `Doctor Consulta Externa`.

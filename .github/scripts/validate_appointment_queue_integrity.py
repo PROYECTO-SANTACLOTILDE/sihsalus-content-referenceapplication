@@ -17,11 +17,15 @@ SERVICE_DEFINITIONS_PATH = (
     CONFIG_DIR / "appointmentservicedefinitions" / "servicedefinitions.csv"
 )
 SERVICE_TYPES_PATH = CONFIG_DIR / "appointmentservicetypes" / "servicetypes.csv"
+SPECIALITIES_PATH = CONFIG_DIR / "appointmentspecialities" / "specialities.csv"
+LOCATIONS_PATH = CONFIG_DIR / "locations" / "sihsalus-locations.csv"
 QUEUES_PATH = CONFIG_DIR / "queues" / "sihsalus-queues.csv"
 VISIT_TYPES_PATH = CONFIG_DIR / "visittypes" / "sihsalus-visittypes.csv"
-MAPPING_AUDIT_PATH = (
-    Path("docs/audits/2026-07-13-appointment-service-queue-mapping.csv")
+QUEUE_SERVICE_CONCEPTS_PATH = CONFIG_DIR / "concepts" / "queue_service_concepts.csv"
+QUEUE_SERVICE_CONCEPT_SET_PATH = (
+    CONFIG_DIR / "conceptsets" / "queue_service_concepts.csv"
 )
+CARE_ROUTING_CONTRACT_PATH = Path("docs/contracts/hsc-care-routing.csv")
 FRONTEND_CONFIG_PATH = Path("configuration/frontend_configuration/config.json")
 
 OBSOLETE_LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
@@ -31,6 +35,69 @@ GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
 APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
+VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID = "eb8b793b-f259-451d-9c09-53aa0ffd0d3f"
+PROVIDER_SCHEDULING_CATEGORY_ATTRIBUTE_UUID = (
+    "3961cbdd-3240-4b70-99ca-5f63af488b15"
+)
+OBSOLETE_PARENT_VISIT_TYPE_ATTRIBUTE_UUID = "d6c9e7a5-8134-49e3-a2c5-b8f4c3d2e1a9"
+QUEUE_SERVICE_CONCEPT_SET_UUID = "4bf3f465-ac91-44fa-9b1f-173daf0c89a0"
+CARE_ROUTING_CONTRACT_VERSION = "2026-07-18"
+GENERIC_AMBULATORY_VISIT_TYPE_UUID = "b1f0e8a1-9c5d-4f0e-8892-81f3140fbc09"
+HOSPITALIZATION_VISIT_TYPE_UUID = "e4c8b6d9-7f3a-4e7b-91a2-58b9f6c2d4b5"
+APPROVED_ACTIVE_VISIT_TYPE_UUIDS = {
+    GENERIC_AMBULATORY_VISIT_TYPE_UUID,
+    "23939157-9af0-457b-8f6c-211eb5459311",
+    HOSPITALIZATION_VISIT_TYPE_UUID,
+    "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98",
+    "c80410d7-e0cb-488f-9b23-be78bd244548",
+}
+EXPECTED_VISIT_TYPE_ELIGIBILITY = {
+    "35d2234e-129a-4c40-abb2-1ae0b2400001": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID,
+        "23939157-9af0-457b-8f6c-211eb5459311",
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400002": {
+        HOSPITALIZATION_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400003": {
+        "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98"
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400004": {
+        HOSPITALIZATION_VISIT_TYPE_UUID,
+        "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98",
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400005": {
+        HOSPITALIZATION_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400006": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400013": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400008": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400007": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400010": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+    "35d2234e-129a-4c40-abb2-1ae0b2400011": {
+        GENERIC_AMBULATORY_VISIT_TYPE_UUID
+    },
+}
+DENTAL_SERVICE_UUID = "b3c2d4e5-f6a7-48d9-93e1-8f7a6b5c4d02"
+GENERAL_DENTISTRY_CATEGORY_UUID = "a0d4e64e-eb63-4271-bdf1-ffa10392c282"
+CBMF_SPECIALITY_UUID = "4e6f8d2c-3a5b-495e-9d78-2f4c6a8b1e09"
+OBSTETRIC_SERVICE_UUID = "a6d7f9b3-2c5e-48d1-93e4-7f8a6b5c2d02"
+NUTRITION_SERVICE_UUID = "3663f478-80fb-4585-b92f-7f82873198ee"
+HOSPITALIZATION_SURGERY_SERVICE_UUID = "115b9e98-0bb4-4791-afa6-d21d071cfd87"
+TOPICAL_SERVICE_UUID = "d4e5f6a7-b8c9-41e2-93f3-1a9b8c7d6e04"
+NEWBORN_SERVICE_UUID = "f7a8b9c0-d1e2-43f4-93e5-3b1a9c8d7e06"
+OUTPATIENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
+HOSPITALIZATION_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400002"
 PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
 CRED_APPOINTMENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 
@@ -212,8 +279,12 @@ def read_csv(path):
         return list(csv.DictReader(handle))
 
 
-def is_retired(value):
+def is_true(value):
     return value.strip().lower() in {"1", "true", "yes"}
+
+
+def is_retired(value):
+    return is_true(value)
 
 
 def split_privileges(value):
@@ -565,6 +636,41 @@ def validate_visit_attribute_metadata(errors):
                     f"must be {value!r}, found {row[column]!r}"
                 )
 
+    provider_category_matches = [
+        row
+        for row in rows
+        if row["Uuid"] == PROVIDER_SCHEDULING_CATEGORY_ATTRIBUTE_UUID
+    ]
+    if len(provider_category_matches) != 1:
+        errors.append(
+            f"{ATTRIBUTE_TYPES_PATH}: expected one provider scheduling-category row"
+        )
+    else:
+        row = provider_category_matches[0]
+        expected = {
+            "Void/Retire": "",
+            "Entity name": "Provider",
+            "Name": "Categorías de agenda habilitadas",
+            "Min occurs": "0",
+            "Max occurs": "",
+            "Datatype classname": "org.openmrs.customdatatype.datatype.FreeTextDatatype",
+        }
+        for column, value in expected.items():
+            if row[column] != value:
+                errors.append(
+                    f"{ATTRIBUTE_TYPES_PATH}: provider scheduling-category attribute "
+                    f"{column!r} must be {value!r}, found {row[column]!r}"
+                )
+
+    obsolete_parent_matches = [
+        row for row in rows if row["Uuid"] == OBSOLETE_PARENT_VISIT_TYPE_ATTRIBUTE_UUID
+    ]
+    if obsolete_parent_matches:
+        errors.append(
+            f"{ATTRIBUTE_TYPES_PATH}: obsolete Parent Visit Type attribute must not "
+            "be packaged; OpenMRS Core has no VisitType hierarchy"
+        )
+
     root = ET.parse(GLOBAL_PROPERTIES_PATH).getroot()
     properties = defaultdict(list)
     for item in root.findall(".//globalProperty"):
@@ -595,194 +701,356 @@ def validate_service_durations(errors):
         for row in read_csv(SERVICE_DEFINITIONS_PATH)
         if not is_retired(row["Void/Retire"])
     }
-    types_by_definition = defaultdict(list)
-    for row in read_csv(SERVICE_TYPES_PATH):
-        if is_retired(row["Void/Retire"]):
-            continue
-        definition_uuid = row["Service Definition"]
-        if definition_uuid not in definitions:
+    service_types = read_csv(SERVICE_TYPES_PATH)
+
+    for definition in definitions.values():
+        try:
+            if int(definition["Duration"]) <= 0:
+                raise ValueError
+        except (TypeError, ValueError):
             errors.append(
-                f"{SERVICE_TYPES_PATH}: active service type {row['Name']!r} references "
-                f"unknown or retired definition {definition_uuid}"
+                f"{SERVICE_DEFINITIONS_PATH}: {definition['Name']!r} must define a "
+                "positive whole-minute operational duration"
             )
-            continue
-        types_by_definition[definition_uuid].append(row)
 
-    aligned = 0
-    for definition_uuid, definition in definitions.items():
-        service_types = types_by_definition.get(definition_uuid, [])
-        if len(service_types) == 1:
-            service_type = service_types[0]
-            if definition["Duration"] != service_type["Duration"]:
-                errors.append(
-                    f"{SERVICE_DEFINITIONS_PATH}: {definition['Name']!r} duration must "
-                    f"match its only active type ({service_type['Duration']} minutes)"
-                )
-            try:
-                if int(service_type["Duration"]) <= 0:
-                    raise ValueError
-            except ValueError:
-                errors.append(
-                    f"{SERVICE_TYPES_PATH}: {service_type['Name']!r} must have a "
-                    "positive whole-minute duration"
-                )
-            aligned += 1
-        elif len(service_types) > 1 and definition["Duration"]:
-            errors.append(
-                f"{SERVICE_DEFINITIONS_PATH}: {definition['Name']!r} has multiple active "
-                "types, so its base duration must remain empty until a local rule is defined"
-            )
-    return aligned
-
-
-def validate_documented_queue_mapping(errors):
-    definitions = {
-        row["Uuid"]: row
-        for row in read_csv(SERVICE_DEFINITIONS_PATH)
-        if not is_retired(row["Void/Retire"])
-    }
-    queues = {
-        row["Uuid"]: row
-        for row in read_csv(QUEUES_PATH)
-        if not is_retired(row["Void/Retire"])
-    }
-    audit_rows = read_csv(MAPPING_AUDIT_PATH)
-    rows_by_service = defaultdict(list)
-    for row in audit_rows:
-        rows_by_service[row["Appointment Service Uuid"]].append(row)
-
-    undocumented = set(definitions) - set(rows_by_service)
-    extra = set(rows_by_service) - set(definitions)
-    if undocumented:
+    if service_types:
         errors.append(
-            f"{MAPPING_AUDIT_PATH}: active appointment services are undocumented: "
-            + ", ".join(sorted(undocumented))
+            f"{SERVICE_TYPES_PATH}: one-to-one service types duplicate appointment "
+            "services and must not be packaged. Add a service type only for a real "
+            "variant such as initial/follow-up with distinct duration or capacity"
         )
-    if extra:
+    return len(definitions), len(service_types)
+
+
+def _index_unique(rows, key, path, errors):
+    indexed = {}
+    duplicates = set()
+    for row in rows:
+        value = row.get(key, "")
+        if value in indexed:
+            duplicates.add(value)
+        indexed[value] = row
+    if duplicates:
         errors.append(
-            f"{MAPPING_AUDIT_PATH}: retired or unknown appointment services are listed: "
-            + ", ".join(sorted(extra))
+            f"{path}: duplicate {key} values: " + ", ".join(sorted(duplicates))
+        )
+    return indexed
+
+
+def validate_canonical_care_routing(errors):
+    definition_rows = read_csv(SERVICE_DEFINITIONS_PATH)
+    definitions = _index_unique(
+        definition_rows, "Uuid", SERVICE_DEFINITIONS_PATH, errors
+    )
+    specialities = _index_unique(
+        read_csv(SPECIALITIES_PATH), "Uuid", SPECIALITIES_PATH, errors
+    )
+    locations = _index_unique(read_csv(LOCATIONS_PATH), "Uuid", LOCATIONS_PATH, errors)
+    queue_rows = read_csv(QUEUES_PATH)
+    queues = _index_unique(queue_rows, "Uuid", QUEUES_PATH, errors)
+    visit_type_rows = read_csv(VISIT_TYPES_PATH)
+    visit_types = _index_unique(visit_type_rows, "Uuid", VISIT_TYPES_PATH, errors)
+    contract_rows = read_csv(CARE_ROUTING_CONTRACT_PATH)
+    contract = _index_unique(
+        contract_rows,
+        "Appointment Service Uuid",
+        CARE_ROUTING_CONTRACT_PATH,
+        errors,
+    )
+
+    with VISIT_TYPES_PATH.open(newline="", encoding="utf-8-sig") as handle:
+        visit_type_headers = csv.DictReader(handle).fieldnames or []
+    if "Parent Visit Type" in visit_type_headers:
+        errors.append(
+            f"{VISIT_TYPES_PATH}: remove Parent Visit Type; OpenMRS Core has no "
+            "VisitType hierarchy and Initializer ignores this column"
         )
 
-    automatic_pairs = set()
-    exact_automatic_pairs = set()
-    manual_count = 0
-    for service_uuid, rows in rows_by_service.items():
-        if len(rows) != 1 or service_uuid not in definitions:
-            if len(rows) != 1:
-                errors.append(
-                    f"{MAPPING_AUDIT_PATH}: service {service_uuid} must have exactly one row"
-                )
+    packaged_visit_type_uuids = {row["Uuid"] for row in visit_type_rows}
+    if packaged_visit_type_uuids != APPROVED_ACTIVE_VISIT_TYPE_UUIDS:
+        errors.append(
+            f"{VISIT_TYPES_PATH}: package only the approved care-setting VisitTypes; "
+            "found: " + ", ".join(sorted(packaged_visit_type_uuids))
+        )
+    retired_packaged_visit_types = [
+        row["Uuid"] for row in visit_type_rows if is_retired(row["Void/Retire"])
+    ]
+    if retired_packaged_visit_types:
+        errors.append(
+            f"{VISIT_TYPES_PATH}: canonical content must not recreate retired legacy "
+            "VisitTypes: " + ", ".join(sorted(retired_packaged_visit_types))
+        )
+
+    if set(contract) != set(definitions):
+        missing = set(definitions) - set(contract)
+        extra = set(contract) - set(definitions)
+        if missing:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: undocumented appointment services: "
+                + ", ".join(sorted(missing))
+            )
+        if extra:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: unknown appointment services: "
+                + ", ".join(sorted(extra))
+            )
+
+    queue_service_concepts = _index_unique(
+        read_csv(QUEUE_SERVICE_CONCEPTS_PATH),
+        "Uuid",
+        QUEUE_SERVICE_CONCEPTS_PATH,
+        errors,
+    )
+    queue_service_members = {
+        row["Member"]
+        for row in read_csv(QUEUE_SERVICE_CONCEPT_SET_PATH)
+        if row["Concept"] == QUEUE_SERVICE_CONCEPT_SET_UUID
+        and row["Member Type"].strip().lower() == "concept-set"
+    }
+    appointment_service_uuids = set(definitions)
+    queue_service_collisions = {
+        row["Service"]
+        for row in queue_rows
+        if not is_retired(row["Void/Retire"])
+        and row["Service"] in appointment_service_uuids
+    }
+    if queue_service_collisions:
+        errors.append(
+            f"{QUEUES_PATH}: Queue.service must use dedicated Concept UUIDs, never "
+            "AppointmentServiceDefinition UUIDs: "
+            + ", ".join(sorted(queue_service_collisions))
+        )
+
+    allowed_category_bases = {
+        "local-scheduling",
+        "rne-medical",
+        "rne-dental",
+        "profession",
+        "none",
+    }
+    queue_policies = {"queue-optional", "queue-required"}
+    direct_count = 0
+    queue_count = 0
+    retired_count = 0
+    for service_uuid, row in contract.items():
+        definition = definitions.get(service_uuid)
+        if not definition:
             continue
-        row = rows[0]
-        definition = definitions[service_uuid]
+
+        status = row["Status"]
+        expected_status = (
+            "retired" if is_retired(definition["Void/Retire"]) else "enabled"
+        )
+        if status != expected_status:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: {service_uuid} status must be "
+                f"{expected_status!r}, found {status!r}"
+            )
         if row["Appointment Service"] != definition["Name"]:
             errors.append(
-                f"{MAPPING_AUDIT_PATH}: service name for {service_uuid} is stale"
+                f"{CARE_ROUTING_CONTRACT_PATH}: service name for {service_uuid} is stale"
             )
-        if row["Appointment Location Uuid"] != definition["Location"]:
+        if not row["NTS 249 Item"] or not row["NTS 249 Prestacion"]:
             errors.append(
-                f"{MAPPING_AUDIT_PATH}: location for {definition['Name']!r} is stale"
+                f"{CARE_ROUTING_CONTRACT_PATH}: {definition['Name']!r} must document "
+                "its NTS 249 basis or explicitly state N/A"
             )
         if not row["Reason"].strip():
             errors.append(
-                f"{MAPPING_AUDIT_PATH}: {definition['Name']!r} must document a reason"
+                f"{CARE_ROUTING_CONTRACT_PATH}: {definition['Name']!r} must document "
+                "the local routing decision"
             )
 
-        resolution = row["Resolution"]
-        queue_uuid = row["Queue Uuid"]
-        queue = queues.get(queue_uuid) if queue_uuid else None
-        if resolution in {"automatic", "automatic-shared"}:
-            if queue is None:
+        location_uuid = row["Appointment Location Uuid"]
+        location = locations.get(location_uuid)
+        if definition["Location"] != location_uuid:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: location for {definition['Name']!r} "
+                "does not match its AppointmentServiceDefinition"
+            )
+        if not location or location["Name"] != row["Appointment Location"]:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: appointment location name/UUID is "
+                f"invalid for {definition['Name']!r}"
+            )
+        if status == "enabled" and location and not is_true(
+            location["Tag|Appointment Location"]
+        ):
+            errors.append(
+                f"{LOCATIONS_PATH}: active service {definition['Name']!r} must use "
+                "a location tagged as Appointment Location"
+            )
+
+        category_uuid = row["Scheduling Category Uuid"]
+        category_name = row["Scheduling Category"]
+        category_basis = row["Category Basis"]
+        if category_basis not in allowed_category_bases:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: unsupported Category Basis "
+                f"{category_basis!r} for {definition['Name']!r}"
+            )
+        if definition["Speciality"] != category_uuid:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: scheduling category for "
+                f"{definition['Name']!r} does not match the speciality FK"
+            )
+        if category_uuid:
+            category = specialities.get(category_uuid)
+            if not category or is_retired(category["Void/Retire"]):
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: automatic mapping for {definition['Name']!r} "
-                    "must reference an active queue"
+                    f"{CARE_ROUTING_CONTRACT_PATH}: category {category_uuid} for "
+                    f"{definition['Name']!r} must be active"
+                )
+            elif category["Name"] != category_name:
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: scheduling category name for "
+                    f"{category_uuid} is stale"
+                )
+            if category_basis in {"profession", "none"}:
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: {category_basis} service "
+                    f"{definition['Name']!r} cannot claim an AppointmentSpeciality"
+                )
+        elif category_name or category_basis not in {"profession", "none"}:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: category UUID/name/basis are "
+                f"inconsistent for {definition['Name']!r}"
+            )
+
+        arrival_policy = row["Arrival Policy"]
+        queue_fields = (
+            "Queue Uuid",
+            "Queue",
+            "Queue Service Concept Uuid",
+            "Queue Location Uuid",
+        )
+        if status == "retired":
+            retired_count += 1
+            if arrival_policy != "not-applicable":
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: retired service "
+                    f"{definition['Name']!r} must use not-applicable arrival"
+                )
+            if any(row[field] for field in (*queue_fields, "Required Visit Type Uuid", "Required Visit Type")):
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: retired service "
+                    f"{definition['Name']!r} must not publish runtime routing fields"
+                )
+            continue
+
+        visit_type_uuid = row["Required Visit Type Uuid"]
+        visit_type = visit_types.get(visit_type_uuid)
+        if not visit_type or is_retired(visit_type["Void/Retire"]):
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: {definition['Name']!r} must reference "
+                "an active care-setting VisitType"
+            )
+        elif visit_type["Name"] != row["Required Visit Type"]:
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: VisitType name for "
+                f"{visit_type_uuid} is stale"
+            )
+
+        if arrival_policy == "direct":
+            direct_count += 1
+            if any(row[field] for field in queue_fields):
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: direct service "
+                    f"{definition['Name']!r} must not define a queue"
+                )
+        elif arrival_policy in queue_policies:
+            queue_count += 1
+            missing = [field for field in queue_fields if not row[field]]
+            if missing:
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: queue route for "
+                    f"{definition['Name']!r} is missing " + ", ".join(missing)
                 )
                 continue
-            if queue["Location"] != definition["Location"]:
+            queue = queues.get(row["Queue Uuid"])
+            if not queue or is_retired(queue["Void/Retire"]):
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: automatic mapping for {definition['Name']!r} "
-                    "must use a queue in the appointment location"
+                    f"{CARE_ROUTING_CONTRACT_PATH}: queue for "
+                    f"{definition['Name']!r} must be active"
                 )
-            if resolution == "automatic":
-                exact_matches = [
-                    candidate
-                    for candidate in queues.values()
-                    if candidate["Service"] == service_uuid
-                    and candidate["Location"] == definition["Location"]
-                ]
-                if len(exact_matches) != 1 or exact_matches[0]["Uuid"] != queue_uuid:
-                    errors.append(
-                        f"{MAPPING_AUDIT_PATH}: automatic mapping for "
-                        f"{definition['Name']!r} must be the unique queue with the same "
-                        "service UUID and location"
-                    )
-                exact_automatic_pairs.add(
-                    (
-                        service_uuid,
-                        definition["Location"],
-                        queue_uuid,
-                        queue["Location"],
-                    )
-                )
-            if row["Queue"] != queue["Name"]:
+                continue
+            if queue["Name"] != row["Queue"]:
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: queue name for {queue_uuid} is stale"
+                    f"{CARE_ROUTING_CONTRACT_PATH}: queue name for "
+                    f"{row['Queue Uuid']} is stale"
                 )
-            if row["Queue Location Uuid"] != queue["Location"]:
+            if queue["Location"] != row["Queue Location Uuid"]:
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: queue location for {queue_uuid} is stale"
+                    f"{CARE_ROUTING_CONTRACT_PATH}: queue location for "
+                    f"{definition['Name']!r} is stale"
                 )
-            automatic_pairs.add(
-                (
-                    service_uuid,
-                    definition["Location"],
-                    queue_uuid,
-                    queue["Location"],
-                )
-            )
-        elif resolution == "manual-required":
-            manual_count += 1
-            populated_queue_fields = {
-                column: row[column]
-                for column in ("Queue Uuid", "Queue Location Uuid", "Queue")
-                if row[column]
-            }
-            if populated_queue_fields:
+            if row["Queue Location Uuid"] != location_uuid:
                 errors.append(
-                    f"{MAPPING_AUDIT_PATH}: manual mapping for {definition['Name']!r} "
-                    "must not suggest a queue by name; populated fields: "
-                    + ", ".join(sorted(populated_queue_fields))
+                    f"{CARE_ROUTING_CONTRACT_PATH}: appointment and queue locations "
+                    f"must match for {definition['Name']!r}"
+                )
+            queue_location = locations.get(row["Queue Location Uuid"])
+            if not queue_location or not is_true(queue_location["Tag|Queue Location"]):
+                errors.append(
+                    f"{LOCATIONS_PATH}: queue for {definition['Name']!r} must use a "
+                    "location tagged as Queue Location"
+                )
+            queue_service_uuid = row["Queue Service Concept Uuid"]
+            if queue["Service"] != queue_service_uuid:
+                errors.append(
+                    f"{CARE_ROUTING_CONTRACT_PATH}: Queue.service concept for "
+                    f"{definition['Name']!r} is stale"
+                )
+            if queue_service_uuid not in queue_service_concepts:
+                errors.append(
+                    f"{QUEUE_SERVICE_CONCEPTS_PATH}: missing dedicated queue service "
+                    f"concept {queue_service_uuid}"
+                )
+            if queue_service_uuid not in queue_service_members:
+                errors.append(
+                    f"{QUEUE_SERVICE_CONCEPT_SET_PATH}: queue service concept "
+                    f"{queue_service_uuid} is not a member of the configured set"
                 )
         else:
             errors.append(
-                f"{MAPPING_AUDIT_PATH}: unsupported resolution {resolution!r} for "
-                f"{definition['Name']!r}"
+                f"{CARE_ROUTING_CONTRACT_PATH}: unsupported Arrival Policy "
+                f"{arrival_policy!r} for {definition['Name']!r}"
             )
 
-    configured_exact_pairs = {
-        (
-            definition_uuid,
-            definition["Location"],
-            queue["Uuid"],
-            queue["Location"],
-        )
-        for definition_uuid, definition in definitions.items()
-        for queue in queues.values()
-        if queue["Service"] == definition_uuid
-        and queue["Location"] == definition["Location"]
+    semantic_expectations = {
+        DENTAL_SERVICE_UUID: (GENERAL_DENTISTRY_CATEGORY_UUID, OUTPATIENT_LOCATION_UUID, "enabled"),
+        OBSTETRIC_SERVICE_UUID: ("", OUTPATIENT_LOCATION_UUID, "enabled"),
+        NUTRITION_SERVICE_UUID: ("32f2c8e3-79cf-4016-939f-469bed37abdb", OUTPATIENT_LOCATION_UUID, "enabled"),
+        HOSPITALIZATION_SURGERY_SERVICE_UUID: (
+            "d8e2f4a0-b5c3-41d7-942a-6c4a1e9f3b22",
+            HOSPITALIZATION_LOCATION_UUID,
+            "enabled",
+        ),
+        TOPICAL_SERVICE_UUID: ("", OUTPATIENT_LOCATION_UUID, "retired"),
+        NEWBORN_SERVICE_UUID: (
+            "14106bb7-dad6-4446-809d-737f4c128ae3",
+            "35d2234e-129a-4c40-abb2-1ae0b2400004",
+            "retired",
+        ),
     }
-    if exact_automatic_pairs != configured_exact_pairs:
+    for service_uuid, (category_uuid, location_uuid, status) in semantic_expectations.items():
+        row = contract.get(service_uuid)
+        if row and (
+            row["Scheduling Category Uuid"] != category_uuid
+            or row["Appointment Location Uuid"] != location_uuid
+            or row["Status"] != status
+        ):
+            errors.append(
+                f"{CARE_ROUTING_CONTRACT_PATH}: canonical semantic decision changed "
+                f"for service {service_uuid}"
+            )
+    if contract.get(DENTAL_SERVICE_UUID, {}).get("Scheduling Category Uuid") == CBMF_SPECIALITY_UUID:
         errors.append(
-            f"{MAPPING_AUDIT_PATH}: documented exact automatic mappings do not match the "
-            "configured service-and-location pairs"
+            f"{CARE_ROUTING_CONTRACT_PATH}: general dentistry must never be mapped to "
+            "Cirugía Bucal y Maxilofacial"
         )
-    if not automatic_pairs or not manual_count:
-        errors.append(
-            f"{MAPPING_AUDIT_PATH}: mapping must remain explicit about both automatic "
-            "and manual-required services"
-        )
-    return len(automatic_pairs), manual_count
+
+    return queue_count, direct_count, retired_count
 
 
 def validate_frontend_appointment_config(errors):
@@ -830,98 +1098,149 @@ def validate_frontend_appointment_config(errors):
             f"{FRONTEND_CONFIG_PATH}: appointmentVisitAttributeTypeUuid must be "
             f"{APPOINTMENT_UUID_ATTRIBUTE_UUID}"
         )
-
-    required_mapping_fields = (
-        "appointmentServiceUuid",
-        "appointmentLocationUuid",
-        "queueUuid",
-        "queueLocationUuid",
-        "requiredVisitTypeUuid",
-    )
-    active_visit_types = {
-        row["Uuid"]: row
-        for row in read_csv(VISIT_TYPES_PATH)
-        if not is_retired(row["Void/Retire"])
-    }
-    automatic_audit_rows = [
-        row
-        for row in read_csv(MAPPING_AUDIT_PATH)
-        if row["Resolution"] in {"automatic", "automatic-shared"}
-    ]
-    for row in automatic_audit_rows:
-        visit_type_uuid = row["Required Visit Type Uuid"]
-        visit_type = active_visit_types.get(visit_type_uuid)
-        if not visit_type:
-            errors.append(
-                f"{MAPPING_AUDIT_PATH}: automatic mapping for "
-                f"{row['Appointment Service Uuid']} must reference an active visit type"
-            )
-        elif visit_type["Name"] != row["Required Visit Type"]:
-            errors.append(
-                f"{MAPPING_AUDIT_PATH}: visit type name for {visit_type_uuid} must match "
-                f"{VISIT_TYPES_PATH}"
-            )
-    expected_mappings = {
-        (
-            row["Appointment Service Uuid"],
-            row["Appointment Location Uuid"],
-            row["Queue Uuid"],
-            row["Queue Location Uuid"],
-            row["Required Visit Type Uuid"],
-        )
-        for row in automatic_audit_rows
-    }
-
-    configured_rows = module_config.get("appointmentQueueMappings")
-    if not isinstance(configured_rows, list):
+    if module_config.get("careRoutingContractVersion") != CARE_ROUTING_CONTRACT_VERSION:
         errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must be an array"
+            f"{FRONTEND_CONFIG_PATH}: careRoutingContractVersion must be "
+            f"{CARE_ROUTING_CONTRACT_VERSION!r}"
+        )
+
+    provider_validation = module_config.get("providerSchedulingCategoryValidation")
+    expected_provider_validation = {
+        "mode": "warn",
+        "providerAttributeTypeUuid": PROVIDER_SCHEDULING_CATEGORY_ATTRIBUTE_UUID,
+    }
+    if provider_validation != expected_provider_validation:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: providerSchedulingCategoryValidation must use "
+            "warn mode and the canonical provider attribute UUID"
+        )
+
+    patient_chart_config = config.get("@sihsalus/esm-patient-chart-app")
+    if not isinstance(patient_chart_config, dict):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-patient-chart-app object"
+        )
+    else:
+        if (
+            patient_chart_config.get("visitPersistenceTokenAttributeTypeUuid")
+            != VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID
+        ):
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: visitPersistenceTokenAttributeTypeUuid "
+                f"must be {VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID}"
+            )
+
+        eligibility_rules = patient_chart_config.get("visitTypeEligibilityRules")
+        configured_eligibility = {}
+        if not isinstance(eligibility_rules, list):
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules must be an array"
+            )
+        else:
+            for index, rule in enumerate(eligibility_rules):
+                if not isinstance(rule, dict):
+                    errors.append(
+                        f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules[{index}] "
+                        "must be an object"
+                    )
+                    continue
+                location_uuid = rule.get("locationUuid")
+                visit_type_uuids = rule.get("visitTypeUuids")
+                if not isinstance(location_uuid, str) or not isinstance(
+                    visit_type_uuids, list
+                ):
+                    errors.append(
+                        f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules[{index}] "
+                        "must define a location UUID and visit-type UUID array"
+                    )
+                    continue
+                if location_uuid in configured_eligibility:
+                    errors.append(
+                        f"{FRONTEND_CONFIG_PATH}: duplicate visit-type eligibility "
+                        f"rule for location {location_uuid}"
+                    )
+                configured_eligibility[location_uuid] = set(visit_type_uuids)
+
+            if configured_eligibility != EXPECTED_VISIT_TYPE_ELIGIBILITY:
+                errors.append(
+                    f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules must contain "
+                    "exactly the approved location-to-care-setting mappings"
+                )
+
+    if "appointmentQueueMappings" in module_config:
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: remove legacy appointmentQueueMappings; use "
+            "the complete appointmentArrivalRules contract"
+        )
+
+    expected_rules = []
+    for row in read_csv(CARE_ROUTING_CONTRACT_PATH):
+        if row["Status"] != "enabled":
+            continue
+        rule = {
+            "appointmentServiceUuid": row["Appointment Service Uuid"],
+            "appointmentLocationUuid": row["Appointment Location Uuid"],
+            "arrivalPolicy": row["Arrival Policy"],
+            "requiredVisitTypeUuid": row["Required Visit Type Uuid"],
+        }
+        if row["Arrival Policy"] in {"queue-optional", "queue-required"}:
+            rule["queueUuid"] = row["Queue Uuid"]
+            rule["queueLocationUuid"] = row["Queue Location Uuid"]
+        expected_rules.append(rule)
+
+    configured_rules = module_config.get("appointmentArrivalRules")
+    if not isinstance(configured_rules, list):
+        errors.append(
+            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules must be an array"
         )
         return 0
 
-    configured_mappings = []
-    for index, row in enumerate(configured_rows):
+    allowed_fields = {
+        "appointmentServiceUuid",
+        "appointmentLocationUuid",
+        "arrivalPolicy",
+        "requiredVisitTypeUuid",
+        "queueUuid",
+        "queueLocationUuid",
+    }
+    normalized_rules = []
+    for index, row in enumerate(configured_rules):
         if not isinstance(row, dict):
             errors.append(
-                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] must be an object"
+                f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules[{index}] must be an object"
             )
             continue
-        missing = [field for field in required_mapping_fields if not row.get(field)]
-        extra = set(row) - set(required_mapping_fields)
-        if missing:
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] is missing: "
-                + ", ".join(missing)
-            )
-            continue
+        extra = set(row) - allowed_fields
         if extra:
             errors.append(
-                f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings[{index}] has "
+                f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules[{index}] has "
                 "unsupported fields: " + ", ".join(sorted(extra))
             )
-            continue
-        configured_mappings.append(tuple(row[field] for field in required_mapping_fields))
+        normalized_rules.append(json.dumps(row, sort_keys=True))
 
-    configured_mapping_set = set(configured_mappings)
-    if len(configured_mappings) != len(configured_mapping_set):
+    expected_rule_set = {json.dumps(row, sort_keys=True) for row in expected_rules}
+    configured_rule_set = set(normalized_rules)
+    if len(normalized_rules) != len(configured_rule_set):
         errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings contains duplicates"
+            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules contains duplicates"
         )
-    if configured_mapping_set != expected_mappings:
+    if configured_rule_set != expected_rule_set:
         errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentQueueMappings must contain exactly "
-            "the UUID-verified automatic mappings from the audit CSV"
+            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules must contain exactly "
+            "the enabled routes from the canonical care-routing contract"
         )
-    return len(configured_mapping_set)
+    return len(configured_rule_set)
 
 
 def main():
     errors = []
     validate_privilege_and_roles(errors)
     validate_visit_attribute_metadata(errors)
-    aligned_durations = validate_service_durations(errors)
-    automatic_mappings, manual_mappings = validate_documented_queue_mapping(errors)
-    frontend_mappings = validate_frontend_appointment_config(errors)
+    active_services, packaged_service_types = validate_service_durations(errors)
+    queue_routes, direct_routes, retired_services = validate_canonical_care_routing(
+        errors
+    )
+    frontend_routes = validate_frontend_appointment_config(errors)
 
     if errors:
         print("Appointment/visit/queue integrity validation failed:", file=sys.stderr)
@@ -936,9 +1255,10 @@ def main():
         f"{len(ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS)} narrow FUA generation assignments, "
         f"{len(FRONTEND_UI_PRIVILEGES)} frontend workflow privileges, "
         "queue-number and appointment-link metadata, "
-        f"{aligned_durations} unambiguous durations, {automatic_mappings} automatic "
-        f"queue mappings, {frontend_mappings} frontend mappings, and "
-        f"{manual_mappings} manual mappings."
+        f"{active_services} active services, {packaged_service_types} one-to-one service-type "
+        f"duplicates, {queue_routes} explicit queue routes, {direct_routes} direct "
+        f"routes, {retired_services} non-programmable retired services, and "
+        f"{frontend_routes} synchronized frontend routes."
     )
     return 0
 

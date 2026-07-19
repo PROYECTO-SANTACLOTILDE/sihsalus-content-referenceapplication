@@ -1,8 +1,8 @@
 Uuid,Void/Retire,service name,Description,Service Type,Service Status,Concept,Stockable,Price,_order:1000
-5689a516-f9e4-4a88-b068-2ac0d132953e,,Consulta Ambulatoria - Medicina General,Consulta ambulatoria por médico general (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
-e89cec1e-b5d0-448c-b04e-33473719ac51,,Consulta Ambulatoria - Obstetricia,Consulta ambulatoria por obstetra,SERVICE,ENABLED,,false,,
-4b63bdcd-3c22-4c22-8c3e-877c95a0608b,,Consulta Ambulatoria - Psicología,Consulta ambulatoria por psicólogo(a),SERVICE,ENABLED,,false,,
-94333ebf-b684-46df-8619-947143cc8330,,Consulta Ambulatoria - Odontología,Consulta ambulatoria por cirujano dentista,SERVICE,ENABLED,,false,,
+5689a516-f9e4-4a88-b068-2ac0d132953e,,Consulta por médico general,Consulta ambulatoria por médico general (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
+e89cec1e-b5d0-448c-b04e-33473719ac51,,Consulta por obstetra,Atención ambulatoria por obstetra (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
+4b63bdcd-3c22-4c22-8c3e-877c95a0608b,,Consulta por psicólogo(a),Atención ambulatoria por psicólogo(a) (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
+94333ebf-b684-46df-8619-947143cc8330,,Consulta por cirujano dentista general,Consulta ambulatoria por cirujano dentista general (UPSS Consulta Externa),SERVICE,ENABLED,,false,,
 f9a415bf-3209-45c8-b61f-5a7eb2a02875,,Atención de Emergencia,Atención en urgencias y emergencias,SERVICE,ENABLED,,false,,
 572914fc-cdc0-4a2d-8e6d-406961a87e61,,Hospitalización - Día/Cama,Servicio de hospitalización por día-cama,SERVICE,ENABLED,,false,,
 ab2565cd-a401-432c-abcf-dd36be2e03f8,,Procedimiento de Laboratorio,Procedimientos de laboratorio clínico tipo II-1,SERVICE,ENABLED,,false,,
