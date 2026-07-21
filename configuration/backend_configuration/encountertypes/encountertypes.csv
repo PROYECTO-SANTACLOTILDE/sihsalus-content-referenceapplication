@@ -1,6 +1,6 @@
 Uuid,Void/Retire,Name,Description,View privilege,Edit privilege,_order:1000
 186c1e78-a99f-4cd0-86de-b8c4ee27a2b5,,Consulta Externa,"Atención ambulatoria en consultorio médico para diagnóstico y tratamiento. Basado en la NTS N° 029-MINSA.",,,
-e137c4de-8dbe-4d32-9a76-35f7d1b17f45,,Consulta Especializada,"Consulta en especialidades médicas como cardiología, neumología, pediatría, etc. Basado en la NTS N° 040-MINSA.",,,
+e137c4de-8dbe-4d32-9a76-35f7d1b17f45,,Consulta Especializada,"Evento clínico de consulta especializada. No identifica cuál especialidad fue atendida; esa categoría se conserva en el servicio de cita y el profesional.",,,
 67a71486-1a54-468f-ac3e-7091a9a79584,,Triaje,"Evaluación inicial de signos vitales y clasificación del paciente según urgencia. Basado en la NTS N° 021-MINSA.",,,
 20d4a603-8472-484c-b2bf-b45bdecf6b4f,,Registro de signos vitales y antropometría,"Registro longitudinal de funciones vitales y mediciones antropométricas desde la historia clínica, separado de la clasificación de emergencia. Alineado con la NTS N° 139-MINSA/2018/DGAIN.",app:hoja.clinica.signosVitales,app:hoja.clinica.signosVitales.editar,
 978deb64-358e-4c78-bbb0-04cea73df805,,Triaje de Emergencia,"Clasificación clínica inicial por prioridad dentro del servicio de emergencia. Basado en la NT N° 042-MINSA/DGSP-V.01.",app:home.emergencia,app:home.emergencia.editar,
