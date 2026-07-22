@@ -9,4 +9,67 @@
         <sql> ALTER TABLE concept_name MODIFY COLUMN name VARCHAR(500) NOT NULL DEFAULT ''; </sql>
     </changeSet>
 
+    <changeSet id="normalize-admission-role-name-20260722" author="sihsalus">
+        <comment>
+            Normaliza el nombre historico e inmutable del rol de admision antes de que
+            Initializer sincronice sus privilegios desde roles-core.csv.
+        </comment>
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT CASE
+                    WHEN EXISTS (
+                        SELECT 1
+                        FROM role
+                        WHERE uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+                          AND role = 'SIHSALUS Admision'
+                    )
+                    AND NOT EXISTS (
+                        SELECT 1
+                        FROM role
+                        WHERE role = 'Admision'
+                    )
+                    THEN 1 ELSE 0 END
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            INSERT INTO role (role, description, uuid)
+            SELECT 'Admision', description, UUID()
+            FROM role
+            WHERE uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+              AND role = 'SIHSALUS Admision';
+
+            UPDATE user_role
+            SET role = 'Admision'
+            WHERE role = 'SIHSALUS Admision';
+
+            UPDATE role_privilege
+            SET role = 'Admision'
+            WHERE role = 'SIHSALUS Admision';
+
+            UPDATE role_role
+            SET parent_role = 'Admision'
+            WHERE parent_role = 'SIHSALUS Admision';
+
+            UPDATE role_role
+            SET child_role = 'Admision'
+            WHERE child_role = 'SIHSALUS Admision';
+
+            UPDATE patientflags_tag_role
+            SET role = 'Admision'
+            WHERE role = 'SIHSALUS Admision';
+
+            UPDATE stockmgmt_user_role_scope
+            SET role = 'Admision'
+            WHERE role = 'SIHSALUS Admision';
+
+            DELETE FROM role
+            WHERE uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+              AND role = 'SIHSALUS Admision';
+
+            UPDATE role
+            SET uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+            WHERE role = 'Admision';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>
