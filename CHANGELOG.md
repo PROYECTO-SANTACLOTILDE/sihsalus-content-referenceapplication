@@ -81,11 +81,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   5 679 mapeos) y la suscripción de `openconceptlab.subscriptionUrl` a esa versión.
 
 ### Corregido
+- Habilita al rol `Admision` el tablero y la operación de entradas de cola mediante
+  `app:home.colasAtencion` y `app:home.colasAtencion.editar`. Mantiene fuera la configuración,
+  habitaciones y purga de colas (`Manage Queues`, `Manage Queue Rooms`, `Purge Queue Entries`).
 - Mapea las citas de cirujano dentista general en UPSS Consulta Externa a la cola compartida y usa el ámbito
   `Atención Ambulatoria`; la categoría `Odontología general` conserva el contexto sin duplicarlo en `VisitType`.
 - Mantiene el nombre estable `Admision` para que Initializer pueda actualizar el rol existente por UUID, reemplazar
   su herencia y aplicar la allowlist de registro, citas y check-in. Esto restaura la lectura necesaria para encolar
-  desde Citas y retira historia clínica, dashboard/configuración/purgas de colas, administración de catálogos y
+  desde Citas y retira historia clínica, configuración/purgas de colas, administración de catálogos y
   acciones destructivas. CI exige la identidad y privilegios exactos del rol.
 - Separa la visualización del resumen de consulta de su edición mediante
   `app:hoja.clinica.resumenConsulta.editar`, evitando que un permiso de lectura habilite el formulario clínico.

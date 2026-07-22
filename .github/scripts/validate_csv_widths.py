@@ -64,6 +64,8 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "app:home.admision",
     "app:home.citas",
     "app:home.citas.editar",
+    "app:home.colasAtencion",
+    "app:home.colasAtencion.editar",
     "app:opciones.busquedaPaciente",
     "app:opciones.registrarPaciente",
 }

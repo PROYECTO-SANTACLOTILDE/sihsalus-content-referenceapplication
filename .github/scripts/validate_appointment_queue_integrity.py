@@ -158,6 +158,8 @@ ROLE_REQUIRED_PRIVILEGES = {
         "Manage Own Appointments",
         "View Appointments",
         "app:home.citas.editar",
+        "app:home.colasAtencion",
+        "app:home.colasAtencion.editar",
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Manage Appointments",
@@ -230,8 +232,6 @@ ROLE_FORBIDDEN_PRIVILEGES = {
         "app:hoja.clinica.resumen",
         "app:hoja.clinica.visitas",
         "app:hoja.clinica.visitas.editar",
-        "app:home.colasAtencion",
-        "app:home.colasAtencion.editar",
         "app:home.editar",
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {

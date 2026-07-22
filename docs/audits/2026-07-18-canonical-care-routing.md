@@ -77,7 +77,7 @@ de ámbito, incluso cuando no usa cola.
 Los entornos no productivos se migran en este orden:
 
 1. respaldar la base y capturar conteos por UUID;
-2. desplegar content `1.23.0` para crear categorías, Concepts y reglas nuevas;
+2. desplegar content `1.23.1` para crear categorías, Concepts, reglas nuevas y el acceso operativo de Admisión;
 3. reasignar las consultas de tipos especializados al ámbito genérico correspondiente;
 4. verificar que no existan citas futuras de los tres servicios retirados;
 5. eliminar de DEV/QLTY los tipos antiguos y el atributo padre ficticio, después de comprobar que
