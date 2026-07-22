@@ -19,6 +19,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   `AppointmentServiceDefinition`, que pertenecen a otro tipo de recurso.
 
 ### Cambiado
+- El rol de Admisión normaliza de forma transaccional su nombre histórico `SIHSALUS Admision`
+  a `Admision`, conservando el UUID y todas las referencias de usuarios, privilegios y módulos.
+  Esto permite que Initializer sincronice sus permisos de colas tanto en bases existentes como
+  en instalaciones limpias.
 - `VisitType` representa únicamente el ámbito: Atención Ambulatoria, Sesión Grupal Ambulatoria,
   Hospitalización, Emergencia o Atención Extramural. La especialidad y la prestación permanecen
   en el servicio de cita y el encuentro clínico.
