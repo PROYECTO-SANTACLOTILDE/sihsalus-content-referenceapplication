@@ -8,6 +8,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Agrega `Get Concept Attribute Types` al rol `Admision` y lo protege en CI.
+  OpenMRS Core lo exige al validar los atributos incluidos en el POST inicial
+  de una visita; sin este privilegio, el registro atómico de llegada respondía
+  `400` antes de crear la consulta.
 - Restaura `Get Beds` y `Get Admission Locations` en el rol `Admision` y protege
   ambos privilegios en CI. `bedmanagement` los exige al validar cualquier visita,
   incluso una consulta ambulatoria sin cama; su ausencia bloqueaba el registro de

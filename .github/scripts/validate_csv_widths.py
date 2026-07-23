@@ -31,6 +31,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "Edit Visits",
     "Get Admission Locations",
     "Get Beds",
+    "Get Concept Attribute Types",
     "Get Concept Sources",
     "Get Concepts",
     "Get Identifier Types",
