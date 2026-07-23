@@ -8,6 +8,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Restaura `Get Beds` y `Get Admission Locations` en el rol `Admision` y protege
+  ambos privilegios en CI. `bedmanagement` los exige al validar cualquier visita,
+  incluso una consulta ambulatoria sin cama; su ausencia bloqueaba el registro de
+  llegada antes de crear la visita y la entrada de cola.
 - Ordena las precondiciones antes del comentario en la migración del rol de Admisión,
   conforme al esquema Liquibase 1.9, y agrega una validación de este contrato al CI.
 
