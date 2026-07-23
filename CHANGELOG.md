@@ -8,6 +8,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Agrega el privilegio API `Get Encounters` al rol `Admision` y lo protege en
+  CI. Queue 3.0.0 lo exige indirectamente al guardar el número de turno como
+  atributo de la consulta, porque OpenMRS Core ejecuta `VisitValidator`. No se
+  agregan `View Encounters`, observaciones ni programas clínicos.
 - Agrega `Get Concept Attribute Types` al rol `Admision` y lo protege en CI.
   OpenMRS Core lo exige al validar los atributos incluidos en el POST inicial
   de una visita; sin este privilegio, el registro atómico de llegada respondía

@@ -474,6 +474,8 @@ def validate_rbac(errors):
 
     if admission is not None:
         admission_effective = effective_privileges(admission)
+        # Queue 3.0.0 indirectly needs Get Encounters while VisitValidator saves
+        # the ticket number, but admission must retain no clinical write/view access.
         admission_clinical_rest = {
             "Add Encounters",
             "Add Observations",
@@ -484,7 +486,6 @@ def validate_rbac(errors):
             "Edit Notes",
             "Edit Observations",
             "Get Diagnoses",
-            "Get Encounters",
             "Get Notes",
             "Get Observations",
             "View Encounters",
