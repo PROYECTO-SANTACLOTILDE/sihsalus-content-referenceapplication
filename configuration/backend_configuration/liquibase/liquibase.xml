@@ -10,10 +10,6 @@
     </changeSet>
 
     <changeSet id="normalize-admission-role-name-20260722" author="sihsalus">
-        <comment>
-            Normaliza el nombre historico e inmutable del rol de admision antes de que
-            Initializer sincronice sus privilegios desde roles-core.csv.
-        </comment>
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
                 SELECT CASE
@@ -31,6 +27,10 @@
                     THEN 1 ELSE 0 END
             </sqlCheck>
         </preConditions>
+        <comment>
+            Normaliza el nombre historico e inmutable del rol de admision antes de que
+            Initializer sincronice sus privilegios desde roles-core.csv.
+        </comment>
         <sql>
             INSERT INTO role (role, description, uuid)
             SELECT 'Admision', description, UUID()

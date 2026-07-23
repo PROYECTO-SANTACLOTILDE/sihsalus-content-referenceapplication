@@ -7,6 +7,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Corregido
+- Ordena las precondiciones antes del comentario en la migración del rol de Admisión,
+  conforme al esquema Liquibase 1.9, y agrega una validación de este contrato al CI.
+
 ### Agregado
 - Contrato canónico versionado `docs/contracts/hsc-care-routing.csv` para los 16 servicios
   registrados. Define por UUID la categoría de agenda, ubicación, política de llegada, cola y
