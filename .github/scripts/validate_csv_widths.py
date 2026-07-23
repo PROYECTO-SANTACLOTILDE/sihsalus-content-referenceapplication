@@ -34,6 +34,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "Get Concept Attribute Types",
     "Get Concept Sources",
     "Get Concepts",
+    "Get Encounters",
     "Get Identifier Types",
     "Get Location Attribute Types",
     "Get Locations",
