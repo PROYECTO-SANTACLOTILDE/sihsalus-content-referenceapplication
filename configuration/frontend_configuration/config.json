@@ -116,6 +116,7 @@
     ]
   },
   "@sihsalus/esm-patient-chart-app": {
+    "visitLocationTag": "Care UPSS",
     "visitPersistenceTokenAttributeTypeUuid": "eb8b793b-f259-451d-9c09-53aa0ffd0d3f",
     "visitTypeEligibilityRules": [
       {

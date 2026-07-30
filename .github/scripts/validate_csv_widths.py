@@ -9,6 +9,8 @@ LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
 LOCATIONS_PATH = CONFIG_DIR / "locations" / "sihsalus-locations.csv"
 ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
+CARE_UPSS_TAG_NAME = "Care UPSS"
+CARE_UPSS_TAG_UUID = "f1fa0d61-ca3e-4cf1-a58b-b3458f7db1b3"
 HOSPITAL_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b72c1602"
 CASITA_AZUL_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b72c1603"
 CONSULTA_EXTERNA_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
@@ -121,6 +123,20 @@ def main():
                         f"{path}: {name!r} must have an empty UUID so Initializer "
                         "resolves the module-created tag by name"
                     )
+            care_upss_rows = [
+                row
+                for row in rows[1:]
+                if len(row) > name_index and row[name_index] == CARE_UPSS_TAG_NAME
+            ]
+            if len(care_upss_rows) != 1:
+                errors.append(
+                    f"{path}: expected exactly one {CARE_UPSS_TAG_NAME!r} row, "
+                    f"found {len(care_upss_rows)}"
+                )
+            elif care_upss_rows[0][uuid_index] != CARE_UPSS_TAG_UUID:
+                errors.append(
+                    f"{path}: {CARE_UPSS_TAG_NAME!r} must keep UUID {CARE_UPSS_TAG_UUID}"
+                )
 
         if path == LOCATIONS_PATH:
             uuid_index = rows[0].index("Uuid")
@@ -151,6 +167,7 @@ def main():
                 expected_hospital_tags = {
                     "Tag|Login Location": True,
                     "Tag|Visit Location": False,
+                    "Tag|Care UPSS": False,
                     "Tag|Facility Location": True,
                     "Tag|Queue Location": True,
                     "Tag|Admission Location": False,
@@ -200,6 +217,7 @@ def main():
                     "tags": {
                         "Tag|Login Location": False,
                         "Tag|Visit Location": False,
+                        "Tag|Care UPSS": False,
                         "Tag|Facility Location": True,
                         "Tag|Queue Location": True,
                         "Tag|Admission Location": False,
@@ -213,6 +231,7 @@ def main():
                     "tags": {
                         "Tag|Login Location": False,
                         "Tag|Visit Location": True,
+                        "Tag|Care UPSS": True,
                         "Tag|Facility Location": False,
                         "Tag|Queue Location": True,
                         "Tag|Admission Location": False,
@@ -247,7 +266,26 @@ def main():
                         errors.append(
                             f"{path}: {expected['name']} must have {column}="
                             f"{'TRUE' if expected_value else 'FALSE'}"
-                        )
+                    )
+
+            care_upss_index = rows[0].index("Tag|Care UPSS")
+            visit_location_index = rows[0].index("Tag|Visit Location")
+            active_care_upss_rows = [
+                row for row in active_rows if is_true(row[care_upss_index])
+            ]
+            non_visit_care_upss = [
+                row
+                for row in active_care_upss_rows
+                if not is_true(row[visit_location_index])
+            ]
+            if non_visit_care_upss:
+                errors.append(
+                    f"{path}: every active Care UPSS must also be a Visit Location; "
+                    "invalid UUIDs: "
+                    + ", ".join(
+                        sorted(row[uuid_index] for row in non_visit_care_upss)
+                    )
+                )
 
             pharmacy_rows = [
                 row for row in active_rows if row[uuid_index] == PHARMACY_LOCATION_UUID

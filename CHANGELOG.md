@@ -8,6 +8,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Provisiona el tag backend `Care UPSS` y lo asigna exclusivamente a las once
+  UPSS habilitadas para iniciar una atención. Las salas conservan
+  `Visit Location`, `Admission Location` y `Transfer Location` para los flujos
+  de hospitalización, pero dejan de ser candidatas del selector funcional de
+  UPSS. CI mantiene sincronizado este tag con el contrato de tipos de atención.
 - Separa las capacidades sensibles del frontend: `Admision` y `Personal de
   Emergencia` reciben `app:opciones.registrarAcompanante` para registrar una
   persona acompañante sólo junto con `Add People`; la limpieza masiva de
