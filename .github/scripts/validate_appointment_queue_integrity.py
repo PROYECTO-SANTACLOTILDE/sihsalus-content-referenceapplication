@@ -1166,6 +1166,12 @@ def validate_frontend_appointment_config(errors):
             f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-patient-chart-app object"
         )
     else:
+        if patient_chart_config.get("visitLocationTag") != "Care UPSS":
+            errors.append(
+                f"{FRONTEND_CONFIG_PATH}: visitLocationTag must use the backend "
+                "Care UPSS location tag"
+            )
+
         if (
             patient_chart_config.get("visitPersistenceTokenAttributeTypeUuid")
             != VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID
@@ -1210,6 +1216,17 @@ def validate_frontend_appointment_config(errors):
                 errors.append(
                     f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules must contain "
                     "exactly the approved location-to-care-setting mappings"
+                )
+            active_care_upss_uuids = {
+                row["Uuid"]
+                for row in read_csv(LOCATIONS_PATH)
+                if not is_retired(row["Void/Retire"])
+                and is_true(row.get("Tag|Care UPSS", ""))
+            }
+            if set(configured_eligibility) != active_care_upss_uuids:
+                errors.append(
+                    f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules locations "
+                    "must match the active Care UPSS backend tags"
                 )
 
     if "appointmentQueueMappings" in module_config:
