@@ -8,6 +8,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Separa las capacidades sensibles del frontend: `Admision` y `Personal de
+  Emergencia` reciben `app:opciones.registrarAcompanante` para registrar una
+  persona acompañante sólo junto con `Add People`; la limpieza masiva de
+  entradas queda reservada a `Application: Gestionar Colas Servicio` mediante
+  `app:home.colasAtencion.limpiar`. Esta última finaliza entradas activas y no
+  concede `Purge Queue Entries` ni elimina historia.
 - Agrega el privilegio API `Get Encounters` al rol `Admision` y lo protege en
   CI. Queue 3.0.0 lo exige indirectamente al guardar el número de turno como
   atributo de la consulta, porque OpenMRS Core ejecuta `VisitValidator`. No se
