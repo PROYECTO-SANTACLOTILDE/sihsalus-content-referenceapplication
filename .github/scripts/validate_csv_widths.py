@@ -71,6 +71,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "app:home.colasAtencion",
     "app:home.colasAtencion.editar",
     "app:opciones.busquedaPaciente",
+    "app:opciones.registrarAcompanante",
     "app:opciones.registrarPaciente",
 }
 

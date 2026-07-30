@@ -116,6 +116,8 @@ QUEUE_READER_ROLE_UUID = "7f9a9321-0c35-4130-895c-dbca7401be64"
 QUEUE_READER_ROLE_NAME = "Colas Servicio Medico"
 NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
 NURSE_ROLE_NAME = "Enfermera"
+COMPANION_REGISTRATION_PRIVILEGE = "app:opciones.registrarAcompanante"
+QUEUE_CLEAR_PRIVILEGE = "app:home.colasAtencion.limpiar"
 FRONTEND_UI_PRIVILEGES = {
     "app:home.tabla.consultas.activas": "4cbcf36e-ea9b-4b55-86eb-5e5061922410",
     "app:hoja.clinica.resumenConsulta": "017238da-7b23-48ae-934e-f8eb1835d39a",
@@ -123,12 +125,31 @@ FRONTEND_UI_PRIVILEGES = {
     "app:hoja.clinica.formulariosClinicos": "b3e9c57b-82a9-4d27-a568-763bd7ac1918",
     "app:hoja.clinica.canastaOrdenes": "4fe1d19e-615e-4b0b-ac16-68ad57ef61d0",
     "app:hoja.clinica.listaTareas": "1314dc5d-e183-4787-8400-67c98d11b870",
+    COMPANION_REGISTRATION_PRIVILEGE: "5bde5891-1a46-41d8-a200-e1125bca846a",
+    QUEUE_CLEAR_PRIVILEGE: "03d6a1bf-ae86-4d5b-a851-9d6b8be30b2f",
 }
 FRONTEND_UI_ROLE_GRANTS = {
-    CLINICAL_ROLE_UUID: set(FRONTEND_UI_PRIVILEGES),
+    CLINICAL_ROLE_UUID: set(FRONTEND_UI_PRIVILEGES)
+    - {COMPANION_REGISTRATION_PRIVILEGE, QUEUE_CLEAR_PRIVILEGE},
+    "71dcb611-756a-4ad3-a9bb-73b6cfe28066": {
+        COMPANION_REGISTRATION_PRIVILEGE,
+    },
+    "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": {
+        QUEUE_CLEAR_PRIVILEGE,
+    },
     "cf627580-0372-47fc-87b6-319d4a4d4973": {
         "app:home.tabla.consultas.activas",
         "app:hoja.clinica.formulariosClinicos",
+        COMPANION_REGISTRATION_PRIVILEGE,
+    },
+}
+SENSITIVE_UI_PRIVILEGE_ASSIGNMENTS = {
+    COMPANION_REGISTRATION_PRIVILEGE: {
+        "71dcb611-756a-4ad3-a9bb-73b6cfe28066",
+        "cf627580-0372-47fc-87b6-319d4a4d4973",
+    },
+    QUEUE_CLEAR_PRIVILEGE: {
+        "72dd34eb-0295-4684-ab3f-1ccb0cfaab20",
     },
 }
 ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
@@ -160,6 +181,7 @@ ROLE_REQUIRED_PRIVILEGES = {
         "app:home.citas.editar",
         "app:home.colasAtencion",
         "app:home.colasAtencion.editar",
+        COMPANION_REGISTRATION_PRIVILEGE,
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Manage Appointments",
@@ -171,6 +193,7 @@ ROLE_REQUIRED_PRIVILEGES = {
         "View Appointments",
         "app:home.colasAtencion",
         "app:home.colasAtencion.editar",
+        QUEUE_CLEAR_PRIVILEGE,
     },
     "cf627580-0372-47fc-87b6-319d4a4d4973": {
         "Add Encounters",
@@ -199,6 +222,7 @@ ROLE_REQUIRED_PRIVILEGES = {
         "app:home.emergencia",
         "app:home.emergencia.editar",
         "app:opciones.registrarPaciente",
+        COMPANION_REGISTRATION_PRIVILEGE,
     },
 }
 ROLE_FORBIDDEN_PRIVILEGES = {
@@ -233,6 +257,7 @@ ROLE_FORBIDDEN_PRIVILEGES = {
         "app:hoja.clinica.visitas",
         "app:hoja.clinica.visitas.editar",
         "app:home.editar",
+        QUEUE_CLEAR_PRIVILEGE,
     },
     "75abd7e6-9dcd-446d-8468-04837f314c4f": {
         "Get Global Properties",
@@ -244,6 +269,8 @@ ROLE_FORBIDDEN_PRIVILEGES = {
         "View Global Properties",
         "app:home.colasAtencion",
         "app:home.colasAtencion.editar",
+        COMPANION_REGISTRATION_PRIVILEGE,
+        QUEUE_CLEAR_PRIVILEGE,
     },
     "72dd34eb-0295-4684-ab3f-1ccb0cfaab20": {
         "Get Global Properties",
@@ -253,6 +280,7 @@ ROLE_FORBIDDEN_PRIVILEGES = {
         "Purge Queue Rooms",
         "Reset Appointment Status",
         "View Global Properties",
+        COMPANION_REGISTRATION_PRIVILEGE,
     },
     "cf627580-0372-47fc-87b6-319d4a4d4973": {
         "Delete Encounters",
@@ -270,6 +298,7 @@ ROLE_FORBIDDEN_PRIVILEGES = {
         "Purge Queue Rooms",
         "Reset Appointment Status",
         "View Global Properties",
+        QUEUE_CLEAR_PRIVILEGE,
     },
 }
 
@@ -376,6 +405,18 @@ def validate_privilege_and_roles(errors):
                 "privileges: " + ", ".join(sorted(missing))
             )
 
+    for privilege, approved_role_uuids in SENSITIVE_UI_PRIVILEGE_ASSIGNMENTS.items():
+        assigned_role_uuids = {
+            row["Uuid"]
+            for row in role_rows
+            if privilege in split_privileges(row.get("Privileges", ""))
+        }
+        if assigned_role_uuids != approved_role_uuids:
+            errors.append(
+                f"{privilege!r} direct assignments must match its least-privilege "
+                "allowlist; found UUIDs: " + ", ".join(sorted(assigned_role_uuids))
+            )
+
     obsolete_assignments = {
         row["Uuid"]
         for row in role_rows
@@ -467,6 +508,7 @@ def validate_privilege_and_roles(errors):
             "app:hoja.clinica.citas.editar",
         }
         forbidden = {
+            COMPANION_REGISTRATION_PRIVILEGE,
             "Get Global Properties",
             "Manage Fua",
             "Manage Queue Rooms",
@@ -474,6 +516,7 @@ def validate_privilege_and_roles(errors):
             "Purge Queue Entries",
             "Update Fua",
             "View Global Properties",
+            QUEUE_CLEAR_PRIVILEGE,
         }
         if required - privileges:
             errors.append(
@@ -506,6 +549,7 @@ def validate_privilege_and_roles(errors):
         }
         forbidden = {
             "Add Visits",
+            COMPANION_REGISTRATION_PRIVILEGE,
             "Edit Visits",
             QUEUE_ENTRY_MUTATION_PRIVILEGE,
             "Manage Queue Rooms",
@@ -513,6 +557,7 @@ def validate_privilege_and_roles(errors):
             "Purge Queue Entries",
             "Purge Queue Rooms",
             "app:home.colasAtencion.editar",
+            QUEUE_CLEAR_PRIVILEGE,
         }
         if required - privileges:
             errors.append(
