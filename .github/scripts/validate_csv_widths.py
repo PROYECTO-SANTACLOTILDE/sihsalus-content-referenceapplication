@@ -7,6 +7,7 @@ from pathlib import Path
 CONFIG_DIR = Path("configuration/backend_configuration")
 LOCATION_TAGS_PATH = CONFIG_DIR / "locationtags" / "locationtags.csv"
 LOCATIONS_PATH = CONFIG_DIR / "locations" / "sihsalus-locations.csv"
+PRIVILEGES_PATH = CONFIG_DIR / "privileges" / "privileges_core-demo.csv"
 ROLES_CORE_PATH = CONFIG_DIR / "roles" / "roles-core.csv"
 MODULE_LOCATION_TAGS = {"Appointment Location", "Queue Location"}
 CARE_UPSS_TAG_NAME = "Care UPSS"
@@ -19,6 +20,14 @@ ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
 # OpenMRS treats the role name as immutable. Keep the production identity stable
 # so Initializer can update the UUID-matched role instead of rejecting the row.
 ADMISSION_ROLE_NAME = "Admision"
+CONSULTA_EXTERNA_ROLE_UUID = "e832327b-7fc2-4e64-a527-7e6ae0cdd041"
+CONSULTA_EXTERNA_ROLE_NAME = "SIHSALUS Consulta Externa"
+CLINICAL_MUTATION_PRIVILEGES = {
+    "app:hoja.clinica.formulariosClinicos.editar": (
+        "178f2d47-a575-43c7-bd25-41de49001eac"
+    ),
+    "app:hoja.clinica.listaTareas.editar": "efaaee74-2c82-4703-a0d7-7a5dbc7f5e3c",
+}
 ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Patients",
     "Add Patient Identifiers",
@@ -307,6 +316,30 @@ def main():
                         f"{path}: UPSS - FARMACIA must not be a Login Location"
                     )
 
+        if path == PRIVILEGES_PATH:
+            uuid_index = rows[0].index("Uuid")
+            privilege_name_index = rows[0].index("Privilege name")
+            valid_rows = [row for row in rows[1:] if len(row) == header_width]
+            for privilege_name, privilege_uuid in CLINICAL_MUTATION_PRIVILEGES.items():
+                name_matches = [
+                    row
+                    for row in valid_rows
+                    if row[privilege_name_index] == privilege_name
+                ]
+                uuid_matches = [
+                    row for row in valid_rows if row[uuid_index] == privilege_uuid
+                ]
+                if len(name_matches) != 1 or len(uuid_matches) != 1:
+                    errors.append(
+                        f"{path}: clinical mutation privilege {privilege_name!r} must "
+                        "have exactly one UUID and one name row"
+                    )
+                elif name_matches[0] is not uuid_matches[0]:
+                    errors.append(
+                        f"{path}: clinical mutation privilege {privilege_name!r} must "
+                        f"use UUID {privilege_uuid}"
+                    )
+
         if path == ROLES_CORE_PATH:
             uuid_index = rows[0].index("Uuid")
             role_index = rows[0].index("Role name")
@@ -352,6 +385,39 @@ def main():
                         f"{', '.join(sorted(unapproved_privileges))}"
                     )
 
+            consulta_externa_rows = [
+                row
+                for row in rows[1:]
+                if len(row) > role_index
+                and row[role_index] == CONSULTA_EXTERNA_ROLE_NAME
+            ]
+            if len(consulta_externa_rows) != 1:
+                errors.append(
+                    f"{path}: expected exactly one {CONSULTA_EXTERNA_ROLE_NAME!r} role, "
+                    f"found {len(consulta_externa_rows)}"
+                )
+            else:
+                consulta_externa_row = consulta_externa_rows[0]
+                if consulta_externa_row[uuid_index] != CONSULTA_EXTERNA_ROLE_UUID:
+                    errors.append(
+                        f"{path}: {CONSULTA_EXTERNA_ROLE_NAME!r} must keep UUID "
+                        f"{CONSULTA_EXTERNA_ROLE_UUID}"
+                    )
+                consulta_externa_privileges = {
+                    privilege.strip()
+                    for privilege in consulta_externa_row[privileges_index].split(";")
+                    if privilege.strip()
+                }
+                missing_mutation_privileges = (
+                    set(CLINICAL_MUTATION_PRIVILEGES) - consulta_externa_privileges
+                )
+                if missing_mutation_privileges:
+                    errors.append(
+                        f"{path}: {CONSULTA_EXTERNA_ROLE_NAME!r} is missing clinical "
+                        "mutation privileges: "
+                        f"{', '.join(sorted(missing_mutation_privileges))}"
+                    )
+
     if errors:
         print("CSV width validation failed:", file=sys.stderr)
         for error in errors:
@@ -360,7 +426,8 @@ def main():
 
     print(
         "Validated column counts, module-owned location tags, the single hospital "
-        f"login location, and admission role invariants for {checked} CSV files."
+        "login location, privilege catalog, and clinical role invariants for "
+        f"{checked} CSV files."
     )
     return 0
 
