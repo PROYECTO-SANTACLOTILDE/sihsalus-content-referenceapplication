@@ -40,6 +40,8 @@ jobs:
         run: python3 .github/scripts/validate_chart_vitals_contract.py
       - name: Test SIHSALUS validation log classifier
         run: bash .github/scripts/test_classify_validation_log.sh
+      - name: Test Maven Central publication gate
+        run: bash .github/scripts/test_maven_central_publication.sh
       - name: Build with Maven
         id: build_with_maven
         run: |
@@ -50,6 +52,7 @@ jobs:
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pre-release')
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout --file pom.xml)
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
           URL="https://repo1.maven.org/maven2/io/github/proyecto-santaclotilde/sihsalus-content/${VERSION}/sihsalus-content-${VERSION}.pom"
           for attempt in $(seq 1 6); do
             if curl -fsI "$URL" >/dev/null; then
@@ -88,3 +91,7 @@ jobs:
           CENTRAL_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
           CENTRAL_PASSWORD: ${{ secrets.CENTRAL_PASSWORD }}
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Verify Maven Central publication
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/pre-release')
+        run: bash .github/scripts/wait_for_maven_central.sh "${{ steps.central-version.outputs.version }}"
