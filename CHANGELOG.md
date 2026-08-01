@@ -8,6 +8,15 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Provisiona y asigna de forma explícita los privilegios de fecha de citas:
+  `app:appointments.startDate.edit` para Admisión, Consulta Externa y el rol de
+  registro de citas; y `app:appointments.issueDate.edit` únicamente para
+  Admisión, que registra citas emitidas previamente en papel.
+- Separa la lectura de formularios y tareas clínicas de sus mutaciones mediante
+  `app:hoja.clinica.formulariosClinicos.editar` y
+  `app:hoja.clinica.listaTareas.editar`. Solo Consulta Externa y Enfermería por
+  herencia reciben estas capacidades genéricas; Admisión, Emergencia,
+  Laboratorio y Farmacia permanecen excluidos.
 - Provisiona el tag backend `Care UPSS` y lo asigna exclusivamente a las once
   UPSS habilitadas para iniciar una atención. Las salas conservan
   `Visit Location`, `Admission Location` y `Transfer Location` para los flujos
