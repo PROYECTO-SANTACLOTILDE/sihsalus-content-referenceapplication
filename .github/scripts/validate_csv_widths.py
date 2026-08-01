@@ -75,6 +75,11 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "View Person Attribute Types",
     "View Relationship Types",
     "View Relationships",
+    # Scheduling an appointment for a day other than today, and correcting the
+    # date a paper appointment was issued on. Both are gated in the frontend;
+    # without them Admision can only ever book same-day appointments.
+    "app:appointments.issueDate.edit",
+    "app:appointments.startDate.edit",
     "app:home",
     "app:home.admision",
     "app:home.citas",
