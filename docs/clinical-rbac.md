@@ -15,10 +15,18 @@ Laboratorio, Farmacia y Hospitalización.
 - `app:hoja.clinica.listaTareas` permite consultar tareas.
 - `app:hoja.clinica.listaTareas.editar` permite crear, editar, completar o
   anular tareas.
+- `View Attachments` autoriza la lectura mediante la API del módulo de adjuntos.
+- `Create Attachments` autoriza la creación mediante esa misma API.
 
 El rol `SIHSALUS Consulta Externa` recibe ambas capacidades de escritura y el
 rol `Enfermera` las hereda de él. No se asignan a Admisión, Laboratorio,
 Farmacia ni Emergencia.
+
+La lectura de adjuntos forma parte de `Application: Uses Patient Summary`. El
+rol `SIHSALUS Consulta Externa` recibe además `Create Attachments` y ambos
+privilegios de forma directa; `Enfermera` los hereda. Los privilegios REST son
+necesarios aunque el rol ya tenga `Add Observations` y `View Observations`,
+porque el módulo de adjuntos protege sus endpoints con capacidades propias.
 
 Cuando un tipo de encuentro declara un privilegio específico, el frontend exige
 ese privilegio y no usa la capacidad genérica. Cuando la metadata está ausente,
@@ -55,6 +63,7 @@ de reversión explícito.
 ## Validación operativa requerida
 
 - Consulta Externa: puede crear formularios y mutar tareas.
+- Consulta Externa y Enfermería: pueden crear y volver a consultar adjuntos.
 - Admisión: no puede crear formularios ni mutar tareas.
 - Emergencia, Laboratorio y Farmacia: sus flujos especializados siguen
   funcionando sin recibir la capacidad clínica genérica.

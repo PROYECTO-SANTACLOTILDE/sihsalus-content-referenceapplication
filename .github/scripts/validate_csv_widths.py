@@ -22,6 +22,9 @@ ADMISSION_ROLE_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
 ADMISSION_ROLE_NAME = "Admision"
 CONSULTA_EXTERNA_ROLE_UUID = "e832327b-7fc2-4e64-a527-7e6ae0cdd041"
 CONSULTA_EXTERNA_ROLE_NAME = "SIHSALUS Consulta Externa"
+PATIENT_SUMMARY_ROLE_UUID = "564b560e-3fe8-4829-8be4-68ddb40cf106"
+PATIENT_SUMMARY_ROLE_NAME = "Application: Uses Patient Summary"
+ATTACHMENT_PRIVILEGES = {"Create Attachments", "View Attachments"}
 CLINICAL_MUTATION_PRIVILEGES = {
     "app:hoja.clinica.formulariosClinicos.editar": (
         "178f2d47-a575-43c7-bd25-41de49001eac"
@@ -350,6 +353,39 @@ def main():
             role_index = rows[0].index("Role name")
             inherited_roles_index = rows[0].index("Inherited roles")
             privileges_index = rows[0].index("Privileges")
+            patient_summary_rows = [
+                row
+                for row in rows[1:]
+                if len(row) > role_index
+                and row[role_index] == PATIENT_SUMMARY_ROLE_NAME
+            ]
+            if len(patient_summary_rows) != 1:
+                errors.append(
+                    f"{path}: expected exactly one {PATIENT_SUMMARY_ROLE_NAME!r} role, "
+                    f"found {len(patient_summary_rows)}"
+                )
+            else:
+                patient_summary_row = patient_summary_rows[0]
+                if patient_summary_row[uuid_index] != PATIENT_SUMMARY_ROLE_UUID:
+                    errors.append(
+                        f"{path}: {PATIENT_SUMMARY_ROLE_NAME!r} must keep UUID "
+                        f"{PATIENT_SUMMARY_ROLE_UUID}"
+                    )
+                patient_summary_privileges = {
+                    privilege.strip()
+                    for privilege in patient_summary_row[privileges_index].split(";")
+                    if privilege.strip()
+                }
+                if "View Attachments" not in patient_summary_privileges:
+                    errors.append(
+                        f"{path}: {PATIENT_SUMMARY_ROLE_NAME!r} must include "
+                        "View Attachments"
+                    )
+                if "Create Attachments" in patient_summary_privileges:
+                    errors.append(
+                        f"{path}: {PATIENT_SUMMARY_ROLE_NAME!r} must not include "
+                        "Create Attachments"
+                    )
             admission_rows = [
                 row
                 for row in rows[1:]
@@ -421,6 +457,15 @@ def main():
                         f"{path}: {CONSULTA_EXTERNA_ROLE_NAME!r} is missing clinical "
                         "mutation privileges: "
                         f"{', '.join(sorted(missing_mutation_privileges))}"
+                    )
+                missing_attachment_privileges = (
+                    ATTACHMENT_PRIVILEGES - consulta_externa_privileges
+                )
+                if missing_attachment_privileges:
+                    errors.append(
+                        f"{path}: {CONSULTA_EXTERNA_ROLE_NAME!r} is missing "
+                        "attachment privileges: "
+                        f"{', '.join(sorted(missing_attachment_privileges))}"
                     )
 
     if errors:
