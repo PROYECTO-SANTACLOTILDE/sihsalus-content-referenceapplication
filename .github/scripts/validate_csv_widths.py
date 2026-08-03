@@ -24,7 +24,11 @@ CONSULTA_EXTERNA_ROLE_UUID = "e832327b-7fc2-4e64-a527-7e6ae0cdd041"
 CONSULTA_EXTERNA_ROLE_NAME = "SIHSALUS Consulta Externa"
 PATIENT_SUMMARY_ROLE_UUID = "564b560e-3fe8-4829-8be4-68ddb40cf106"
 PATIENT_SUMMARY_ROLE_NAME = "Application: Uses Patient Summary"
-ATTACHMENT_PRIVILEGES = {"Create Attachments", "View Attachments"}
+ATTACHMENT_PRIVILEGES = {
+    "Add Observations",
+    "Create Attachments",
+    "View Attachments",
+}
 CLINICAL_MUTATION_PRIVILEGES = {
     "app:hoja.clinica.formulariosClinicos.editar": (
         "178f2d47-a575-43c7-bd25-41de49001eac"
