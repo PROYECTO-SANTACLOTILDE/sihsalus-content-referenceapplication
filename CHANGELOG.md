@@ -8,6 +8,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Autoriza la lectura de adjuntos en `Application: Uses Patient Summary` y la
+  creación y lectura en `SIHSALUS Consulta Externa`. Esto permite que Consulta
+  Externa y Enfermería, por herencia, recuperen los archivos que registran con
+  el módulo backend de adjuntos sin ampliar el acceso de otros roles clínicos.
 - Provisiona y asigna de forma explícita los privilegios de fecha de citas:
   `app:appointments.startDate.edit` para Admisión, Consulta Externa y el rol de
   registro de citas; y `app:appointments.issueDate.edit` únicamente para
