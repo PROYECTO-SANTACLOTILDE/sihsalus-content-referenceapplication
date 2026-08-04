@@ -48,6 +48,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   conforme al esquema Liquibase 1.9, y agrega una validación de este contrato al CI.
 
 ### Agregado
+- Atributo de visita `Acompañante de consulta`
+  (`710da0b9-e15f-47f0-827a-e97f1937c81d`), que el formulario de inicio de
+  consulta del frontend usa para persistir el UUID de la persona acompañante.
+  Sin este metadato el frontend degrada con "No se pudo guardar el
+  acompañante" y la consulta se guarda sin acompañante.
 - Contrato canónico versionado `docs/contracts/hsc-care-routing.csv` para los 16 servicios
   registrados. Define por UUID la categoría de agenda, ubicación, política de llegada, cola y
   ámbito de atención; 13 servicios quedan programables, 11 permiten cola y dos son de atención
