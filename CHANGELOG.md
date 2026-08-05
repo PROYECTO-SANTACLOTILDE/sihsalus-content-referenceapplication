@@ -7,6 +7,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.24.1] - 2026-08-05
+
 ### Corregido
 - Corrige el formulario `Prescripción de medicamentos`, que quedó publicado como
   prueba: la observación «Observaciones» guardaba en el concepto «Evolución
