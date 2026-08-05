@@ -31,7 +31,7 @@
                   "type": "obs",
                   "questionOptions": {
                     "rendering": "textarea",
-                    "concept": "dfdc2f61-dfd1-438f-91ff-629e9a1bb614"
+                    "concept": "480ab6d3-4c8b-46ee-981e-a7dd6f6b5d76"
                   },
                   "id": "observaciones",
                   "label": "Observaciones"
@@ -63,7 +63,7 @@
                 "rendering": "workspace-launcher",
                 "buttonLabel": "Añadir suplementos",
                 "workspaceName": "add-drug-order",
-                "workspaceContext": {
+                "workspaceProps": {
                   "orderableConceptSet": "1ecc7738-7ad5-40f7-af5c-25805cfb2156"
                 }
               },
@@ -123,6 +123,6 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "d20eb394-c0e2-4645-b8d0-c2aa59771896",
-  "description": " Workspace launcher Prueba",
+  "description": "Prescripción de medicamentos y suplementos durante el control prenatal. Las órdenes se registran como Drug Orders desde el order basket.",
   "version": "1.0.0"
 }
