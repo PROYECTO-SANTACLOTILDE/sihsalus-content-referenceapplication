@@ -48,6 +48,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   conforme al esquema Liquibase 1.9, y agrega una validación de este contrato al CI.
 
 ### Agregado
+- Validador de integridad terminológica entre formularios y exports OCL
+  (`validate_form_concept_integrity.py`). Bloquea de inmediato los conceptos
+  referenciados que no existen y los renderings codificados sobre conceptos
+  `Text` —que persistirían el UUID de la respuesta como cadena—. La deuda ya
+  existente (23 colisiones de concepto dentro de un mismo formulario, 32
+  answer sets divergentes, 66 labels con UUID distintos y 9 campos cuyo label
+  promete un código pero guardan texto) queda inventariada en un baseline que
+  solo puede encoger.
 - Atributo de visita `Acompañante de consulta`
   (`710da0b9-e15f-47f0-827a-e97f1937c81d`), que el formulario de inicio de
   consulta del frontend usa para persistir el UUID de la persona acompañante.
