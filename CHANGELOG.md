@@ -8,6 +8,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Corregido
+- Corrige el formulario `Prescripción de medicamentos`, que quedó publicado como
+  prueba: la observación «Observaciones» guardaba en el concepto «Evolución
+  obstétrica» (`dfdc2f61…`) y ahora usa «Instrucciones de prescripción, no
+  codificadas» (`480ab6d3…`); el lanzador de suplementos declaraba
+  `workspaceContext`, que el motor ignora, y pasa a `workspaceProps`, de modo que
+  el set «Suplementos para gestantes» (`1ecc7738…`) por fin se aplica. Conserva
+  su tipo de encuentro Control Prenatal.
 - Autoriza la lectura de adjuntos en `Application: Uses Patient Summary` y la
   creación y lectura en `SIHSALUS Consulta Externa`. Esto permite que Consulta
   Externa y Enfermería, por herencia, recuperen los archivos que registran con
