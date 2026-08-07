@@ -40,8 +40,8 @@ b37d2892-0cc9-4b57-92c1-4157b3a75d20,fb2f2747-04af-4c91-a145-4573b9151d59,Aspart
 cefa7c51-3ce7-4743-8ef1-62eb9af7a4c3,4905ca51-85d5-4d4e-a433-3958f57b145f,Suero/Plasma Ácido Úrico MonlabTest Uricasa-POD adultos hombres 18 - <60 yrs,0,2,3.6,7.7,13,40,"$patient.getAge() >= 18 && $patient.getAge() < 60 && $patient.getGender().equals(""M"")"
 47f10c51-f349-4af7-8e3a-2ffaf9d26247,f7dcbfe1-dbd5-43bd-8e36-66caba9286e2,Suero/Plasma Ácido Úrico liquicolor (Método PAP) adultos mujeres 18 - <60 yrs,0,2,2.4,5.7,13,20,"$patient.getAge() >= 18 && $patient.getAge() < 60 && $patient.getGender().equals(""F"")"
 1e2ec1b7-4e1e-43cf-add7-183157365bdd,f7dcbfe1-dbd5-43bd-8e36-66caba9286e2,Suero/Plasma Ácido Úrico liquicolor (Método PAP) adultos hombres 18 - <60 yrs,0,2,3.4,7,13,20,"$patient.getAge() >= 18 && $patient.getAge() < 60 && $patient.getGender().equals(""M"")"
-811c9d4f-e1fd-4dee-a532-30b5e8cb3efc,8cec7b65-cc58-4b3e-9cd6-afbcd09c98f9,Proteinas Totales sericas g/dl recien nacido,0,0,4.6,7,9,15,$patient.getAge() < 3
-6012769e-6f73-4a13-a2e4-71e4c1ec4322,8cec7b65-cc58-4b3e-9cd6-afbcd09c98f9,Proteinas Totales sericas g/dl adulto y nino de 3 años,0,0,6.6,8.7,10,15,$patient.getAge() >= 3
+811c9d4f-e1fd-4dee-a532-30b5e8cb3efc,8cec7b65-cc58-4b3e-9cd6-afbcd09c98f9,Proteinas Totales sericas g/dl recien nacido,0,0,4.6,7,9,12,$patient.getAge() < 3
+6012769e-6f73-4a13-a2e4-71e4c1ec4322,8cec7b65-cc58-4b3e-9cd6-afbcd09c98f9,Proteinas Totales sericas g/dl adulto y nino de 3 años,0,0,6.6,8.7,10,12,$patient.getAge() >= 3
 9c70f96c-73c4-4f55-8879-0b0b3fa8796f,309b77ab-f8d8-40b4-84fc-0ba6895c32b9,VSG(Velocidad de sedimentacion)en mm Varones < 50 yrs,0,0,0,15,50,100,$patient.getGender().equals(""M"") && $patient.getAge() < 50
 54057390-0498-4087-ade3-578bcce79456,309b77ab-f8d8-40b4-84fc-0ba6895c32b9,VSG(Velocidad de sedimentacion)en mm Mujeres < 50  yrs,0,0,0,20,50,100,$patient.getGender().equals(""F"") && $patient.getAge() < 50
 690626e4-8dcd-44be-978e-55676886e983,309b77ab-f8d8-40b4-84fc-0ba6895c32b9,VSG(Velocidad de sedimentacion)en mm Varones >= 50 yrs,0,0,0,20,50,100,$patient.getGender().equals(""M"") && $patient.getAge() >= 50
