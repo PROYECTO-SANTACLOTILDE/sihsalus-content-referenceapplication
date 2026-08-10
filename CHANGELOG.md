@@ -7,6 +7,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.24.2] - 2026-08-10
+
+### Corregido
+- Ajusta el límite absoluto superior de cuatro rangos de referencia de
+  laboratorio, que estaba por encima del valor crítico y por tanto no marcaba
+  como fuera de rango resultados que sí lo están:
+  - `Proteinas Totales sericas g/dl` (recién nacido `811c9d4f…` y adulto/niño
+    de 3 años `6012769e…`): máximo absoluto 15 → 12 g/dl.
+  - `Creatinina en Suero` (hombre `26801d9a…` y mujer `74380209…`): máximo
+    absoluto 15.0 → 13.0 mg/dl.
+
 ## [1.24.1] - 2026-08-05
 
 ### Corregido
