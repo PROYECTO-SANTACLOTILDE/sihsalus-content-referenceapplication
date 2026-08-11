@@ -1,0 +1,2 @@
+Uuid,Void/Retire,Fully specified name:es,Fully specified name:en,Short name:es,Short name:en,Description:es,Data class,Data type,_version:1,_order:1001
+34630b86-5106-4aea-8382-f55c02e4ba2c,,Código prestacional de la consulta SIH.SALUS,SIH.SALUS encounter benefit code,Código prestacional,Benefit code,"Pregunta que almacena como respuesta codificada el código prestacional (miembro del catálogo Codigos Prestacionales) de la atención registrada en el resumen de consulta.",Question,Coded,,

@@ -7,6 +7,16 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Agregado
+- Pregunta `Código prestacional de la consulta SIH.SALUS`
+  (`34630b86-5106-4aea-8382-f55c02e4ba2c`, clase Question, datatype Coded), que
+  el resumen de consulta usa para persistir el código prestacional como
+  respuesta codificada. Justificación de no reutilización: el único concepto
+  existente era el ConvSet `Codigos Prestacionales` (`e82d45de…`, datatype N/A),
+  que no admite valor — guardar contra él aborta el encounter completo con
+  «Don't know how to handle ZZ» — y no existe ninguna otra pregunta Coded o Text
+  para este dato en los 15 exports OCL.
+
 ## [1.24.2] - 2026-08-10
 
 ### Corregido
