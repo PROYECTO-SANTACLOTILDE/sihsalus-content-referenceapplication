@@ -72,4 +72,36 @@
         </sql>
     </changeSet>
 
+    <changeSet id="normalize-triage-nurse-role-uuid-20260811" author="sihsalus">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                SELECT CASE
+                    WHEN EXISTS (
+                        SELECT 1
+                        FROM role
+                        WHERE role = 'SIHSALUS Enfermero Triaje'
+                          AND uuid &lt;&gt; 'c3c9b940-156f-4eaf-83b7-f11db420c51c'
+                    )
+                    AND NOT EXISTS (
+                        SELECT 1
+                        FROM role
+                        WHERE uuid = 'c3c9b940-156f-4eaf-83b7-f11db420c51c'
+                    )
+                    THEN 1 ELSE 0 END
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Conserva el rol manual de Triaje y normaliza solamente su UUID antes
+            de que Initializer sincronice sus privilegios desde roles-core.csv.
+            Las referencias de usuarios permanecen estables porque OpenMRS enlaza
+            los roles por nombre.
+        </comment>
+        <sql>
+            UPDATE role
+            SET uuid = 'c3c9b940-156f-4eaf-83b7-f11db420c51c'
+            WHERE role = 'SIHSALUS Enfermero Triaje'
+              AND uuid &lt;&gt; 'c3c9b940-156f-4eaf-83b7-f11db420c51c';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

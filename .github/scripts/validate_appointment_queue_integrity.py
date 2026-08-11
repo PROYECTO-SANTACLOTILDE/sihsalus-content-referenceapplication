@@ -615,8 +615,10 @@ def validate_privilege_and_roles(errors):
             "Get Queues",
             "Get Visits",
             QUEUE_ENTRY_MUTATION_PRIVILEGE,
+            "View Appointments",
             "app:hoja.clinica.signosVitales",
             "app:hoja.clinica.signosVitales.editar",
+            "app:home.colasAtencion.editar",
         }
         forbidden = {
             COMPANION_REGISTRATION_PRIVILEGE,

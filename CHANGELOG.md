@@ -12,7 +12,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   hasta ahora creado a mano en cada base de datos con uuids divergentes y sin
   `Edit Visits` — sin ese privilegio, guardar signos vitales dentro de una
   visita activa falla, porque adjuntar un encuentro a la visita exige editarla.
-  La lista de 44 privilegios se tomó del rol vigente en QLTY más la corrección.
+  La lista de 46 privilegios se tomó del rol vigente en QLTY más la corrección.
+  Incluye además la capacidad de editar entradas desde la interfaz y leer la
+  cita vinculada, necesarias para mostrar «Realizar triaje» y derivar al
+  paciente a su cola clínica después de guardar los signos vitales.
+  Una migración previa normaliza al UUID canónico las copias manuales del rol,
+  sin reemplazar el nombre usado por las asignaciones de usuarios.
   `validate_appointment_queue_integrity.py` incorpora el rol al allowlist de
   asignaciones directas de `Manage Queue Entries` (triaje mueve pacientes en la
   cola) y fija sus invariantes: exige `Edit Visits` y los privilegios de signos
