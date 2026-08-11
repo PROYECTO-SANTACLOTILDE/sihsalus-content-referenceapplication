@@ -116,6 +116,8 @@ QUEUE_READER_ROLE_UUID = "7f9a9321-0c35-4130-895c-dbca7401be64"
 QUEUE_READER_ROLE_NAME = "Colas Servicio Medico"
 NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
 NURSE_ROLE_NAME = "Enfermera"
+TRIAGE_NURSE_ROLE_UUID = "c3c9b940-156f-4eaf-83b7-f11db420c51c"
+TRIAGE_NURSE_ROLE_NAME = "SIHSALUS Enfermero Triaje"
 COMPANION_REGISTRATION_PRIVILEGE = "app:opciones.registrarAcompanante"
 QUEUE_CLEAR_PRIVILEGE = "app:home.colasAtencion.limpiar"
 FRONTEND_UI_PRIVILEGES = {
@@ -154,6 +156,7 @@ SENSITIVE_UI_PRIVILEGE_ASSIGNMENTS = {
 }
 ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {
     CLINICAL_ROLE_UUID,
+    TRIAGE_NURSE_ROLE_UUID,
     SUPER_ADMIN_ROLE_UUID,
 }
 ALLOWED_DIRECT_FUA_GENERATION_ASSIGNMENTS = {
@@ -442,7 +445,7 @@ def validate_privilege_and_roles(errors):
         errors.append(
             f"{QUEUE_ENTRY_MUTATION_PRIVILEGE!r} direct assignments must match the "
             "approved admission, appointment check-in, queue, emergency, clinical, "
-            "and backend-admin roles; found UUIDs: "
+            "triage, and backend-admin roles; found UUIDs: "
             + ", ".join(sorted(direct_queue_mutation_assignments))
         )
 
@@ -589,6 +592,51 @@ def validate_privilege_and_roles(errors):
             errors.append(
                 f"{nurse['_path']}: {NURSE_ROLE_NAME!r} must inherit "
                 f"{CLINICAL_ROLE_NAME!r} to preserve visit and queue closure access"
+            )
+
+    triage_nurse_matches = [
+        row for row in role_rows if row["Uuid"] == TRIAGE_NURSE_ROLE_UUID
+    ]
+    if len(triage_nurse_matches) != 1:
+        errors.append(
+            f"roles: expected exactly one {TRIAGE_NURSE_ROLE_NAME!r} row with UUID "
+            f"{TRIAGE_NURSE_ROLE_UUID}"
+        )
+    else:
+        triage_nurse = triage_nurse_matches[0]
+        privileges = split_privileges(triage_nurse["Privileges"])
+        required = {
+            "Add Encounters",
+            "Add Observations",
+            "Edit Encounters",
+            "Edit Observations",
+            "Edit Visits",
+            "Get Queue Entries",
+            "Get Queues",
+            "Get Visits",
+            QUEUE_ENTRY_MUTATION_PRIVILEGE,
+            "app:hoja.clinica.signosVitales",
+            "app:hoja.clinica.signosVitales.editar",
+        }
+        forbidden = {
+            COMPANION_REGISTRATION_PRIVILEGE,
+            "Manage Fua",
+            "Manage Queue Rooms",
+            "Manage Queues",
+            "Purge Queue Entries",
+            "Purge Queue Rooms",
+            QUEUE_CLEAR_PRIVILEGE,
+        }
+        if required - privileges:
+            errors.append(
+                f"{triage_nurse['_path']}: {TRIAGE_NURSE_ROLE_NAME!r} is missing "
+                "triage vitals privileges: " + ", ".join(sorted(required - privileges))
+            )
+        if forbidden & privileges:
+            errors.append(
+                f"{triage_nurse['_path']}: {TRIAGE_NURSE_ROLE_NAME!r} has forbidden "
+                "queue administration privileges: "
+                + ", ".join(sorted(forbidden & privileges))
             )
 
     fua_operator_matches = [

@@ -13,6 +13,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   `Edit Visits` — sin ese privilegio, guardar signos vitales dentro de una
   visita activa falla, porque adjuntar un encuentro a la visita exige editarla.
   La lista de 44 privilegios se tomó del rol vigente en QLTY más la corrección.
+  `validate_appointment_queue_integrity.py` incorpora el rol al allowlist de
+  asignaciones directas de `Manage Queue Entries` (triaje mueve pacientes en la
+  cola) y fija sus invariantes: exige `Edit Visits` y los privilegios de signos
+  vitales, y le prohíbe administrar o purgar colas.
 
 ### Agregado
 - Pregunta `Código prestacional de la consulta SIH.SALUS`
