@@ -179,3 +179,5 @@ b6e42dc3-66cf-4c01-8aae-0a30803d505a,app:gestionInventario.articulos.editar,Perm
 1ceaca48-5c0f-4a66-b64d-ac636c78e2b9,app:gestionInventario.configuracion,Permite ver la opcion y la informacion de configuracion de inventario.,
 2f8c1d64-3a97-4e52-9b61-7c4d8e05a913,app:appointments.startDate.edit,Permite cambiar la fecha de una cita; sin este privilegio la cita solo puede programarse para el dia en curso.,
 6b3e0a57-94d2-4f18-8c25-1de7b3a64f90,app:appointments.issueDate.edit,"Permite corregir la fecha de emision de una cita, por ejemplo al registrar una cita emitida en papel un dia anterior.",
+e41df42d-a21a-4231-8cd2-37563deb8d9f,app:home.citas.editar.finalizarAtencion,Permite finalizar la atencion de una cita desde el tablero operativo de citas.,
+87641545-1c28-43bd-b79c-3305864c7c22,app:hoja.clinica.citas.editar.finalizarAtencion,Permite finalizar la atencion de una cita desde la historia clinica del paciente.,
