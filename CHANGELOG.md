@@ -8,6 +8,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Rol `SIHSALUS Enfermero Triaje` (uuid canónico `c3c9b940-156f-4eaf-83b7-f11db420c51c`),
+  hasta ahora creado a mano en cada base de datos con uuids divergentes y sin
+  `Edit Visits` — sin ese privilegio, guardar signos vitales dentro de una
+  visita activa falla, porque adjuntar un encuentro a la visita exige editarla.
+  La lista de 44 privilegios se tomó del rol vigente en QLTY más la corrección.
+  `validate_appointment_queue_integrity.py` incorpora el rol al allowlist de
+  asignaciones directas de `Manage Queue Entries` (triaje mueve pacientes en la
+  cola) y fija sus invariantes: exige `Edit Visits` y los privilegios de signos
+  vitales, y le prohíbe administrar o purgar colas.
+
+### Agregado
 - Pregunta `Código prestacional de la consulta SIH.SALUS`
   (`34630b86-5106-4aea-8382-f55c02e4ba2c`, clase Question, datatype Coded), que
   el resumen de consulta usa para persistir el código prestacional como
