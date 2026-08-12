@@ -510,6 +510,7 @@ def validate_privilege_and_roles(errors):
             QUEUE_ENTRY_MUTATION_PRIVILEGE,
             "View Appointments",
             "app:hoja.clinica.citas.editar",
+            "app:hoja.clinica.estadoVitalPaciente",
         }
         forbidden = {
             COMPANION_REGISTRATION_PRIVILEGE,

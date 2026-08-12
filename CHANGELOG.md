@@ -10,8 +10,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Corregido
 - Autoriza `Edit People` en `SIHSALUS Consulta Externa` para que el profesional
   pueda registrar o corregir el estado de fallecimiento desde la historia
-  clínica. No concede `Add People`: el flujo actualiza una persona existente y
-  el backend de OpenMRS exige una de esas dos capacidades, no ambas.
+  clínica, y agrega el privilegio UI dedicado
+  `app:hoja.clinica.estadoVitalPaciente` para no reutilizar el permiso amplio de
+  edición de visitas. No concede `Add People`: el flujo actualiza una persona
+  existente y el backend de OpenMRS exige una de esas dos capacidades, no ambas.
 
 ### Agregado
 - Rol `SIHSALUS Enfermero Triaje` (uuid canónico `c3c9b940-156f-4eaf-83b7-f11db420c51c`),

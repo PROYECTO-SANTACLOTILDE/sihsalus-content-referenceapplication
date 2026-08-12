@@ -83,6 +83,7 @@ fd33957a-2610-4f9c-a511-c8b417996b99,app:opciones.herramientasImplementacion,Per
 5bde5891-1a46-41d8-a200-e1125bca846a,app:opciones.registrarAcompanante,Permite registrar una nueva persona como acompañante de una consulta desde el frontend.,
 02543854-24f7-4bc0-9454-f184ae8ee6c3,app:opciones.fusionarPacientes,Permite visualizar el boton de fusionar historias en la barra superior azul.,
 c54b6749-cf2d-46a9-8200-97c37ea61293,app:hoja.clinica,Permite acceder a la historia clinica del paciente y a las superficies clinicas protegidas del chart.,
+6d7c1f60-bd91-4e29-b900-869cddf36321,app:hoja.clinica.estadoVitalPaciente,Permite marcar a un paciente como fallecido o corregir su estado vital desde la historia clinica.,
 0aa375af-f9a8-4288-9c37-76cb283ae151,app:hoja.clinica.cred.antecedentes,Permite ver el resumen y listados de antecedentes patologicos del menor.,
 5916bac6-44e2-42af-9b7b-c53e68243505,app:hoja.clinica.cred.antecedentes.editar,"Permite registrar, editar y eliminar antecedentes patologicos y condiciones relacionadas.",
 b0b5445a-08f2-463d-901f-79aa44efea0e,app:hoja.clinica.cred.cursoVida,Permite ver la navegacion general y los componentes de lectura del modulo CRED / Curso de Vida del Nino.,
