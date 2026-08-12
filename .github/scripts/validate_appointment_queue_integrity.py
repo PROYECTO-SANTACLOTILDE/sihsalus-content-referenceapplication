@@ -500,6 +500,7 @@ def validate_privilege_and_roles(errors):
         privileges = split_privileges(clinical["Privileges"])
         required = {
             "Add Visits",
+            "Edit People",
             "Edit Visits",
             "Get Queue Entries",
             "Get Queues",
