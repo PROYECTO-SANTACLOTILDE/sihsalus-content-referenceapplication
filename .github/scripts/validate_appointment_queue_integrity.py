@@ -618,7 +618,6 @@ def validate_privilege_and_roles(errors):
             "View Appointments",
             "app:hoja.clinica.signosVitales",
             "app:hoja.clinica.signosVitales.editar",
-            "app:home.colasAtencion.editar",
         }
         forbidden = {
             COMPANION_REGISTRATION_PRIVILEGE,
