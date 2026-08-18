@@ -118,12 +118,12 @@ NURSE_ROLE_UUID = "e70120b5-000c-4e6f-94a5-a139c2b4b25c"
 NURSE_ROLE_NAME = "Enfermera"
 TRIAGE_NURSE_ROLE_UUID = "c3c9b940-156f-4eaf-83b7-f11db420c51c"
 TRIAGE_NURSE_ROLE_NAME = "SIHSALUS Enfermero Triaje"
+QUEUE_ATTENTION_EDITOR_ROLE_UUID = "64b3168f-44c5-41e7-9ab4-8f9f338ed4c7"
 COMPANION_REGISTRATION_PRIVILEGE = "app:opciones.registrarAcompanante"
 QUEUE_CLEAR_PRIVILEGE = "app:home.colasAtencion.limpiar"
 FRONTEND_UI_PRIVILEGES = {
     "app:home.tabla.consultas.activas": "4cbcf36e-ea9b-4b55-86eb-5e5061922410",
     "app:hoja.clinica.resumenConsulta": "017238da-7b23-48ae-934e-f8eb1835d39a",
-    "app:hoja.clinica.resumenConsulta.editar": "7e6ad9c9-3842-4a99-95ba-bb16fa2a7bfd",
     "app:hoja.clinica.formulariosClinicos": "b3e9c57b-82a9-4d27-a568-763bd7ac1918",
     "app:hoja.clinica.canastaOrdenes": "4fe1d19e-615e-4b0b-ac16-68ad57ef61d0",
     "app:hoja.clinica.listaTareas": "1314dc5d-e183-4787-8400-67c98d11b870",
@@ -144,14 +144,20 @@ FRONTEND_UI_ROLE_GRANTS = {
         "app:hoja.clinica.formulariosClinicos",
         COMPANION_REGISTRATION_PRIVILEGE,
     },
+    QUEUE_ATTENTION_EDITOR_ROLE_UUID: {
+        COMPANION_REGISTRATION_PRIVILEGE,
+        QUEUE_CLEAR_PRIVILEGE,
+    },
 }
 SENSITIVE_UI_PRIVILEGE_ASSIGNMENTS = {
     COMPANION_REGISTRATION_PRIVILEGE: {
         "71dcb611-756a-4ad3-a9bb-73b6cfe28066",
         "cf627580-0372-47fc-87b6-319d4a4d4973",
+        QUEUE_ATTENTION_EDITOR_ROLE_UUID,
     },
     QUEUE_CLEAR_PRIVILEGE: {
         "72dd34eb-0295-4684-ab3f-1ccb0cfaab20",
+        QUEUE_ATTENTION_EDITOR_ROLE_UUID,
     },
 }
 ALLOWED_DIRECT_QUEUE_MUTATION_ASSIGNMENTS = set(TARGET_ROLES) | {

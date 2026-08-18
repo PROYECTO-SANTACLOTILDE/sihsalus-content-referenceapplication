@@ -14,6 +14,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   `app:hoja.clinica.estadoVitalPaciente` para no reutilizar el permiso amplio de
   edición de visitas. No concede `Add People`: el flujo actualiza una persona
   existente y el backend de OpenMRS exige una de esas dos capacidades, no ambas.
+- Alinea la validación de integridad con los roles funcionales: deja de exigir
+  el privilegio retirado `app:hoja.clinica.resumenConsulta.editar` y autoriza al
+  rol `SIH SALUS Colas de atención editar` a registrar acompañantes y limpiar
+  entradas activas de una cola según la matriz vigente.
 
 ### Agregado
 - Rol `SIHSALUS Enfermero Triaje` (uuid canónico `c3c9b940-156f-4eaf-83b7-f11db420c51c`),
