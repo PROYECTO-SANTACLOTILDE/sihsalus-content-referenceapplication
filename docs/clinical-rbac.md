@@ -1,27 +1,20 @@
-# Línea base RBAC para mutaciones clínicas
+# Línea base RBAC clínica y de adjuntos
 
-Este cambio separa las capacidades de lectura y escritura que el frontend usa
-para formularios clínicos y tareas. No modifica masivamente los privilegios de
-los tipos de encuentro: OpenMRS aplica `viewPrivilege` y `editPrivilege` en el
-servidor, y hacerlo sin una matriz aprobada rompería flujos de Emergencia,
-Laboratorio, Farmacia y Hospitalización.
+Este contenido provisiona capacidades de lectura para formularios clínicos y
+tareas, además de los privilegios necesarios para adjuntos. No provisiona
+privilegios genéricos de mutación para formularios o tareas ni modifica
+masivamente los privilegios de los tipos de encuentro: OpenMRS aplica
+`viewPrivilege` y `editPrivilege` en el servidor, y hacerlo sin una matriz
+aprobada rompería flujos de Emergencia, Laboratorio, Farmacia y Hospitalización.
 
 ## Capacidades provisionadas
 
 - `app:hoja.clinica.formulariosClinicos` permite abrir el catálogo de
   formularios.
-- `app:hoja.clinica.formulariosClinicos.editar` permite crear o editar un
-  formulario cuyo tipo de encuentro todavía no tenga un privilegio específico.
 - `app:hoja.clinica.listaTareas` permite consultar tareas.
-- `app:hoja.clinica.listaTareas.editar` permite crear, editar, completar o
-  anular tareas.
 - `View Attachments` autoriza la lectura mediante la API del módulo de adjuntos.
 - `Create Attachments` declara la capacidad de creación del módulo y preserva
   compatibilidad con sus endpoints protegidos.
-
-El rol `SIHSALUS Consulta Externa` recibe ambas capacidades de escritura y el
-rol `Enfermera` las hereda de él. No se asignan a Admisión, Laboratorio,
-Farmacia ni Emergencia.
 
 La lectura de adjuntos forma parte de `Application: Uses Patient Summary`. El
 rol `SIHSALUS Consulta Externa` recibe además `Create Attachments` y ambos
@@ -33,9 +26,8 @@ En la versión 4.0.0 desplegada, la carga guarda el archivo directamente mediant
 protege las tres capacidades de Consulta Externa.
 
 Cuando un tipo de encuentro declara un privilegio específico, el frontend exige
-ese privilegio y no usa la capacidad genérica. Cuando la metadata está ausente,
-la ausencia no equivale a acceso público: se exige explícitamente
-`app:hoja.clinica.formulariosClinicos.editar`.
+ese privilegio. La ausencia de metadata no equivale a acceso público y este
+paquete no provisiona una capacidad genérica de mutación como reemplazo.
 
 ## Límite deliberado
 
@@ -55,28 +47,23 @@ escritores y después asignar los privilegios de tipo de encuentro.
 
 ## Despliegue y reversión
 
-El contenido debe instalarse antes o junto con el frontend. Si se instala solo el
-frontend, los formularios legacy quedan cerrados hasta que el usuario reciba la
-nueva capacidad genérica.
-
-La reversión del frontend no elimina privilegios. Si se revierte el contenido,
-Initializer no borra automáticamente metadata de tipos de encuentro al dejar una
-celda vacía; cualquier futura migración de esos campos debe incluir un changeset
-de reversión explícito.
+El contenido debe mantenerse sincronizado con el frontend. Retirar una fila del
+catálogo evita que Initializer vuelva a provisionarla, pero no elimina de la base
+de datos un privilegio creado por una versión anterior. Si se necesita borrarlo
+físicamente de una instalación existente, debe hacerse mediante una migración
+explícita y controlada.
 
 ## Validación operativa requerida
 
-- Consulta Externa: puede crear formularios y mutar tareas.
 - Consulta Externa y Enfermería: pueden crear y volver a consultar adjuntos.
-- Admisión: no puede crear formularios ni mutar tareas.
-- Emergencia, Laboratorio y Farmacia: sus flujos especializados siguen
-  funcionando sin recibir la capacidad clínica genérica.
+- Los roles no reciben privilegios genéricos de mutación para formularios o
+  tareas desde este paquete.
 - Acceso directo a un workspace por UUID: se resuelve el formulario y se valida
   el privilegio antes de montar React Form Entry o HTML Form Entry.
 - Los endpoints REST deben probarse por rol; ocultar controles en el frontend no
   reemplaza la autorización del servidor.
 
-`validate_csv_widths.py` verifica que los privilegios existan en el catálogo y
-que `SIHSALUS Consulta Externa` conserve las capacidades mínimas. No valida aún
-una matriz de tipos de encuentro porque esa migración no forma parte de este
-checkpoint.
+`validate_csv_widths.py` verifica la estructura de los CSV y que
+`SIHSALUS Consulta Externa` conserve las capacidades mínimas para adjuntos. No
+valida aún una matriz de tipos de encuentro porque esa migración no forma parte
+de este checkpoint.
