@@ -7,6 +7,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Agregado
+- Habilita `ODONTOLOGIA GENERAL` (`5fe6c774-f888-40e5-b54f-e308e5fa26c8`) como
+  destino del set `Tipo de Servicio` (`4bf3f465-…`), que alimenta el catálogo de
+  interconsultas y colas. Reutiliza el concepto ya publicado en OCL en lugar de
+  crear uno nuevo, según `OCL-TERMINOLOGY-PLAN.md`. Sin este miembro no existía
+  ningún destino odontológico pese a que el sistema tiene módulo de atención
+  odontológica con hoja clínica y privilegios propios.
+
 ### Corregido
 - Autoriza `Edit People` en `SIHSALUS Consulta Externa` para que el profesional
   pueda registrar o corregir el estado de fallecimiento desde la historia
