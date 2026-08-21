@@ -19,6 +19,18 @@ The contents of a typical Content Package are:
         * An automatic distro Build Helper Tool then fetches the content package's information and extracts the content into the Implementation's distro.properties file.
         * **Dependencies** are especially important here, as the Build Helper Tool will add any dependencies from the Content Package into an Implementation's distro.properties file.
 
+## Catálogos territoriales locales
+
+Los barrios de Santa Clotilde se modelan como un atributo codificado de persona, separado de la
+jerarquía RENHICE. El tipo de atributo `Barrio` se define en `personattributetypes`, sus opciones en
+`concepts` y la pertenencia al catálogo en `conceptsets`. Los códigos locales `SCL-01` a `SCL-10` se
+conservan como mappings de la fuente `SIHSALUS`.
+
+La configuración del registro, búsqueda y banner se mantiene en
+`configuration/frontend_configuration/config.json`. Los colores son metadatos visuales opcionales del
+selector y no forman parte del valor persistido. Para ampliar el catálogo se agrega un concepto con
+un código `SCL-*` único, se incorpora al set y se configura su presentación en el selector.
+
 Running Spotless
 ----------------
 This project uses Spotless for code formatting. Spotless is embedded in the build process, so when you run `mvn clean package`, Spotless will automatically format your code according to the project's style guidelines.
