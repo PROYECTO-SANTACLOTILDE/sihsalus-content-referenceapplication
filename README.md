@@ -19,6 +19,31 @@ The contents of a typical Content Package are:
         * An automatic distro Build Helper Tool then fetches the content package's information and extracts the content into the Implementation's distro.properties file.
         * **Dependencies** are especially important here, as the Build Helper Tool will add any dependencies from the Content Package into an Implementation's distro.properties file.
 
+## Catálogos territoriales locales
+
+Los barrios de Santa Clotilde se modelan como un atributo codificado de persona, separado de la
+jerarquía RENHICE. El tipo de atributo `Barrio` se define en `personattributetypes`; las opciones y la
+pertenencia al catálogo activo se administran exclusivamente en la fuente OCL independiente
+`SIHSALUS/barrios-santa-clotilde`. La release bundleada `2026-08-22-01` contiene los conceptos
+`SCL-01` a `SCL-10`, el set `SCL-BARRIOS` y exactamente diez mappings `CONCEPT-SET`.
+
+Los exports oficiales deben ubicarse como
+`15_SIHSALUS_barrios-santa-clotilde_concepts_2026-08-22-01.zip` y
+`65_SIHSALUS_barrios-santa-clotilde_mappings_2026-08-22-01.zip`. El validador rechaza archivos
+faltantes, contenido adicional o una versión/source diferente. El source principal `SIHSALUS/sihsalus`
+y su suscripción permanecen en `2026-07-16-02`; no se actualizan para incorporar este catálogo local.
+OCL conserva los registros retirados en el HEAD de `sihsalus` porque un administrador de la organización
+no puede purgar mappings. No se debe publicar ni bundlear una release futura de `sihsalus` que incluya
+esos UUIDs retirados hasta que soporte OCL los purgue o el proceso de export los excluya explícitamente.
+
+La configuración de registro, búsqueda y banner vive en
+`configuration/frontend_configuration/config.json`. OCL conserva `ui_color` y `ui_tag_type` solo como
+metadata descriptiva y no clínica; no se persisten como valor del atributo ni garantizan su renderizado.
+El frontend actual no consume esa metadata. El selector obtiene sus opciones exclusivamente desde
+`answerConceptSetUuid`, sin duplicar el catálogo en la configuración.
+`ADDRESS_3/Barrio` se retira en este cambio porque se confirmó que no existen datos reales que deban
+migrarse. El contrato está documentado en `docs/contracts/santa-clotilde-neighborhoods.md`.
+
 Running Spotless
 ----------------
 This project uses Spotless for code formatting. Spotless is embedded in the build process, so when you run `mvn clean package`, Spotless will automatically format your code according to the project's style guidelines.

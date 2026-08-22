@@ -8,6 +8,12 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [Unreleased]
 
 ### Agregado
+- Catálogo local de barrios de Santa Clotilde como atributo codificado de
+  persona, con filtro de búsqueda y visualización en los datos adicionales del
+  paciente. El catálogo activo se aísla en la fuente OCL
+  `SIHSALUS/barrios-santa-clotilde/2026-08-22-01`; el source clínico principal
+  permanece en `SIHSALUS/sihsalus/2026-07-16-02`. Se retira `ADDRESS_3/Barrio`
+  después de confirmar que no contiene datos reales que requieran migración.
 - Habilita `ODONTOLOGIA GENERAL` (`5fe6c774-f888-40e5-b54f-e308e5fa26c8`) como
   destino del set `Tipo de Servicio` (`4bf3f465-…`), que alimenta el catálogo de
   interconsultas y colas. Reutiliza el concepto ya publicado en OCL en lugar de

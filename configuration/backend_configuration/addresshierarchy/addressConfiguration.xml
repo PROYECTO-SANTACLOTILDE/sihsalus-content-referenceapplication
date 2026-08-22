@@ -35,12 +35,6 @@
       <requiredInHierarchy>false</requiredInHierarchy>
     </addressComponent>
     <addressComponent>
-      <field>ADDRESS_3</field>
-      <nameMapping>Barrio</nameMapping>
-      <sizeMapping>60</sizeMapping>
-      <requiredInHierarchy>false</requiredInHierarchy>
-    </addressComponent>
-    <addressComponent>
       <field>ADDRESS_4</field>
       <nameMapping>Dirección</nameMapping>
       <sizeMapping>100</sizeMapping>
@@ -49,7 +43,6 @@
   </addressComponents>
   <lineByLineFormat>
     <string>address4</string>
-    <string>address3</string>
     <string>countyDistrict, cityVillage</string>
     <string>stateProvince, address1</string>
     <string>country</string>

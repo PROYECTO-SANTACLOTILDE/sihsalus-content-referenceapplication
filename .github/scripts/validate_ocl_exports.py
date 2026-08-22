@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+import csv
+import hashlib
 import json
 import re
 import sys
@@ -13,14 +15,66 @@ FORM_DIR = Path("configuration/backend_configuration/ampathforms")
 GLOBAL_PROPERTIES_PATH = Path(
     "configuration/backend_configuration/globalproperties/globalproperties-sihsalus.xml"
 )
+ADDRESS_CONFIGURATION_PATH = Path(
+    "configuration/backend_configuration/addresshierarchy/addressConfiguration.xml"
+)
+PERSON_ATTRIBUTE_TYPES_PATH = Path(
+    "configuration/backend_configuration/personattributetypes/personattributetypes.csv"
+)
+FRONTEND_CONFIGURATION_PATH = Path("configuration/frontend_configuration/config.json")
 EXPECTED_SIHSALUS_SUBSCRIPTION_URL = (
     "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-16-02"
+)
+EXPECTED_SIHSALUS_CONCEPTS_EXPORT = (
+    OCL_DIR / "10_SIHSALUS_sihsalus_concepts_2026-07-16-02.zip"
+)
+EXPECTED_SIHSALUS_MAPPINGS_EXPORT = (
+    OCL_DIR / "60_SIHSALUS_sihsalus_mappings_2026-07-16-02.zip"
 )
 OCCUPATIONS_SOURCE = "ocupaciones"
 OCCUPATIONS_ROOT_URL = "/orgs/SIHSALUS/sources/ocupaciones/concepts/1/"
 OCCUPATIONS_CONCEPT_URL_PREFIX = "/orgs/SIHSALUS/sources/ocupaciones/concepts/"
 EXPECTED_OCCUPATION_UNIT_GROUPS = 436
 SIHSALUS_SOURCE = "sihsalus"
+NEIGHBORHOOD_SOURCE = "barrios-santa-clotilde"
+NEIGHBORHOOD_VERSION = "2026-08-22-01"
+EXPECTED_NEIGHBORHOOD_CANONICAL_SHA256 = (
+    "fbcb4f0ed111ceb4c686ac343eee09c2435037f8dceb9b679cee0a226e1c9177"
+)
+NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID = "4a182c6e-9a19-4db8-8042-4bbf3b4308c2"
+NEIGHBORHOOD_SET_UUID = "0fd3e744-6d2c-4cb3-9b7e-1f88899635d9"
+NEIGHBORHOOD_CONCEPTS_EXPORT = OCL_DIR / (
+    f"15_SIHSALUS_{NEIGHBORHOOD_SOURCE}_concepts_{NEIGHBORHOOD_VERSION}.zip"
+)
+NEIGHBORHOOD_MAPPINGS_EXPORT = OCL_DIR / (
+    f"65_SIHSALUS_{NEIGHBORHOOD_SOURCE}_mappings_{NEIGHBORHOOD_VERSION}.zip"
+)
+NEIGHBORHOODS = [
+    ("SCL-01", "1975805f-a096-4583-aacc-ab439c79e1cd", "Barrio Santa Rosa"),
+    ("SCL-02", "6db9db1a-b772-4cc7-b261-41ea0957e0f7", "Barrio San Juan Bautista"),
+    ("SCL-03", "d31430ca-4892-43b9-aba5-0f0c51aea497", "Barrio Fray Martín"),
+    ("SCL-04", "4f0c3fd5-100f-4d2e-9478-100169d952da", "Barrio Jorge Chávez"),
+    ("SCL-05", "30a01fac-2c8e-4313-b675-3c389a255db5", "Barrio San Antonio"),
+    ("SCL-06", "4bc7352e-f2b1-4e4b-a625-ca1d043e10a9", "Barrio Señor de los Milagros"),
+    ("SCL-07", "a65d66bd-b0a6-4ada-9270-e55ba200e4ca", "Barrio Jaime Carranza"),
+    ("SCL-08", "b77b4e56-64c7-427f-9d6b-87ce54291653", "Barrio Santa Elisa"),
+    ("SCL-09", "81fc260c-9a5f-4182-b7ac-d50f0960370b", "Barrio 28 de Julio"),
+    ("SCL-10", "ef33a561-cdea-4218-a360-723d16ccdd08", "Barrio Nueva Primavera"),
+]
+NEIGHBORHOOD_SET = ("SCL-BARRIOS", NEIGHBORHOOD_SET_UUID, "Barrios de Santa Clotilde")
+NEIGHBORHOOD_FACILITY = "Hospital II-1 Santa Clotilde"
+NEIGHBORHOOD_PRESENTATION_METADATA = {
+    "SCL-01": {"ui_color": "#B94A36", "ui_tag_type": "red"},
+    "SCL-02": {"ui_color": "#4F6128", "ui_tag_type": "green"},
+    "SCL-03": {"ui_color": "#304238", "ui_tag_type": "teal"},
+    "SCL-04": {"ui_color": "#4E8C24", "ui_tag_type": "green"},
+    "SCL-05": {"ui_color": "#B47A16", "ui_tag_type": "warm-gray"},
+    "SCL-06": {"ui_color": "#642C35", "ui_tag_type": "magenta"},
+    "SCL-07": {"ui_color": "#D45A1F", "ui_tag_type": "red"},
+    "SCL-08": {"ui_color": "#A5B51D", "ui_tag_type": "green"},
+    "SCL-09": {"ui_color": "#B98A16", "ui_tag_type": "warm-gray"},
+    "SCL-10": {"ui_color": "#D94B3D", "ui_tag_type": "red"},
+}
 TPED_ROOT_ID = "3798"
 TPED_LINES = {
     "90": ("A", ["91", "92", "93", "94", "95"]),
@@ -147,6 +201,7 @@ def main():
     concepts_by_url = {}
     concept_records = []
     mapping_records = []
+    exports_by_path = {}
 
     for zip_path in sorted(OCL_DIR.glob("*.zip")):
         with zipfile.ZipFile(zip_path) as archive:
@@ -158,6 +213,7 @@ def main():
 
         source = export.get("source") or {}
         source_id = source.get("id") if isinstance(source, dict) else export.get("short_code")
+        exports_by_path[zip_path] = export
 
         for concept in export.get("concepts", []):
             concept_id = concept.get("id")
@@ -299,6 +355,12 @@ def main():
     validate_procedure_terminology(
         concepts_by_source[SIHSALUS_SOURCE], mappings_by_source[SIHSALUS_SOURCE], errors
     )
+    validate_neighborhood_terminology(
+        exports_by_path,
+        concepts_by_source[SIHSALUS_SOURCE],
+        errors,
+    )
+    validate_neighborhood_configuration(errors)
     validate_ocl_global_properties(errors)
 
     if errors:
@@ -633,6 +695,393 @@ def validate_procedure_terminology(concepts, mappings, errors):
             )
         if preferred_spanish_names(concept) != [spanish_name]:
             errors.append(f"sihsalus: duration unit {concept_id} must prefer {spanish_name!r} in Spanish")
+
+
+def validate_neighborhood_export_identity(path, export, concept_count, mapping_count, errors):
+    prefix = str(path)
+    if not export:
+        errors.append(f"{prefix}: required official OCL export is missing")
+        return False
+
+    expected_fields = {
+        "type": "Source Version",
+        "id": NEIGHBORHOOD_VERSION,
+        "version": NEIGHBORHOOD_VERSION,
+        "short_code": NEIGHBORHOOD_SOURCE,
+        "owner": "SIHSALUS",
+        "owner_type": "Organization",
+        "released": True,
+    }
+    for field, expected in expected_fields.items():
+        if export.get(field) != expected:
+            errors.append(
+                f"{prefix}: export {field} must be {expected!r}; found {export.get(field)!r}"
+            )
+
+    source = export.get("source") or {}
+    if not isinstance(source, dict):
+        errors.append(f"{prefix}: export source metadata must be an object")
+    else:
+        if source.get("id") != NEIGHBORHOOD_SOURCE:
+            errors.append(
+                f"{prefix}: source id must be {NEIGHBORHOOD_SOURCE!r}; found {source.get('id')!r}"
+            )
+        if source.get("owner") != "SIHSALUS" or source.get("owner_type") != "Organization":
+            errors.append(f"{prefix}: source owner must be the SIHSALUS organization")
+        expected_source_url = f"/orgs/SIHSALUS/sources/{NEIGHBORHOOD_SOURCE}/"
+        if normalize_ocl_url(source.get("url")) != expected_source_url:
+            errors.append(
+                f"{prefix}: source URL must be {expected_source_url}; found {source.get('url')!r}"
+            )
+
+    concepts = export.get("concepts")
+    mappings = export.get("mappings")
+    if not isinstance(concepts, list) or len(concepts) != concept_count:
+        errors.append(
+            f"{prefix}: export must contain exactly {concept_count} concepts; "
+            f"found {len(concepts) if isinstance(concepts, list) else 'invalid'}"
+        )
+    if not isinstance(mappings, list) or len(mappings) != mapping_count:
+        errors.append(
+            f"{prefix}: export must contain exactly {mapping_count} mappings; "
+            f"found {len(mappings) if isinstance(mappings, list) else 'invalid'}"
+        )
+    return isinstance(concepts, list) and isinstance(mappings, list)
+
+
+def validate_neighborhood_terminology(exports_by_path, sihsalus_concepts, errors):
+    expected_catalog_exports = {
+        NEIGHBORHOOD_CONCEPTS_EXPORT,
+        NEIGHBORHOOD_MAPPINGS_EXPORT,
+    }
+    actual_catalog_exports = set(
+        OCL_DIR.glob(f"*_SIHSALUS_{NEIGHBORHOOD_SOURCE}_*.zip")
+    )
+    for path in sorted(actual_catalog_exports - expected_catalog_exports):
+        errors.append(
+            f"{path}: unexpected neighborhood export; replace it with the exact "
+            f"{NEIGHBORHOOD_VERSION} concepts/mappings pair"
+        )
+
+    expected_main_exports = {
+        EXPECTED_SIHSALUS_CONCEPTS_EXPORT,
+        EXPECTED_SIHSALUS_MAPPINGS_EXPORT,
+    }
+    actual_main_exports = set(OCL_DIR.glob("*_SIHSALUS_sihsalus_*.zip"))
+    if actual_main_exports != expected_main_exports:
+        missing = sorted(str(path) for path in expected_main_exports - actual_main_exports)
+        unexpected = sorted(str(path) for path in actual_main_exports - expected_main_exports)
+        errors.append(
+            "the neighborhood catalog must not bump or replace the main sihsalus source exports: "
+            f"missing={missing}, unexpected={unexpected}"
+        )
+
+    concepts_export = exports_by_path.get(NEIGHBORHOOD_CONCEPTS_EXPORT)
+    mappings_export = exports_by_path.get(NEIGHBORHOOD_MAPPINGS_EXPORT)
+    concepts_export_valid = validate_neighborhood_export_identity(
+        NEIGHBORHOOD_CONCEPTS_EXPORT, concepts_export, 11, 0, errors
+    )
+    mappings_export_valid = validate_neighborhood_export_identity(
+        NEIGHBORHOOD_MAPPINGS_EXPORT, mappings_export, 0, 10, errors
+    )
+    if not concepts_export_valid or not mappings_export_valid:
+        return
+
+    concepts_metadata = {
+        key: value
+        for key, value in concepts_export.items()
+        if key not in {"concepts", "mappings"}
+    }
+    mappings_metadata = {
+        key: value
+        for key, value in mappings_export.items()
+        if key not in {"concepts", "mappings"}
+    }
+    if concepts_metadata != mappings_metadata:
+        errors.append(
+            "neighborhood concepts/mappings exports must preserve identical official release metadata"
+        )
+
+    reconstructed_export = dict(concepts_export)
+    reconstructed_export["mappings"] = mappings_export["mappings"]
+    canonical_export = json.dumps(
+        reconstructed_export,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    canonical_sha256 = hashlib.sha256(canonical_export).hexdigest()
+    if canonical_sha256 != EXPECTED_NEIGHBORHOOD_CANONICAL_SHA256:
+        errors.append(
+            "recombined neighborhood exports do not match the canonical official released export: "
+            f"expected={EXPECTED_NEIGHBORHOOD_CANONICAL_SHA256}, actual={canonical_sha256}"
+        )
+
+    concepts = concepts_export["concepts"]
+    expected_concepts = [*NEIGHBORHOODS, NEIGHBORHOOD_SET]
+    expected_external_ids = {external_id for _, external_id, _ in expected_concepts}
+    concepts_by_external_id = defaultdict(list)
+    for concept in concepts:
+        concepts_by_external_id[concept.get("external_id")].append(concept)
+
+    actual_external_ids = set(concepts_by_external_id)
+    if actual_external_ids != expected_external_ids:
+        errors.append(
+            f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: neighborhood UUID inventory mismatch: "
+            f"missing={sorted(expected_external_ids - actual_external_ids)}, "
+            f"unexpected={sorted(actual_external_ids - expected_external_ids, key=str)}"
+        )
+
+    expected_source_prefix = f"/orgs/SIHSALUS/sources/{NEIGHBORHOOD_SOURCE}/concepts/"
+    for concept_id, external_id, spanish_label in expected_concepts:
+        matches = concepts_by_external_id.get(external_id, [])
+        if len(matches) != 1:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: UUID {external_id} must occur exactly once; "
+                f"found {len(matches)}"
+            )
+            continue
+
+        concept = matches[0]
+        is_set = external_id == NEIGHBORHOOD_SET_UUID
+        expected_class = "ConvSet" if is_set else "Misc"
+        if concept.get("id") != concept_id:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: UUID {external_id} must use OCL ID "
+                f"{concept_id}; found {concept.get('id')!r}"
+            )
+        if concept.get("retired"):
+            errors.append(f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} must be active")
+        if concept.get("concept_class") != expected_class or concept.get("datatype") != "N/A":
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} must be "
+                f"{expected_class}/N/A; found {concept.get('concept_class')}/{concept.get('datatype')}"
+            )
+
+        expected_extras = {
+            "facility": NEIGHBORHOOD_FACILITY,
+            "local_code": concept_id,
+        }
+        if is_set:
+            expected_extras["catalog_size"] = len(NEIGHBORHOODS)
+        else:
+            expected_extras.update(NEIGHBORHOOD_PRESENTATION_METADATA[concept_id])
+        if concept.get("extras") != expected_extras:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} metadata mismatch: "
+                f"expected={expected_extras}, actual={concept.get('extras')}"
+            )
+
+        expected_url = f"{expected_source_prefix}{concept_id}/"
+        if normalize_ocl_url(concept.get("url")) != expected_url:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} URL must be {expected_url}; "
+                f"found {concept.get('url')!r}"
+            )
+
+        active_spanish_names = [
+            name
+            for name in concept.get("names", [])
+            if not name.get("retired") and name.get("locale") == "es"
+        ]
+        preferred_spanish_names = [
+            name.get("name") for name in active_spanish_names if name.get("locale_preferred")
+        ]
+        expected_fsn = spanish_label
+        spanish_fsns = [
+            name.get("name")
+            for name in active_spanish_names
+            if normalize_name_type(name.get("name_type")) == "fully specified"
+        ]
+        if spanish_fsns != [expected_fsn]:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} must have exactly the Spanish FSN "
+                f"{expected_fsn!r}; found {spanish_fsns}"
+            )
+        if preferred_spanish_names != [expected_fsn]:
+            errors.append(
+                f"{NEIGHBORHOOD_CONCEPTS_EXPORT}: {concept_id} must prefer its Spanish FSN "
+                f"{expected_fsn!r}; found {preferred_spanish_names}"
+            )
+
+    main_external_ids = {
+        concept.get("external_id") for concept in sihsalus_concepts.values() if concept.get("external_id")
+    }
+    duplicated_in_main = sorted(expected_external_ids & main_external_ids)
+    if duplicated_in_main:
+        errors.append(
+            "the main sihsalus export must not bundle neighborhood UUIDs, including retired history, "
+            "until OCL purges them or the export excludes them explicitly; "
+            f"found={duplicated_in_main}"
+        )
+
+    mappings = mappings_export["mappings"]
+    expected_mapping_targets = [concept_id for concept_id, _, _ in NEIGHBORHOODS]
+    mapping_prefix = f"/orgs/SIHSALUS/sources/{NEIGHBORHOOD_SOURCE}/mappings/"
+    expected_set_url = f"{expected_source_prefix}{NEIGHBORHOOD_SET[0]}/"
+    for mapping in mappings:
+        mapping_identifier = mapping.get("id") or mapping.get("external_id") or mapping.get("url")
+        prefix = f"{NEIGHBORHOOD_MAPPINGS_EXPORT}: mapping {mapping_identifier}"
+        target_id = mapping.get("to_concept_code")
+        if mapping.get("retired"):
+            errors.append(f"{prefix} must be active")
+        if mapping.get("map_type") != "CONCEPT-SET":
+            errors.append(f"{prefix} must use CONCEPT-SET")
+        if mapping.get("from_concept_code") != NEIGHBORHOOD_SET[0]:
+            errors.append(f"{prefix} must originate from {NEIGHBORHOOD_SET[0]}")
+        if normalize_ocl_url(mapping.get("from_concept_url")) != expected_set_url:
+            errors.append(f"{prefix} has an invalid source-specific from_concept_url")
+        expected_target_url = f"{expected_source_prefix}{target_id}/"
+        if normalize_ocl_url(mapping.get("to_concept_url")) != expected_target_url:
+            errors.append(f"{prefix} has an invalid source-specific to_concept_url")
+        mapping_url = normalize_ocl_url(mapping.get("url"))
+        if not mapping_url or not mapping_url.startswith(mapping_prefix):
+            errors.append(f"{prefix} must belong to the {NEIGHBORHOOD_SOURCE} source")
+
+    def mapping_sort_weight(mapping):
+        try:
+            return float(mapping.get("sort_weight"))
+        except (TypeError, ValueError):
+            return float("inf")
+
+    ordered_mappings = sorted(mappings, key=mapping_sort_weight)
+    actual_mapping_targets = [mapping.get("to_concept_code") for mapping in ordered_mappings]
+    if actual_mapping_targets != expected_mapping_targets:
+        errors.append(
+            f"{NEIGHBORHOOD_MAPPINGS_EXPORT}: ordered set membership mismatch: "
+            f"expected={expected_mapping_targets}, actual={actual_mapping_targets}"
+        )
+    for position, mapping in enumerate(ordered_mappings, start=1):
+        sort_weight = mapping_sort_weight(mapping)
+        if sort_weight != position * 10:
+            errors.append(
+                f"{NEIGHBORHOOD_MAPPINGS_EXPORT}: mapping to "
+                f"{mapping.get('to_concept_code')} must have sort_weight {position * 10}; "
+                f"found {mapping.get('sort_weight')!r}"
+            )
+
+
+def validate_neighborhood_configuration(errors):
+    try:
+        frontend_config = json.loads(FRONTEND_CONFIGURATION_PATH.read_text())
+    except (OSError, json.JSONDecodeError) as error:
+        errors.append(f"{FRONTEND_CONFIGURATION_PATH}: cannot load frontend config: {error}")
+        return
+
+    registration_config = frontend_config.get("@sihsalus/esm-patient-registration-app") or {}
+    neighborhood_fields = [
+        field
+        for field in registration_config.get("fieldDefinitions", [])
+        if field.get("id") == "neighborhood"
+    ]
+    if len(neighborhood_fields) != 1:
+        errors.append(
+            f"{FRONTEND_CONFIGURATION_PATH}: registration must define neighborhood exactly once"
+        )
+    else:
+        field = neighborhood_fields[0]
+        expected_field_values = {
+            "type": "person attribute",
+            "uuid": NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID,
+            "answerConceptSetUuid": NEIGHBORHOOD_SET_UUID,
+            "codedInputType": "select",
+            "searchable": True,
+        }
+        for key, expected in expected_field_values.items():
+            if field.get(key) != expected:
+                errors.append(
+                    f"{FRONTEND_CONFIGURATION_PATH}: neighborhood field {key} must be "
+                    f"{expected!r}; found {field.get(key)!r}"
+                )
+        if "customConceptAnswers" in field:
+            errors.append(
+                f"{FRONTEND_CONFIGURATION_PATH}: neighborhood options must come only from "
+                "answerConceptSetUuid; customConceptAnswers must not duplicate the OCL catalog"
+            )
+
+    contact_sections = [
+        section
+        for section in registration_config.get("sectionDefinitions", [])
+        if section.get("id") == "contact"
+    ]
+    if len(contact_sections) != 1 or contact_sections[0].get("fields", []).count("neighborhood") != 1:
+        errors.append(
+            f"{FRONTEND_CONFIGURATION_PATH}: contact section must include neighborhood exactly once"
+        )
+
+    search_config = frontend_config.get("@sihsalus/esm-patient-search-app") or {}
+    search_attributes = (
+        search_config.get("search", {})
+        .get("searchFilterFields", {})
+        .get("personAttributes", [])
+    )
+    neighborhood_search_fields = [
+        field
+        for field in search_attributes
+        if field.get("attributeTypeUuid") == NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID
+    ]
+    if len(neighborhood_search_fields) != 1 or neighborhood_search_fields[0].get(
+        "answerConceptSetUuid"
+    ) != NEIGHBORHOOD_SET_UUID:
+        errors.append(
+            f"{FRONTEND_CONFIGURATION_PATH}: search must bind the neighborhood attribute "
+            "to the neighborhood concept set exactly once"
+        )
+
+    banner_config = frontend_config.get("@sihsalus/esm-patient-banner-app") or {}
+    if banner_config.get("additionalAttributeTypes", []).count(NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID) != 1:
+        errors.append(
+            f"{FRONTEND_CONFIGURATION_PATH}: banner must display the neighborhood attribute exactly once"
+        )
+
+    try:
+        with PERSON_ATTRIBUTE_TYPES_PATH.open(newline="") as stream:
+            attribute_rows = list(csv.DictReader(stream))
+    except OSError as error:
+        errors.append(f"{PERSON_ATTRIBUTE_TYPES_PATH}: cannot read person attribute types: {error}")
+        attribute_rows = []
+    neighborhood_attribute_rows = [
+        row for row in attribute_rows if row.get("Uuid") == NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID
+    ]
+    if len(neighborhood_attribute_rows) != 1:
+        errors.append(
+            f"{PERSON_ATTRIBUTE_TYPES_PATH}: neighborhood attribute type must occur exactly once"
+        )
+    else:
+        row = neighborhood_attribute_rows[0]
+        if (
+            row.get("Name") != "Barrio"
+            or row.get("Format") != "org.openmrs.Concept"
+            or row.get("Foreign UUID") != NEIGHBORHOOD_SET_UUID
+            or row.get("Searchable") != "true"
+        ):
+            errors.append(
+                f"{PERSON_ATTRIBUTE_TYPES_PATH}: neighborhood attribute must be a searchable coded "
+                "attribute bound to the neighborhood concept set"
+            )
+
+    try:
+        address_root = ET.parse(ADDRESS_CONFIGURATION_PATH).getroot()
+    except (OSError, ET.ParseError) as error:
+        errors.append(f"{ADDRESS_CONFIGURATION_PATH}: cannot parse address configuration: {error}")
+        return
+    legacy_components = [
+        component
+        for component in address_root.findall("./addressComponents/addressComponent")
+        if component.findtext("field") == "ADDRESS_3"
+    ]
+    if legacy_components:
+        errors.append(
+            f"{ADDRESS_CONFIGURATION_PATH}: ADDRESS_3/Barrio must be absent after the "
+            "confirmed no-data cutover"
+        )
+    address_lines = [line.text for line in address_root.findall("./lineByLineFormat/string")]
+    if "address3" in address_lines:
+        errors.append(
+            f"{ADDRESS_CONFIGURATION_PATH}: address3 must be absent from the formatted address "
+            "after the confirmed no-data cutover"
+        )
 
 
 def validate_ocl_global_properties(errors):
