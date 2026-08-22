@@ -12,7 +12,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   persona, con códigos `SCL-01` a `SCL-10`, selección visual por color, filtro
   de búsqueda y visualización en los datos adicionales del paciente. Se retira
   `Barrio` de la jerarquía RENHICE porque no forma parte de esa dirección
-  administrativa.
+  administrativa. Los conceptos y el set se publican en OCL en la versión
+  `SIHSALUS/sihsalus/2026-08-21-01`, sin carga terminológica mediante CSV.
 - Habilita `ODONTOLOGIA GENERAL` (`5fe6c774-f888-40e5-b54f-e308e5fa26c8`) como
   destino del set `Tipo de Servicio` (`4bf3f465-…`), que alimenta el catálogo de
   interconsultas y colas. Reutiliza el concepto ya publicado en OCL en lugar de

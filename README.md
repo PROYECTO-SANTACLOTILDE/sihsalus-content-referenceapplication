@@ -22,14 +22,16 @@ The contents of a typical Content Package are:
 ## Catálogos territoriales locales
 
 Los barrios de Santa Clotilde se modelan como un atributo codificado de persona, separado de la
-jerarquía RENHICE. El tipo de atributo `Barrio` se define en `personattributetypes`, sus opciones en
-`concepts` y la pertenencia al catálogo en `conceptsets`. Los códigos locales `SCL-01` a `SCL-10` se
-conservan como mappings de la fuente `SIHSALUS`.
+jerarquía RENHICE. El tipo de atributo `Barrio` se define en `personattributetypes`; sus opciones y la
+pertenencia al catálogo se administran en la fuente OCL `SIHSALUS/sihsalus`. La versión
+`2026-08-21-01` publica los conceptos con códigos locales `SCL-01` a `SCL-10` y el set `Barrios de
+Santa Clotilde`.
 
 La configuración del registro, búsqueda y banner se mantiene en
 `configuration/frontend_configuration/config.json`. Los colores son metadatos visuales opcionales del
 selector y no forman parte del valor persistido. Para ampliar el catálogo se agrega un concepto con
-un código `SCL-*` único, se incorpora al set y se configura su presentación en el selector.
+un código `SCL-*` único en OCL, se incorpora al set mediante un mapping `CONCEPT-SET`, se publica una
+nueva versión de la fuente y se configura su presentación en el selector.
 
 Running Spotless
 ----------------
