@@ -16,7 +16,7 @@
         <fileSet>
             <directory>${project.basedir}/configuration</directory>
             <includes>
-                <include>**/*</include>
+                <include>backend_configuration/**/*</include>
             </includes>
             <excludes>
                 <exclude>**/.DS_Store</exclude>

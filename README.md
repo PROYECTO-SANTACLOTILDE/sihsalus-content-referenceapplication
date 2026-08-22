@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.23.9**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.0**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -36,11 +36,12 @@ OCL conserva los registros retirados en el HEAD de `sihsalus` porque un administ
 no puede purgar mappings. No se debe publicar ni bundlear una release futura de `sihsalus` que incluya
 esos UUIDs retirados hasta que soporte OCL los purgue o el proceso de export los excluya explícitamente.
 
-La configuración de registro, búsqueda y banner vive en
-`configuration/frontend_configuration/config.json`. OCL conserva `ui_color` y `ui_tag_type` solo como
-metadata descriptiva y no clínica; no se persisten como valor del atributo ni garantizan su renderizado.
-El frontend actual no consume esa metadata. El selector obtiene sus opciones exclusivamente desde
-`answerConceptSetUuid`, sin duplicar el catálogo en la configuración.
+Este paquete distribuye únicamente la metadata backend y los exports OCL. La configuración efectiva de
+registro, búsqueda y banner se mantiene en `sihsalus-frontend/config/frontend.json`; no se empaqueta una
+copia desde este repositorio. OCL conserva `ui_color` y `ui_tag_type` solo como metadata descriptiva y no
+clínica; no se persisten como valor del atributo ni garantizan su renderizado. El frontend actual no
+consume esa metadata. El selector obtiene sus opciones exclusivamente desde `answerConceptSetUuid`, sin
+duplicar el catálogo en la configuración.
 `ADDRESS_3/Barrio` se retira en este cambio porque se confirmó que no existen datos reales que deban
 migrarse. El contrato está documentado en `docs/contracts/santa-clotilde-neighborhoods.md`.
 
@@ -64,7 +65,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.23.9**.
+Versión del paquete: **1.25.0**.
 
 ## Cobertura MINSA (Categoría II)
 
