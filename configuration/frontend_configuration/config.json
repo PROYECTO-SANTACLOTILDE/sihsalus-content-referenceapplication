@@ -223,69 +223,7 @@
         "searchable": true,
         "validation": {
           "required": false
-        },
-        "customConceptAnswers": [
-          {
-            "uuid": "1975805f-a096-4583-aacc-ab439c79e1cd",
-            "code": "SCL-01",
-            "label": "Barrio Santa Rosa",
-            "color": "#B94A36"
-          },
-          {
-            "uuid": "6db9db1a-b772-4cc7-b261-41ea0957e0f7",
-            "code": "SCL-02",
-            "label": "Barrio San Juan Bautista",
-            "color": "#4F6128"
-          },
-          {
-            "uuid": "d31430ca-4892-43b9-aba5-0f0c51aea497",
-            "code": "SCL-03",
-            "label": "Barrio Fray Martín",
-            "color": "#304238"
-          },
-          {
-            "uuid": "4f0c3fd5-100f-4d2e-9478-100169d952da",
-            "code": "SCL-04",
-            "label": "Barrio Jorge Chávez",
-            "color": "#4E8C24"
-          },
-          {
-            "uuid": "30a01fac-2c8e-4313-b675-3c389a255db5",
-            "code": "SCL-05",
-            "label": "Barrio San Antonia",
-            "color": "#B47A16"
-          },
-          {
-            "uuid": "4bc7352e-f2b1-4e4b-a625-ca1d043e10a9",
-            "code": "SCL-06",
-            "label": "Barrio Señor de los Milagros",
-            "color": "#642C35"
-          },
-          {
-            "uuid": "a65d66bd-b0a6-4ada-9270-e55ba200e4ca",
-            "code": "SCL-07",
-            "label": "Barrio Jaime Carranza",
-            "color": "#D45A1F"
-          },
-          {
-            "uuid": "b77b4e56-64c7-427f-9d6b-87ce54291653",
-            "code": "SCL-08",
-            "label": "Barrio Santa Elisa",
-            "color": "#A5B51D"
-          },
-          {
-            "uuid": "81fc260c-9a5f-4182-b7ac-d50f0960370b",
-            "code": "SCL-09",
-            "label": "Barrio 28 de Julio",
-            "color": "#B98A16"
-          },
-          {
-            "uuid": "ef33a561-cdea-4218-a360-723d16ccdd08",
-            "code": "SCL-10",
-            "label": "Barrio Nueva Primavera",
-            "color": "#D94B3D"
-          }
-        ]
+        }
       }
     ],
     "hiddenPatientIdentifierTypeUuids": [
