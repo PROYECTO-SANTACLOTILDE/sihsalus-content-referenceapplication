@@ -7,10 +7,20 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Cambiado
+- Prepara la versión `1.25.0` como paquete exclusivamente backend: el ensamblado incluye solo
+  `backend_configuration`, conserva los exports OCL y deja la configuración efectiva del SPA en
+  `sihsalus-frontend/config/frontend.json`.
+
+### Retirado
+- Elimina `configuration/frontend_configuration/config.json` y las validaciones acopladas a ese
+  archivo, porque la distribución SIHSALUS no lo sirve al navegador. Las validaciones de metadata
+  backend, catálogos OCL y rutas de atención se conservan.
+
 ### Agregado
 - Catálogo local de barrios de Santa Clotilde como atributo codificado de
-  persona, con filtro de búsqueda y visualización en los datos adicionales del
-  paciente. El catálogo activo se aísla en la fuente OCL
+  persona. Su activación en registro, búsqueda y datos adicionales corresponde
+  a la configuración efectiva del frontend. El catálogo activo se aísla en la fuente OCL
   `SIHSALUS/barrios-santa-clotilde/2026-08-22-01`; el source clínico principal
   permanece en `SIHSALUS/sihsalus/2026-07-16-02`. Se retira `ADDRESS_3/Barrio`
   después de confirmar que no contiene datos reales que requieran migración.
@@ -166,9 +176,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   eliminan del paquete canónico y no se recrean en instalaciones nuevas.
 
 ### Validación
-- CI comprueba que content y configuración frontend reproduzcan exactamente el contrato, que las
-  colas usen Concepts dedicados, que no reaparezcan tipos especializados y que odontología general
-  nunca quede asociada a Cirugía Bucal y Maxilofacial.
+- CI comprueba que la metadata backend reproduzca exactamente el contrato, que las colas usen
+  Concepts dedicados, que no reaparezcan tipos especializados y que odontología general nunca
+  quede asociada a Cirugía Bucal y Maxilofacial.
 
 ### Agregado
 - Person attribute **Método de Verificación de Seguro** (`bc1e5c92-e46a-4bc9-8cba-d9093a0eb659`, FreeText):

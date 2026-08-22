@@ -23,6 +23,10 @@ No son clínicos, no forman parte del valor persistido y no garantizan su render
 no los consume: obtiene las opciones desde `answerConceptSetUuid` y no duplica el catálogo en
 `customConceptAnswers`.
 
+Este paquete solo distribuye la metadata backend y los exports OCL. La configuración efectiva de
+registro, búsqueda y banner pertenece a `sihsalus-frontend/config/frontend.json`; no se mantiene ni se
+empaqueta una copia de configuración frontend en este repositorio.
+
 ## Historial retirado en `sihsalus`
 
 La release errónea del source principal fue eliminada, pero OCL no permite a un administrador de la
@@ -51,8 +55,8 @@ Para agregar o corregir un barrio:
 2. Publicar una nueva versión released de `barrios-santa-clotilde`.
 3. Descargar los exports oficiales de conceptos y mappings, ubicarlos en los slots `15_` y `65_`, y
    retirar los dos exports de la versión anterior en el mismo cambio.
-4. Verificar que registro y búsqueda continúan apuntando al mismo `answerConceptSetUuid`; no duplicar
-   respuestas ni metadata de presentación en la configuración frontend.
+4. En el repositorio frontend, verificar que registro y búsqueda continúan apuntando al mismo
+   `answerConceptSetUuid`; no duplicar respuestas ni metadata de presentación en su configuración.
 5. Ejecutar todos los validadores del content package y una importación desde una base limpia antes de
    desplegar.
 

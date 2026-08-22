@@ -21,7 +21,6 @@ ADDRESS_CONFIGURATION_PATH = Path(
 PERSON_ATTRIBUTE_TYPES_PATH = Path(
     "configuration/backend_configuration/personattributetypes/personattributetypes.csv"
 )
-FRONTEND_CONFIGURATION_PATH = Path("configuration/frontend_configuration/config.json")
 EXPECTED_SIHSALUS_SUBSCRIPTION_URL = (
     "https://api.openconceptlab.org/orgs/SIHSALUS/sources/sihsalus/2026-07-16-02"
 )
@@ -360,7 +359,7 @@ def main():
         concepts_by_source[SIHSALUS_SOURCE],
         errors,
     )
-    validate_neighborhood_configuration(errors)
+    validate_neighborhood_backend_configuration(errors)
     validate_ocl_global_properties(errors)
 
     if errors:
@@ -962,79 +961,7 @@ def validate_neighborhood_terminology(exports_by_path, sihsalus_concepts, errors
             )
 
 
-def validate_neighborhood_configuration(errors):
-    try:
-        frontend_config = json.loads(FRONTEND_CONFIGURATION_PATH.read_text())
-    except (OSError, json.JSONDecodeError) as error:
-        errors.append(f"{FRONTEND_CONFIGURATION_PATH}: cannot load frontend config: {error}")
-        return
-
-    registration_config = frontend_config.get("@sihsalus/esm-patient-registration-app") or {}
-    neighborhood_fields = [
-        field
-        for field in registration_config.get("fieldDefinitions", [])
-        if field.get("id") == "neighborhood"
-    ]
-    if len(neighborhood_fields) != 1:
-        errors.append(
-            f"{FRONTEND_CONFIGURATION_PATH}: registration must define neighborhood exactly once"
-        )
-    else:
-        field = neighborhood_fields[0]
-        expected_field_values = {
-            "type": "person attribute",
-            "uuid": NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID,
-            "answerConceptSetUuid": NEIGHBORHOOD_SET_UUID,
-            "codedInputType": "select",
-            "searchable": True,
-        }
-        for key, expected in expected_field_values.items():
-            if field.get(key) != expected:
-                errors.append(
-                    f"{FRONTEND_CONFIGURATION_PATH}: neighborhood field {key} must be "
-                    f"{expected!r}; found {field.get(key)!r}"
-                )
-        if "customConceptAnswers" in field:
-            errors.append(
-                f"{FRONTEND_CONFIGURATION_PATH}: neighborhood options must come only from "
-                "answerConceptSetUuid; customConceptAnswers must not duplicate the OCL catalog"
-            )
-
-    contact_sections = [
-        section
-        for section in registration_config.get("sectionDefinitions", [])
-        if section.get("id") == "contact"
-    ]
-    if len(contact_sections) != 1 or contact_sections[0].get("fields", []).count("neighborhood") != 1:
-        errors.append(
-            f"{FRONTEND_CONFIGURATION_PATH}: contact section must include neighborhood exactly once"
-        )
-
-    search_config = frontend_config.get("@sihsalus/esm-patient-search-app") or {}
-    search_attributes = (
-        search_config.get("search", {})
-        .get("searchFilterFields", {})
-        .get("personAttributes", [])
-    )
-    neighborhood_search_fields = [
-        field
-        for field in search_attributes
-        if field.get("attributeTypeUuid") == NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID
-    ]
-    if len(neighborhood_search_fields) != 1 or neighborhood_search_fields[0].get(
-        "answerConceptSetUuid"
-    ) != NEIGHBORHOOD_SET_UUID:
-        errors.append(
-            f"{FRONTEND_CONFIGURATION_PATH}: search must bind the neighborhood attribute "
-            "to the neighborhood concept set exactly once"
-        )
-
-    banner_config = frontend_config.get("@sihsalus/esm-patient-banner-app") or {}
-    if banner_config.get("additionalAttributeTypes", []).count(NEIGHBORHOOD_ATTRIBUTE_TYPE_UUID) != 1:
-        errors.append(
-            f"{FRONTEND_CONFIGURATION_PATH}: banner must display the neighborhood attribute exactly once"
-        )
-
+def validate_neighborhood_backend_configuration(errors):
     try:
         with PERSON_ATTRIBUTE_TYPES_PATH.open(newline="") as stream:
             attribute_rows = list(csv.DictReader(stream))

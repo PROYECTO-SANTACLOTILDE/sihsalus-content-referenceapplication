@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import csv
-import json
 import sys
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -26,7 +25,6 @@ QUEUE_SERVICE_CONCEPT_SET_PATH = (
     CONFIG_DIR / "conceptsets" / "queue_service_concepts.csv"
 )
 CARE_ROUTING_CONTRACT_PATH = Path("docs/contracts/hsc-care-routing.csv")
-FRONTEND_CONFIG_PATH = Path("configuration/frontend_configuration/config.json")
 
 OBSOLETE_LIFECYCLE_PRIVILEGE_UUID = "ef67b22e-25c8-4d0f-ab6e-427be7f72cc4"
 OBSOLETE_LIFECYCLE_PRIVILEGE = "Manage Appointment Queue Lifecycle"
@@ -35,13 +33,11 @@ GENERATE_FUA_PRIVILEGE_UUID = "2293389f-8595-491f-b842-5da867f59608"
 GENERATE_FUA_PRIVILEGE = "Generate Fua from Visit"
 QUEUE_NUMBER_ATTRIBUTE_UUID = "06a0b8c6-cbdf-4b42-9cbd-871129db8758"
 APPOINTMENT_UUID_ATTRIBUTE_UUID = "193508ab-20c6-5291-9f23-0257335eaabd"
-VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID = "eb8b793b-f259-451d-9c09-53aa0ffd0d3f"
 PROVIDER_SCHEDULING_CATEGORY_ATTRIBUTE_UUID = (
     "3961cbdd-3240-4b70-99ca-5f63af488b15"
 )
 OBSOLETE_PARENT_VISIT_TYPE_ATTRIBUTE_UUID = "d6c9e7a5-8134-49e3-a2c5-b8f4c3d2e1a9"
 QUEUE_SERVICE_CONCEPT_SET_UUID = "4bf3f465-ac91-44fa-9b1f-173daf0c89a0"
-CARE_ROUTING_CONTRACT_VERSION = "2026-07-18"
 GENERIC_AMBULATORY_VISIT_TYPE_UUID = "b1f0e8a1-9c5d-4f0e-8892-81f3140fbc09"
 HOSPITALIZATION_VISIT_TYPE_UUID = "e4c8b6d9-7f3a-4e7b-91a2-58b9f6c2d4b5"
 APPROVED_ACTIVE_VISIT_TYPE_UUIDS = {
@@ -50,43 +46,6 @@ APPROVED_ACTIVE_VISIT_TYPE_UUIDS = {
     HOSPITALIZATION_VISIT_TYPE_UUID,
     "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98",
     "c80410d7-e0cb-488f-9b23-be78bd244548",
-}
-EXPECTED_VISIT_TYPE_ELIGIBILITY = {
-    "35d2234e-129a-4c40-abb2-1ae0b2400001": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID,
-        "23939157-9af0-457b-8f6c-211eb5459311",
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400002": {
-        HOSPITALIZATION_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400003": {
-        "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98"
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400004": {
-        HOSPITALIZATION_VISIT_TYPE_UUID,
-        "c2a1d3e2-4b8f-4326-94d9-7f6c9a1b7c98",
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400005": {
-        HOSPITALIZATION_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400006": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400013": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400008": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400007": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400010": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
-    "35d2234e-129a-4c40-abb2-1ae0b2400011": {
-        GENERIC_AMBULATORY_VISIT_TYPE_UUID
-    },
 }
 DENTAL_SERVICE_UUID = "b3c2d4e5-f6a7-48d9-93e1-8f7a6b5c4d02"
 GENERAL_DENTISTRY_CATEGORY_UUID = "a0d4e64e-eb63-4271-bdf1-ffa10392c282"
@@ -98,8 +57,6 @@ TOPICAL_SERVICE_UUID = "d4e5f6a7-b8c9-41e2-93f3-1a9b8c7d6e04"
 NEWBORN_SERVICE_UUID = "f7a8b9c0-d1e2-43f4-93e5-3b1a9c8d7e06"
 OUTPATIENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 HOSPITALIZATION_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400002"
-PHARMACY_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400007"
-CRED_APPOINTMENT_LOCATION_UUID = "35d2234e-129a-4c40-abb2-1ae0b2400001"
 
 TARGET_ROLES = {
     "71dcb611-756a-4ad3-a9bb-73b6cfe28066": "Admision",
@@ -1155,202 +1112,6 @@ def validate_canonical_care_routing(errors):
     return queue_count, direct_count, retired_count
 
 
-def validate_frontend_appointment_config(errors):
-    try:
-        config = json.loads(FRONTEND_CONFIG_PATH.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as error:
-        errors.append(f"{FRONTEND_CONFIG_PATH}: unable to read valid JSON: {error}")
-        return 0
-
-    dispensing_config = config.get("@sihsalus/esm-dispensing-app")
-    if not isinstance(dispensing_config, dict):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-dispensing-app object"
-        )
-    elif dispensing_config.get("dispensingLocationUuid") != PHARMACY_LOCATION_UUID:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: dispensingLocationUuid must be "
-            f"{PHARMACY_LOCATION_UUID} (UPSS - FARMACIA)"
-        )
-
-    cred_config = config.get("@sihsalus/esm-crecimiento-desarrollo-app")
-    cred_scheduling = cred_config.get("credScheduling") if isinstance(cred_config, dict) else None
-    if not isinstance(cred_scheduling, dict):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: missing CRED credScheduling configuration"
-        )
-    elif cred_scheduling.get("appointmentLocationUuid") != CRED_APPOINTMENT_LOCATION_UUID:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: CRED appointmentLocationUuid must be "
-            f"{CRED_APPOINTMENT_LOCATION_UUID} (UPSS - CONSULTA EXTERNA)"
-        )
-
-    module_config = config.get("@sihsalus/esm-appointments-app")
-    if not isinstance(module_config, dict):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-appointments-app object"
-        )
-        return 0
-
-    if (
-        module_config.get("appointmentVisitAttributeTypeUuid")
-        != APPOINTMENT_UUID_ATTRIBUTE_UUID
-    ):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentVisitAttributeTypeUuid must be "
-            f"{APPOINTMENT_UUID_ATTRIBUTE_UUID}"
-        )
-    if module_config.get("careRoutingContractVersion") != CARE_ROUTING_CONTRACT_VERSION:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: careRoutingContractVersion must be "
-            f"{CARE_ROUTING_CONTRACT_VERSION!r}"
-        )
-
-    provider_validation = module_config.get("providerSchedulingCategoryValidation")
-    expected_provider_validation = {
-        "mode": "warn",
-        "providerAttributeTypeUuid": PROVIDER_SCHEDULING_CATEGORY_ATTRIBUTE_UUID,
-    }
-    if provider_validation != expected_provider_validation:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: providerSchedulingCategoryValidation must use "
-            "warn mode and the canonical provider attribute UUID"
-        )
-
-    patient_chart_config = config.get("@sihsalus/esm-patient-chart-app")
-    if not isinstance(patient_chart_config, dict):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: missing @sihsalus/esm-patient-chart-app object"
-        )
-    else:
-        if patient_chart_config.get("visitLocationTag") != "Care UPSS":
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: visitLocationTag must use the backend "
-                "Care UPSS location tag"
-            )
-
-        if (
-            patient_chart_config.get("visitPersistenceTokenAttributeTypeUuid")
-            != VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID
-        ):
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: visitPersistenceTokenAttributeTypeUuid "
-                f"must be {VISIT_PERSISTENCE_TOKEN_ATTRIBUTE_UUID}"
-            )
-
-        eligibility_rules = patient_chart_config.get("visitTypeEligibilityRules")
-        configured_eligibility = {}
-        if not isinstance(eligibility_rules, list):
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules must be an array"
-            )
-        else:
-            for index, rule in enumerate(eligibility_rules):
-                if not isinstance(rule, dict):
-                    errors.append(
-                        f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules[{index}] "
-                        "must be an object"
-                    )
-                    continue
-                location_uuid = rule.get("locationUuid")
-                visit_type_uuids = rule.get("visitTypeUuids")
-                if not isinstance(location_uuid, str) or not isinstance(
-                    visit_type_uuids, list
-                ):
-                    errors.append(
-                        f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules[{index}] "
-                        "must define a location UUID and visit-type UUID array"
-                    )
-                    continue
-                if location_uuid in configured_eligibility:
-                    errors.append(
-                        f"{FRONTEND_CONFIG_PATH}: duplicate visit-type eligibility "
-                        f"rule for location {location_uuid}"
-                    )
-                configured_eligibility[location_uuid] = set(visit_type_uuids)
-
-            if configured_eligibility != EXPECTED_VISIT_TYPE_ELIGIBILITY:
-                errors.append(
-                    f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules must contain "
-                    "exactly the approved location-to-care-setting mappings"
-                )
-            active_care_upss_uuids = {
-                row["Uuid"]
-                for row in read_csv(LOCATIONS_PATH)
-                if not is_retired(row["Void/Retire"])
-                and is_true(row.get("Tag|Care UPSS", ""))
-            }
-            if set(configured_eligibility) != active_care_upss_uuids:
-                errors.append(
-                    f"{FRONTEND_CONFIG_PATH}: visitTypeEligibilityRules locations "
-                    "must match the active Care UPSS backend tags"
-                )
-
-    if "appointmentQueueMappings" in module_config:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: remove legacy appointmentQueueMappings; use "
-            "the complete appointmentArrivalRules contract"
-        )
-
-    expected_rules = []
-    for row in read_csv(CARE_ROUTING_CONTRACT_PATH):
-        if row["Status"] != "enabled":
-            continue
-        rule = {
-            "appointmentServiceUuid": row["Appointment Service Uuid"],
-            "appointmentLocationUuid": row["Appointment Location Uuid"],
-            "arrivalPolicy": row["Arrival Policy"],
-            "requiredVisitTypeUuid": row["Required Visit Type Uuid"],
-        }
-        if row["Arrival Policy"] in {"queue-optional", "queue-required"}:
-            rule["queueUuid"] = row["Queue Uuid"]
-            rule["queueLocationUuid"] = row["Queue Location Uuid"]
-        expected_rules.append(rule)
-
-    configured_rules = module_config.get("appointmentArrivalRules")
-    if not isinstance(configured_rules, list):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules must be an array"
-        )
-        return 0
-
-    allowed_fields = {
-        "appointmentServiceUuid",
-        "appointmentLocationUuid",
-        "arrivalPolicy",
-        "requiredVisitTypeUuid",
-        "queueUuid",
-        "queueLocationUuid",
-    }
-    normalized_rules = []
-    for index, row in enumerate(configured_rules):
-        if not isinstance(row, dict):
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules[{index}] must be an object"
-            )
-            continue
-        extra = set(row) - allowed_fields
-        if extra:
-            errors.append(
-                f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules[{index}] has "
-                "unsupported fields: " + ", ".join(sorted(extra))
-            )
-        normalized_rules.append(json.dumps(row, sort_keys=True))
-
-    expected_rule_set = {json.dumps(row, sort_keys=True) for row in expected_rules}
-    configured_rule_set = set(normalized_rules)
-    if len(normalized_rules) != len(configured_rule_set):
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules contains duplicates"
-        )
-    if configured_rule_set != expected_rule_set:
-        errors.append(
-            f"{FRONTEND_CONFIG_PATH}: appointmentArrivalRules must contain exactly "
-            "the enabled routes from the canonical care-routing contract"
-        )
-    return len(configured_rule_set)
-
-
 def main():
     errors = []
     validate_privilege_and_roles(errors)
@@ -1359,8 +1120,6 @@ def main():
     queue_routes, direct_routes, retired_services = validate_canonical_care_routing(
         errors
     )
-    frontend_routes = validate_frontend_appointment_config(errors)
-
     if errors:
         print("Appointment/visit/queue integrity validation failed:", file=sys.stderr)
         for error in errors:
@@ -1376,8 +1135,7 @@ def main():
         "queue-number and appointment-link metadata, "
         f"{active_services} active services, {packaged_service_types} one-to-one service-type "
         f"duplicates, {queue_routes} explicit queue routes, {direct_routes} direct "
-        f"routes, {retired_services} non-programmable retired services, and "
-        f"{frontend_routes} synchronized frontend routes."
+        f"routes, and {retired_services} non-programmable retired services."
     )
     return 0
 
