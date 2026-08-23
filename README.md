@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.0**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.1**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -65,7 +65,14 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.0**.
+Versión del paquete: **1.25.1**.
+
+## Contrato de diagnósticos de Consulta Externa
+
+`CE-001-CONSULTA EXTERNA` no captura diagnósticos. El diagnóstico CIE-10 debe registrarse
+exclusivamente mediante **Visit Notes**, que lo persiste como diagnóstico nativo del encuentro para
+que aparezca en el historial clínico y pueda ser consumido por los flujos dependientes. No se deben
+agregar a CE-001 observaciones de texto, certeza u ocurrencia que simulen un diagnóstico.
 
 ## Cobertura MINSA (Categoría II)
 
