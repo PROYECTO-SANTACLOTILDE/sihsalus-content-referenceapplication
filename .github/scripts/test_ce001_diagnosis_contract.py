@@ -92,11 +92,31 @@ class CE001DiagnosisContractTest(unittest.TestCase):
 
     def test_rejects_new_form_version(self):
         form = copy.deepcopy(self.form)
-        form["version"] = "1.0.2"
+        form["version"] = "1.0.3"
 
         errors = VALIDATOR.validate_contract(form)
 
-        self.assertTrue(any("version must remain 1.0.1" in error for error in errors))
+        self.assertTrue(any("version must be 1.0.2" in error for error in errors))
+
+    def test_rejects_historical_version_that_would_overwrite_clob(self):
+        form = copy.deepcopy(self.form)
+        form["version"] = VALIDATOR.PREVIOUS_VERSION
+
+        errors = VALIDATOR.validate_contract(form)
+
+        self.assertTrue(any("overwrite the historical schema CLOB" in error for error in errors))
+
+    def test_corrected_version_has_a_distinct_deterministic_identity(self):
+        previous_uuid = VALIDATOR.ampath_persisted_form_uuid(
+            VALIDATOR.EXPECTED_NAME, VALIDATOR.PREVIOUS_VERSION
+        )
+        active_uuid = VALIDATOR.ampath_persisted_form_uuid(
+            VALIDATOR.EXPECTED_NAME, VALIDATOR.EXPECTED_VERSION
+        )
+
+        self.assertEqual(VALIDATOR.PREVIOUS_PERSISTED_FORM_UUID, previous_uuid)
+        self.assertEqual(VALIDATOR.EXPECTED_PERSISTED_FORM_UUID, active_uuid)
+        self.assertNotEqual(previous_uuid, active_uuid)
 
 
 if __name__ == "__main__":

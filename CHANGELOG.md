@@ -12,11 +12,16 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ### Corregido
 - Retira de `CE-001-CONSULTA EXTERNA` la página de diagnóstico y las observaciones de texto,
   certeza y ocurrencia que no creaban un diagnóstico nativo del encuentro. El diagnóstico CIE-10
-  se registra exclusivamente mediante Visit Notes. Se conserva deliberadamente la versión `1.0.1`
-  del formulario para que `AmpathFormsLoader` de Initializer actualice en sitio el CLOB cuya
-  identidad deriva del nombre y la versión, sin crear otro formulario que permita seguir usando el
-  esquema clínico incorrecto. El campo `uuid` del JSON se conserva solo por compatibilidad del
-  paquete; el loader no lo usa como identidad persistida del formulario.
+  se registra exclusivamente mediante Visit Notes. Publica el esquema corregido como versión
+  `1.0.2`: `AmpathFormsLoader` de Initializer retira la versión `1.0.1` sin borrar sus encuentros ni
+  sobrescribir su CLOB histórico, y crea una identidad persistida diferente para la nueva versión.
+  El campo `uuid` del JSON se conserva solo por compatibilidad del paquete; el loader deriva la
+  identidad persistida del nombre y la versión.
+- Provisiona de forma idempotente la metadata canónica de `Visit Note` y valida el contrato de
+  formulario, tipo de encuentro y datatypes clínicos que consume el frontend coordinado.
+- Restaura `app:hoja.clinica.resumenConsulta.editar` con su UUID histórico, separado de lectura, y
+  completa en el rol funcional granular las capacidades backend necesarias para registrar y editar
+  observaciones y diagnósticos nativos mediante Visit Notes.
 
 ## [1.25.0] - 2026-08-22
 

@@ -8,7 +8,7 @@
   "referencedForms": [],
   "uuid": "a8db00d0-8acd-4459-97a8-43827b0a23e8",
   "description": "Formulario de Consulta Externa ambulatoria. Registra motivo de consulta, examen clínico (SOAP), plan de tratamiento, financiador y pertenencia étnica. El diagnóstico CIE-10 se registra exclusivamente mediante Visit Notes para persistirlo como diagnóstico nativo del encuentro. Basado en el FUA y la NTS N° 029-MINSA.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "pages": [
     {
       "label": "Motivo de Consulta",

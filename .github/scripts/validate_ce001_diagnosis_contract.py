@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Protect the single, native-diagnosis workflow used by Consulta Externa."""
 
+import hashlib
 import json
 import sys
 import unicodedata
+import uuid
 from pathlib import Path
 
 
@@ -11,7 +13,11 @@ CE001_PATH = Path(
     "configuration/backend_configuration/ampathforms/CE-001-CONSULTA EXTERNA.json"
 )
 EXPECTED_NAME = "CE-001-CONSULTA EXTERNA"
-EXPECTED_VERSION = "1.0.1"
+PREVIOUS_VERSION = "1.0.1"
+EXPECTED_VERSION = "1.0.2"
+AMPATH_FORMS_NAMESPACE_UUID = "794c4598-ab82-47ca-8d18-483a8abe6f4f"
+PREVIOUS_PERSISTED_FORM_UUID = "da631d8c-c695-3c4a-9d77-19bbbf0174e3"
+EXPECTED_PERSISTED_FORM_UUID = "df1a34b4-0e8f-3564-84d9-55ce9e4284bd"
 LEGACY_DIAGNOSIS_IDS = {
     "diagnosticoPrincipal",
     "certezaDiagnostica",
@@ -45,6 +51,12 @@ def normalized(value):
     )
 
 
+def ampath_persisted_form_uuid(name, version):
+    """Mirror Initializer 2.12 Utils.generateUuidFromObjects for form identity."""
+    seed = f"{AMPATH_FORMS_NAMESPACE_UUID}_{name}_{version}".encode()
+    return str(uuid.UUID(bytes=hashlib.md5(seed).digest(), version=3))
+
+
 def validate_contract(data, path=CE001_PATH):
     errors = []
 
@@ -55,9 +67,27 @@ def validate_contract(data, path=CE001_PATH):
         )
     if data.get("version") != EXPECTED_VERSION:
         errors.append(
-            f"{path}: version must remain {EXPECTED_VERSION}; AmpathFormsLoader derives "
-            "the persisted Form identity from name plus version, so changing it would "
-            "create another form instead of updating the existing CE-001 CLOB"
+            f"{path}: version must be {EXPECTED_VERSION}; keeping {PREVIOUS_VERSION} "
+            "would make AmpathFormsLoader overwrite the historical schema CLOB instead "
+            "of retiring it and creating the corrected version"
+        )
+
+    previous_uuid = ampath_persisted_form_uuid(EXPECTED_NAME, PREVIOUS_VERSION)
+    expected_uuid = ampath_persisted_form_uuid(EXPECTED_NAME, EXPECTED_VERSION)
+    if previous_uuid != PREVIOUS_PERSISTED_FORM_UUID:
+        errors.append(
+            f"{path}: validator has an invalid Initializer identity fixture for "
+            f"CE-001 {PREVIOUS_VERSION}: {previous_uuid}"
+        )
+    if expected_uuid != EXPECTED_PERSISTED_FORM_UUID:
+        errors.append(
+            f"{path}: CE-001 {EXPECTED_VERSION} must derive to persisted Form UUID "
+            f"{EXPECTED_PERSISTED_FORM_UUID}, got {expected_uuid}"
+        )
+    if previous_uuid == expected_uuid:
+        errors.append(
+            f"{path}: corrected CE-001 must not reuse the persisted identity of "
+            f"historical version {PREVIOUS_VERSION}"
         )
 
     description = data.get("description")
@@ -140,8 +170,8 @@ def main():
         return 1
 
     print(
-        "Validated CE-001 stable name+version identity and exclusive Visit Notes "
-        "diagnosis workflow."
+        "Validated CE-001 versioned historical identity and exclusive Visit Notes "
+        f"diagnosis workflow ({PREVIOUS_VERSION} -> {EXPECTED_VERSION})."
     )
     return 0
 

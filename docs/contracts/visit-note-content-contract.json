@@ -1,0 +1,153 @@
+{
+  "_version": 1,
+  "frontendModule": "@openmrs/esm-patient-notes-app",
+  "frontendSchemaRelativePath": "packages/apps/esm-patient-notes-app/src/notes/visit-note-config-schema.ts",
+  "form": {
+    "uuid": "c75f120a-04ec-11e3-8780-2b40bef9a44b",
+    "name": "Visit Note",
+    "version": "1.0",
+    "published": false,
+    "retired": false,
+    "encounterTypeUuid": "d7151f82-c1f3-4152-a605-2f9ea7414a79"
+  },
+  "encounterType": {
+    "uuid": "d7151f82-c1f3-4152-a605-2f9ea7414a79",
+    "name": "Notas de Atención",
+    "description": "Registro de observaciones clínicas y evolución del paciente en cada consulta.",
+    "retired": false
+  },
+  "ce001": {
+    "name": "CE-001-CONSULTA EXTERNA",
+    "previousVersion": "1.0.1",
+    "activeVersion": "1.0.2",
+    "previousPersistedFormUuid": "da631d8c-c695-3c4a-9d77-19bbbf0174e3",
+    "activePersistedFormUuid": "df1a34b4-0e8f-3564-84d9-55ce9e4284bd"
+  },
+  "concepts": [
+    {
+      "configKey": "encounterNoteTextConceptUuid",
+      "uuid": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "codigoPrestacionalConceptUuid",
+      "uuid": "34630b86-5106-4aea-8382-f55c02e4ba2c",
+      "datatype": "Coded"
+    },
+    {
+      "configKey": "chiefComplaintConceptUuid",
+      "uuid": "71b58cff-879b-4358-98d5-2165434d4324",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "illnessDurationConceptUuid",
+      "uuid": "577876b1-0b6e-4c57-b4c3-7af969a1d501",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "anamnesisConceptUuid",
+      "uuid": "6d99603e-ae9d-4838-8a09-ba75e27ff1e9",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "biologicalFunctionsConceptUuid",
+      "uuid": "9011adf4-2b9f-4ecb-a44c-cb5642e4e015",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "appetiteConceptUuid",
+      "uuid": "f0000182-0000-4000-8000-000000000182",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "thirstConceptUuid",
+      "uuid": "f0000183-0000-4000-8000-000000000183",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "sleepConceptUuid",
+      "uuid": "f0000184-0000-4000-8000-000000000184",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "moodConceptUuid",
+      "uuid": "f0000185-0000-4000-8000-000000000185",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "urineConceptUuid",
+      "uuid": "f0000186-0000-4000-8000-000000000186",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "bowelMovementsConceptUuid",
+      "uuid": "f0000187-0000-4000-8000-000000000187",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "soapSubjectiveConceptUuid",
+      "uuid": "f0000202-0000-4000-8000-000000000202",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "soapObjectiveConceptUuid",
+      "uuid": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "soapAssessmentConceptUuid",
+      "uuid": "160533AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "soapPlanConceptUuid",
+      "uuid": "f0000201-0000-4000-8000-000000000201",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "labOrdersConceptUuid",
+      "uuid": "f0000204-0000-4000-8000-000000000204",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "proceduresConceptUuid",
+      "uuid": "f0000206-0000-4000-8000-000000000206",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "prescriptionsConceptUuid",
+      "uuid": "f0000215-0000-4000-8000-000000000215",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "referralConceptUuid",
+      "uuid": "3f573194-bade-46bc-b5fd-59c36f5f697a",
+      "datatype": "Text"
+    },
+    {
+      "configKey": "nextAppointmentConceptUuid",
+      "uuid": "f0000004-0000-4000-8000-000000000004",
+      "datatype": "Date"
+    },
+    {
+      "configKey": "diagnosisTypeConceptUuid",
+      "uuid": "2d53d39f-c93f-4128-8f7c-1bb45b498497",
+      "datatype": "Coded"
+    },
+    {
+      "configKey": "diagnosisTypePresuntivoUuid",
+      "uuid": "4f59cf03-f888-4d34-a5dc-f24269b1945d",
+      "datatype": "N/A"
+    },
+    {
+      "configKey": "diagnosisTypeDefinitivoUuid",
+      "uuid": "2c60a8f6-1787-41be-8434-30ebeb5656ff",
+      "datatype": "N/A"
+    },
+    {
+      "configKey": "diagnosisTypeRepetitivoUuid",
+      "uuid": "6f653861-8469-4dfa-a0b5-2804f1cfc527",
+      "datatype": "N/A"
+    }
+  ]
+}

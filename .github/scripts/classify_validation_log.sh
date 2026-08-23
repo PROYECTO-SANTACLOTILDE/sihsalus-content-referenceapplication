@@ -8,7 +8,7 @@ if [[ ! -f "$log_file" ]]; then
   exit 1
 fi
 
-initializer_pattern='(An OpenMRS object could not be constructed or saved from the following CSV line|BEGINNING OF CSV FILE ERROR SUMMARY|was processed and [0-9]+ out of [0-9]+ entities were not saved|No encounter was found for this form|ERROR - BaseCsvLoader|ERROR - BaseFileLoader)'
+initializer_pattern='(An OpenMRS object could not be constructed or saved from the following CSV line|BEGINNING OF CSV FILE ERROR SUMMARY|was processed and [0-9]+ out of [0-9]+ entities were not saved|No encounter was found for this form|ERROR - BaseCsvLoader|ERROR - BaseFileLoader|ERROR - AmpathFormsLoader|ERROR - LiquibaseLoader)'
 fatal_pattern='(Exception in thread|NoClassDefFoundError|ClassNotFoundException|BeanCreationException|OutOfMemoryError|Application startup failed|Unable to start|Failed to start|fatal)'
 
 initializer_hits="$(grep -Eai "$initializer_pattern" "$log_file" || true)"

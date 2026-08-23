@@ -74,6 +74,25 @@ exclusivamente mediante **Visit Notes**, que lo persiste como diagnóstico nativ
 que aparezca en el historial clínico y pueda ser consumido por los flujos dependientes. No se deben
 agregar a CE-001 observaciones de texto, certeza u ocurrencia que simulen un diagnóstico.
 
+El esquema corregido usa la versión `1.0.2`. Initializer deriva la identidad persistida del nombre y
+la versión: al actualizar desde `1.0.1`, retira el formulario anterior y conserva intactos su recurso
+JSON y los encuentros históricos; luego crea `1.0.2` como única versión activa. El `uuid` incluido en
+el JSON de AMPATH no es la identidad persistida y no debe usarse como contrato de integración.
+
+Visit Notes además requiere el `Form` canónico `c75f120a-04ec-11e3-8780-2b40bef9a44b` (`Visit Note`
+`1.0`) y el tipo de encuentro `d7151f82-c1f3-4152-a605-2f9ea7414a79`. Initializer 2.12 no ofrece un
+dominio CSV genérico para `Form`, por lo que Liquibase crea la fila solo cuando falta y completa solo
+una asociación de tipo de encuentro nula. Como Liquibase corre antes que `ENCOUNTER_TYPES` y el
+archivo completo puede omitirse por checksum en arranques posteriores, el mismo changelog crea
+primero el tipo canónico cuando falta y deja el Form asociado en una sola ejecución. El CSV posterior
+lo reconcilia por UUID. Un `Form` existente nunca se renombra, publica, retira ni reasocia
+silenciosamente. El contrato y los datatypes consumidos por el frontend están fijados en
+`docs/contracts/visit-note-content-contract.json`.
+
+Para rollback no se debe volver a publicar el JSON `1.0.1`, porque sobrescribiría su recurso histórico.
+Se revierte el frontend coordinadamente y se conserva `1.0.2` retirado si ya fue usado; las filas de
+formularios y encuentros clínicos no se eliminan.
+
 ## Cobertura MINSA (Categoría II)
 
 Este paquete ya incluye formularios para consulta externa, obstetricia, salud mental, laboratorio básico de resultados, vacunación, odontología y hospitalización básica. Varios procesos de MINSA pueden quedar cubiertos por módulos nativos de OpenMRS (por ejemplo, triaje/laboratorios/medicación según configuración), pero se dejó esta lista para identificar brechas de documentación clínica en formularios SIH-SALUS.
