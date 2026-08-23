@@ -21,6 +21,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 ## [1.25.0] - 2026-08-22
 
 ### Cambiado
+- Prepara la versión correctiva `1.25.1` para restaurar la separación entre
+  lectura y edición del resumen de consulta.
 - Prepara la versión `1.25.0` como paquete exclusivamente backend: el ensamblado incluye solo
   `backend_configuration`, conserva los exports OCL y deja la configuración efectiva del SPA en
   `sihsalus-frontend/config/frontend.json`.
@@ -45,16 +47,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   odontológica con hoja clínica y privilegios propios.
 
 ### Corregido
+- Restaura `app:hoja.clinica.resumenConsulta.editar` con su UUID histórico y lo
+  asigna al rol funcional de edición y a `SIHSALUS Consulta Externa`. La lectura
+  del resumen ya no autoriza por sí sola a crear o modificar notas clínicas.
 - Autoriza `Edit People` en `SIHSALUS Consulta Externa` para que el profesional
   pueda registrar o corregir el estado de fallecimiento desde la historia
   clínica, y agrega el privilegio UI dedicado
   `app:hoja.clinica.estadoVitalPaciente` para no reutilizar el permiso amplio de
   edición de visitas. No concede `Add People`: el flujo actualiza una persona
   existente y el backend de OpenMRS exige una de esas dos capacidades, no ambas.
-- Alinea la validación de integridad con los roles funcionales: deja de exigir
-  el privilegio retirado `app:hoja.clinica.resumenConsulta.editar` y autoriza al
-  rol `SIH SALUS Colas de atención editar` a registrar acompañantes y limpiar
-  entradas activas de una cola según la matriz vigente.
+- Alinea la validación de integridad con los roles funcionales y autoriza al rol
+  `SIH SALUS Colas de atención editar` a registrar acompañantes y limpiar entradas
+  activas de una cola según la matriz vigente.
 
 ### Agregado
 - Rol `SIHSALUS Enfermero Triaje` (uuid canónico `c3c9b940-156f-4eaf-83b7-f11db420c51c`),
