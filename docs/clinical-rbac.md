@@ -11,9 +11,6 @@ aprobada rompería flujos de Emergencia, Laboratorio, Farmacia y Hospitalizació
 
 - `app:hoja.clinica.formulariosClinicos` permite abrir el catálogo de
   formularios.
-- `app:hoja.clinica.resumenConsulta` permite consultar el resumen clínico;
-  `app:hoja.clinica.resumenConsulta.editar` autoriza por separado su registro y
-  edición.
 - `app:hoja.clinica.listaTareas` permite consultar tareas.
 - `View Attachments` autoriza la lectura mediante la API del módulo de adjuntos.
 - `Create Attachments` declara la capacidad de creación del módulo y preserva
@@ -31,9 +28,6 @@ protege las tres capacidades de Consulta Externa.
 Cuando un tipo de encuentro declara un privilegio específico, el frontend exige
 ese privilegio. La ausencia de metadata no equivale a acceso público y este
 paquete no provisiona una capacidad genérica de mutación como reemplazo.
-El workspace de resumen de consulta también exige su privilegio de edición, por
-lo que conocer el nombre del workspace o tener acceso de lectura no habilita el
-guardado.
 
 ## Límite deliberado
 

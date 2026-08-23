@@ -101,7 +101,6 @@ bf0fb4fc-096d-4823-96f9-b2039d341b62,app:hoja.clinica.cred.ninoSano,Permite ver 
 75f5e668-d26b-4647-8e83-7440306b87fe,app:hoja.clinica.cred.ninoSano.editar,Permite registrar o editar formularios y acciones clinicas asociadas al dashboard Control de Nino Sano.,
 a7d6b422-d97a-47ac-a071-484942bfab10,app:hoja.clinica.resumen,Permite ver el resumen general del paciente dentro de la historia clinica.,
 017238da-7b23-48ae-934e-f8eb1835d39a,app:hoja.clinica.resumenConsulta,Permite visualizar el acceso lateral al resumen de consulta dentro de la hoja clinica.,
-7e6ad9c9-3842-4a99-95ba-bb16fa2a7bfd,app:hoja.clinica.resumenConsulta.editar,Permite registrar o editar el resumen clinico y las notas de una consulta.,
 b3e9c57b-82a9-4d27-a568-763bd7ac1918,app:hoja.clinica.formulariosClinicos,Permite visualizar el acceso lateral a formularios clinicos dentro de la hoja clinica.,
 4fe1d19e-615e-4b0b-ac16-68ad57ef61d0,app:hoja.clinica.canastaOrdenes,Permite visualizar el acceso lateral a la canasta de ordenes dentro de la hoja clinica.,
 1314dc5d-e183-4787-8400-67c98d11b870,app:hoja.clinica.listaTareas,Permite visualizar el acceso lateral a la lista de tareas dentro de la hoja clinica.,
