@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.3**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.4**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -65,7 +65,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.3**.
+Versión del paquete: **1.25.4**.
 
 ## Contrato canónico de Visit Notes
 
@@ -79,6 +79,20 @@ El contrato también fija los datatypes de los conceptos consumidos por el front
 y separa `app:hoja.clinica.resumenConsulta` de
 `app:hoja.clinica.resumenConsulta.editar`. Los detalles verificables están en
 `docs/contracts/visit-note-content-contract.json`.
+
+## Base reproducible de Stock Management
+
+El paquete provisiona los catálogos controlados de unidades de empaque y
+dispensación, motivos de ajuste y toma física, tipos de fuente y categorías de
+artículos. Los UUID se coordinan con
+`sihsalus-frontend/config/frontend.json`; un validador bloquea divergencias entre
+catálogos, propiedades globales y roles canónicos del módulo.
+
+Esta base instala metadata y permisos, no inventario. Un despliegue limpio debe
+comenzar con cero artículos y cero existencias hasta cargar un conteo físico
+aprobado. Tampoco habilita el descuento automático desde dispensación: esa
+integración requiere una transacción clínica/inventario recuperable antes de
+considerarse segura.
 
 ## Cobertura MINSA (Categoría II)
 
