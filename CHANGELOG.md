@@ -7,6 +7,15 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.4] - 2026-08-24
+
+### Corregido
+- Retira de `CE-001-CONSULTA EXTERNA` la página de diagnóstico y las observaciones de texto,
+  certeza y ocurrencia que no creaban un diagnóstico nativo del encuentro. El diagnóstico CIE-10
+  se registra exclusivamente mediante Visit Notes.
+- Publica el esquema corregido como versión `1.0.2`, con identidad persistida distinta de `1.0.1`,
+  para preservar la definición y los encuentros históricos sin sobrescribir su recurso.
+
 ## [1.25.3] - 2026-08-24
 
 ### Corregido
