@@ -7,7 +7,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
-## [1.25.2] - 2026-08-24
+## [1.25.3] - 2026-08-24
 
 ### Corregido
 - Retira del rol granular de edición de Visit Notes el privilegio inexistente
