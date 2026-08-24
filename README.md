@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.4**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.5**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -65,7 +65,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.4**.
+Versión del paquete: **1.25.5**.
 
 ## Contrato canónico de Visit Notes
 
@@ -79,6 +79,14 @@ El contrato también fija los datatypes de los conceptos consumidos por el front
 y separa `app:hoja.clinica.resumenConsulta` de
 `app:hoja.clinica.resumenConsulta.editar`. Los detalles verificables están en
 `docs/contracts/visit-note-content-contract.json`.
+
+## Contrato de diagnóstico de CE-001
+
+`CE-001-CONSULTA EXTERNA` no captura diagnósticos. El diagnóstico CIE-10 se registra exclusivamente mediante Visit Notes como diagnóstico nativo del encuentro; no deben reintroducirse observaciones de texto, certeza u ocurrencia que simulen esa estructura.
+
+El esquema corregido usa la versión `1.0.2`. `AmpathFormsLoader` deriva la identidad persistida del nombre y la versión: al actualizar desde `1.0.1`, conserva el formulario y los encuentros históricos bajo su identidad anterior y crea una identidad distinta para `1.0.2`. El `uuid` incluido en el JSON no es la identidad persistida y no debe usarse como contrato de integración.
+
+Para rollback no se debe volver a publicar el JSON corregido con la versión `1.0.1`, porque reutilizaría y sobrescribiría el recurso histórico. Se revierte el frontend coordinadamente y se conserva la metadata clínica creada.
 
 ## Base reproducible de Stock Management
 
