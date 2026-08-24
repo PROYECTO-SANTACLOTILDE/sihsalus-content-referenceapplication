@@ -80,6 +80,20 @@ y separa `app:hoja.clinica.resumenConsulta` de
 `app:hoja.clinica.resumenConsulta.editar`. Los detalles verificables están en
 `docs/contracts/visit-note-content-contract.json`.
 
+## Base reproducible de Stock Management
+
+El paquete provisiona los catálogos controlados de unidades de empaque y
+dispensación, motivos de ajuste y toma física, tipos de fuente y categorías de
+artículos. Los UUID se coordinan con
+`sihsalus-frontend/config/frontend.json`; un validador bloquea divergencias entre
+catálogos, propiedades globales y roles canónicos del módulo.
+
+Esta base instala metadata y permisos, no inventario. Un despliegue limpio debe
+comenzar con cero artículos y cero existencias hasta cargar un conteo físico
+aprobado. Tampoco habilita el descuento automático desde dispensación: esa
+integración requiere una transacción clínica/inventario recuperable antes de
+considerarse segura.
+
 ## Cobertura MINSA (Categoría II)
 
 Este paquete ya incluye formularios para consulta externa, obstetricia, salud mental, laboratorio básico de resultados, vacunación, odontología y hospitalización básica. Varios procesos de MINSA pueden quedar cubiertos por módulos nativos de OpenMRS (por ejemplo, triaje/laboratorios/medicación según configuración), pero se dejó esta lista para identificar brechas de documentación clínica en formularios SIH-SALUS.

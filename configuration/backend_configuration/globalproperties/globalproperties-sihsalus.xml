@@ -170,6 +170,37 @@
             <value>1732AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
         </globalProperty>
 
+        <!-- Stock Management: these values must match the frontend stock catalog contract. -->
+        <globalProperty>
+            <property>stockmanagement.stockSourceCodeConceptId</property>
+            <value>2e1e8049-9cbe-4a2d-b1e5-8a91e5d7d97d</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>stockmanagement.stockAdjustmentReasonCodeConceptId</property>
+            <value>3bbfaa44-d5b8-404d-b4c1-2bf49ad8ce25</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>stockmanagement.dispensingUnitsConceptId</property>
+            <value>162402AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>stockmanagement.packagingUnitsConceptId</property>
+            <value>bce2b1af-98b1-48a2-98a2-3e4ffb3c79c2</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>stockmanagement.stockItemCategoryConceptId</property>
+            <value>6d24eb6e-b42f-4706-ab2d-ae4472161f6a</value>
+        </globalProperty>
+
+        <globalProperty>
+            <property>stockmanagement.negativeStockBalanceAllowed</property>
+            <value>false</value>
+        </globalProperty>
+
         <!-- ESM Fast Data Entry Configuration -->
         <globalProperty>
             <property
