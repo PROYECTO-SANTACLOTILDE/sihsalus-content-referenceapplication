@@ -30,7 +30,7 @@
     </addressComponent>
     <addressComponent>
       <field>CITY_VILLAGE</field>
-      <nameMapping>Centro Poblado</nameMapping>
+      <nameMapping>Centro poblado / comunidad</nameMapping>
       <sizeMapping>40</sizeMapping>
       <requiredInHierarchy>false</requiredInHierarchy>
     </addressComponent>
