@@ -26,6 +26,10 @@ jobs:
           java-version: 8
       - name: Validate AMPATH forms
         run: python3 .github/scripts/validate_ampath_forms.py
+      - name: Validate Visit Note content contract
+        run: python3 .github/scripts/validate_visit_note_content_contract.py
+      - name: Test Visit Note content contract validator
+        run: python3 .github/scripts/test_visit_note_content_contract.py
       - name: Validate CSV widths
         run: python3 .github/scripts/validate_csv_widths.py
       - name: Validate Liquibase changelogs
