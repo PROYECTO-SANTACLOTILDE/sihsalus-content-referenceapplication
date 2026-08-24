@@ -7,6 +7,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.4] - 2026-08-24
+
 ### Agregado
 - Provisiona los seis catálogos mínimos de Stock Management, reutilizando las
   unidades clínicas existentes y agregando motivos, fuentes y categorías
