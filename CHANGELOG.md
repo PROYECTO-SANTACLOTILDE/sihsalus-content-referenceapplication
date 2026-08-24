@@ -7,7 +7,7 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
-## [1.25.4] - 2026-08-24
+## [1.25.5] - 2026-08-24
 
 ### Corregido
 - Retira de `CE-001-CONSULTA EXTERNA` la página de diagnóstico y las observaciones de texto,
@@ -15,6 +15,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   se registra exclusivamente mediante Visit Notes.
 - Publica el esquema corregido como versión `1.0.2`, con identidad persistida distinta de `1.0.1`,
   para preservar la definición y los encuentros históricos sin sobrescribir su recurso.
+
+## [1.25.4] - 2026-08-24
+
+### Agregado
+- Provisiona los seis catálogos mínimos de Stock Management, reutilizando las
+  unidades clínicas existentes y agregando motivos, fuentes y categorías
+  administrativas controladas. Mantiene saldos negativos deshabilitados y no
+  crea artículos, lotes ni existencias ficticias.
+- Incorpora los roles canónicos del módulo de inventario y concede a Consulta
+  Externa y Farmacia únicamente la lectura de disponibilidad en la ubicación de
+  dispensación; las operaciones y la administración permanecen separadas.
 
 ## [1.25.3] - 2026-08-24
 
