@@ -21,10 +21,18 @@ if bash "$classifier" "$tmp_dir/file.log" >/dev/null 2>&1; then
   exit 1
 fi
 
+printf '%s\n' \
+  'ERROR - LiquibaseLoader.load(72) | Visit Note contract precondition failed' \
+  'INFO - BaseFileLoader.load(84) | liquibase has finished loading' > "$tmp_dir/liquibase.log"
+if bash "$classifier" "$tmp_dir/liquibase.log" >/dev/null 2>&1; then
+  echo "Classifier accepted a LiquibaseLoader error followed by a success-looking line" >&2
+  exit 1
+fi
+
 printf '%s\n' 'Application startup failed' > "$tmp_dir/fatal.log"
 if bash "$classifier" "$tmp_dir/fatal.log" >/dev/null 2>&1; then
   echo "Classifier accepted a fatal runtime error" >&2
   exit 1
 fi
 
-echo "Validated clean, CSV, binary BaseFileLoader, and fatal log classification fixtures."
+echo "Validated clean, CSV, BaseFileLoader, Liquibase fail-fast, and fatal log fixtures."
