@@ -34,6 +34,9 @@ paquete no provisiona una capacidad genérica de mutación como reemplazo.
 El rol funcional de edición del resumen incluye explícitamente las capacidades
 de formularios, ubicaciones, proveedores, observaciones y diagnósticos que
 requiere Visit Notes; el acceso de lectura por sí solo no habilita el guardado.
+En OpenMRS 2.8.9, `Edit Diagnoses` autoriza crear, actualizar y anular un
+diagnóstico. No existe `Add Diagnoses`, y `Delete Diagnoses` queda fuera del rol
+granular porque autoriza la purga física, operación que Visit Notes no realiza.
 
 ## Límite deliberado
 

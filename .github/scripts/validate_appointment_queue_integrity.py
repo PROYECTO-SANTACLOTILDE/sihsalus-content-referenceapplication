@@ -94,8 +94,10 @@ VISIT_NOTES_EDIT_ROLE_PRIVILEGES = {
     "Edit Encounters",
     "Add Observations",
     "Edit Observations",
-    "Add Diagnoses",
     "Edit Diagnoses",
+}
+VISIT_NOTES_EDIT_ROLE_FORBIDDEN_PRIVILEGES = {
+    "Add Diagnoses",
     "Delete Diagnoses",
 }
 FRONTEND_UI_PRIVILEGES = {
@@ -396,6 +398,17 @@ def validate_privilege_and_roles(errors):
                 f"{role['_path']}: {role['Role name']!r} is missing frontend workflow "
                 "privileges: " + ", ".join(sorted(missing))
             )
+
+        if role_uuid == VISIT_NOTES_EDIT_ROLE_UUID:
+            forbidden = VISIT_NOTES_EDIT_ROLE_FORBIDDEN_PRIVILEGES & split_privileges(
+                role.get("Privileges", "")
+            )
+            if forbidden:
+                errors.append(
+                    f"{role['_path']}: {role['Role name']!r} has diagnosis privileges "
+                    "outside the Visit Notes save/void contract: "
+                    + ", ".join(sorted(forbidden))
+                )
 
     for privilege, approved_role_uuids in SENSITIVE_UI_PRIVILEGE_ASSIGNMENTS.items():
         assigned_role_uuids = {
