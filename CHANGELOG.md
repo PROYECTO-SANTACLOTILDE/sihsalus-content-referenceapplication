@@ -7,6 +7,16 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.2] - 2026-08-24
+
+### Corregido
+- Retira del rol granular de edición de Visit Notes el privilegio inexistente
+  `Add Diagnoses` y la capacidad de purga `Delete Diagnoses`. OpenMRS 2.8.9 usa
+  `Edit Diagnoses` tanto para guardar como para anular diagnósticos.
+- Protege el contrato RBAC para impedir que esos privilegios se vuelvan a
+  asignar al rol de edición. No modifica los changeSets Liquibase publicados en
+  `1.25.1`, preservando sus checksums para instalaciones existentes.
+
 ## [1.25.1] - 2026-08-23
 
 ### Corregido
