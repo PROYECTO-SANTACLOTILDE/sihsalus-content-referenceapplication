@@ -9,6 +9,133 @@
         <sql> ALTER TABLE concept_name MODIFY COLUMN name VARCHAR(500) NOT NULL DEFAULT ''; </sql>
     </changeSet>
 
+    <changeSet id="ensure-canonical-visit-note-encounter-type-20260823" author="sihsalus">
+        <comment>
+            Provisiona primero el tipo canonico que consume Visit Notes. Liquibase se procesa antes
+            que ENCOUNTER_TYPES y BaseFileLoader puede omitir el archivo completo por checksum en
+            arranques posteriores, por lo que el Form debe quedar asociado en esta misma ejecucion.
+            El CSV posterior reconcilia por UUID sin crear un duplicado.
+        </comment>
+        <sql>
+            INSERT INTO encounter_type (
+                name,
+                description,
+                creator,
+                date_created,
+                retired,
+                uuid
+            )
+            SELECT
+                'Notas de Atención',
+                'Registro de observaciones clínicas y evolución del paciente en cada consulta.',
+                1,
+                NOW(),
+                0,
+                'd7151f82-c1f3-4152-a605-2f9ea7414a79'
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM encounter_type
+                WHERE uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79'
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet
+        id="ensure-canonical-visit-note-form-20260823"
+        author="sihsalus">
+        <comment>
+            Provisiona la metadata canonica de Visit Note que consume el workspace O3. Initializer
+            2.12 no tiene un dominio CSV generico para Form, ampathforms deriva otro UUID de
+            nombre+version y htmlforms requiere el OMOD htmlformentry que no esta en la distro.
+            Por eso esta fila minima pertenece al dominio Liquibase. Si ya existe, no se altera su
+            metadata ni su auditoria. El changeSet anterior garantiza que encounter_type ya exista
+            para completar el contrato en una sola ejecucion del dominio.
+        </comment>
+        <sql>
+            INSERT INTO form (
+                name,
+                version,
+                published,
+                encounter_type,
+                creator,
+                date_created,
+                retired,
+                uuid
+            )
+            SELECT
+                'Visit Note',
+                '1.0',
+                0,
+                (
+                    SELECT encounter_type_id
+                    FROM encounter_type
+                    WHERE uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79'
+                ),
+                1,
+                NOW(),
+                0,
+                'c75f120a-04ec-11e3-8780-2b40bef9a44b'
+            WHERE NOT EXISTS (
+                SELECT 1
+                FROM form
+                WHERE uuid = 'c75f120a-04ec-11e3-8780-2b40bef9a44b'
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet
+        id="link-canonical-visit-note-form-encounter-type-20260823"
+        author="sihsalus">
+        <comment>
+            Completa solamente una asociacion ausente. No reemplaza un encounter type no nulo de
+            una instalacion existente: el contrato posterior falla de forma visible para exigir
+            reconciliacion manual en vez de sobrescribir metadata clinica local.
+        </comment>
+        <sql>
+            UPDATE form visit_note
+            INNER JOIN encounter_type visit_note_type
+                ON visit_note_type.uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79'
+            SET
+                visit_note.encounter_type = visit_note_type.encounter_type_id,
+                visit_note.changed_by = 1,
+                visit_note.date_changed = NOW()
+            WHERE visit_note.uuid = 'c75f120a-04ec-11e3-8780-2b40bef9a44b'
+              AND visit_note.encounter_type IS NULL;
+        </sql>
+    </changeSet>
+
+    <changeSet
+        id="assert-canonical-visit-note-form-contract-20260823"
+        author="sihsalus">
+        <preConditions onFail="HALT" onError="HALT">
+            <sqlCheck expectedResult="1">
+                SELECT CASE
+                    WHEN (
+                        SELECT COUNT(*)
+                        FROM form
+                        WHERE uuid = 'c75f120a-04ec-11e3-8780-2b40bef9a44b'
+                    ) != 1
+                    THEN 0
+                    WHEN EXISTS (
+                        SELECT 1
+                        FROM form visit_note
+                        INNER JOIN encounter_type visit_note_type
+                            ON visit_note.encounter_type = visit_note_type.encounter_type_id
+                        WHERE visit_note.uuid = 'c75f120a-04ec-11e3-8780-2b40bef9a44b'
+                          AND visit_note_type.uuid = 'd7151f82-c1f3-4152-a605-2f9ea7414a79'
+                    )
+                    THEN 1
+                    ELSE 0
+                END
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Evita un falso verde: exige una sola fila Form y su asociacion canonica en esta misma
+            ejecucion. El clasificador CI trata cualquier error de BaseFileLoader como bloqueante.
+        </comment>
+        <sql>SELECT 1;</sql>
+    </changeSet>
+
     <changeSet id="normalize-admission-role-name-20260722" author="sihsalus">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">

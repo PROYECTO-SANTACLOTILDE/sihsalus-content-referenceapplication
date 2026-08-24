@@ -7,6 +7,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.1] - 2026-08-23
+
+### Corregido
+- Provisiona de forma idempotente la metadata canónica de `Visit Note` y valida el
+  contrato de formulario, tipo de encuentro y datatypes clínicos consumidos por el
+  frontend coordinado.
+- Restaura `app:hoja.clinica.resumenConsulta.editar` con su UUID histórico,
+  separado de lectura, y completa el rol funcional granular con las capacidades
+  backend necesarias para registrar observaciones y diagnósticos nativos.
+
+## [1.25.0] - 2026-08-22
+
 ### Cambiado
 - Prepara la versión `1.25.0` como paquete exclusivamente backend: el ensamblado incluye solo
   `backend_configuration`, conserva los exports OCL y deja la configuración efectiva del SPA en
