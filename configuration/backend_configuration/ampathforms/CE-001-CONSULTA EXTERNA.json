@@ -7,8 +7,8 @@
   "retired": false,
   "referencedForms": [],
   "uuid": "a8db00d0-8acd-4459-97a8-43827b0a23e8",
-  "description": "Formulario de Consulta Externa ambulatoria. Registra motivo de consulta, examen clínico (SOAP), diagnóstico CIE-10, plan de tratamiento, financiador y pertenencia étnica. Basado en el FUA y la NTS N° 029-MINSA.",
-  "version": "1.0.1",
+  "description": "Formulario de Consulta Externa ambulatoria. Registra motivo de consulta, examen clínico (SOAP), plan de tratamiento, financiador y pertenencia étnica. El diagnóstico CIE-10 se registra exclusivamente mediante Visit Notes para persistirlo como diagnóstico nativo del encuentro. Basado en el FUA y la NTS N° 029-MINSA.",
+  "version": "1.0.2",
   "pages": [
     {
       "label": "Motivo de Consulta",
@@ -161,65 +161,6 @@
               },
               "id": "soapPlan",
               "label": "P — Plan (conducta terapéutica)"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "label": "Diagnóstico",
-      "sections": [
-        {
-          "label": "Diagnóstico Clasificado (CIE-10)",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "162169AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "id": "diagnosticoPrincipal",
-              "label": "Diagnóstico principal (texto)",
-              "required": true
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "2d53d39f-c93f-4128-8f7c-1bb45b498497",
-                "answers": [
-                  {
-                    "concept": "2c60a8f6-1787-41be-8434-30ebeb5656ff",
-                    "label": "Definitivo"
-                  },
-                  {
-                    "concept": "4f59cf03-f888-4d34-a5dc-f24269b1945d",
-                    "label": "Presuntivo"
-                  }
-                ]
-              },
-              "id": "certezaDiagnostica",
-              "label": "Tipo de diagnóstico"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "f0000207-0000-4000-8000-000000000207",
-                "answers": [
-                  {
-                    "concept": "f0000208-0000-4000-8000-000000000208",
-                    "label": "Nuevo"
-                  },
-                  {
-                    "concept": "f0000209-0000-4000-8000-000000000209",
-                    "label": "Repetido"
-                  }
-                ]
-              },
-              "id": "ocurrenciaDiagnostico",
-              "label": "Ocurrencia"
             }
           ]
         }
