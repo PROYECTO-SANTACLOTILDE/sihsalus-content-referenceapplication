@@ -7,6 +7,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.6] - 2026-08-24
+
+### Agregado
+- Publica `CE-SOAP-001-NOTA SOAP` como versión `1.1.0` con examen físico segmentado en examen
+  general y regional por sistemas, conforme al contenido mínimo de Consulta Externa de la NTS 139.
+- Registra estado general y resumen regional como campos obligatorios, sin completar hallazgos
+  normales automáticamente, y conserva la versión histórica `1.0.0`.
+
 ## [1.25.5] - 2026-08-24
 
 ### Corregido

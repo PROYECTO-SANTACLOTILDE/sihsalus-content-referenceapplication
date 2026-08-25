@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.5**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.6**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -65,7 +65,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.5**.
+Versión del paquete: **1.25.6**.
 
 ## Contrato canónico de Visit Notes
 
@@ -87,6 +87,18 @@ y separa `app:hoja.clinica.resumenConsulta` de
 El esquema corregido usa la versión `1.0.2`. `AmpathFormsLoader` deriva la identidad persistida del nombre y la versión: al actualizar desde `1.0.1`, conserva el formulario y los encuentros históricos bajo su identidad anterior y crea una identidad distinta para `1.0.2`. El `uuid` incluido en el JSON no es la identidad persistida y no debe usarse como contrato de integración.
 
 Para rollback no se debe volver a publicar el JSON corregido con la versión `1.0.1`, porque reutilizaría y sobrescribiría el recurso histórico. Se revierte el frontend coordinadamente y se conserva la metadata clínica creada.
+
+## Contrato de examen físico de Consulta Externa
+
+`CE-SOAP-001-NOTA SOAP` versión `1.1.0` conserva la versión histórica `1.0.0` y segmenta el examen
+general y regional. Los campos de estado general, hidratación, nutrición, conciencia, piel y anexos,
+además de los sistemas regionales, son observaciones de texto del concepto configurable de hallazgos
+del examen físico (`160532…`). Se distinguen por `formFieldPath`; ningún consumidor debe seleccionar
+la primera observación de ese concepto sin verificar la ruta del campo.
+
+El formulario no propone ni persiste hallazgos normales automáticamente. El estado general y el
+resumen regional son obligatorios; los sistemas específicos se registran según pertinencia clínica.
+La versión nueva preserva los encuentros y el esquema `1.0.0` para lectura histórica.
 
 ## Base reproducible de Stock Management
 
