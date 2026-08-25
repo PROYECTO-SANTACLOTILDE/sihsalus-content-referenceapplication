@@ -79,52 +79,32 @@
               "required": true,
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "b564fd45-c5e8-4889-ba05-e878b485cdd1",
                 "rows": 2
               },
               "id": "estadoGeneral",
               "label": "Estado general",
-              "questionInfo": "Describa el estado observado. No se completa como normal automáticamente."
+              "questionInfo": "Describa el estado general e incluya hidratación y nutrición cuando sean clínicamente pertinentes. No se completa como normal automáticamente."
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": 2
-              },
-              "id": "estadoHidratacion",
-              "label": "Estado de hidratación"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": 2
-              },
-              "id": "estadoNutricion",
-              "label": "Estado de nutrición"
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "2944f99e-bda8-4acc-8a4e-d5709dd82041",
                 "rows": 2
               },
               "id": "estadoConciencia",
-              "label": "Estado de conciencia"
+              "label": "Conciencia y orientación"
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "23205e1e-fa88-43e0-a421-452516c04f9e",
                 "rows": 2
               },
               "id": "pielAnexos",
-              "label": "Piel y anexos"
+              "label": "Piel y faneras"
             }
           ]
         },
@@ -134,21 +114,9 @@
           "questions": [
             {
               "type": "obs",
-              "required": true,
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "rows": 3
-              },
-              "id": "resumenExamenRegional",
-              "label": "Resumen del examen regional",
-              "questionInfo": "Registre los sistemas examinados y los hallazgos relevantes; no asuma normalidad en campos vacíos."
-            },
-            {
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "d0640842-e04e-4398-ba6c-a63623d580f8",
                 "rows": 2
               },
               "id": "cabezaCuello",
@@ -158,7 +126,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "da3dada5-bde9-48b1-b94c-171355639ab4",
                 "rows": 2
               },
               "id": "aparatoRespiratorio",
@@ -168,7 +136,7 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "24989612-6bbf-4ef8-8af7-adf2b5b95ba3",
                 "rows": 2
               },
               "id": "aparatoCardiovascular",
@@ -178,37 +146,37 @@
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "e7daf833-3c73-4151-b581-90646bd93fc5",
                 "rows": 2
               },
               "id": "abdomenDigestivo",
-              "label": "Abdomen y aparato digestivo"
+              "label": "Abdomen"
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "57746a04-5f9e-4e42-9233-efeeeb3db0d0",
                 "rows": 2
               },
               "id": "genitourinario",
-              "label": "Genitourinario"
+              "label": "Genito urinario"
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "479e125e-e5be-4538-8c4e-ed6fd9c8d515",
                 "rows": 2
               },
               "id": "musculoesqueleticoExtremidades",
-              "label": "Musculoesquelético y extremidades"
+              "label": "Aparato locomotor y extremidades"
             },
             {
               "type": "obs",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "d55d40c3-9ba8-4c7f-8728-f28ddb22cbd3",
                 "rows": 2
               },
               "id": "neurologico",
@@ -216,13 +184,15 @@
             },
             {
               "type": "obs",
+              "required": true,
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "rows": 4
               },
               "id": "soapObjetivo",
-              "label": "Otros hallazgos objetivos"
+              "label": "O — Objetivo",
+              "questionInfo": "Registre los sistemas examinados y los hallazgos relevantes; no asuma normalidad en campos vacíos."
             }
           ]
         },

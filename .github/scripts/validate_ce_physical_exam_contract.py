@@ -11,23 +11,19 @@ FORM_PATH = Path(
 )
 EXPECTED_NAME = "CE-SOAP-001-NOTA SOAP"
 EXPECTED_VERSION = "1.1.0"
-PHYSICAL_EXAM_CONCEPT = "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-REQUIRED_FIELDS = {"estadoGeneral", "resumenExamenRegional"}
-SEGMENTED_FIELDS = {
-    "estadoGeneral",
-    "estadoHidratacion",
-    "estadoNutricion",
-    "estadoConciencia",
-    "pielAnexos",
-    "resumenExamenRegional",
-    "cabezaCuello",
-    "aparatoRespiratorio",
-    "aparatoCardiovascular",
-    "abdomenDigestivo",
-    "genitourinario",
-    "musculoesqueleticoExtremidades",
-    "neurologico",
-    "soapObjetivo",
+REQUIRED_FIELDS = {"estadoGeneral", "soapObjetivo"}
+SEGMENTED_FIELD_CONCEPTS = {
+    "estadoGeneral": "b564fd45-c5e8-4889-ba05-e878b485cdd1",
+    "estadoConciencia": "2944f99e-bda8-4acc-8a4e-d5709dd82041",
+    "pielAnexos": "23205e1e-fa88-43e0-a421-452516c04f9e",
+    "cabezaCuello": "d0640842-e04e-4398-ba6c-a63623d580f8",
+    "aparatoRespiratorio": "da3dada5-bde9-48b1-b94c-171355639ab4",
+    "aparatoCardiovascular": "24989612-6bbf-4ef8-8af7-adf2b5b95ba3",
+    "abdomenDigestivo": "e7daf833-3c73-4151-b581-90646bd93fc5",
+    "genitourinario": "57746a04-5f9e-4e42-9233-efeeeb3db0d0",
+    "musculoesqueleticoExtremidades": "479e125e-e5be-4538-8c4e-ed6fd9c8d515",
+    "neurologico": "d55d40c3-9ba8-4c7f-8728-f28ddb22cbd3",
+    "soapObjetivo": "160532AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
 }
 LEGACY_SOAP_FIELDS = {"soapSubjetivo", "soapObjetivo", "soapEvaluacion", "soapPlan"}
 
@@ -56,7 +52,7 @@ def validate_contract(form):
         for node in walk(form)
         if isinstance(node.get("id"), str) and node.get("type") == "obs"
     }
-    missing = SEGMENTED_FIELDS - questions.keys()
+    missing = SEGMENTED_FIELD_CONCEPTS.keys() - questions.keys()
     if missing:
         errors.append(f"missing segmented physical-exam fields: {sorted(missing)}")
 
@@ -64,14 +60,15 @@ def validate_contract(form):
     if missing_legacy:
         errors.append(f"missing legacy SOAP compatibility fields: {sorted(missing_legacy)}")
 
-    for field_id in sorted(SEGMENTED_FIELDS & questions.keys()):
+    for field_id in sorted(SEGMENTED_FIELD_CONCEPTS.keys() & questions.keys()):
         question = questions[field_id]
         options = question.get("questionOptions")
         if not isinstance(options, dict):
             errors.append(f"{field_id}: questionOptions must be an object")
             continue
-        if options.get("concept") != PHYSICAL_EXAM_CONCEPT:
-            errors.append(f"{field_id}: must use the configured physical-exam text concept")
+        expected_concept = SEGMENTED_FIELD_CONCEPTS[field_id]
+        if options.get("concept") != expected_concept:
+            errors.append(f"{field_id}: must use concept {expected_concept}")
         if options.get("rendering") != "textarea":
             errors.append(f"{field_id}: must remain an open clinical textarea")
         if "default" in options or "answers" in options:
@@ -79,6 +76,10 @@ def validate_contract(form):
         expected_required = field_id in REQUIRED_FIELDS
         if (question.get("required") is True) != expected_required:
             errors.append(f"{field_id}: required must be {expected_required}")
+
+    concepts = list(SEGMENTED_FIELD_CONCEPTS.values())
+    if len(concepts) != len(set(concepts)):
+        errors.append("segmented physical-exam fields must not reuse one concept for different meanings")
 
     return errors
 
