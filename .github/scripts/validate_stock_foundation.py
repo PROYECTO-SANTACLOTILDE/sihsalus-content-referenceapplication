@@ -125,12 +125,20 @@ def main() -> int:
         errors.append("Inventory Administrator is missing configuration edit UI privilege")
 
     clinical_rows = read_csv(CLINICAL_ROLES)
+    clinical_roles_by_name = {row["Role name"].strip(): row for row in clinical_rows}
     clinical_inheritance = {
-        row["Role name"].strip(): split_values(row["Inherited roles"]) for row in clinical_rows
+        role_name: split_values(row["Inherited roles"])
+        for role_name, row in clinical_roles_by_name.items()
     }
     for role_name in ("SIHSALUS Consulta Externa", "Farmacia"):
         if "Inventory Provider Access" not in clinical_inheritance.get(role_name, set()):
             errors.append(f"{role_name} must inherit Inventory Provider Access")
+
+    pharmacy_role = clinical_roles_by_name.get("Farmacia", {})
+    pharmacy_privileges = split_values(pharmacy_role.get("Privileges", ""))
+    for required in ("Get Concept Sources", "Get Medication Dispense"):
+        if required not in pharmacy_privileges:
+            errors.append(f"Farmacia is missing FHIR prescription read privilege {required}")
 
     if errors:
         print("Stock foundation validation FAILED:", file=sys.stderr)
