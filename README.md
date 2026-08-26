@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.9**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.10**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -18,6 +18,14 @@ The contents of a typical Content Package are:
         * The content.properties file is important because when Implementers add this Content Package to their distribution, the content.properties file will automatically be read and compared with their existing distro.properties file.
         * An automatic distro Build Helper Tool then fetches the content package's information and extracts the content into the Implementation's distro.properties file.
         * **Dependencies** are especially important here, as the Build Helper Tool will add any dependencies from the Content Package into an Implementation's distro.properties file.
+
+## Identidad institucional del Hospital Santa Clotilde
+
+La ubicación raíz del hospital conserva la división territorial oficial (Loreto, Maynas, Napo,
+Santa Clotilde), el teléfono institucional y el Código Único IPRESS como atributos `Location`.
+No se provisiona una calle porque la fuente estatal consultada no publica una dirección vial
+utilizable. El contrato, sus fuentes y UUIDs estables están documentados en
+`docs/contracts/hospital-santa-clotilde-institutional-metadata.md`.
 
 ## Catálogos territoriales locales
 
@@ -78,7 +86,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.9**.
+Versión del paquete: **1.25.10**.
 
 ## Contrato canónico de Visit Notes
 

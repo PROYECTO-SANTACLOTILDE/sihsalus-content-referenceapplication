@@ -38,6 +38,10 @@ jobs:
         run: python3 .github/scripts/test_visit_note_content_contract.py
       - name: Validate CSV widths
         run: python3 .github/scripts/validate_csv_widths.py
+      - name: Validate Hospital Santa Clotilde institutional metadata
+        run: python3 .github/scripts/validate_hospital_institution_metadata.py
+      - name: Test Hospital Santa Clotilde institutional metadata validator
+        run: python3 .github/scripts/test_hospital_institution_metadata.py
       - name: Validate Liquibase changelogs
         run: python3 .github/scripts/validate_liquibase.py
       - name: Validate appointment visit queue integrity
