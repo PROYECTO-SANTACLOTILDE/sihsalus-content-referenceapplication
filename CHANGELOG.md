@@ -7,6 +7,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.11] - 2026-08-25
+
+### Corregido
+- Retira y despublica de forma idempotente el `Form` persistido de
+  `CE-001-CONSULTA EXTERNA` `1.0.1`, sin eliminar ni modificar sus encuentros históricos.
+- Falla de forma cerrada si los UUID de `1.0.1` o `1.0.2` no corresponden a sus identidades
+  esperadas, o si otra versión de `CE-001` permanece publicada junto a la canónica `1.0.2`.
+
 ## [1.25.10] - 2026-08-25
 
 ### Corregido
