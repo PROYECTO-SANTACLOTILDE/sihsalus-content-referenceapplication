@@ -7,6 +7,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.13] - 2026-08-26
+
+### Corregido
+- Completa el rol `Farmacia` con `Edit Medication Dispense`, requerido por
+  OpenMRS FHIR2 para crear y actualizar dispensaciones. Conserva
+  `Get Medication Dispense` para su lectura y protege ambos privilegios mediante
+  el validador del contrato de Stock Management.
+
 ## [1.25.12] - 2026-08-25
 
 ### Agregado

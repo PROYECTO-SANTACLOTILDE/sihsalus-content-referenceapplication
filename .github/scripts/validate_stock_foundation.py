@@ -136,9 +136,9 @@ def main() -> int:
 
     pharmacy_role = clinical_roles_by_name.get("Farmacia", {})
     pharmacy_privileges = split_values(pharmacy_role.get("Privileges", ""))
-    for required in ("Get Concept Sources", "Get Medication Dispense"):
+    for required in ("Get Concept Sources", "Get Medication Dispense", "Edit Medication Dispense"):
         if required not in pharmacy_privileges:
-            errors.append(f"Farmacia is missing FHIR prescription read privilege {required}")
+            errors.append(f"Farmacia is missing medication dispense privilege {required}")
 
     if errors:
         print("Stock foundation validation FAILED:", file=sys.stderr)
