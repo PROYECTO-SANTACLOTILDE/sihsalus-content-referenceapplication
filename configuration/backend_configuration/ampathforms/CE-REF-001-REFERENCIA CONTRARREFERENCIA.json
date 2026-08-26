@@ -1,7 +1,7 @@
 {
   "name": "CE-REF-001-REFERENCIA-CONTRARREFERENCIA",
-  "description": "Formulario de Referencia y Contrarreferencia según NTS-102-MINSA. Registra la referencia del paciente a otro establecimiento y la respuesta de contrarreferencia.",
-  "version": "1",
+  "description": "Hoja de Referencia Institucional. Captura solo los datos propios de la derivación; la identificación, la visita y el resumen clínico se reutilizan desde el registro electrónico.",
+  "version": "1.1.0",
   "published": true,
   "retired": false,
   "encounter": "Referencia y Contrarreferencia",
@@ -11,7 +11,7 @@
   "referencedForms": [],
   "pages": [
     {
-      "label": "Referencia",
+      "label": "Hoja de Referencia Institucional",
       "sections": [
         {
           "label": "Datos de la Referencia",
@@ -52,6 +52,79 @@
               }
             },
             {
+              "id": "especialidadDestino",
+              "label": "Especialidad de Destino",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "fd1a48d5-f1cf-42b7-9b8c-141c9817f7a3",
+                "answers": [
+                  {
+                    "concept": "0902d11c-4db9-48e3-9130-c2a107d4c523",
+                    "label": "Pediatría"
+                  },
+                  {
+                    "concept": "8411199d-5914-4285-a962-71a0199bc6b4",
+                    "label": "Medicina"
+                  },
+                  {
+                    "concept": "fba05733-88f9-459c-acd4-b4e844c24bb7",
+                    "label": "Cirugía"
+                  },
+                  {
+                    "concept": "8504de7b-31a1-4c21-8a0e-ce1e1cba895e",
+                    "label": "Gineco-obstetricia"
+                  },
+                  {
+                    "concept": "7a8a6770-15e5-442e-b2e3-c9d71e3d93f0",
+                    "label": "Laboratorio"
+                  },
+                  {
+                    "concept": "c8869ab4-7de8-4d55-900a-f7e2862a9329",
+                    "label": "Diagnóstico por imágenes"
+                  },
+                  {
+                    "concept": "4cf9f13f-bbac-50db-8fac-85205b58b44c",
+                    "label": "Otro"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "especialidadDestinoOtro",
+              "label": "Especialidad de Destino (especificar)",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "0344ee24-397e-47cb-8cb5-e5546b4da8db"
+              },
+              "hide": {
+                "hideWhenExpression": "especialidadDestino !== '4cf9f13f-bbac-50db-8fac-85205b58b44c'"
+              }
+            },
+            {
+              "id": "condicionPacienteSalida",
+              "label": "Condición del Paciente a la Salida",
+              "type": "obs",
+              "required": true,
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "e6106442-523e-4043-973d-f33330025777",
+                "answers": [
+                  {
+                    "concept": "0f0baaea-9613-45c3-8a39-c2f5e14f4bbf",
+                    "label": "Estable"
+                  },
+                  {
+                    "concept": "3176c0d4-e650-4454-9679-e3b989ecb140",
+                    "label": "Mal estado"
+                  }
+                ]
+              }
+            },
+            {
               "id": "motivoReferencia",
               "label": "Motivo de Referencia",
               "type": "obs",
@@ -60,15 +133,6 @@
                 "rendering": "textarea",
                 "concept": "f0000203-0000-4000-8000-000000000203",
                 "rows": 4
-              }
-            },
-            {
-              "id": "diagnosticoPrincipal",
-              "label": "Diagnóstico Principal (CIE-10)",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "bdf63a89-fb2c-48c5-a670-8a0032aae816"
               }
             },
             {

@@ -1,0 +1,4 @@
+Uuid,Void/Retire,Fully specified name:es,Fully specified name:en,Short name:es,Short name:en,Description:es,Data class,Data type,_version:1,_order:1003
+844be877-6d20-45e2-876f-dc5de42edd67,,Transporte terrestre para referencia,Land transport for referral,Terrestre,Land,Modo de transporte terrestre usado durante una referencia institucional.,Misc,N/A,,
+2a228c88-7daf-4f60-9e55-c884c9302bd8,,Transporte aéreo para referencia,Air transport for referral,Aéreo,Air,Modo de transporte aéreo usado durante una referencia institucional.,Misc,N/A,,
+d5e04df9-d1dc-431e-bd71-c934ec3e18e2,,Transporte fluvial para referencia,River transport for referral,Fluvial,River,Modo de transporte fluvial usado durante una referencia institucional.,Misc,N/A,,
