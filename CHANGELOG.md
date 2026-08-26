@@ -15,6 +15,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   como parte del contrato clínico existente. Estos marcadores no habilitan el
   flujo por sí solos; Attachments 4.0.0 no es compatible y permanece no
   operativo.
+- Completa el contrato del adjuntador genérico: el rol lector conserva
+  `View Attachments` y el rol editor recibe `Create Attachments` y
+  `View Attachments`, sin ampliar otros roles.
 
 ### Seguridad
 - Mantiene fuera del rol el marcador general
@@ -26,6 +29,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 - Documenta que `Edit Observations` y `Delete Observations` ya formaban parte de
   `Laboratorio`. Esta versión no altera esas asignaciones ni promete impedir el
   borrado.
+- Conserva sin cambios `Add Observations` y `Delete Observations` del rol editor
+  genérico; los marcadores nuevos no prometen impedir borrado.
 - Fija en CI el contrato declarativo de Laboratorio y establece que la futura
   carga PDF no deberá completar ni cambiar el estado de la orden.
 

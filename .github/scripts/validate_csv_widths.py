@@ -24,6 +24,36 @@ CONSULTA_EXTERNA_ROLE_UUID = "e832327b-7fc2-4e64-a527-7e6ae0cdd041"
 CONSULTA_EXTERNA_ROLE_NAME = "SIHSALUS Consulta Externa"
 PATIENT_SUMMARY_ROLE_UUID = "564b560e-3fe8-4829-8be4-68ddb40cf106"
 PATIENT_SUMMARY_ROLE_NAME = "Application: Uses Patient Summary"
+ATTACHMENT_READER_ROLE_UUID = "46d700c7-71a7-486f-8467-e85f2a08678e"
+ATTACHMENT_READER_ROLE_NAME = "SIH SALUS Hoja Clinica Adjuntos"
+ATTACHMENT_EDITOR_ROLE_UUID = "ceaf46f8-6f27-4da5-885a-5d830cfc059c"
+ATTACHMENT_EDITOR_ROLE_NAME = "SIH SALUS Hoja Clinica Adjuntos editar"
+GENERIC_ATTACHMENT_ROLE_CONTRACTS = {
+    ATTACHMENT_READER_ROLE_UUID: {
+        "name": ATTACHMENT_READER_ROLE_NAME,
+        "required": {
+            "View Attachments",
+            "app:hoja.clinica.adjuntos",
+        },
+        "forbidden": {
+            "Create Attachments",
+            "Get Global Properties",
+        },
+    },
+    ATTACHMENT_EDITOR_ROLE_UUID: {
+        "name": ATTACHMENT_EDITOR_ROLE_NAME,
+        "required": {
+            "Add Observations",
+            "Create Attachments",
+            "Delete Observations",
+            "View Attachments",
+            "app:hoja.clinica.adjuntos.editar",
+        },
+        "forbidden": {
+            "Get Global Properties",
+        },
+    },
+}
 LABORATORY_ROLE_UUID = "2049b153-6d8c-4bc1-96ab-f34f0ca43285"
 LABORATORY_ROLE_NAME = "Laboratorio"
 LEGACY_LABORATORY_ROLE_UUID = "5a870421-1f01-46a6-8479-e3930266e9c1"
@@ -114,6 +144,62 @@ def split_privileges(value):
         for privilege in value.split(";")
         if privilege.strip()
     }
+
+
+def validate_generic_attachment_role_contracts(rows, path=ROLES_CORE_PATH):
+    errors = []
+    uuid_index = rows[0].index("Uuid")
+    role_index = rows[0].index("Role name")
+    inherited_roles_index = rows[0].index("Inherited roles")
+    privileges_index = rows[0].index("Privileges")
+
+    for role_uuid, contract in GENERIC_ATTACHMENT_ROLE_CONTRACTS.items():
+        matching_rows = [
+            row
+            for row in rows[1:]
+            if len(row) > privileges_index
+            and (
+                row[uuid_index] == role_uuid
+                or row[role_index] == contract["name"]
+            )
+        ]
+        if len(matching_rows) != 1:
+            errors.append(
+                f"{path}: expected exactly one canonical {contract['name']!r} "
+                f"role with UUID {role_uuid}, found {len(matching_rows)}"
+            )
+            continue
+
+        row = matching_rows[0]
+        if row[uuid_index] != role_uuid:
+            errors.append(
+                f"{path}: {contract['name']!r} must keep UUID {role_uuid}"
+            )
+        if row[role_index] != contract["name"]:
+            errors.append(
+                f"{path}: role {role_uuid} must keep the name "
+                f"{contract['name']!r}"
+            )
+        if row[inherited_roles_index].strip():
+            errors.append(
+                f"{path}: {contract['name']!r} must keep its direct role contract"
+            )
+
+        privileges = split_privileges(row[privileges_index])
+        missing_privileges = contract["required"] - privileges
+        if missing_privileges:
+            errors.append(
+                f"{path}: {contract['name']!r} is missing required contract "
+                f"markers: {', '.join(sorted(missing_privileges))}"
+            )
+        forbidden_privileges = contract["forbidden"] & privileges
+        if forbidden_privileges:
+            errors.append(
+                f"{path}: {contract['name']!r} has markers outside its "
+                f"contract: {', '.join(sorted(forbidden_privileges))}"
+            )
+
+    return errors
 
 
 def validate_laboratory_attachment_contract(rows, path=ROLES_CORE_PATH):
@@ -434,6 +520,7 @@ def main():
                     )
 
         if path == ROLES_CORE_PATH:
+            errors.extend(validate_generic_attachment_role_contracts(rows, path))
             errors.extend(validate_laboratory_attachment_contract(rows, path))
             uuid_index = rows[0].index("Uuid")
             role_index = rows[0].index("Role name")

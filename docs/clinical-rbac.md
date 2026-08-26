@@ -19,6 +19,20 @@ aprobada rompería flujos de Emergencia, Laboratorio, Farmacia y Hospitalizació
   por el módulo y marcadores para UI/contratos futuros. No deben describirse
   como autorización backend vigente ni habilitan el flujo por sí solos.
 
+Los roles canónicos del adjuntador genérico mantienen responsabilidades
+separadas:
+
+- `SIH SALUS Hoja Clinica Adjuntos`
+  (`46d700c7-71a7-486f-8467-e85f2a08678e`) conserva
+  `View Attachments` y no recibe `Create Attachments`.
+- `SIH SALUS Hoja Clinica Adjuntos editar`
+  (`ceaf46f8-6f27-4da5-885a-5d830cfc059c`) declara
+  `Create Attachments` y `View Attachments`, y conserva `Add Observations` y
+  `Delete Observations` como parte de su contrato existente.
+
+Esta coordinación no amplía otros roles. Tampoco altera las asignaciones de
+borrado existentes ni promete impedirlo.
+
 La lectura declarativa de adjuntos forma parte de
 `Application: Uses Patient Summary`. El rol `SIHSALUS Consulta Externa` recibe
 además `Create Attachments` y ambos marcadores de forma directa; `Enfermera` los
@@ -90,6 +104,9 @@ explícita y controlada.
 
 - Consulta Externa y Enfermería: conservan los marcadores declarativos previos;
   no se asume autorización backend con Attachments 4.0.0.
+- Adjuntador genérico: con una release backend compatible `>=4.0.1`, el rol
+  lector debe conservar acceso de lectura y el editor debe conservar lectura y
+  creación, sin requerir `Get Global Properties`.
 - Laboratorio: el flujo PDF sigue no operativo con Attachments 4.0.0. Tras
   coordinar una release compatible `>=4.0.1`, se debe probar con usuario
   sintético la autorización server-side, la ausencia de
@@ -105,6 +122,7 @@ explícita y controlada.
 
 `validate_csv_widths.py` verifica la estructura de los CSV, que
 `SIHSALUS Consulta Externa` conserve sus asignaciones declarativas previas y
+que los roles canónicos lector/editor del adjuntador conserven su separación, y
 que únicamente el rol canónico de Laboratorio reciba sus marcadores
 preparatorios dentro de los roles de laboratorio. Rechaza la pérdida de
 `Add Observations`, `app:hoja.clinica.adjuntos.editar`,

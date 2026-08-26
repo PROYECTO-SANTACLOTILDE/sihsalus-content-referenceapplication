@@ -98,6 +98,12 @@ compatible y el flujo permanece no operativo con esa versión. El rol legado
 `Tecnico de Laboratorio` permanece intacto y no se agrega
 `app:hoja.clinica.adjuntos.editar`.
 
+El adjuntador genérico conserva su separación canónica: el rol
+`SIH SALUS Hoja Clinica Adjuntos` mantiene `View Attachments`, mientras
+`SIH SALUS Hoja Clinica Adjuntos editar` declara `Create Attachments` y
+`View Attachments` y conserva sus asignaciones clínicas existentes. No se
+amplían otros roles para esta compatibilidad.
+
 El contrato define el PDF como evidencia suplementaria del resultado. Cuando el
 flujo sea habilitado, su carga no deberá completar la orden, cambiar su estado
 ni sustituir resultados estructurados o su validación clínica. El flujo de
