@@ -136,6 +136,102 @@
         <sql>SELECT 1;</sql>
     </changeSet>
 
+    <changeSet
+        id="retire-legacy-ce001-form-1-0-1-20260825"
+        author="sihsalus">
+        <preConditions onFail="HALT" onError="HALT">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM form
+                WHERE uuid = 'da631d8c-c695-3c4a-9d77-19bbbf0174e3'
+                  AND (
+                    name &lt;&gt; 'CE-001-CONSULTA EXTERNA'
+                    OR COALESCE(version, '') &lt;&gt; '1.0.1'
+                  )
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM form
+                WHERE uuid = 'df1a34b4-0e8f-3564-84d9-55ce9e4284bd'
+                  AND (
+                    name &lt;&gt; 'CE-001-CONSULTA EXTERNA'
+                    OR COALESCE(version, '') &lt;&gt; '1.0.2'
+                  )
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Retira exclusivamente la identidad persistida del esquema CE-001 1.0.1 que capturaba
+            diagnosticos como observaciones. Conserva el Form y todos sus encounters para lectura
+            historica; no elimina recursos ni datos clinicos. En una instalacion limpia el Form aun
+            no existe porque LIQUIBASE se procesa antes que AMPATHFORMS, por lo que el UPDATE es un
+            no-op y el loader posterior crea solamente la identidad canonica 1.0.2.
+        </comment>
+        <sql>
+            UPDATE form
+            SET
+                published = 0,
+                retired = 1,
+                changed_by = 1,
+                date_changed = NOW(),
+                retired_by = COALESCE(retired_by, 1),
+                date_retired = COALESCE(date_retired, NOW()),
+                retired_reason = COALESCE(
+                    NULLIF(retired_reason, ''),
+                    'Reemplazado por CE-001 1.0.2 con diagnosticos nativos de Visit Notes'
+                )
+            WHERE uuid = 'da631d8c-c695-3c4a-9d77-19bbbf0174e3'
+              AND name = 'CE-001-CONSULTA EXTERNA'
+              AND version = '1.0.1'
+              AND (
+                COALESCE(published, 0) &lt;&gt; 0
+                OR COALESCE(retired, 0) &lt;&gt; 1
+              );
+        </sql>
+    </changeSet>
+
+    <changeSet
+        id="assert-exclusive-canonical-ce001-form-20260825"
+        author="sihsalus">
+        <preConditions onFail="HALT" onError="HALT">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM form
+                WHERE uuid = 'da631d8c-c695-3c4a-9d77-19bbbf0174e3'
+                  AND (
+                    name &lt;&gt; 'CE-001-CONSULTA EXTERNA'
+                    OR COALESCE(version, '') &lt;&gt; '1.0.1'
+                    OR COALESCE(published, 0) &lt;&gt; 0
+                    OR COALESCE(retired, 0) &lt;&gt; 1
+                  )
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM form
+                WHERE name = 'CE-001-CONSULTA EXTERNA'
+                  AND COALESCE(published, 0) = 1
+                  AND uuid &lt;&gt; 'df1a34b4-0e8f-3564-84d9-55ce9e4284bd'
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM form
+                WHERE uuid = 'df1a34b4-0e8f-3564-84d9-55ce9e4284bd'
+                  AND (
+                    name &lt;&gt; 'CE-001-CONSULTA EXTERNA'
+                    OR COALESCE(version, '') &lt;&gt; '1.0.2'
+                    OR COALESCE(published, 0) &lt;&gt; 1
+                    OR COALESCE(retired, 0) &lt;&gt; 0
+                  )
+            </sqlCheck>
+        </preConditions>
+        <comment>
+            Garantiza en upgrades que el esquema historico quede retirado y que ninguna identidad
+            distinta de CE-001 1.0.2 permanezca publicada. La ausencia de 1.0.2 se admite durante
+            una instalacion limpia porque AMPATHFORMS lo crea despues de este dominio Liquibase;
+            el contrato estatico valida su esquema antes de empaquetar el contenido.
+        </comment>
+        <sql>SELECT 1;</sql>
+    </changeSet>
+
     <changeSet id="normalize-admission-role-name-20260722" author="sihsalus">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">

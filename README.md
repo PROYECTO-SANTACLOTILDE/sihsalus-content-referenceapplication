@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.10**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.11**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -86,7 +86,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.10**.
+Versión del paquete: **1.25.11**.
 
 ## Contrato canónico de Visit Notes
 
@@ -105,9 +105,9 @@ y separa `app:hoja.clinica.resumenConsulta` de
 
 `CE-001-CONSULTA EXTERNA` no captura diagnósticos. El diagnóstico CIE-10 se registra exclusivamente mediante Visit Notes como diagnóstico nativo del encuentro; no deben reintroducirse observaciones de texto, certeza u ocurrencia que simulen esa estructura.
 
-El esquema corregido usa la versión `1.0.2`. `AmpathFormsLoader` deriva la identidad persistida del nombre y la versión: al actualizar desde `1.0.1`, conserva el formulario y los encuentros históricos bajo su identidad anterior y crea una identidad distinta para `1.0.2`. El `uuid` incluido en el JSON no es la identidad persistida y no debe usarse como contrato de integración.
+El esquema corregido usa la versión `1.0.2`. `AmpathFormsLoader` deriva la identidad persistida del nombre y la versión. En upgrades, una migración idempotente retira y despublica exclusivamente el `Form` `1.0.1` con UUID persistido `da631d8c-c695-3c4a-9d77-19bbbf0174e3`; no elimina ni modifica sus encuentros históricos. La identidad canónica `1.0.2` es `df1a34b4-0e8f-3564-84d9-55ce9e4284bd` y es la única que puede permanecer publicada. El `uuid` incluido en el JSON no es la identidad persistida y no debe usarse como contrato de integración.
 
-Para rollback no se debe volver a publicar el JSON corregido con la versión `1.0.1`, porque reutilizaría y sobrescribiría el recurso histórico. Se revierte el frontend coordinadamente y se conserva la metadata clínica creada.
+Para rollback no se debe volver a publicar el JSON con la versión `1.0.1`, porque reutilizaría y sobrescribiría el recurso histórico que contiene la captura de diagnóstico obsoleta. Se revierte el frontend coordinadamente, sin reactivar el formulario retirado y conservando sus encuentros para lectura histórica.
 
 ## Contrato de examen físico de Consulta Externa
 
