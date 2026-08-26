@@ -7,6 +7,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.8] - 2026-08-25
+
+### Cambiado
+- Publica `CE-REF-001-REFERENCIA-CONTRARREFERENCIA` `1.1.0` como compatibilidad de captura
+  mínima de la Hoja de Referencia Institucional: destino, especialidad, prioridad, condición de
+  salida y motivo. Retira el diagnóstico de texto duplicado porque la hoja reutiliza los
+  diagnósticos nativos de la visita.
+
+### Agregado
+- Provisiona las respuestas operativas terrestre, aérea y fluvial para el concepto existente
+  `Modo de transporte`. No agrega tablas ni changeSets Liquibase.
+
 ## [1.25.7] - 2026-08-25
 
 ### Corregido
