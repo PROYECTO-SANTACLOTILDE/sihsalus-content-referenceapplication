@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.8**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.9**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -45,6 +45,19 @@ duplicar el catálogo en la configuración.
 `ADDRESS_3/Barrio` se retira en este cambio porque se confirmó que no existen datos reales que deban
 migrarse. El contrato está documentado en `docs/contracts/santa-clotilde-neighborhoods.md`.
 
+## Terminología de referencia institucional
+
+Las respuestas `Terrestre`, `Aéreo` y `Fluvial` usadas por la Hoja de Referencia Institucional se
+administran exclusivamente en `SIHSALUS/referencia-institucional`. La release bundleada
+`2026-08-25-01` conserva los tres UUID OpenMRS y los nombres completos y cortos en español e inglés.
+Su export de conceptos se carga desde
+`16_SIHSALUS_referencia-institucional_concepts_2026-08-25-01.zip`; la release no contiene mappings.
+
+El CSV temporal `concepts/referral_transport_concepts.csv` debe permanecer ausente para evitar una
+doble importación. El source principal `SIHSALUS/sihsalus` y su suscripción continúan en
+`2026-07-16-02`. El contrato verificable está en
+`docs/contracts/referral-transport-terminology.md`.
+
 Running Spotless
 ----------------
 This project uses Spotless for code formatting. Spotless is embedded in the build process, so when you run `mvn clean package`, Spotless will automatically format your code according to the project's style guidelines.
@@ -65,7 +78,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.8**.
+Versión del paquete: **1.25.9**.
 
 ## Contrato canónico de Visit Notes
 

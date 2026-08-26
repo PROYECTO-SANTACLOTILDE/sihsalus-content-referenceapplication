@@ -7,6 +7,18 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.9] - 2026-08-25
+
+### Cambiado
+- Migra las respuestas `Terrestre`, `Aéreo` y `Fluvial` de la referencia institucional al source
+  OCL aislado `SIHSALUS/referencia-institucional`, preservando sus UUID OpenMRS.
+- Bundlea la release `2026-08-25-01` como export estático de conceptos y mantiene el source principal
+  `sihsalus` en `2026-07-16-02`.
+
+### Retirado
+- Elimina `concepts/referral_transport_concepts.csv` para impedir que Initializer y OCL importen los
+  mismos conceptos en paralelo.
+
 ## [1.25.8] - 2026-08-25
 
 ### Cambiado

@@ -74,6 +74,46 @@ NEIGHBORHOOD_PRESENTATION_METADATA = {
     "SCL-09": {"ui_color": "#B98A16", "ui_tag_type": "warm-gray"},
     "SCL-10": {"ui_color": "#D94B3D", "ui_tag_type": "red"},
 }
+REFERRAL_SOURCE = "referencia-institucional"
+REFERRAL_VERSION = "2026-08-25-01"
+REFERRAL_TRANSPORT_CSV = Path(
+    "configuration/backend_configuration/concepts/referral_transport_concepts.csv"
+)
+REFERRAL_CONCEPTS_EXPORT = OCL_DIR / (
+    f"16_SIHSALUS_{REFERRAL_SOURCE}_concepts_{REFERRAL_VERSION}.zip"
+)
+EXPECTED_REFERRAL_CANONICAL_SHA256 = (
+    "9a85ebac1f3710be861ddb092fb9806eee0e5d60557e494bcdb742be510aedff"
+)
+REFERRAL_TRANSPORT_CONCEPTS = [
+    (
+        "REF-TR-01",
+        "844be877-6d20-45e2-876f-dc5de42edd67",
+        "Transporte terrestre para referencia",
+        "Terrestre",
+        "Land transport for referral",
+        "Land",
+        "Modo de transporte terrestre usado durante una referencia institucional.",
+    ),
+    (
+        "REF-TR-02",
+        "2a228c88-7daf-4f60-9e55-c884c9302bd8",
+        "Transporte aéreo para referencia",
+        "Aéreo",
+        "Air transport for referral",
+        "Air",
+        "Modo de transporte aéreo usado durante una referencia institucional.",
+    ),
+    (
+        "REF-TR-03",
+        "d5e04df9-d1dc-431e-bd71-c934ec3e18e2",
+        "Transporte fluvial para referencia",
+        "Fluvial",
+        "River transport for referral",
+        "River",
+        "Modo de transporte fluvial usado durante una referencia institucional.",
+    ),
+]
 TPED_ROOT_ID = "3798"
 TPED_LINES = {
     "90": ("A", ["91", "92", "93", "94", "95"]),
@@ -360,6 +400,7 @@ def main():
         errors,
     )
     validate_neighborhood_backend_configuration(errors)
+    validate_referral_transport_terminology(exports_by_path, concept_records, errors)
     validate_ocl_global_properties(errors)
 
     if errors:
@@ -1008,6 +1049,215 @@ def validate_neighborhood_backend_configuration(errors):
         errors.append(
             f"{ADDRESS_CONFIGURATION_PATH}: address3 must be absent from the formatted address "
             "after the confirmed no-data cutover"
+        )
+
+
+def validate_referral_transport_terminology(exports_by_path, concept_records, errors):
+    expected_exports = {REFERRAL_CONCEPTS_EXPORT}
+    actual_exports = set(OCL_DIR.glob(f"*_SIHSALUS_{REFERRAL_SOURCE}_*.zip"))
+    if actual_exports != expected_exports:
+        missing = sorted(str(path) for path in expected_exports - actual_exports)
+        unexpected = sorted(str(path) for path in actual_exports - expected_exports)
+        errors.append(
+            "the institutional referral terminology must bundle only its approved concepts export: "
+            f"missing={missing}, unexpected={unexpected}"
+        )
+
+    export = exports_by_path.get(REFERRAL_CONCEPTS_EXPORT)
+    if not export:
+        errors.append(f"{REFERRAL_CONCEPTS_EXPORT}: required official OCL export is missing")
+        return
+
+    expected_fields = {
+        "type": "Source Version",
+        "id": REFERRAL_VERSION,
+        "version": REFERRAL_VERSION,
+        "short_code": REFERRAL_SOURCE,
+        "owner": "SIHSALUS",
+        "owner_type": "Organization",
+        "released": True,
+    }
+    for field, expected in expected_fields.items():
+        if export.get(field) != expected:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: export {field} must be {expected!r}; "
+                f"found {export.get(field)!r}"
+            )
+
+    source = export.get("source") or {}
+    expected_source_url = f"/orgs/SIHSALUS/sources/{REFERRAL_SOURCE}/"
+    if not isinstance(source, dict):
+        errors.append(f"{REFERRAL_CONCEPTS_EXPORT}: source metadata must be an object")
+    else:
+        source_expectations = {
+            "id": REFERRAL_SOURCE,
+            "owner": "SIHSALUS",
+            "owner_type": "Organization",
+            "custom_validation_schema": "OpenMRS",
+            "default_locale": "es",
+        }
+        for field, expected in source_expectations.items():
+            if source.get(field) != expected:
+                errors.append(
+                    f"{REFERRAL_CONCEPTS_EXPORT}: source {field} must be {expected!r}; "
+                    f"found {source.get(field)!r}"
+                )
+        if set(source.get("supported_locales") or []) != {"es", "en"}:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: source must support exactly Spanish and English"
+            )
+        if normalize_ocl_url(source.get("url")) != expected_source_url:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: source URL must be {expected_source_url}; "
+                f"found {source.get('url')!r}"
+            )
+        if (source.get("extras") or {}).get("catalog_domain") != "institutional-referral":
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: source must identify the institutional-referral domain"
+            )
+
+    concepts = export.get("concepts")
+    mappings = export.get("mappings")
+    if not isinstance(concepts, list) or len(concepts) != len(REFERRAL_TRANSPORT_CONCEPTS):
+        errors.append(
+            f"{REFERRAL_CONCEPTS_EXPORT}: export must contain exactly "
+            f"{len(REFERRAL_TRANSPORT_CONCEPTS)} concepts; "
+            f"found {len(concepts) if isinstance(concepts, list) else 'invalid'}"
+        )
+        return
+    if not isinstance(mappings, list) or mappings:
+        errors.append(
+            f"{REFERRAL_CONCEPTS_EXPORT}: export must contain no mappings; "
+            f"found {len(mappings) if isinstance(mappings, list) else 'invalid'}"
+        )
+
+    canonical_export = json.dumps(
+        export,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    canonical_sha256 = hashlib.sha256(canonical_export).hexdigest()
+    if canonical_sha256 != EXPECTED_REFERRAL_CANONICAL_SHA256:
+        errors.append(
+            "the institutional referral export does not match the canonical official release: "
+            f"expected={EXPECTED_REFERRAL_CANONICAL_SHA256}, actual={canonical_sha256}"
+        )
+
+    concepts_by_external_id = defaultdict(list)
+    for concept in concepts:
+        concepts_by_external_id[concept.get("external_id")].append(concept)
+    expected_external_ids = {
+        external_id for _, external_id, *_ in REFERRAL_TRANSPORT_CONCEPTS
+    }
+    actual_external_ids = set(concepts_by_external_id)
+    if actual_external_ids != expected_external_ids:
+        errors.append(
+            f"{REFERRAL_CONCEPTS_EXPORT}: referral transport UUID inventory mismatch: "
+            f"missing={sorted(expected_external_ids - actual_external_ids)}, "
+            f"unexpected={sorted(actual_external_ids - expected_external_ids, key=str)}"
+        )
+
+    source_prefix = f"{expected_source_url}concepts/"
+    for (
+        concept_id,
+        external_id,
+        spanish_fsn,
+        spanish_short,
+        english_fsn,
+        english_short,
+        spanish_description,
+    ) in REFERRAL_TRANSPORT_CONCEPTS:
+        matches = concepts_by_external_id.get(external_id, [])
+        if len(matches) != 1:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: UUID {external_id} must occur exactly once; "
+                f"found {len(matches)}"
+            )
+            continue
+
+        concept = matches[0]
+        if concept.get("id") != concept_id:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: UUID {external_id} must use OCL ID "
+                f"{concept_id}; found {concept.get('id')!r}"
+            )
+        if concept.get("retired"):
+            errors.append(f"{REFERRAL_CONCEPTS_EXPORT}: {concept_id} must be active")
+        if concept.get("concept_class") != "Misc" or concept.get("datatype") != "N/A":
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: {concept_id} must be Misc/N/A; "
+                f"found {concept.get('concept_class')}/{concept.get('datatype')}"
+            )
+        expected_url = f"{source_prefix}{concept_id}/"
+        if normalize_ocl_url(concept.get("url")) != expected_url:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: {concept_id} URL must be {expected_url}; "
+                f"found {concept.get('url')!r}"
+            )
+
+        active_names = [name for name in concept.get("names", []) if not name.get("retired")]
+        actual_names = {
+            (
+                name.get("name"),
+                name.get("locale"),
+                bool(name.get("locale_preferred")),
+                normalize_name_type(name.get("name_type")),
+            )
+            for name in active_names
+        }
+        expected_names = {
+            (spanish_fsn, "es", True, "fully specified"),
+            (spanish_short, "es", False, "short"),
+            (english_fsn, "en", True, "fully specified"),
+            (english_short, "en", False, "short"),
+        }
+        if len(active_names) != len(expected_names) or actual_names != expected_names:
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: {concept_id} names mismatch: "
+                f"expected={sorted(expected_names)}, actual={sorted(actual_names)}"
+            )
+
+        active_descriptions = [
+            description
+            for description in concept.get("descriptions", [])
+            if not description.get("retired")
+        ]
+        actual_descriptions = {
+            (
+                description.get("description"),
+                description.get("locale"),
+                bool(description.get("locale_preferred")),
+            )
+            for description in active_descriptions
+        }
+        expected_descriptions = {(spanish_description, "es", True)}
+        if (
+            len(active_descriptions) != len(expected_descriptions)
+            or actual_descriptions != expected_descriptions
+        ):
+            errors.append(
+                f"{REFERRAL_CONCEPTS_EXPORT}: {concept_id} descriptions mismatch: "
+                f"expected={sorted(expected_descriptions)}, actual={sorted(actual_descriptions)}"
+            )
+
+    bundled_matches = defaultdict(list)
+    for zip_path, source_id, concept in concept_records:
+        external_id = concept.get("external_id")
+        if external_id in expected_external_ids:
+            bundled_matches[external_id].append((zip_path, source_id, concept.get("id")))
+    for external_id in sorted(expected_external_ids):
+        matches = bundled_matches[external_id]
+        if len(matches) != 1 or matches[0][0] != REFERRAL_CONCEPTS_EXPORT:
+            errors.append(
+                f"referral transport UUID {external_id} must be bundled exactly once from "
+                f"{REFERRAL_CONCEPTS_EXPORT}; found={matches}"
+            )
+
+    if REFERRAL_TRANSPORT_CSV.exists():
+        errors.append(
+            f"{REFERRAL_TRANSPORT_CSV}: remove the Initializer CSV after bundling the OCL release"
         )
 
 
