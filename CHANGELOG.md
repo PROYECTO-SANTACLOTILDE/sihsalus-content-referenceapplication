@@ -7,6 +7,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.12] - 2026-08-25
+
+### Agregado
+- Publica en un artefacto inmutable nuevo el tipo de identificador técnico y la fuente
+  secuencial `RU-` usados por la Receta Única Estandarizada. La versión `1.25.11`
+  ya había sido publicada antes de que esos metadatos ingresaran a `main` y no los contiene.
+
 ## [1.25.11] - 2026-08-25
 
 ### Corregido
