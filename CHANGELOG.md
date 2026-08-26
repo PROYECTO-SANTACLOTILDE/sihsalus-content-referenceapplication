@@ -24,8 +24,8 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
   `app:hoja.clinica.adjuntos.editar`. El rol legado
   `Tecnico de Laboratorio` permanece intacto.
 - Rechaza explícitamente `Get Global Properties`. El flujo requiere una release
-  backend compatible con Attachments `>=4.0.1`, autorización server-side y
-  acceso interno acotado a la configuración del módulo.
+  backend compatible con Attachments `>=4.0.1-sihsalus.1 <5.0.0`, autorización
+  server-side y acceso interno acotado a la configuración del módulo.
 - Documenta que `Edit Observations` y `Delete Observations` ya formaban parte de
   `Laboratorio`. Esta versión no altera esas asignaciones ni promete impedir el
   borrado.

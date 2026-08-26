@@ -109,10 +109,10 @@ flujo sea habilitado, su carga no deberá completar la orden, cambiar su estado
 ni sustituir resultados estructurados o su validación clínica. El flujo de
 laboratorio deberá seguir finalizando la orden mediante operaciones explícitas.
 
-El flujo requiere una release backend compatible con Attachments `>=4.0.1`, con
-autorización server-side y acceso interno acotado a su configuración. No se debe
-conceder `Get Global Properties` al rol ni resolver la compatibilidad ampliando
-sus privilegios.
+El flujo requiere una release backend compatible con Attachments
+`>=4.0.1-sihsalus.1 <5.0.0`, con autorización server-side y acceso interno
+acotado a su configuración. No se debe conceder `Get Global Properties` al rol
+ni resolver la compatibilidad ampliando sus privilegios.
 
 `Laboratorio` ya tenía `Edit Observations` y `Delete Observations`. Esta versión
 no altera esas asignaciones ni promete impedir el borrado.

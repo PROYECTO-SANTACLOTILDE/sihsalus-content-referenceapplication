@@ -62,9 +62,10 @@ de laboratorio.
 El frontend, esta metadata y la corrección backend deben publicarse como una
 unidad coordinada. Attachments 4.0.0 no es compatible y el flujo permanece no
 operativo con esa versión. Se requiere una release backend compatible con
-Attachments `>=4.0.1`, con autorización server-side y acceso interno acotado a
-la configuración del módulo. No se debe otorgar `Get Global Properties` a
-`Laboratorio`; el validador rechaza explícitamente esa ampliación.
+Attachments `>=4.0.1-sihsalus.1 <5.0.0`, con autorización server-side y acceso
+interno acotado a la configuración del módulo. No se debe otorgar
+`Get Global Properties` a `Laboratorio`; el validador rechaza explícitamente
+esa ampliación.
 
 Cuando un tipo de encuentro declara un privilegio específico, el frontend exige
 ese privilegio. La ausencia de metadata no equivale a acceso público y este
@@ -104,12 +105,13 @@ explícita y controlada.
 
 - Consulta Externa y Enfermería: conservan los marcadores declarativos previos;
   no se asume autorización backend con Attachments 4.0.0.
-- Adjuntador genérico: con una release backend compatible `>=4.0.1`, el rol
-  lector debe conservar acceso de lectura y el editor debe conservar lectura y
-  creación, sin requerir `Get Global Properties`.
+- Adjuntador genérico: con una release backend compatible
+  `>=4.0.1-sihsalus.1 <5.0.0`, el rol lector debe conservar acceso de lectura y
+  el editor debe conservar lectura y creación, sin requerir
+  `Get Global Properties`.
 - Laboratorio: el flujo PDF sigue no operativo con Attachments 4.0.0. Tras
-  coordinar una release compatible `>=4.0.1`, se debe probar con usuario
-  sintético la autorización server-side, la ausencia de
+  coordinar una release compatible `>=4.0.1-sihsalus.1 <5.0.0`, se debe probar
+  con usuario sintético la autorización server-side, la ausencia de
   `Get Global Properties` y que la carga no cambia el estado de la orden.
 - `Tecnico de Laboratorio`: conserva exactamente su contrato previo y no recibe
   los marcadores de adjuntos.
