@@ -7,6 +7,20 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.10] - 2026-08-25
+
+### Corregido
+- Alinea la ubicación canónica del Hospital Santa Clotilde con la jerarquía territorial
+  configurada: Loreto como región, Maynas como provincia, Napo como distrito y Santa Clotilde
+  como centro poblado. Mantiene vacía la calle porque la fuente estatal no publica una
+  dirección vial utilizable.
+
+### Agregado
+- Provisiona el teléfono institucional `965 336 199` y el Código Único IPRESS `00000066`
+  como atributos estables de `Location`, con validación de su identidad y cardinalidad.
+- Activa `drugOrder.requireOutpatientQuantity=true` para exigir los datos de dispensación en
+  las prescripciones ambulatorias.
+
 ## [1.25.9] - 2026-08-25
 
 ### Cambiado
