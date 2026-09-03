@@ -7,6 +7,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.14] - 2026-09-03
+
+### Corregido
+- Agrega `Delete Relationships` al rol `Admision` para que pueda retirar o
+  reemplazar vínculos de responsables durante la corrección de datos de registro.
+  El validador de roles protege el privilegio como parte del contrato mínimo.
+
 ## [1.25.13] - 2026-08-26
 
 ### Corregido
