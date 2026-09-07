@@ -7,6 +7,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+### Preparación en borrador
+
+- Separa la reconciliación de identidades del rol de Admisión del permiso de
+  relaciones de #222, conservando la migración y sus pruebas originales.
+  No está aprobada para merge, publicación ni despliegue; sus riesgos y controles
+  pendientes están en `docs/contracts/admission-role-reconciliation.md`.
+
 ## [1.25.14] - 2026-08-26
 
 ### Agregado

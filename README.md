@@ -88,6 +88,13 @@ Remember, in most cases, you don't need to run these commands separately as Spot
 
 Versión del paquete: **1.25.14**.
 
+## Reconciliación de identidades de Admisión en borrador
+
+La migración se revisa separadamente del permiso de relaciones de #222.
+No está habilitada para merge, publicación ni despliegue. El alcance, la
+diferencia entre SQL e Initializer y los controles de aprobación pendientes
+están en `docs/contracts/admission-role-reconciliation.md`.
+
 ## Contrato preparatorio para PDF de resultados de laboratorio
 
 El rol canónico `Laboratorio` recibe los marcadores declarativos
