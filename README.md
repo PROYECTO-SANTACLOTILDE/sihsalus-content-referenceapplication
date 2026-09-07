@@ -1,6 +1,6 @@
 # SIHSALUS Content Package
 
-SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.14**.
+SIHSALUS Content Package para OpenMRS, con la versión actual **1.25.15**.
 
 The contents of a typical Content Package are:
 * **Configuration**
@@ -86,7 +86,23 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.14**.
+Versión del paquete: **1.25.15**.
+
+## Permiso de relaciones para Admisión
+
+El rol canónico `Admision` recibe `Delete Relationships` para anular relaciones de
+responsables mediante la API de OpenMRS, también al reemplazarlas. La anulación
+conserva el registro y no equivale a una purga física (`Purge Relationships`).
+Conserva su UUID, nombre, herencias vacías y el resto de su lista explícita de
+privilegios. No se modifican otros roles ni se agregan permisos de administración
+o purga.
+
+Este cambio no incorpora la consolidación adicional de identidades de Admisión:
+las instalaciones con roles duplicados o un UUID asignado al nombre legado
+requieren revisar esa migración por separado antes de aplicar el contenido.
+La publicación no modifica relaciones existentes ni demuestra autorización en un
+backend desplegado; se debe probar el flujo permitido y denegado con datos
+sintéticos.
 
 ## Contrato preparatorio para PDF de resultados de laboratorio
 

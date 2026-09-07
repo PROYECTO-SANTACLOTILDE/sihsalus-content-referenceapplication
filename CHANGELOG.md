@@ -7,6 +7,17 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.15] - 2026-09-07
+
+### Corregido
+
+- Agrega `Delete Relationships` únicamente al rol canónico `Admision` para
+  retirar o reemplazar relaciones de responsables y protege ese permiso en su
+  lista explícita de privilegios.
+- Añade regresiones que rechazan la pérdida del permiso, privilegios adicionales,
+  herencia y cambios de identidad del rol. No incorpora la consolidación adicional
+  de roles ni cambia las migraciones existentes.
+
 ## [1.25.14] - 2026-08-26
 
 ### Agregado
