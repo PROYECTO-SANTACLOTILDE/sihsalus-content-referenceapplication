@@ -77,6 +77,7 @@ ADMISSION_REQUIRED_PRIVILEGES = {
     "Add Relationships",
     "Add Visits",
     "Appointments: Invite Providers",
+    "Delete Relationships",
     "Edit Patient Identifiers",
     "Edit Patients",
     "Edit People",

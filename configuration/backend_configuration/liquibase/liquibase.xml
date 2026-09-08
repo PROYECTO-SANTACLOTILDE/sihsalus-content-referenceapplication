@@ -232,6 +232,449 @@
         <sql>SELECT 1;</sql>
     </changeSet>
 
+    <changeSet id="reconcile-admission-role-20260907" author="sihsalus" runInTransaction="true">
+        <preConditions onFail="HALT" onError="HALT">
+            <or>
+                <dbms type="mysql" />
+                <dbms type="mariadb" />
+            </or>
+            <tableExists tableName="role" />
+            <tableExists tableName="user_role" />
+            <tableExists tableName="role_privilege" />
+            <tableExists tableName="role_role" />
+            <tableExists tableName="privilege" />
+            <or>
+                <not><tableExists tableName="liquibasechangelog" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:legacy-history */
+                    SELECT COUNT(*) FROM liquibasechangelog
+                    WHERE id IN (
+                        'assert-admission-role-uuid-owner-20260903',
+                        'merge-admission-role-core-references-20260903',
+                        'merge-admission-role-patientflags-references-20260903',
+                        'merge-admission-role-stock-references-20260903',
+                        'finalize-admission-role-identity-20260903',
+                        'assert-canonical-admission-role-identity-20260903'
+                    )
+                </sqlCheck>
+            </or>
+            <or>
+                <not><tableExists tableName="DATABASECHANGELOG" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:legacy-history */
+                    SELECT COUNT(*) FROM DATABASECHANGELOG
+                    WHERE id IN (
+                        'assert-admission-role-uuid-owner-20260903',
+                        'merge-admission-role-core-references-20260903',
+                        'merge-admission-role-patientflags-references-20260903',
+                        'merge-admission-role-stock-references-20260903',
+                        'finalize-admission-role-identity-20260903',
+                        'assert-canonical-admission-role-identity-20260903'
+                    )
+                </sqlCheck>
+            </or>
+            <sqlCheck expectedResult="0">
+                /* admission:constraint-enforcement */
+                SELECT CASE WHEN @@SESSION.foreign_key_checks = 1 AND @@SESSION.unique_checks = 1
+                    THEN 0 ELSE 1 END
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:engines */
+                SELECT COUNT(*) FROM information_schema.TABLES
+                WHERE TABLE_SCHEMA = DATABASE()
+                  AND TABLE_NAME IN (
+                    'role', 'user_role', 'role_privilege', 'role_role',
+                    'patientflags_tag_role', 'stockmgmt_user_role_scope'
+                  )
+                  AND (ENGINE IS NULL OR ENGINE &lt;&gt; 'InnoDB')
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:copied-table-columns */
+                SELECT COUNT(*) FROM (
+                    SELECT TABLE_NAME
+                    FROM information_schema.COLUMNS
+                    WHERE TABLE_SCHEMA = DATABASE()
+                      AND TABLE_NAME IN ('role', 'user_role', 'role_privilege', 'patientflags_tag_role')
+                    GROUP BY TABLE_NAME
+                    HAVING COUNT(*) &lt;&gt; CASE WHEN TABLE_NAME = 'role' THEN 3 ELSE 2 END
+                       OR SUM(CASE
+                            WHEN TABLE_NAME = 'role' AND COLUMN_NAME IN ('role', 'description', 'uuid') THEN 1
+                            WHEN TABLE_NAME = 'user_role' AND COLUMN_NAME IN ('user_id', 'role') THEN 1
+                            WHEN TABLE_NAME = 'role_privilege' AND COLUMN_NAME IN ('role', 'privilege') THEN 1
+                            WHEN TABLE_NAME = 'patientflags_tag_role' AND COLUMN_NAME IN ('tag_id', 'role') THEN 1
+                            ELSE 0
+                          END) &lt;&gt; CASE WHEN TABLE_NAME = 'role' THEN 3 ELSE 2 END
+                ) unsupported_columns
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:core-primary-keys */
+                SELECT COUNT(*) FROM (
+                    SELECT 'role' AS table_name, 'role' AS column_names
+                    UNION ALL SELECT 'user_role', 'user_id,role'
+                    UNION ALL SELECT 'role_privilege', 'role,privilege'
+                    UNION ALL SELECT 'role_role', 'parent_role,child_role'
+                ) expected_keys
+                LEFT JOIN (
+                    SELECT TABLE_NAME,
+                        GROUP_CONCAT(COLUMN_NAME ORDER BY SEQ_IN_INDEX SEPARATOR ',') AS column_names,
+                        SUM(CASE WHEN SUB_PART IS NOT NULL THEN 1 ELSE 0 END) AS prefix_columns
+                    FROM information_schema.STATISTICS
+                    WHERE TABLE_SCHEMA = DATABASE() AND INDEX_NAME = 'PRIMARY'
+                    GROUP BY TABLE_NAME
+                ) actual_keys ON actual_keys.TABLE_NAME = expected_keys.table_name
+                WHERE actual_keys.column_names IS NULL
+                   OR actual_keys.column_names &lt;&gt; expected_keys.column_names
+                   OR actual_keys.prefix_columns &lt;&gt; 0
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:role-uuid-constraint */
+                SELECT CASE WHEN EXISTS (
+                    SELECT 1 FROM information_schema.COLUMNS
+                    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'role'
+                      AND COLUMN_NAME = 'uuid' AND IS_NULLABLE = 'NO'
+                ) AND EXISTS (
+                    SELECT 1 FROM information_schema.STATISTICS
+                    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'role' AND NON_UNIQUE = 0
+                    GROUP BY INDEX_NAME
+                    HAVING COUNT(*) = 1 AND MAX(COLUMN_NAME) = 'uuid'
+                       AND SUM(CASE WHEN SUB_PART IS NOT NULL THEN 1 ELSE 0 END) = 0
+                ) THEN 0 ELSE 1 END
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:core-foreign-keys */
+                SELECT COUNT(*) FROM (
+                    SELECT 'user_role' AS table_name, 'role' AS column_name
+                    UNION ALL SELECT 'role_privilege', 'role'
+                    UNION ALL SELECT 'role_role', 'parent_role'
+                    UNION ALL SELECT 'role_role', 'child_role'
+                ) expected_keys
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM information_schema.KEY_COLUMN_USAGE k
+                    WHERE k.TABLE_SCHEMA = DATABASE()
+                      AND k.TABLE_NAME = expected_keys.table_name
+                      AND k.COLUMN_NAME = expected_keys.column_name
+                      AND k.REFERENCED_TABLE_SCHEMA = DATABASE()
+                      AND k.REFERENCED_TABLE_NAME = 'role'
+                      AND k.REFERENCED_COLUMN_NAME = 'role'
+                      AND k.ORDINAL_POSITION = 1
+                      AND NOT EXISTS (
+                        SELECT 1 FROM information_schema.KEY_COLUMN_USAGE extra_column
+                        WHERE extra_column.CONSTRAINT_SCHEMA = k.CONSTRAINT_SCHEMA
+                          AND extra_column.TABLE_NAME = k.TABLE_NAME
+                          AND extra_column.CONSTRAINT_NAME = k.CONSTRAINT_NAME
+                          AND extra_column.ORDINAL_POSITION &gt; 1
+                      )
+                )
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:privilege-foreign-key */
+                SELECT CASE WHEN EXISTS (
+                    SELECT 1 FROM information_schema.KEY_COLUMN_USAGE k
+                    WHERE k.TABLE_SCHEMA = DATABASE() AND k.TABLE_NAME = 'role_privilege'
+                      AND k.COLUMN_NAME = 'privilege' AND k.ORDINAL_POSITION = 1
+                      AND k.REFERENCED_TABLE_SCHEMA = DATABASE()
+                      AND k.REFERENCED_TABLE_NAME = 'privilege'
+                      AND k.REFERENCED_COLUMN_NAME = 'privilege'
+                      AND NOT EXISTS (
+                        SELECT 1 FROM information_schema.KEY_COLUMN_USAGE extra_column
+                        WHERE extra_column.CONSTRAINT_SCHEMA = k.CONSTRAINT_SCHEMA
+                          AND extra_column.TABLE_NAME = k.TABLE_NAME
+                          AND extra_column.CONSTRAINT_NAME = k.CONSTRAINT_NAME
+                          AND extra_column.ORDINAL_POSITION &gt; 1
+                      )
+                ) THEN 0 ELSE 1 END
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:foreign-keys */
+                SELECT COUNT(*)
+                FROM information_schema.KEY_COLUMN_USAGE k
+                JOIN information_schema.REFERENTIAL_CONSTRAINTS c
+                  ON c.CONSTRAINT_SCHEMA = k.CONSTRAINT_SCHEMA
+                 AND c.CONSTRAINT_NAME = k.CONSTRAINT_NAME
+                 AND c.TABLE_NAME = k.TABLE_NAME
+                WHERE k.REFERENCED_TABLE_SCHEMA = DATABASE()
+                  AND k.REFERENCED_TABLE_NAME = 'role'
+                  AND (
+                    k.TABLE_SCHEMA &lt;&gt; DATABASE()
+                    OR k.REFERENCED_COLUMN_NAME &lt;&gt; 'role'
+                    OR c.DELETE_RULE NOT IN ('RESTRICT', 'NO ACTION')
+                    OR c.UPDATE_RULE NOT IN ('RESTRICT', 'NO ACTION')
+                    OR NOT (
+                        (k.TABLE_NAME = 'user_role' AND k.COLUMN_NAME = 'role')
+                        OR (k.TABLE_NAME = 'role_privilege' AND k.COLUMN_NAME = 'role')
+                        OR (k.TABLE_NAME = 'role_role' AND k.COLUMN_NAME IN ('parent_role', 'child_role'))
+                        OR (k.TABLE_NAME = 'patientflags_tag_role' AND k.COLUMN_NAME = 'role')
+                        OR (k.TABLE_NAME = 'stockmgmt_user_role_scope' AND k.COLUMN_NAME = 'role')
+                    )
+                  )
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:role-names */
+                SELECT COUNT(*) FROM role
+                WHERE (role IN ('Admision', 'SIHSALUS Admision')
+                    OR LOWER(TRIM(role)) IN ('admision', 'sihsalus admision'))
+                  AND HEX(role) NOT IN (HEX('Admision'), HEX('SIHSALUS Admision'))
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:reference-role-names */
+                SELECT COUNT(*) FROM (
+                    SELECT role FROM user_role
+                    UNION ALL SELECT role FROM role_privilege
+                ) reference_roles
+                WHERE (role IN ('Admision', 'SIHSALUS Admision')
+                    OR LOWER(TRIM(role)) IN ('admision', 'sihsalus admision'))
+                  AND HEX(role) NOT IN (HEX('Admision'), HEX('SIHSALUS Admision'))
+            </sqlCheck>
+            <or>
+                <not><tableExists tableName="patientflags_tag_role" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:patientflags-role-names */
+                    SELECT COUNT(*) FROM patientflags_tag_role
+                    WHERE (role IN ('Admision', 'SIHSALUS Admision')
+                        OR LOWER(TRIM(role)) IN ('admision', 'sihsalus admision'))
+                      AND HEX(role) NOT IN (HEX('Admision'), HEX('SIHSALUS Admision'))
+                </sqlCheck>
+            </or>
+            <or>
+                <not><tableExists tableName="stockmgmt_user_role_scope" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:stock-role-names */
+                    SELECT COUNT(*) FROM stockmgmt_user_role_scope
+                    WHERE (role IN ('Admision', 'SIHSALUS Admision')
+                        OR LOWER(TRIM(role)) IN ('admision', 'sihsalus admision'))
+                      AND HEX(role) NOT IN (HEX('Admision'), HEX('SIHSALUS Admision'))
+                </sqlCheck>
+            </or>
+            <sqlCheck expectedResult="0">
+                /* admission:uuid-owner */
+                SELECT COUNT(*) FROM role
+                WHERE LOWER(TRIM(uuid)) = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+                  AND HEX(role) NOT IN (HEX('Admision'), HEX('SIHSALUS Admision'))
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:inheritance */
+                SELECT COUNT(*) FROM role_role
+                WHERE parent_role IN ('Admision', 'SIHSALUS Admision')
+                   OR child_role IN ('Admision', 'SIHSALUS Admision')
+                   OR LOWER(TRIM(parent_role)) IN ('admision', 'sihsalus admision')
+                   OR LOWER(TRIM(child_role)) IN ('admision', 'sihsalus admision')
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:delete-relationships-privilege */
+                SELECT CASE WHEN EXISTS (
+                    SELECT 1 FROM role WHERE role IN ('Admision', 'SIHSALUS Admision')
+                ) AND (
+                    SELECT COUNT(*) FROM privilege
+                    WHERE HEX(privilege) = HEX('Delete Relationships')
+                ) &lt;&gt; 1 THEN 1 ELSE 0 END
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:privileges */
+                SELECT COUNT(*) FROM role r
+                WHERE r.role IN ('Admision', 'SIHSALUS Admision')
+                  AND (
+                    EXISTS (
+                        SELECT 1 FROM role_privilege p
+                        WHERE p.role = r.role
+                          AND HEX(p.privilege) NOT IN (
+                            HEX('Add Patient Identifiers'),
+                            HEX('Add Patients'),
+                            HEX('Add People'),
+                            HEX('Add Relationships'),
+                            HEX('Add Visits'),
+                            HEX('Appointments: Invite Providers'),
+                            HEX('Delete Relationships'),
+                            HEX('Edit Patient Identifiers'),
+                            HEX('Edit Patients'),
+                            HEX('Edit People'),
+                            HEX('Edit Relationships'),
+                            HEX('Edit Visits'),
+                            HEX('Get Admission Locations'),
+                            HEX('Get Beds'),
+                            HEX('Get Concept Attribute Types'),
+                            HEX('Get Concept Sources'),
+                            HEX('Get Concepts'),
+                            HEX('Get Encounters'),
+                            HEX('Get Identifier Types'),
+                            HEX('Get Location Attribute Types'),
+                            HEX('Get Locations'),
+                            HEX('Get Patient Identifiers'),
+                            HEX('Get Patients'),
+                            HEX('Get People'),
+                            HEX('Get Person Attribute Types'),
+                            HEX('Get Providers'),
+                            HEX('Get Queue Entries'),
+                            HEX('Get Queues'),
+                            HEX('Get Relationship Types'),
+                            HEX('Get Relationships'),
+                            HEX('Get Visit Attribute Types'),
+                            HEX('Get Visit Types'),
+                            HEX('Get Visits'),
+                            HEX('Manage Appointments'),
+                            HEX('Manage Own Appointments'),
+                            HEX('Manage Queue Entries'),
+                            HEX('View Appointment Services'),
+                            HEX('View Appointments'),
+                            HEX('View Identifier Types'),
+                            HEX('View Locations'),
+                            HEX('View Navigation Menu'),
+                            HEX('View Patient Identifiers'),
+                            HEX('View Patients'),
+                            HEX('View People'),
+                            HEX('View Person Attribute Types'),
+                            HEX('View Relationship Types'),
+                            HEX('View Relationships'),
+                            HEX('app:appointments.issueDate.edit'),
+                            HEX('app:appointments.startDate.edit'),
+                            HEX('app:home'),
+                            HEX('app:home.admision'),
+                            HEX('app:home.citas'),
+                            HEX('app:home.citas.editar'),
+                            HEX('app:home.colasAtencion'),
+                            HEX('app:home.colasAtencion.editar'),
+                            HEX('app:opciones.busquedaPaciente'),
+                            HEX('app:opciones.registrarAcompanante'),
+                            HEX('app:opciones.registrarPaciente')
+                          )
+                    )
+                    OR (
+                        SELECT COUNT(*) FROM role_privilege p
+                        WHERE p.role = r.role
+                          AND HEX(p.privilege) &lt;&gt; HEX('Delete Relationships')
+                    ) &lt;&gt; 57
+                  )
+            </sqlCheck>
+            <sqlCheck expectedResult="0">
+                /* admission:orphan-core-references */
+                SELECT (
+                    SELECT COUNT(*) FROM user_role u
+                    WHERE u.role IN ('Admision', 'SIHSALUS Admision')
+                      AND NOT EXISTS (SELECT 1 FROM role r WHERE r.role = u.role)
+                ) + (
+                    SELECT COUNT(*) FROM role_privilege p
+                    WHERE p.role IN ('Admision', 'SIHSALUS Admision')
+                      AND NOT EXISTS (SELECT 1 FROM role r WHERE r.role = p.role)
+                )
+            </sqlCheck>
+            <or>
+                <not><tableExists tableName="patientflags_tag_role" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:orphan-patientflags-references */
+                    SELECT COUNT(*) FROM patientflags_tag_role t
+                    WHERE t.role IN ('Admision', 'SIHSALUS Admision')
+                      AND NOT EXISTS (SELECT 1 FROM role r WHERE r.role = t.role)
+                </sqlCheck>
+            </or>
+            <or>
+                <not><tableExists tableName="stockmgmt_user_role_scope" /></not>
+                <sqlCheck expectedResult="0">
+                    /* admission:orphan-stock-references */
+                    SELECT COUNT(*) FROM stockmgmt_user_role_scope s
+                    WHERE s.role IN ('Admision', 'SIHSALUS Admision')
+                      AND NOT EXISTS (SELECT 1 FROM role r WHERE r.role = s.role)
+                </sqlCheck>
+            </or>
+        </preConditions>
+        <comment>
+            Reconcilia solo identidades de Admision con las listas canonicas revisadas, sin
+            herencias ni referencias desconocidas. Todos los controles preceden al primer DML
+            de admision, incluido el normalizador historico de 20260722 que no se modifica.
+            Acepta unicamente la variante actual o la previa sin Delete Relationships y garantiza
+            las 58 entradas actuales del CSV: agrega solo ese privilegio ya aprobado, si existe
+            en privilege y hay una identidad de Admision; no depende de recargar el CSV por checksum.
+            No crea privilegios ni un rol cuando ambas identidades estan ausentes. Usuarios, tags y alcances
+            mantienen sus referencias; los IDs, UUIDs y datos auditables de Stock no se recrean.
+            Requiere ejecucion exclusiva y tablas InnoDB. HALT protege este changelog, no prueba
+            que todo Initializer falle cerrado: initializer.startup.load=fail_on_error debe
+            estar configurado y validado fuera del contenido antes del despliegue.
+        </comment>
+        <sql splitStatements="true"><![CDATA[
+            SELECT role FROM role
+            WHERE role IN ('Admision', 'SIHSALUS Admision')
+            FOR UPDATE;
+
+            INSERT INTO role (role, description, uuid)
+            SELECT 'Admision', legacy.description, UUID()
+            FROM role legacy
+            WHERE legacy.role = 'SIHSALUS Admision'
+              AND NOT EXISTS (SELECT 1 FROM role canonical WHERE canonical.role = 'Admision');
+
+            INSERT INTO user_role (user_id, role)
+            SELECT legacy.user_id, 'Admision'
+            FROM user_role legacy
+            WHERE legacy.role = 'SIHSALUS Admision'
+              AND NOT EXISTS (
+                SELECT 1 FROM user_role canonical
+                WHERE canonical.user_id = legacy.user_id AND canonical.role = 'Admision'
+              );
+
+            INSERT INTO role_privilege (role, privilege)
+            SELECT 'Admision', legacy.privilege
+            FROM role_privilege legacy
+            WHERE legacy.role = 'SIHSALUS Admision'
+              AND NOT EXISTS (
+                SELECT 1 FROM role_privilege canonical
+                WHERE canonical.role = 'Admision' AND canonical.privilege = legacy.privilege
+              );
+
+            INSERT INTO role_privilege (role, privilege)
+            SELECT 'Admision', 'Delete Relationships'
+            FROM role canonical
+            WHERE canonical.role = 'Admision'
+              AND NOT EXISTS (
+                SELECT 1 FROM role_privilege existing_privilege
+                WHERE existing_privilege.role = 'Admision'
+                  AND existing_privilege.privilege = 'Delete Relationships'
+              );
+
+            SET @admission_optional_sql = IF(
+                EXISTS (
+                    SELECT 1 FROM information_schema.TABLES
+                    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'patientflags_tag_role'
+                ),
+                'INSERT INTO patientflags_tag_role (tag_id, role) SELECT DISTINCT legacy.tag_id, ''Admision'' FROM patientflags_tag_role legacy WHERE legacy.role = ''SIHSALUS Admision'' AND NOT EXISTS (SELECT 1 FROM patientflags_tag_role canonical WHERE canonical.tag_id = legacy.tag_id AND canonical.role = ''Admision'')',
+                'SELECT 1'
+            );
+            PREPARE admission_optional_stmt FROM @admission_optional_sql;
+            EXECUTE admission_optional_stmt;
+            DEALLOCATE PREPARE admission_optional_stmt;
+
+            SET @admission_optional_sql = IF(
+                EXISTS (
+                    SELECT 1 FROM information_schema.TABLES
+                    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'stockmgmt_user_role_scope'
+                ),
+                'UPDATE stockmgmt_user_role_scope SET role = ''Admision'' WHERE role = ''SIHSALUS Admision''',
+                'SELECT 1'
+            );
+            PREPARE admission_optional_stmt FROM @admission_optional_sql;
+            EXECUTE admission_optional_stmt;
+            DEALLOCATE PREPARE admission_optional_stmt;
+
+            SET @admission_optional_sql = IF(
+                EXISTS (
+                    SELECT 1 FROM information_schema.TABLES
+                    WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'patientflags_tag_role'
+                ),
+                'DELETE FROM patientflags_tag_role WHERE role = ''SIHSALUS Admision''',
+                'SELECT 1'
+            );
+            PREPARE admission_optional_stmt FROM @admission_optional_sql;
+            EXECUTE admission_optional_stmt;
+            DEALLOCATE PREPARE admission_optional_stmt;
+            SET @admission_optional_sql = NULL;
+
+            DELETE FROM user_role WHERE role = 'SIHSALUS Admision';
+            DELETE FROM role_privilege WHERE role = 'SIHSALUS Admision';
+            DELETE FROM role WHERE role = 'SIHSALUS Admision';
+
+            UPDATE role
+            SET uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
+            WHERE role = 'Admision'
+              AND HEX(uuid) <> HEX('71dcb611-756a-4ad3-a9bb-73b6cfe28066');
+        ]]></sql>
+    </changeSet>
+
     <changeSet id="normalize-admission-role-name-20260722" author="sihsalus">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="1">
@@ -293,178 +736,6 @@
             SET uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
             WHERE role = 'Admision';
         </sql>
-    </changeSet>
-
-    <changeSet id="assert-admission-role-uuid-owner-20260903" author="sihsalus">
-        <preConditions onFail="HALT" onError="HALT">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*)
-                FROM role
-                WHERE uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
-                  AND role NOT IN ('Admision', 'SIHSALUS Admision')
-            </sqlCheck>
-        </preConditions>
-        <comment>
-            Falla de forma cerrada si el UUID canonico pertenece a un tercer rol. La
-            consolidacion posterior solo puede operar sobre las dos identidades conocidas
-            de admision y nunca debe reasignar silenciosamente otro rol.
-        </comment>
-        <sql>SELECT 1;</sql>
-    </changeSet>
-
-    <changeSet id="merge-admission-role-core-references-20260903" author="sihsalus">
-        <preConditions onFail="MARK_RAN" onError="HALT">
-            <sqlCheck expectedResult="1">
-                SELECT CASE WHEN EXISTS (
-                    SELECT 1 FROM role WHERE role = 'SIHSALUS Admision'
-                ) THEN 1 ELSE 0 END
-            </sqlCheck>
-        </preConditions>
-        <comment>
-            Repara instalaciones donde el rol historico y Admision coexistian cuando el
-            changeSet de 20260722 fue marcado como ejecutado. Crea la identidad canonica si
-            falta y fusiona primero las referencias con INSERT IGNORE para tolerar usuarios,
-            privilegios o herencias ya presentes en ambos roles.
-        </comment>
-        <sql>
-            INSERT INTO role (role, description, uuid)
-            SELECT 'Admision', legacy.description, UUID()
-            FROM role legacy
-            WHERE legacy.role = 'SIHSALUS Admision'
-              AND NOT EXISTS (
-                SELECT 1 FROM role canonical WHERE canonical.role = 'Admision'
-              );
-
-            INSERT IGNORE INTO user_role (user_id, role)
-            SELECT user_id, 'Admision'
-            FROM user_role
-            WHERE role = 'SIHSALUS Admision';
-
-            INSERT IGNORE INTO role_privilege (role, privilege)
-            SELECT 'Admision', privilege
-            FROM role_privilege
-            WHERE role = 'SIHSALUS Admision';
-
-            INSERT IGNORE INTO role_role (parent_role, child_role)
-            SELECT DISTINCT
-                CASE
-                    WHEN parent_role = 'SIHSALUS Admision' THEN 'Admision'
-                    ELSE parent_role
-                END,
-                CASE
-                    WHEN child_role = 'SIHSALUS Admision' THEN 'Admision'
-                    ELSE child_role
-                END
-            FROM role_role
-            WHERE (
-                parent_role = 'SIHSALUS Admision'
-                OR child_role = 'SIHSALUS Admision'
-            )
-              AND CASE
-                    WHEN parent_role = 'SIHSALUS Admision' THEN 'Admision'
-                    ELSE parent_role
-                  END
-                  &lt;&gt;
-                  CASE
-                    WHEN child_role = 'SIHSALUS Admision' THEN 'Admision'
-                    ELSE child_role
-                  END;
-
-            DELETE FROM user_role WHERE role = 'SIHSALUS Admision';
-            DELETE FROM role_privilege WHERE role = 'SIHSALUS Admision';
-            DELETE FROM role_role
-            WHERE parent_role = 'SIHSALUS Admision'
-               OR child_role = 'SIHSALUS Admision';
-        </sql>
-    </changeSet>
-
-    <changeSet id="merge-admission-role-patientflags-references-20260903" author="sihsalus">
-        <preConditions onFail="MARK_RAN" onError="HALT">
-            <and>
-                <tableExists tableName="patientflags_tag_role" />
-                <sqlCheck expectedResult="1">
-                    SELECT CASE WHEN EXISTS (
-                        SELECT 1 FROM role WHERE role = 'SIHSALUS Admision'
-                    ) THEN 1 ELSE 0 END
-                </sqlCheck>
-            </and>
-        </preConditions>
-        <comment>
-            Conserva las asignaciones de Patient Flags sin duplicar el mismo tag cuando
-            ambos nombres del rol ya estaban asociados.
-        </comment>
-        <sql>
-            INSERT INTO patientflags_tag_role (tag_id, role)
-            SELECT DISTINCT legacy.tag_id, 'Admision'
-            FROM patientflags_tag_role legacy
-            WHERE legacy.role = 'SIHSALUS Admision'
-              AND NOT EXISTS (
-                SELECT 1
-                FROM patientflags_tag_role canonical
-                WHERE canonical.tag_id = legacy.tag_id
-                  AND canonical.role = 'Admision'
-              );
-
-            DELETE FROM patientflags_tag_role
-            WHERE role = 'SIHSALUS Admision';
-        </sql>
-    </changeSet>
-
-    <changeSet id="merge-admission-role-stock-references-20260903" author="sihsalus">
-        <preConditions onFail="MARK_RAN" onError="HALT">
-            <and>
-                <tableExists tableName="stockmgmt_user_role_scope" />
-                <sqlCheck expectedResult="1">
-                    SELECT CASE WHEN EXISTS (
-                        SELECT 1 FROM role WHERE role = 'SIHSALUS Admision'
-                    ) THEN 1 ELSE 0 END
-                </sqlCheck>
-            </and>
-        </preConditions>
-        <comment>
-            Conserva los alcances auditables de Stock Management antes de retirar el nombre
-            historico del rol.
-        </comment>
-        <sql>
-            UPDATE stockmgmt_user_role_scope
-            SET role = 'Admision'
-            WHERE role = 'SIHSALUS Admision';
-        </sql>
-    </changeSet>
-
-    <changeSet id="finalize-admission-role-identity-20260903" author="sihsalus">
-        <comment>
-            Retira la identidad historica despues de migrar todas sus referencias conocidas y
-            entrega el UUID estable a Admision antes de que Initializer procese roles-core.csv.
-        </comment>
-        <sql>
-            DELETE FROM role
-            WHERE role = 'SIHSALUS Admision';
-
-            UPDATE role
-            SET uuid = '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
-            WHERE role = 'Admision'
-              AND uuid &lt;&gt; '71dcb611-756a-4ad3-a9bb-73b6cfe28066';
-        </sql>
-    </changeSet>
-
-    <changeSet id="assert-canonical-admission-role-identity-20260903" author="sihsalus">
-        <preConditions onFail="HALT" onError="HALT">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*)
-                FROM role
-                WHERE role = 'SIHSALUS Admision'
-                   OR (
-                    role = 'Admision'
-                    AND uuid &lt;&gt; '71dcb611-756a-4ad3-a9bb-73b6cfe28066'
-                  )
-            </sqlCheck>
-        </preConditions>
-        <comment>
-            Impide continuar con un rol historico residual o una identidad canonica cuyo UUID
-            no pueda ser reconciliado de forma determinista por Initializer.
-        </comment>
-        <sql>SELECT 1;</sql>
     </changeSet>
 
     <changeSet id="normalize-triage-nurse-role-uuid-20260811" author="sihsalus">

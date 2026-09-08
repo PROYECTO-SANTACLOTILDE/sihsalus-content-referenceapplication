@@ -14,7 +14,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  admission-migration:
+    uses: ./.github/workflows/admission-role-reconciliation.yml
+
   build:
+    needs: admission-migration
     runs-on: ubuntu-latest
 
     steps:

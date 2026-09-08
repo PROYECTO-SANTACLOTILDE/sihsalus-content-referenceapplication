@@ -1,275 +1,624 @@
 #!/usr/bin/env python3
+"""Static changelog contracts and portable, read-only SQL policy tests.
 
+SQLite executes only the marked preflight SELECTs, unchanged. These tests do
+not execute migration writes, PREPARE, Liquibase, MariaDB transactions, rollback,
+Initializer, or OpenMRS authorization. The MariaDB harness covers migration
+execution separately; successful policy queries are not evidence of atomicity.
+"""
+
+import csv
+import hashlib
+import importlib.util
+import re
 import sqlite3
+import sys
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
-LIQUIBASE_PATH = Path("configuration/backend_configuration/liquibase/liquibase.xml")
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+LIQUIBASE_PATH = (
+    REPOSITORY_ROOT / "configuration/backend_configuration/liquibase/liquibase.xml"
+)
+ROLES_PATH = (
+    REPOSITORY_ROOT / "configuration/backend_configuration/roles/roles-core.csv"
+)
 NAMESPACE = "http://www.liquibase.org/xml/ns/dbchangelog/1.9"
 CANONICAL_ROLE = "Admision"
 LEGACY_ROLE = "SIHSALUS Admision"
 CANONICAL_UUID = "71dcb611-756a-4ad3-a9bb-73b6cfe28066"
-OWNER_ASSERTION_ID = "assert-admission-role-uuid-owner-20260903"
-CORE_MERGE_ID = "merge-admission-role-core-references-20260903"
-PATIENT_FLAGS_MERGE_ID = "merge-admission-role-patientflags-references-20260903"
-STOCK_MERGE_ID = "merge-admission-role-stock-references-20260903"
-FINALIZE_ID = "finalize-admission-role-identity-20260903"
-FINAL_ASSERTION_ID = "assert-canonical-admission-role-identity-20260903"
+RECONCILIATION_ID = "reconcile-admission-role-20260907"
+HISTORICAL_NORMALIZATION_ID = "normalize-admission-role-name-20260722"
+PORTABLE_POLICY_MARKERS = (
+    "uuid-owner", "privileges", "inheritance", "role-names", "reference-role-names",
+    "delete-relationships-privilege",
+)
+UNPUBLISHED_CHANGE_SET_IDS = {
+    "assert-admission-role-uuid-owner-20260903",
+    "merge-admission-role-core-references-20260903",
+    "merge-admission-role-patientflags-references-20260903",
+    "merge-admission-role-stock-references-20260903",
+    "finalize-admission-role-identity-20260903",
+    "assert-canonical-admission-role-identity-20260903",
+}
+
+# Frozen once from origin/main 8000b27f48bf124fe9a553d4ba41c678e9acc231.
+# Hashes cover each literal <changeSet ...>...</changeSet> block, not a SQLite
+# translation or a regenerated XML representation. Running tests needs no Git.
+HISTORICAL_CHANGE_SET_SHA256 = {
+    "increase-name-varchar-20250325":
+        "59c582f5f48e91281f757847449230bf667abf8d76a0b32ecb1e8c5d727a6bf4",
+    "ensure-canonical-visit-note-encounter-type-20260823":
+        "eef386716089b3a6b74d4c1b79867fff5d034ae41715d666859eab8d22132f38",
+    "ensure-canonical-visit-note-form-20260823":
+        "909b60bb4919b9d9331e1456247de0e99636a7568e4c9d021e03ab1505814766",
+    "link-canonical-visit-note-form-encounter-type-20260823":
+        "fdc6b2dff5c8d01115f4103081f264bf9e11ae1200b87b4be5acd0370dd4b534",
+    "assert-canonical-visit-note-form-contract-20260823":
+        "950262c079f2494d0f2803cba2ca3f9c057fa25c8b35d3c45b256dbc48b1a1a0",
+    "retire-legacy-ce001-form-1-0-1-20260825":
+        "60b601b5a638fb8dfc8db9ca24c6a2fe2d634792e41cf2ebbfe5c9031e3421eb",
+    "assert-exclusive-canonical-ce001-form-20260825":
+        "67619d5422d22bfd8421872f03e529cd97f16558eec0e881aba83ffce5c22305",
+    "normalize-admission-role-name-20260722":
+        "bbe7ac66c3789d7059b21f2f42e19d9ce134934c4fc775bb39a4edfb5cd56f92",
+    "normalize-triage-nurse-role-uuid-20260811":
+        "bd6d8d59e7dc3dd79fff505477031ace5e37f4b26045387ee9a7e45823f05fa8",
+}
+
+# Independent approved policy: neither editing SQL and CSV together nor reading
+# privileges from the database may silently broaden the migration's allowlist.
+APPROVED_PRIVILEGES = frozenset({
+    "Add Patients",
+    "Add Patient Identifiers",
+    "Add People",
+    "Add Relationships",
+    "Add Visits",
+    "Appointments: Invite Providers",
+    "Delete Relationships",
+    "Edit Patient Identifiers",
+    "Edit Patients",
+    "Edit People",
+    "Edit Relationships",
+    "Edit Visits",
+    "Get Admission Locations",
+    "Get Beds",
+    "Get Concept Attribute Types",
+    "Get Concept Sources",
+    "Get Concepts",
+    "Get Encounters",
+    "Get Identifier Types",
+    "Get Location Attribute Types",
+    "Get Locations",
+    "Get Patient Identifiers",
+    "Get Patients",
+    "Get People",
+    "Get Person Attribute Types",
+    "Get Providers",
+    "Get Queue Entries",
+    "Get Queues",
+    "Get Relationship Types",
+    "Get Relationships",
+    "Get Visit Attribute Types",
+    "Get Visit Types",
+    "Get Visits",
+    "Manage Appointments",
+    "Manage Own Appointments",
+    "Manage Queue Entries",
+    "View Appointment Services",
+    "View Appointments",
+    "View Identifier Types",
+    "View Locations",
+    "View Navigation Menu",
+    "View Patient Identifiers",
+    "View Patients",
+    "View People",
+    "View Person Attribute Types",
+    "View Relationship Types",
+    "View Relationships",
+    "app:appointments.issueDate.edit",
+    "app:appointments.startDate.edit",
+    "app:home",
+    "app:home.admision",
+    "app:home.citas",
+    "app:home.citas.editar",
+    "app:home.colasAtencion",
+    "app:home.colasAtencion.editar",
+    "app:opciones.busquedaPaciente",
+    "app:opciones.registrarAcompanante",
+    "app:opciones.registrarPaciente",
+})
+PREVIOUS_PRIVILEGES = APPROVED_PRIVILEGES - {"Delete Relationships"}
 
 
-def get_change_set(change_set_id: str) -> ET.Element:
-    root = ET.parse(LIQUIBASE_PATH).getroot()
-    for change_set in root.findall(f"{{{NAMESPACE}}}changeSet"):
-        if change_set.get("id") == change_set_id:
-            return change_set
-    raise AssertionError(f"Missing Liquibase changeSet: {change_set_id}")
+def get_change_sets():
+    return ET.parse(LIQUIBASE_PATH).getroot().findall(f"{{{NAMESPACE}}}changeSet")
 
 
-def get_sql(change_set_id: str) -> str:
-    sql_element = get_change_set(change_set_id).find(f"{{{NAMESPACE}}}sql")
-    if sql_element is None:
-        raise AssertionError(f"Missing SQL for Liquibase changeSet: {change_set_id}")
-    sql = "".join(sql_element.itertext())
-    return sql.replace("INSERT IGNORE INTO", "INSERT OR IGNORE INTO").replace(
-        "UUID()", "'generated-admission-role-uuid'"
-    )
-
-
-def get_assertion_query(change_set_id: str) -> str:
-    sql_check = get_change_set(change_set_id).find(
-        f".//{{{NAMESPACE}}}sqlCheck"
-    )
-    if sql_check is None:
+def get_reconciliation():
+    matches = [
+        item for item in get_change_sets()
+        if item.get("id") == RECONCILIATION_ID
+    ]
+    if len(matches) != 1:
         raise AssertionError(
-            f"Missing assertion query for Liquibase changeSet: {change_set_id}"
+            f"Expected exactly one {RECONCILIATION_ID}, found {len(matches)}"
         )
-    return "".join(sql_check.itertext()).strip()
+    return matches[0]
 
 
-def table_exists(connection: sqlite3.Connection, table_name: str) -> bool:
-    return (
-        connection.execute(
-            "SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name = ?",
-            (table_name,),
-        ).fetchone()[0]
-        == 1
-    )
+def get_policy_check(marker):
+    matches = [
+        item
+        for item in get_reconciliation().findall(f".//{{{NAMESPACE}}}sqlCheck")
+        if f"/* admission:{marker} */" in "".join(item.itertext())
+    ]
+    if len(matches) != 1:
+        raise AssertionError(
+            f"Expected one admission:{marker} sqlCheck, found {len(matches)}"
+        )
+    return matches[0]
 
 
-def role_exists(connection: sqlite3.Connection, role_name: str) -> bool:
-    return (
-        connection.execute(
-            "SELECT COUNT(*) FROM role WHERE role = ?", (role_name,)
-        ).fetchone()[0]
-        == 1
-    )
+def get_policy_query(marker):
+    return "".join(get_policy_check(marker).itertext()).strip()
 
 
-def apply_reconciliation(connection: sqlite3.Connection) -> None:
-    if connection.execute(get_assertion_query(OWNER_ASSERTION_ID)).fetchone()[0] != 0:
-        raise RuntimeError("The canonical admission UUID belongs to an unrelated role")
-
-    if role_exists(connection, LEGACY_ROLE):
-        connection.executescript(get_sql(CORE_MERGE_ID))
-        if table_exists(connection, "patientflags_tag_role"):
-            connection.executescript(get_sql(PATIENT_FLAGS_MERGE_ID))
-        if table_exists(connection, "stockmgmt_user_role_scope"):
-            connection.executescript(get_sql(STOCK_MERGE_ID))
-
-    connection.executescript(get_sql(FINALIZE_ID))
-
-    if connection.execute(get_assertion_query(FINAL_ASSERTION_ID)).fetchone()[0] != 0:
-        raise RuntimeError("The admission role was not normalized")
+def without_sql_comments(sql):
+    return re.sub(r"/\*.*?\*/|--[^\n]*", "", sql, flags=re.DOTALL)
 
 
-def create_database(include_optional_tables: bool = True) -> sqlite3.Connection:
-    connection = sqlite3.connect(":memory:")
-    connection.execute("PRAGMA foreign_keys = ON")
-    connection.executescript(
-        """
-        CREATE TABLE role (
-            role TEXT PRIMARY KEY,
-            description TEXT,
-            uuid TEXT NOT NULL UNIQUE
-        );
-        CREATE TABLE user_role (
-            user_id INTEGER NOT NULL,
-            role TEXT NOT NULL REFERENCES role(role),
-            PRIMARY KEY (user_id, role)
-        );
-        CREATE TABLE role_privilege (
-            role TEXT NOT NULL REFERENCES role(role),
-            privilege TEXT NOT NULL,
-            PRIMARY KEY (role, privilege)
-        );
-        CREATE TABLE role_role (
-            parent_role TEXT NOT NULL REFERENCES role(role),
-            child_role TEXT NOT NULL REFERENCES role(role),
-            PRIMARY KEY (parent_role, child_role)
-        );
-        """
-    )
-    if include_optional_tables:
-        connection.executescript(
-            """
-            CREATE TABLE patientflags_tag_role (
-                tag_id INTEGER NOT NULL,
-                role TEXT NOT NULL REFERENCES role(role)
+def snapshot(connection):
+    return tuple(connection.iterdump())
+
+
+class AdmissionChangelogStructureTest(unittest.TestCase):
+    def test_only_one_new_change_set_precedes_historical_normalization(self):
+        ids = [item.get("id") for item in get_change_sets()]
+        expected = list(HISTORICAL_CHANGE_SET_SHA256)
+        expected.insert(
+            expected.index(HISTORICAL_NORMALIZATION_ID), RECONCILIATION_ID
+        )
+        self.assertEqual(expected, ids)
+
+    def test_all_nine_historical_change_sets_are_byte_for_byte_unchanged(self):
+        blocks = re.findall(
+            r"<changeSet\b.*?</changeSet>",
+            LIQUIBASE_PATH.read_text(encoding="utf-8"),
+            re.DOTALL,
+        )
+        by_id = {}
+        for block in blocks:
+            identifier = ET.fromstring(block).get("id")
+            self.assertNotIn(identifier, by_id)
+            by_id[identifier] = hashlib.sha256(block.encode()).hexdigest()
+        for identifier, digest in HISTORICAL_CHANGE_SET_SHA256.items():
+            with self.subTest(change_set=identifier):
+                self.assertEqual(digest, by_id.get(identifier))
+
+    def test_preconditions_halt_on_rejection_or_error_before_any_sql(self):
+        change_set = get_reconciliation()
+        preconditions = change_set.find(f"{{{NAMESPACE}}}preConditions")
+        self.assertIsNotNone(preconditions)
+        self.assertEqual("HALT", preconditions.get("onFail"))
+        self.assertEqual("HALT", preconditions.get("onError"))
+        children = list(change_set)
+        sql_elements = change_set.findall(f"{{{NAMESPACE}}}sql")
+        self.assertTrue(sql_elements)
+        self.assertTrue(all(
+            children.index(preconditions) < children.index(sql)
+            for sql in sql_elements
+        ))
+        checks = preconditions.findall(f".//{{{NAMESPACE}}}sqlCheck")
+        self.assertTrue(checks)
+        self.assertTrue(all(
+            check.get("expectedResult") == "0" for check in checks
+        ))
+        for marker in (
+            *PORTABLE_POLICY_MARKERS, "engines", "foreign-keys",
+            "legacy-history", "constraint-enforcement", "copied-table-columns",
+            "core-primary-keys", "role-uuid-constraint", "core-foreign-keys",
+            "privilege-foreign-key",
+            "patientflags-role-names", "stock-role-names",
+            "orphan-core-references", "orphan-patientflags-references",
+            "orphan-stock-references",
+        ):
+            with self.subTest(marker=marker):
+                self.assertTrue(any(
+                    f"/* admission:{marker} */" in "".join(check.itertext())
+                    for check in checks
+                ))
+
+    def test_history_guards_cover_both_journals_and_all_six_unpublished_changes(self):
+        checks = [
+            check for check in get_reconciliation().findall(
+                f".//{{{NAMESPACE}}}sqlCheck"
+            )
+            if "/* admission:legacy-history */" in "".join(check.itertext())
+        ]
+        self.assertEqual(2, len(checks))
+        journals = set()
+        for check in checks:
+            query = "".join(check.itertext())
+            self.assertEqual(
+                UNPUBLISHED_CHANGE_SET_IDS, set(re.findall(r"'([^']*)'", query))
+            )
+            journals.add(re.search(r"\bFROM\s+(\w+)", query).group(1))
+        self.assertEqual({"liquibasechangelog", "DATABASECHANGELOG"}, journals)
+
+    def test_single_change_set_requests_transactional_execution(self):
+        # A declared flag is not proof that MariaDB/Liquibase rolls back writes.
+        self.assertEqual("true", get_reconciliation().get("runInTransaction"))
+
+    def test_new_sql_neither_suppresses_write_errors_nor_changes_schema_or_inheritance(self):
+        sql = "\n".join(
+            "".join(item.itertext())
+            for item in get_reconciliation().findall(f"{{{NAMESPACE}}}sql")
+        )
+        sql = without_sql_comments(sql)
+        self.assertNotRegex(sql, r"(?i)\bINSERT\s+IGNORE\b")
+        self.assertNotRegex(
+            sql,
+            r"(?i)\b(?:CREATE|ALTER|DROP|TRUNCATE|RENAME)\s+"
+            r"(?:TABLE|PROCEDURE|FUNCTION|TRIGGER|DATABASE)\b",
+        )
+        self.assertNotRegex(
+            sql,
+            r"(?i)\b(?:INSERT\s+INTO|UPDATE|DELETE\s+FROM)\s+role_role\b",
+        )
+
+    def test_portable_policy_checks_are_selects_not_a_migration_simulator(self):
+        for marker in PORTABLE_POLICY_MARKERS:
+            with self.subTest(marker=marker):
+                query = without_sql_comments(get_policy_query(marker)).strip()
+                self.assertRegex(query, r"(?i)^SELECT\b")
+                # Privilege literals include "Delete Relationships"; exclude
+                # quoted values when checking for SQL statement keywords.
+                statements = re.sub(r"'(?:''|[^'])*'", "''", query)
+                self.assertNotRegex(
+                    statements,
+                    r"(?i)\b(?:INSERT|UPDATE|DELETE|PREPARE|EXECUTE|COMMIT|ROLLBACK)\b",
+                )
+
+    def test_only_published_delete_relationships_is_added_to_an_existing_role(self):
+        # This is a statement-shape contract. The MariaDB harness, not SQLite,
+        # must prove the final 58 privileges, atomicity, and repeated execution.
+        sql = "\n".join(
+            "".join(item.itertext())
+            for item in get_reconciliation().findall(f"{{{NAMESPACE}}}sql")
+        )
+        statements = re.findall(
+            r"INSERT\s+INTO\s+role_privilege\b[^;]+;", sql, re.IGNORECASE
+        )
+        self.assertEqual(2, len(statements))
+        additions = [
+            statement for statement in statements
+            if "'Delete Relationships'" in statement
+        ]
+        self.assertEqual(1, len(additions))
+        self.assertEqual(
+            "INSERT INTO role_privilege (role, privilege) "
+            "SELECT 'Admision', 'Delete Relationships' "
+            "FROM role canonical WHERE canonical.role = 'Admision' "
+            "AND NOT EXISTS ( SELECT 1 FROM role_privilege existing_privilege "
+            "WHERE existing_privilege.role = 'Admision' "
+            "AND existing_privilege.privilege = 'Delete Relationships' );",
+            " ".join(additions[0].split()),
+        )
+        self.assertNotRegex(sql, r"(?i)\bINSERT\s+INTO\s+privilege\b")
+
+    def test_sql_allowlist_matches_independent_policy_csv_and_validator(self):
+        with ROLES_PATH.open(newline="", encoding="utf-8-sig") as handle:
+            rows = list(csv.DictReader(handle))
+        roles = [
+            row for row in rows
+            if row["Uuid"] == CANONICAL_UUID or row["Role name"] == CANONICAL_ROLE
+        ]
+        self.assertEqual(1, len(roles))
+        role = roles[0]
+        self.assertEqual(CANONICAL_ROLE, role["Role name"])
+        self.assertEqual(CANONICAL_UUID, role["Uuid"])
+        self.assertEqual("", role["Inherited roles"])
+        self.assertEqual(
+            APPROVED_PRIVILEGES,
+            {privilege.strip() for privilege in role["Privileges"].split(";")},
+        )
+        spec = importlib.util.spec_from_file_location(
+            "admission_csv_validator",
+            Path(__file__).with_name("validate_csv_widths.py"),
+        )
+        validator = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(validator)
+        self.assertEqual(
+            APPROVED_PRIVILEGES, validator.ADMISSION_REQUIRED_PRIVILEGES
+        )
+        self.assertEqual(CANONICAL_UUID, validator.ADMISSION_ROLE_UUID)
+        self.assertEqual(CANONICAL_ROLE, validator.ADMISSION_ROLE_NAME)
+        literals = set(re.findall(r"'([^']*)'", get_policy_query("privileges")))
+        self.assertEqual(
+            APPROVED_PRIVILEGES, literals - {CANONICAL_ROLE, LEGACY_ROLE}
+        )
+        self.assertEqual(58, len(APPROVED_PRIVILEGES))
+        self.assertEqual(57, len(PREVIOUS_PRIVILEGES))
+
+
+class AdmissionPortablePolicyTest(unittest.TestCase):
+    def database(self, roles=()):
+        connection = sqlite3.connect(":memory:")
+        self.addCleanup(connection.close)
+        connection.execute("PRAGMA foreign_keys = ON")
+        connection.executescript("""
+            CREATE TABLE role (
+                role TEXT COLLATE NOCASE PRIMARY KEY,
+                description TEXT, uuid TEXT UNIQUE NOT NULL
             );
-            CREATE TABLE stockmgmt_user_role_scope (
-                user_role_scope_id INTEGER PRIMARY KEY,
-                role TEXT NOT NULL REFERENCES role(role),
-                uuid TEXT NOT NULL UNIQUE
+            CREATE TABLE privilege (privilege TEXT PRIMARY KEY);
+            INSERT INTO privilege VALUES ('Delete Relationships');
+            CREATE TABLE role_privilege (
+                role TEXT NOT NULL REFERENCES role(role), privilege TEXT NOT NULL,
+                PRIMARY KEY (role, privilege)
             );
-            """
+            CREATE TABLE role_role (
+                parent_role TEXT NOT NULL REFERENCES role(role),
+                child_role TEXT NOT NULL REFERENCES role(role),
+                PRIMARY KEY (parent_role, child_role)
+            );
+            CREATE TABLE user_role (
+                user_id INTEGER NOT NULL, role TEXT NOT NULL REFERENCES role(role),
+                PRIMARY KEY (user_id, role)
+            );
+            CREATE TABLE synthetic_unrelated_state (id INTEGER PRIMARY KEY, value TEXT);
+            INSERT INTO synthetic_unrelated_state VALUES (1, 'synthetic-sentinel');
+        """)
+        self.add_role(
+            connection, "Other", "synthetic-other-uuid",
+            {"Synthetic unrelated privilege"},
         )
-    return connection
+        self.add_role(
+            connection, "Other child", "synthetic-other-child-uuid", set()
+        )
+        connection.execute("INSERT INTO role_role VALUES ('Other', 'Other child')")
+        for name, uuid, privileges in roles:
+            self.add_role(connection, name, uuid, privileges)
+        return connection
 
-
-class AdmissionRoleReconciliationTest(unittest.TestCase):
-    def test_merges_duplicate_roles_without_losing_or_duplicating_references(self):
-        connection = create_database()
-        connection.executemany(
-            "INSERT INTO role(role, description, uuid) VALUES (?, ?, ?)",
-            [
-                (CANONICAL_ROLE, "canonical", "temporary-canonical-uuid"),
-                (LEGACY_ROLE, "legacy", CANONICAL_UUID),
-                ("Other", "other", "other-role-uuid"),
-            ],
-        )
-        connection.executemany(
-            "INSERT INTO user_role(user_id, role) VALUES (?, ?)",
-            [(1, CANONICAL_ROLE), (1, LEGACY_ROLE), (2, LEGACY_ROLE)],
-        )
-        connection.executemany(
-            "INSERT INTO role_privilege(role, privilege) VALUES (?, ?)",
-            [
-                (CANONICAL_ROLE, "Shared"),
-                (LEGACY_ROLE, "Shared"),
-                (LEGACY_ROLE, "Legacy only"),
-            ],
-        )
-        connection.executemany(
-            "INSERT INTO role_role(parent_role, child_role) VALUES (?, ?)",
-            [
-                (CANONICAL_ROLE, "Other"),
-                (LEGACY_ROLE, "Other"),
-                ("Other", CANONICAL_ROLE),
-                ("Other", LEGACY_ROLE),
-                (LEGACY_ROLE, CANONICAL_ROLE),
-                (CANONICAL_ROLE, LEGACY_ROLE),
-            ],
-        )
-        connection.executemany(
-            "INSERT INTO patientflags_tag_role(tag_id, role) VALUES (?, ?)",
-            [(10, CANONICAL_ROLE), (10, LEGACY_ROLE), (20, LEGACY_ROLE)],
-        )
-        connection.executemany(
-            "INSERT INTO stockmgmt_user_role_scope(user_role_scope_id, role, uuid) VALUES (?, ?, ?)",
-            [(1, CANONICAL_ROLE, "scope-1"), (2, LEGACY_ROLE, "scope-2")],
-        )
-
-        apply_reconciliation(connection)
-
-        self.assertEqual(
-            [(CANONICAL_ROLE, CANONICAL_UUID)],
-            connection.execute(
-                "SELECT role, uuid FROM role WHERE role IN (?, ?)",
-                (CANONICAL_ROLE, LEGACY_ROLE),
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(1, CANONICAL_ROLE), (2, CANONICAL_ROLE)],
-            connection.execute(
-                "SELECT user_id, role FROM user_role ORDER BY user_id, role"
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(CANONICAL_ROLE, "Legacy only"), (CANONICAL_ROLE, "Shared")],
-            connection.execute(
-                "SELECT role, privilege FROM role_privilege ORDER BY role, privilege"
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(CANONICAL_ROLE, "Other"), ("Other", CANONICAL_ROLE)],
-            connection.execute(
-                "SELECT parent_role, child_role FROM role_role ORDER BY parent_role, child_role"
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(10, CANONICAL_ROLE), (20, CANONICAL_ROLE)],
-            connection.execute(
-                "SELECT tag_id, role FROM patientflags_tag_role ORDER BY tag_id, role"
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(1, CANONICAL_ROLE), (2, CANONICAL_ROLE)],
-            connection.execute(
-                "SELECT user_role_scope_id, role FROM stockmgmt_user_role_scope ORDER BY user_role_scope_id"
-            ).fetchall(),
-        )
-
-    def test_migrates_a_legacy_only_role_without_optional_module_tables(self):
-        connection = create_database(include_optional_tables=False)
-        connection.executemany(
-            "INSERT INTO role(role, description, uuid) VALUES (?, ?, ?)",
-            [(LEGACY_ROLE, "legacy", CANONICAL_UUID), ("Other", "other", "other-role-uuid")],
-        )
+    @staticmethod
+    def add_role(connection, name, uuid, privileges):
         connection.execute(
-            "INSERT INTO user_role(user_id, role) VALUES (?, ?)", (7, LEGACY_ROLE)
+            "INSERT INTO role VALUES (?, 'synthetic role', ?)", (name, uuid)
         )
-
-        apply_reconciliation(connection)
-
-        self.assertEqual(
-            [(CANONICAL_ROLE, CANONICAL_UUID)],
-            connection.execute(
-                "SELECT role, uuid FROM role WHERE role = ?", (CANONICAL_ROLE,)
-            ).fetchall(),
-        )
-        self.assertEqual(
-            [(7, CANONICAL_ROLE)],
-            connection.execute("SELECT user_id, role FROM user_role").fetchall(),
-        )
-
-    def test_normalizes_a_canonical_role_with_a_stale_uuid(self):
-        connection = create_database()
-        connection.execute(
-            "INSERT INTO role(role, description, uuid) VALUES (?, ?, ?)",
-            (CANONICAL_ROLE, "canonical", "temporary-canonical-uuid"),
-        )
-
-        apply_reconciliation(connection)
-
-        self.assertEqual(
-            CANONICAL_UUID,
-            connection.execute(
-                "SELECT uuid FROM role WHERE role = ?", (CANONICAL_ROLE,)
-            ).fetchone()[0],
-        )
-
-    def test_refuses_to_steal_the_canonical_uuid_from_an_unrelated_role(self):
-        connection = create_database()
         connection.executemany(
-            "INSERT INTO role(role, description, uuid) VALUES (?, ?, ?)",
-            [
-                (CANONICAL_ROLE, "canonical", "temporary-canonical-uuid"),
-                ("Unrelated", "unrelated", CANONICAL_UUID),
-            ],
+            "INSERT INTO role_privilege VALUES (?, ?)",
+            [(name, privilege) for privilege in sorted(privileges)],
         )
+        connection.execute("INSERT INTO user_role VALUES (1, ?)", (name,))
 
-        with self.assertRaisesRegex(RuntimeError, "unrelated role"):
-            apply_reconciliation(connection)
+    def assert_policy(self, connection, rejected_by=None):
+        before = snapshot(connection)
+        changes_before = connection.total_changes
+        results = {
+            marker: connection.execute(get_policy_query(marker)).fetchone()[0]
+            for marker in PORTABLE_POLICY_MARKERS
+        }
+        self.assertEqual(before, snapshot(connection))
+        self.assertEqual(changes_before, connection.total_changes)
+        if rejected_by is None:
+            self.assertEqual(dict.fromkeys(PORTABLE_POLICY_MARKERS, 0), results)
+        else:
+            self.assertGreater(results[rejected_by], 0)
+        return results
 
+    def test_absent_admission_roles_pass_read_only_policy_for_initializer(self):
+        self.assert_policy(self.database())
+
+    def test_absent_roles_do_not_require_or_create_the_native_privilege(self):
+        connection = self.database()
+        connection.execute("DELETE FROM privilege")
+        self.assert_policy(connection)
+
+    def test_existing_identity_requires_exact_native_delete_relationships_privilege(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for native_privilege in (None, "delete relationships", "Delete Relationships "):
+                with self.subTest(role=role, native_privilege=native_privilege):
+                    connection = self.database([
+                        (role, CANONICAL_UUID, PREVIOUS_PRIVILEGES)
+                    ])
+                    connection.execute("DELETE FROM privilege")
+                    if native_privilege is not None:
+                        connection.execute(
+                            "INSERT INTO privilege VALUES (?)", (native_privilege,)
+                        )
+                    self.assert_policy(connection, "delete-relationships-privilege")
+
+    def test_each_identity_accepts_both_approved_privilege_variants(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for privileges in (PREVIOUS_PRIVILEGES, APPROVED_PRIVILEGES):
+                with self.subTest(role=role, privileges=len(privileges)):
+                    self.assert_policy(
+                        self.database([(role, CANONICAL_UUID, privileges)])
+                    )
+
+    def test_duplicate_identities_accept_all_combinations_of_the_two_approved_variants(self):
+        for canonical_privileges in (PREVIOUS_PRIVILEGES, APPROVED_PRIVILEGES):
+            for legacy_privileges in (PREVIOUS_PRIVILEGES, APPROVED_PRIVILEGES):
+                with self.subTest(
+                    canonical=len(canonical_privileges),
+                    legacy=len(legacy_privileges),
+                ):
+                    self.assert_policy(self.database([
+                        (CANONICAL_ROLE, "synthetic-stale-canonical-uuid", canonical_privileges),
+                        (LEGACY_ROLE, CANONICAL_UUID, legacy_privileges),
+                    ]))
+
+    def test_read_only_policy_is_repeatable_without_changing_any_table(self):
+        connection = self.database([
+            (CANONICAL_ROLE, "synthetic-stale-canonical-uuid", PREVIOUS_PRIVILEGES),
+            (LEGACY_ROLE, CANONICAL_UUID, APPROVED_PRIVILEGES),
+        ])
         self.assertEqual(
-            "temporary-canonical-uuid",
-            connection.execute(
-                "SELECT uuid FROM role WHERE role = ?", (CANONICAL_ROLE,)
-            ).fetchone()[0],
+            self.assert_policy(connection), self.assert_policy(connection)
         )
+
+    def test_rejects_each_missing_required_privilege_from_either_identity(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for privilege in sorted(PREVIOUS_PRIVILEGES):
+                for approved in (PREVIOUS_PRIVILEGES, APPROVED_PRIVILEGES):
+                    with self.subTest(
+                        role=role, missing=privilege, variant=len(approved)
+                    ):
+                        self.assert_policy(
+                            self.database([
+                                (role, CANONICAL_UUID, approved - {privilege})
+                            ]),
+                            "privileges",
+                        )
+
+    def test_rejects_extra_privileges_in_either_identity(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for extra in (
+                "Purge Relationships", "Manage Roles", "Get Global Properties",
+                "Synthetic extra privilege",
+            ):
+                for approved in (PREVIOUS_PRIVILEGES, APPROVED_PRIVILEGES):
+                    with self.subTest(role=role, extra=extra, variant=len(approved)):
+                        self.assert_policy(
+                            self.database([
+                                (role, CANONICAL_UUID, approved | {extra})
+                            ]),
+                            "privileges",
+                        )
+
+    def test_valid_identity_does_not_mask_an_unsafe_second_identity(self):
+        for unsafe_role in (CANONICAL_ROLE, LEGACY_ROLE):
+            with self.subTest(unsafe_role=unsafe_role):
+                roles = [
+                    (CANONICAL_ROLE, "synthetic-stale-uuid", APPROVED_PRIVILEGES),
+                    (LEGACY_ROLE, CANONICAL_UUID, PREVIOUS_PRIVILEGES),
+                ]
+                roles = [
+                    (name, uuid, privileges | {"Purge Relationships"})
+                    if name == unsafe_role else (name, uuid, privileges)
+                    for name, uuid, privileges in roles
+                ]
+                self.assert_policy(self.database(roles), "privileges")
+
+    def test_rejects_complementary_partial_lists_even_when_union_is_approved(self):
+        first_half = frozenset(sorted(APPROVED_PRIVILEGES)[:29])
+        second_half = APPROVED_PRIVILEGES - first_half
+        self.assertEqual(APPROVED_PRIVILEGES, first_half | second_half)
+        self.assert_policy(self.database([
+            (CANONICAL_ROLE, "synthetic-stale-uuid", first_half),
+            (LEGACY_ROLE, CANONICAL_UUID, second_half),
+        ]), "privileges")
+
+    def test_rejects_ascii_case_variants_of_privilege_names(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            with self.subTest(role=role):
+                privileges = (
+                    APPROVED_PRIVILEGES - {"Get Patients"}
+                ) | {"get patients"}
+                self.assert_policy(
+                    self.database([(role, CANONICAL_UUID, privileges)]),
+                    "privileges",
+                )
+
+    def test_rejects_case_and_space_variants_of_role_names(self):
+        # SQLite's own NOCASE collation makes these aliases compare equal.
+        # This does not model MariaDB accent or trailing-space collations.
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for alias in (role.lower(), role + " ", " " + role):
+                with self.subTest(role=role, alias=alias):
+                    self.assert_policy(self.database([
+                        (alias, CANONICAL_UUID, APPROVED_PRIVILEGES)
+                    ]), "role-names")
+
+    def test_rejects_reference_aliases_without_changing_any_table(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for table in ("user_role", "role_privilege"):
+                with self.subTest(role=role, table=table):
+                    connection = self.database([
+                        (role, CANONICAL_UUID, APPROVED_PRIVILEGES)
+                    ])
+                    # Table names are the fixed fixture tables above. SQLite
+                    # NOCASE on the referenced key permits these alias rows.
+                    connection.execute(
+                        f"UPDATE {table} SET role = ? WHERE role = ?",
+                        (role.lower(), role),
+                    )
+                    self.assert_policy(connection, "reference-role-names")
+
+    def test_rejects_replacing_a_required_privilege_even_when_count_is_unchanged(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            with self.subTest(role=role):
+                privileges = (
+                    APPROVED_PRIVILEGES - {"Get Patients"}
+                ) | {"Purge Relationships"}
+                self.assert_policy(
+                    self.database([(role, CANONICAL_UUID, privileges)]),
+                    "privileges",
+                )
+
+    def test_rejects_an_empty_privilege_set_for_an_existing_identity(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            with self.subTest(role=role):
+                self.assert_policy(
+                    self.database([(role, CANONICAL_UUID, set())]), "privileges"
+                )
+
+    def test_rejects_inheritance_in_both_directions_for_either_identity(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for parent, child in ((role, "Other"), ("Other", role), (role, role)):
+                with self.subTest(parent=parent, child=child):
+                    connection = self.database([
+                        (role, CANONICAL_UUID, APPROVED_PRIVILEGES)
+                    ])
+                    connection.execute(
+                        "INSERT INTO role_role VALUES (?, ?)", (parent, child)
+                    )
+                    self.assert_policy(connection, "inheritance")
+
+    def test_rejects_inheritance_between_the_two_identities(self):
+        for parent, child in (
+            (CANONICAL_ROLE, LEGACY_ROLE), (LEGACY_ROLE, CANONICAL_ROLE)
+        ):
+            with self.subTest(parent=parent, child=child):
+                connection = self.database([
+                    (CANONICAL_ROLE, "synthetic-stale-canonical-uuid", APPROVED_PRIVILEGES),
+                    (LEGACY_ROLE, CANONICAL_UUID, PREVIOUS_PRIVILEGES),
+                ])
+                connection.execute(
+                    "INSERT INTO role_role VALUES (?, ?)", (parent, child)
+                )
+                self.assert_policy(connection, "inheritance")
+
+    def test_rejects_canonical_uuid_owned_by_a_third_role_without_any_changes(self):
+        for role in (CANONICAL_ROLE, LEGACY_ROLE):
+            for uuid in (
+                CANONICAL_UUID, CANONICAL_UUID.upper(), " " + CANONICAL_UUID + " ",
+            ):
+                with self.subTest(role=role, uuid=uuid):
+                    connection = self.database([
+                        (role, "synthetic-stale-uuid", APPROVED_PRIVILEGES)
+                    ])
+                    connection.execute(
+                        "UPDATE role SET uuid = ? WHERE role = 'Other'", (uuid,),
+                    )
+                    self.assert_policy(connection, "uuid-owner")
+
+    def test_rejects_uuid_collision_even_when_both_admission_identities_are_absent(self):
+        for uuid in (
+            CANONICAL_UUID, CANONICAL_UUID.upper(), " " + CANONICAL_UUID + " ",
+        ):
+            with self.subTest(uuid=uuid):
+                connection = self.database()
+                connection.execute(
+                    "UPDATE role SET uuid = ? WHERE role = 'Other'", (uuid,)
+                )
+                self.assert_policy(connection, "uuid-owner")
 
 
 if __name__ == "__main__":
+    sys.dont_write_bytecode = True
     unittest.main()

@@ -1,102 +1,159 @@
 # Reconciliación de identidades del rol de Admisión
 
-Estado: BORRADOR — NO HABILITAR, PUBLICAR NI DESPLEGAR.
+Estado: CANDIDATA EN REVISIÓN — NO PUBLICAR NI DESPLEGAR.
 
-Este documento permite revisar la migración separadamente del permiso de
-relaciones de #222. No aprueba una política de privilegios ni autoriza merge,
-release, acceso a entornos o ejecución sobre usuarios existentes. No contiene
-inventarios de instalaciones, cuentas, credenciales ni datos clínicos.
+El PR #223 se revisa separadamente del permiso `Delete Relationships`, publicado
+en #222 / `1.25.15`. La candidata `1.25.16` requiere CI del SHA final, aprobación
+independiente y los controles de actualización siguientes. Declarar una versión
+en esta rama no la reserva en Maven Central ni aprueba su publicación.
 
-## Procedencia y alcance conservado
+## Corrección respecto de la primera candidata
 
-La extracción conserva los seis changeSets, sus 172 líneas originales, la
-prueba y el paso CI de `bd3c9c6647bb62fb517c6564cfefead411a00436`, cuyo padre es
-`cb38db1dcf50c1d998776c422ed30ce1f60b2e07`. No cambia SQL, precondiciones,
-identificadores ni orden de ejecución. Tampoco modifica changeSets anteriores.
+Los seis changeSets `20260903` de `9855170` no se publicaron en `main`. Se
+sustituyen por `reconcile-admission-role-20260907`, antes de
+`normalize-admission-role-name-20260722`. Los changeSets históricos publicados
+permanecen intactos: no se cambian checksums ni se usa `clearCheckSums`.
 
-Los archivos ejecutables son:
+La secuencia anterior podía unir privilegios y herencias no aprobados, convertir
+herencias en ciclos y dejar referencias trasladadas tras un fallo posterior.
+Además, la normalización histórica podía escribir antes de las comprobaciones
+nuevas e intentaba actualizar tablas de módulos ausentes.
 
-- `configuration/backend_configuration/liquibase/liquibase.xml`;
-- `.github/scripts/test_admission_role_reconciliation.py`;
-- el paso `Test admission role reconciliation` de `.github/workflows/main.yml`.
+La nueva operación comprueba el estado antes de modificar datos del rol y
+agrupa la reconciliación en una sola transacción. Las migraciones anteriores de
+otros metadatos siguen teniendo sus propias transacciones: no se promete
+rollback de todo el changelog ni de toda la carga de contenido.
 
-El cambio de `Delete Relationships` en `roles-core.csv` y su validador pertenece
-al PR de permisos, no a esta extracción. Esta rama no modifica esos archivos ni
-reserva una nueva versión de Maven.
+Una instalación que ejecutó cualquiera de los seis changeSets candidatos de
+`20260903` queda fuera del contrato automático y debe revisarse. No se inventa
+una reparación de un estado parcialmente migrado ni se borra su historial.
 
-## SQL e Initializer son etapas distintas
+## Contrato de entrada y salida
 
-La fase SQL reconcilia las dos identidades conocidas de Admisión y sus
-referencias conocidas antes de entregar la identidad canónica al cargador de
-roles. Incluye comprobaciones de identidad, unión de asignaciones y referencias,
-y retirada de la identidad histórica. No es una operación meramente documental:
-puede cambiar los privilegios y las herencias efectivos de usuarios existentes.
+Se reconocen únicamente `Admision`, `SIHSALUS Admision` y el UUID canónico
+`71dcb611-756a-4ad3-a9bb-73b6cfe28066`. El UUID nunca se toma de un tercer rol.
 
-Initializer procesa después la definición declarativa de roles. La unión que
-produce el SQL no demuestra qué asignaciones permanecerán tras ese cargador,
-sus checksums y sus reglas de actualización. Deben verificarse ambas etapas con
-la versión concreta de Initializer y el contenido final coordinado. Esta
-extracción no resuelve diferencias entre la política histórica y la canónica.
+Cada identidad existente debe tener exactamente la lista de privilegios del
+rol canónico en `roles-core.csv`, o esa misma lista sin `Delete Relationships`
+(el contrato inmediatamente anterior a #222). No se admiten otros permisos,
+subconjuntos arbitrarios ni herencias que entren o salgan de cualquiera de las
+dos identidades. Una diferencia se rechaza, no se considera autorización para
+ampliar accesos ni para descartar excepciones operativas.
 
-La migración está incluida en el changelog del paquete y no dispone de un
-interruptor de ejecución. Mantener el PR en borrador y fuera de releases es un
-control de proceso, no un bloqueo técnico si alguien despliega ese artefacto.
+La salida SQL converge en la lista actual de 58 privilegios **solo después de
+validar ambas identidades**. Si falta `Delete Relationships`, agrega únicamente
+ese permiso, ya publicado en #222 / `1.25.15`. No crea privilegios nuevos ni
+acepta excepciones fuera de la lista. Esto evita depender de que Initializer
+vuelva a cargar un CSV idéntico al que ya tiene registrado por checksum.
 
-## Riesgos de actualización pendientes
+| Estado inicial admitido                                                            | Resultado SQL                                                  |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Ninguna identidad existe                                                           | Sin crear roles; Initializer podrá cargar el CSV               |
+| Solo existe la identidad histórica                                                 | Identidad canónica con sus usuarios y referencias              |
+| Ambas existen, sin herencias y con políticas admitidas                             | Un único rol canónico, referencias compartidas sin duplicación |
+| Solo existe `Admision` con UUID desactualizado                                     | Normalización del UUID, conservando las referencias por nombre |
+| UUID canónico de un tercero, política incompatible o historial candidato ejecutado | Error antes de escribir datos de Admisión                      |
 
-- La historia Liquibase puede diferir entre instalaciones. Hay que comprobar el
-  changelog completo, incluido el cambio anterior de normalización, cuando esté
-  pendiente, aplicado o marcado como ejecutado; no basta ejecutar los seis
-  bloques nuevos de forma aislada.
-- Pueden variar las tablas de módulos, restricciones, referencias y colaciones.
-  Las referencias conocidas en el SQL no constituyen un inventario completo de
-  toda instalación. No se deben eliminar referencias desconocidas para forzar
-  la finalización.
-- Las colisiones, las herencias y los permisos efectivos requieren aprobación
-  de la política RBAC. Conservar filas en una prueba no demuestra equivalencia
-  de acceso ni ausencia de ampliación de privilegios.
-- Deben comprobarse fallos intermedios, reintentos, estado parcial y recuperación
-  con MariaDB/Liquibase reales. No se presume una transacción única que revierta
-  toda la secuencia.
-- No existe aquí un rollback explícito de los changeSets. Revertir el paquete
-  no restaura por sí solo las identidades o referencias modificadas en SQL.
+Las tablas existentes afectadas deben usar InnoDB. Las referencias conocidas
+son `user_role.role`, `role_privilege.role`, ambas columnas de `role_role`,
+`patientflags_tag_role.role` y `stockmgmt_user_role_scope.role`. Las dos últimas
+son opcionales. Una FK hacia `role` fuera del contrato se rechaza, incluso si
+no contiene datos. No se deshabilitan FKs ni se utiliza `INSERT IGNORE` para
+ocultar incompatibilidades.
 
-## Evidencia local y límites
+Las asignaciones de Patient Flags se deduplican por etiqueta/rol. Los alcances
+de Stock Management conservan sus identificadores, UUID y demás columnas; solo
+cambia el nombre de rol. La ausencia de FKs desconocidas no prueba la ausencia
+de referencias lógicas o efectos de triggers en módulos personalizados: el
+inventario de módulos, triggers y esquemas sigue siendo un requisito de
+actualización. No se declara soporte automático para esquemas personalizados.
 
-La prueba original ejecuta cuatro escenarios con SQLite en memoria: identidades
-duplicadas con referencias compartidas, identidad histórica sin tablas
-opcionales, UUID canónico desactualizado y colisión con otra identidad.
+## Liquibase no garantiza la parada de Initializer
 
-Su adaptación sustituye `INSERT IGNORE` y la generación de UUID para ese modelo.
-No ejecuta MariaDB, el motor Liquibase, el changelog completo, Initializer ni
-autorización OpenMRS. Un resultado verde de esta prueba, del validador XML o de
-Maven no es aprobación de la migración ni validación clínica.
+La revisión del pin de Initializer
+`3077975fb4f58c91ff3113d7fed1e3df88829476` (`2.13.0-sihsalus.1`) confirma que:
 
-Comprobaciones locales reproducibles, sin backend:
+- el modo predeterminado de carga es `continue_on_error`;
+- `BaseFileLoader` puede capturar un error, registrar el checksum y continuar;
+- un CSV sin cambios puede omitirse por checksum;
+- cuando se procesa, `RoleLineProcessor` sustituye los privilegios y herencias
+  por los declarados en el CSV, no los une con los anteriores.
+
+Fuentes fijadas: [configuración de Initializer](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/InitializerConfig.java),
+[carga y checksums](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/loaders/BaseFileLoader.java)
+y [asignación de roles](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/roles/RoleLineProcessor.java).
+
+Por ello, `onFail="HALT"` / `onError="HALT"` en Liquibase no demuestran que
+Initializer ni la aplicación dejen de arrancar. Antes de habilitar esta
+migración se debe coordinar y verificar
+`initializer.startup.load=fail_on_error` en las propiedades de runtime/sistema,
+y probar su efecto real en el backend. Una global property del contenido no
+establece esa configuración. Esta rama no modifica el distro ni ningún host.
+
+No se deben borrar checksums, modificar el historial o relajar las
+precondiciones para conseguir un arranque verde.
+
+## Validación reproducible y límites
+
+Las pruebas Python comprueban la estructura del changelog y las consultas de
+política compatibles con SQLite. No traducen la migración para simular
+transacciones MariaDB ni presentan ese modelo como una prueba de Liquibase.
+
+El harness de integración usa MariaDB `10.11.7`, Liquibase `4.32.0` y JDBC
+MariaDB `3.5.4`, correspondientes al stack examinado de OpenMRS `2.8.9`.
+Ejecuta el changelog completo sobre un esquema mínimo sintético, con estados
+históricos y fallos inducidos. No inicia OpenMRS, no ejecuta Initializer y no
+valida permisos efectivos de cuentas clínicas.
+
+Comprobaciones rápidas desde la raíz:
 
 ```sh
 python3 .github/scripts/test_admission_role_reconciliation.py
 python3 .github/scripts/validate_liquibase.py
-mvn --batch-mode --no-transfer-progress spotless:check
-git diff --check
+python3 .github/scripts/validate_csv_widths.py
+python3 .github/scripts/test_csv_widths.py
+mvn --batch-mode --no-transfer-progress spotless:check clean verify --file pom.xml
+git diff --check origin/main...HEAD
 ```
 
-## Condiciones antes de una futura aprobación
+El comando del harness es:
 
-1. Revisar la política de identidad y permisos con sus responsables, separada
-   del permiso puntual de #222; definir el resultado efectivo esperado sin
-   resolverlo mediante esta extracción.
-2. Validar en una base sintética local o DEV/QLTY coordinada los estados de
-   actualización, los módulos opcionales, las restricciones, la repetición y la
-   recuperación; conservar evidencia de SQL e Initializer por separado.
-3. Probar con cuentas sintéticas los accesos permitidos y denegados después de
-   toda la carga de contenido, además de la integridad de las referencias.
-4. Acordar respaldos recuperables, procedimiento de reversión, limpieza
-   sintética y autorizaciones del entorno. No usar pacientes reales ni PROD.
-5. Revisar el diff final y su CI; reservar una versión inmutable nueva solamente
-   cuando exista aprobación, evitando reutilizar `1.25.14` o competir con otras
-   releases. Actualizar entonces la documentación de versión y coordinar el pin
-   del distro. Esta rama no publica ni promete una versión futura concreta.
+```sh
+mvn --batch-mode --no-transfer-progress --file .github/integration/admission-role-reconciliation/pom.xml test
+```
 
-Hasta completar esos controles, mantener el PR Draft y no mezclarlo con el PR
-de permisos ni con una release de contenido.
+Requiere exclusivamente la base desechable sintética descrita en el README del
+harness. El workflow `admission-role-reconciliation.yml` la crea aislada en CI;
+no utilizar credenciales, servicios ni bases de instalaciones existentes. El
+job de build/publicación depende de este workflow: no basta que una prueba
+independiente termine después de publicar el paquete.
+
+Cada ejecución debe registrar `PASSED`, `FAILED`, `NOT RUN` o `BLOCKED`, comando,
+SHA y entorno. No atribuir CI de un SHA anterior al candidato corregido. El
+workflow `Validate with SIHSALUS` actual valida un artefacto ya publicado; no
+es un gate de actualización del PR ni sustituye este harness.
+
+## Gates antes de merge, publicación y actualización
+
+1. CI y revisión del diff final, sin alterar permisos declarativos ajenos a
+   esta reconciliación. Una aprobación independiente es obligatoria; no usar
+   el bypass del autor ni el modo administrador.
+2. Probar el artefacto candidato con el Initializer exacto y su configuración
+   de parada: CSV nuevo, checksum ya aplicado, precondición rechazada y
+   recuperación después de un fallo. Verificar que no continúe una carga
+   parcial ni se marque como aplicado un archivo fallido.
+3. Validar con cuentas sintéticas los accesos permitidos y denegados después de
+   toda la carga, junto con usuarios, etiquetas y alcances. La allowlist SQL
+   no constituye una prueba de autorización OpenMRS.
+4. Aprobar inventario de módulos/referencias, ventana sin cambios concurrentes
+   de roles, respaldo recuperable y procedimiento de recuperación. El lock de
+   Liquibase no bloquea a administradores que editen roles en paralelo.
+5. Confirmar que la versión candidata sigue inédita antes del merge y coordinar
+   el pin del distro solo tras completar los controles. No reutilizar una
+   versión publicada ni desplegar directamente desde esta rama.
+
+No hay un rollback automático que reconstruya qué identidad tenía cada usuario
+antes de consolidarlas. Revertir el paquete no deshace una migración confirmada.
+La recuperación debe usar el respaldo y procedimiento coordinados, no borrar
+roles o referencias a mano. Todas las pruebas son con datos sintéticos y sin
+acceso a producción, pacientes reales ni secretos.

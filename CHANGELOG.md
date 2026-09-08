@@ -7,12 +7,29 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
-### Preparación en borrador
+## [1.25.16] - Candidata, no publicada
 
-- Separa la reconciliación de identidades del rol de Admisión del permiso de
-  relaciones de #222, conservando la migración y sus pruebas originales.
-  No está aprobada para merge, publicación ni despliegue; sus riesgos y controles
-  pendientes están en `docs/contracts/admission-role-reconciliation.md`.
+### Corregido
+
+- Sustituye la reconciliación candidata de Admisión por una operación
+  transaccional con comprobaciones anteriores a la normalización histórica.
+  Rechaza políticas de privilegios, herencias, identidades y referencias no
+  admitidas; no modifica los changeSets históricos ya publicados.
+- Añade controles estructurales y un harness de MariaDB/Liquibase con datos
+  sintéticos. No sustituye la validación de Initializer ni de autorización.
+  Los requisitos pendientes de aprobación y actualización están en
+  `docs/contracts/admission-role-reconciliation.md`.
+
+## [1.25.15] - 2026-09-07
+
+### Corregido
+
+- Agrega `Delete Relationships` únicamente al rol canónico `Admision` para
+  retirar o reemplazar relaciones de responsables y protege ese permiso en su
+  lista explícita de privilegios.
+- Añade regresiones que rechazan la pérdida del permiso, privilegios adicionales,
+  herencia y cambios de identidad del rol. No incorpora la consolidación adicional
+  de roles ni cambia las migraciones existentes.
 
 ## [1.25.14] - 2026-08-26
 
