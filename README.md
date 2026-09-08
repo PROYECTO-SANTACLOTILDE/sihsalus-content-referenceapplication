@@ -86,7 +86,7 @@ If this command reports any violations, you can then run `mvn spotless:apply` to
 
 Remember, in most cases, you don't need to run these commands separately as Spotless will run automatically during the build process with `mvn clean package`.
 
-Versión del paquete: **1.25.15**.
+Versión candidata del paquete: **1.25.16**, no publicada.
 
 ## Permiso de relaciones para Admisión
 
@@ -97,12 +97,26 @@ Conserva su UUID, nombre, herencias vacías y el resto de su lista explícita de
 privilegios. No se modifican otros roles ni se agregan permisos de administración
 o purga.
 
-Este cambio no incorpora la consolidación adicional de identidades de Admisión:
-las instalaciones con roles duplicados o un UUID asignado al nombre legado
-requieren revisar esa migración por separado antes de aplicar el contenido.
+El permiso se publicó separadamente en `1.25.15`. La consolidación adicional
+de identidades de Admisión se revisa en la candidata `1.25.16` y requiere los
+controles de actualización indicados a continuación antes de aplicar contenido.
 La publicación no modifica relaciones existentes ni demuestra autorización en un
 backend desplegado; se debe probar el flujo permitido y denegado con datos
 sintéticos.
+
+## Reconciliación de identidades de Admisión en borrador
+
+La candidata reemplaza la unión indiscriminada de roles por una reconciliación
+transaccional restringida al contrato de Admisión actual o inmediatamente
+anterior. Las comprobaciones preceden a la normalización histórica, cuyos
+checksums se conservan. Los estados incompatibles requieren revisión, no una
+corrección automática de permisos o herencias.
+
+No publicar ni desplegar hasta completar los controles de
+`docs/contracts/admission-role-reconciliation.md`: una prueba SQL no demuestra
+el resultado de Initializer ni sus permisos efectivos. El modo predeterminado
+de Initializer puede continuar tras errores; la configuración de parada ante
+errores debe coordinarse y verificarse fuera de este paquete.
 
 ## Contrato preparatorio para PDF de resultados de laboratorio
 

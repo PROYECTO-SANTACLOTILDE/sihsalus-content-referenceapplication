@@ -1,0 +1,186 @@
+# Admission Initializer integration
+
+This is a real Initializer and narrow native-RBAC test for an exclusively owned,
+ephemeral GitHub-hosted Linux runner. It does not build Maven modules, publish
+images, deploy, contact DEV/QLTY/PROD, or use existing accounts or patients.
+The local unit tests are not evidence that the containers or migration passed.
+
+## Invocation and isolation
+
+The caller must check out the exact candidate `GITHUB_SHA` with a clean tracked
+worktree and fetch only these immutable source commits:
+
+```sh
+git fetch --no-tags --depth=1 origin \
+  8000b27f48bf124fe9a553d4ba41c678e9acc231 \
+  57690d4e976ef6d97a925c68103d532d10ee15cf
+python3 -B .github/integration/admission-initializer/test_harness.py
+```
+
+Only inside that disposable GitHub-hosted runner, run:
+
+```sh
+ADMISSION_INITIALIZER_DISPOSABLE=github-runner-only \
+  python3 -B .github/integration/admission-initializer/harness.py
+```
+
+The runner guard also requires GitHub's `GITHUB_ACTIONS`, `CI`,
+`RUNNER_ENVIRONMENT`, `RUNNER_OS`, `GITHUB_REPOSITORY`, `GITHUB_SHA`, and
+`RUNNER_TEMP` values. These are refusal checks, not a substitute for a trusted
+workflow: do not spoof them to run against a developer or persistent host.
+
+Docker always uses a new empty configuration directory and the runner's local
+Unix socket. External Docker hosts and contexts are forbidden. Public images
+are pulled before creating an internal-only network. No backend port is
+published; REST uses loopback inside the owned backend container, with redirects
+and retries disabled. Passwords are generated per run and supplied in private
+files or stdin, never command-line arguments or emitted logs. No existing
+credential is read. The configuration and snapshot bind mounts are exclusively
+within a newly created run directory; database and application data volumes
+must match both a random resource prefix and its ownership label.
+
+## Immutable inputs and content ownership
+
+- Backend: `ghcr.io/sihsalus/sihsalus-backend@sha256:d03384f0368052101bfb949c0de24547f6e5aaf7caedce874f1eb7c296711fe2`.
+- Distro source label: `492757585d30b9f2b70c3bbff603d16f635e5d28`.
+- Database: `mariadb:10.11.7`; the running server must report that exact version.
+- Embedded SIH content: 1.25.12, source `57690d4e976ef6d97a925c68103d532d10ee15cf`.
+- Applied baseline: 1.25.15, source `8000b27f48bf124fe9a553d4ba41c678e9acc231`.
+- Candidate: checked-out SHA and its release version from `pom.xml`, greater
+  than 1.25.15. A future release does not silently change the approved 58-entry
+  admission policy or the required unchanged `roles/roles-core.csv`.
+
+The backend probe never starts OpenMRS: it overrides the entrypoint with only
+`id -u; id -g`, uses no network, a read-only root filesystem and no capabilities.
+Its digest, revision label, platform, launch command, actual startup scripts,
+embedded content version and numeric runtime UID/GID are checked before
+application startup or snapshot restoration. Numeric users need not appear in
+`/etc/passwd`; their effective identity must match the image's declared user.
+Unverifiable image assumptions fail closed; restore does not assume `1001:0`.
+
+The harness verifies the exact assembly include/exclude contract and every
+packaged 1.25.12 file against bytes copied from the image. It removes only these
+verified owned files when overlaying baseline or candidate content. Every other
+observed image configuration file remains byte-identical, including inherited
+reference content. Conflicting writes to unowned files are rejected. This proves
+preservation of the observed remainder, not a complete independent manifest of
+a particular reference-content release. Unsafe tar paths, links, duplicate
+files, and special files are rejected.
+
+## Required runtime evidence
+
+1. **Baseline:** bootstrap a fresh synthetic database with complete 1.25.15
+   configuration and strict `fail_on_error`, verify real current-attempt
+   completion, the actual started Initializer module/version, effective runtime
+   properties and system flags, real Liquibase history and roles checksum.
+   Create two synthetic people and users; no patient is required. Stop the
+   backend before capturing owned database and application-data snapshots.
+2. **Unchanged-CSV upgrade:** restore the baseline snapshots, seed the two
+   approved 57-permission identities and synthetic user references, then load
+   candidate configuration. The pre-existing roles CSV checksum must still match
+   unchanged bytes while the new changeSet produces exactly the approved 58
+   permissions. Compare all RBAC rows and supported optional references against
+   the explicit allowed transformation, preserving unrelated multiplicities and
+   Stock identity/audit fields. Require real changeSet history and full loader
+   completion. Restart with the same data and checksums and require unchanged
+   RBAC and complete journal rows, including execution metadata.
+3. **Native RBAC:** a synthetic user assigned only `Admision` reads relationship
+   types. Create a new active relationship between the synthetic people. Purging
+   that existing active relationship must return 403 without changing the row;
+   ordinary deletion must return 204 and persist `voided=1`. An already voided
+   or absent relationship is not accepted as a permission test.
+4. **Rejection and retry:** restore a separate baseline snapshot and seed one
+   identity with the 59th, unapproved `Purge Relationships` permission. Add a new,
+   separate, empty-privilege canary CSV without changing candidate XML or
+   `roles-core.csv`. Require the specific changeSet's current-attempt abort,
+   no completion, a valid module response with `started=false`, unchanged RBAC
+   and journal snapshots, no candidate journal entry, and no canary role or
+   checksum. Remove only the synthetic extra permission, then restart with the
+   same configuration, data and checksums. Require full completion, 58 approved
+   permissions and the newly loaded canary role with its actual checksum.
+
+No domains are excluded. The effective startup mode is required in both runtime
+properties and JVM flags; setting a global property or merely observing HTTP
+health is insufficient. Lifecycle logs are read only from each new container,
+not an old application log in a restored snapshot. A transient unavailable REST
+endpoint is polled within the deadline; malformed responses, wrong versions or
+missing authentication are not interpreted as a stopped module.
+
+The file-abort detector recognizes both loading and pre-loading failures from
+any domain using the exact message shape in the pinned
+[BaseFileLoader](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/loaders/BaseFileLoader.java).
+It emits only an abort boolean, never a domain or filename. Only the exact
+Liquibase loading abort together with the candidate changeSet marker qualifies
+as the expected rejection, still requiring no completion and the actual stopped
+module. Any other domain abort, pre-loading abort, or CSV error summary fails
+immediately, including when it coexists with that expected rejection. This is
+not a claim that the detector recognizes every possible startup failure.
+
+Before reading lifecycle logs in each wait iteration, an anonymous GET reaches
+the fixed internal `http://127.0.0.1:8080/openmrs/initialsetup` endpoint. This
+triggers installation against the disposable synthetic database when the
+image's one-shot startup request occurs before the web filter is ready. It is
+not a read-only health probe: the endpoint can start the configured installation.
+There is no authentication, cookie persistence, query parameter, redirect,
+proxy, curl configuration inheritance or automatic request retry; the request
+has a five-second deadline and its response body is discarded. The root path
+would only redirect, while `/auto_run_openmrs` can invoke a different fallback;
+neither is used. An HTTP 200, redirect or error never satisfies the lifecycle
+assertions. The existing completion/abort, strict-mode and actual module-state
+requirements remain mandatory.
+
+The bootstrap contract follows the pinned Core
+[StartupFilter](https://github.com/openmrs/openmrs-core/blob/4dda0f50a60991a5af9a4b36508e69bb3561c8a6/web/src/main/java/org/openmrs/web/filter/StartupFilter.java)
+and [InitializationFilter](https://github.com/openmrs/openmrs-core/blob/4dda0f50a60991a5af9a4b36508e69bb3561c8a6/web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java).
+Repeated requests do not force a new installation while the filter reports one
+already started. This corrects a harness bootstrap gap; it does not establish
+that the gap was the sole cause of an earlier startup timeout.
+
+Initializer 2.13.0-sihsalus.1 on the pinned backend writes the roles-file MD5
+checksum. Its `LiquibaseLoader2_5` does **not** write XML file checksums, but an
+inherited matching XML checksum could still suppress loading. The harness
+therefore requires that XML checksum to be absent throughout; it never fabricates
+one, deletes checksums, or uses `clearCheckSums`. Real `liquibasechangelog` rows
+and their `MD5SUM` provide the XML execution evidence.
+
+## Resources, diagnostics and limits
+
+Only one backend (4 GiB, 2 CPUs) and one database (1 GiB, 1 CPU) run concurrently.
+Baseline snapshots are reused for independent upgrade and rejection branches.
+Each backend startup allows at most 35 minutes, sharing an 80-minute total
+harness budget; cleanup has a separate three-minute global budget and at most
+45 seconds per Docker operation. The recommended workflow timeout is 90 minutes.
+A cold full baseline can exhaust these budgets; timeout is a failed validation,
+not permission to reduce the loader scope or accept partial startup.
+
+Stdout contains only sanitized JSON phase results, public source identifiers,
+checksums and fixed diagnostic codes. Preserve only that JSONL as a CI artifact,
+never raw application logs, Docker inspections, HTTP bodies, SQL dumps or the
+private run directory. Cleanup validates resource ownership before removal;
+resource creation intents are recorded before Docker calls so client timeouts
+cannot silently omit a possibly created resource. Unverifiable absence or
+ownership remains a cleanup failure, not a successful cleanup claim.
+Failure or exhaustion is reported as failed, with unresolved owned resources
+left to the disposable runner's teardown. Cleanup never targets an existing
+workspace, broad directory or unlabelled resource.
+
+During lifecycle waits, a sanitized `WAITING` record appears initially and at
+most once per minute. It contains only the observed HTTP code (or `null` for
+transport unavailability), running state, and boolean completion/abort/candidate
+marker/CSV-error signals from the current container. At the same bounded
+interval, an anonymous, no-redirect, no-retry GET to the fixed internal
+`/openmrs/initialsetup?page=progress.vm.ajaxRequest` reads Core's installer
+progress. Only strictly boolean `hasErrors` and `initializationComplete` values
+are retained, exposed as `installation_has_errors` and `installation_complete`;
+missing, malformed or unavailable responses produce `null`, not a healthy state.
+`hasErrors=true` fails with the static code `installation_reported_errors`.
+Neither `hasErrors=false`, `initializationComplete=true`, nor an HTTP code can
+replace the Initializer lifecycle assertions. Installer messages, error pages,
+log lines, response bodies, credentials and exception text are never emitted.
+These diagnostics are not passing test results.
+
+Pure tests exercise safety and assertion contracts without Docker. Only a
+successful run on the exact candidate SHA supplies the integration evidence
+above. Even that result is a bounded synthetic role/relationship smoke, not
+general clinical acceptance, deployed-environment evidence, domain-owner
+approval, or authorization to bypass repository merge/release requirements.

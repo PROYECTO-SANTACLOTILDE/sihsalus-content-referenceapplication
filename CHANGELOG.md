@@ -7,6 +7,19 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [Unreleased]
 
+## [1.25.16] - Candidata, no publicada
+
+### Corregido
+
+- Sustituye la reconciliación candidata de Admisión por una operación
+  transaccional con comprobaciones anteriores a la normalización histórica.
+  Rechaza políticas de privilegios, herencias, identidades y referencias no
+  admitidas; no modifica los changeSets históricos ya publicados.
+- Añade controles estructurales y un harness de MariaDB/Liquibase con datos
+  sintéticos. No sustituye la validación de Initializer ni de autorización.
+  Los requisitos pendientes de aprobación y actualización están en
+  `docs/contracts/admission-role-reconciliation.md`.
+
 ## [1.25.15] - 2026-09-07
 
 ### Corregido
