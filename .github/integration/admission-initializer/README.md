@@ -106,6 +106,16 @@ not an old application log in a restored snapshot. A transient unavailable REST
 endpoint is polled within the deadline; malformed responses, wrong versions or
 missing authentication are not interpreted as a stopped module.
 
+The file-abort detector recognizes both loading and pre-loading failures from
+any domain using the exact message shape in the pinned
+[BaseFileLoader](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/loaders/BaseFileLoader.java).
+It emits only an abort boolean, never a domain or filename. Only the exact
+Liquibase loading abort together with the candidate changeSet marker qualifies
+as the expected rejection, still requiring no completion and the actual stopped
+module. Any other domain abort, pre-loading abort, or CSV error summary fails
+immediately, including when it coexists with that expected rejection. This is
+not a claim that the detector recognizes every possible startup failure.
+
 Before reading lifecycle logs in each wait iteration, an anonymous GET reaches
 the fixed internal `http://127.0.0.1:8080/openmrs/initialsetup` endpoint. This
 triggers installation against the disposable synthetic database when the
@@ -157,8 +167,17 @@ workspace, broad directory or unlabelled resource.
 During lifecycle waits, a sanitized `WAITING` record appears initially and at
 most once per minute. It contains only the observed HTTP code (or `null` for
 transport unavailability), running state, and boolean completion/abort/candidate
-marker/CSV-error signals from the current container. It contains no raw logs,
-response body, credentials or exception text and is not a passing test result.
+marker/CSV-error signals from the current container. At the same bounded
+interval, an anonymous, no-redirect, no-retry GET to the fixed internal
+`/openmrs/initialsetup?page=progress.vm.ajaxRequest` reads Core's installer
+progress. Only strictly boolean `hasErrors` and `initializationComplete` values
+are retained, exposed as `installation_has_errors` and `installation_complete`;
+missing, malformed or unavailable responses produce `null`, not a healthy state.
+`hasErrors=true` fails with the static code `installation_reported_errors`.
+Neither `hasErrors=false`, `initializationComplete=true`, nor an HTTP code can
+replace the Initializer lifecycle assertions. Installer messages, error pages,
+log lines, response bodies, credentials and exception text are never emitted.
+These diagnostics are not passing test results.
 
 Pure tests exercise safety and assertion contracts without Docker. Only a
 successful run on the exact candidate SHA supplies the integration evidence

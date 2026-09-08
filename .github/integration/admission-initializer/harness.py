@@ -30,6 +30,7 @@ from guards import (
 ROOT = Path(__file__).resolve().parents[3]
 COMPLETION = "OpenMRS config loading process completed."
 ABORT = "The loading of the 'liquibase' configuration file was aborted:"
+FILE_ABORT = re.compile(r"The (?:pre-)?loading of the '[^'\r\n]+' configuration file was aborted:")
 
 
 def emit(stage, status, **safe):
@@ -307,6 +308,31 @@ class Harness:
         require(re.fullmatch(rb"[1-5][0-9]{2}", result.stdout), "invalid_bootstrap_http_code")
         return int(result.stdout)
 
+    def installation_progress(self, backend):
+        """Read only two typed flags; never return installer messages or logs."""
+        self.owned("container", backend)
+        config = (
+            "silent\nshow-error\nproxy = \"\"\nnoproxy = \"*\"\n"
+            "connect-timeout = 2\nmax-time = 5\nmax-redirs = 0\nretry = 0\n"
+            "url = \"http://127.0.0.1:8080/openmrs/initialsetup?page=progress.vm.ajaxRequest\"\n"
+            "request = \"GET\"\nwrite-out = \"\\n%{http_code}\"\n")
+        result = self.docker("exec", "-i", backend, "curl", "--disable", "--config", "-",
+            data=config.encode(), timeout=10, allow_failure=True)
+        if result.returncode:
+            return None, None
+        content, separator, code = result.stdout.rpartition(b"\n")
+        if not separator or code != b"200":
+            return None, None
+        try:
+            body = json.loads(content)
+        except ValueError:
+            return None, None
+        if not isinstance(body, dict):
+            return None, None
+        has_errors, complete = body.get("hasErrors"), body.get("initializationComplete")
+        return (has_errors if isinstance(has_errors, bool) else None,
+                complete if isinstance(complete, bool) else None)
+
     def effective_strict(self, backend):
         values = properties(self.copy_file(backend, "/openmrs/data/openmrs-runtime.properties"))
         require(values.get("initializer.startup.load") == "fail_on_error", "strict_runtime_property_missing")
@@ -331,17 +357,26 @@ class Harness:
             # Only this new container's stdout; no persisted baseline initializer.log.
             result = self.docker("logs", "--tail", "5000", backend)
             logs = (result.stdout + result.stderr).decode("utf-8", "replace")
+            abort_messages = [match.group(0) for match in FILE_ABORT.finditer(logs)]
+            csv_error = "BEGINNING OF CSV FILE ERROR SUMMARY" in logs
             now = time.monotonic()
             if now >= next_diagnostic:
+                has_errors, installation_complete = self.installation_progress(backend)
                 emit(stage, "WAITING", backend_running=True, bootstrap_http_code=bootstrap_code,
-                     completion_seen=COMPLETION in logs, abort_seen=ABORT in logs,
+                     completion_seen=COMPLETION in logs, abort_seen=bool(abort_messages),
                      candidate_marker_seen=CHANGESET in logs,
-                     csv_error_seen="BEGINNING OF CSV FILE ERROR SUMMARY" in logs)
+                     csv_error_seen=csv_error, installation_has_errors=has_errors,
+                     installation_complete=installation_complete)
                 next_diagnostic = now + 60
+                require(has_errors is not True, "installation_reported_errors")
+            # A separate failure cannot be masked by the expected Liquibase
+            # rejection. Never emit the matched domain, filename or raw log.
+            if any(message != ABORT for message in abort_messages) or csv_error:
+                raise HarnessFailure("unexpected_initializer_abort")
             if reject and ABORT in logs and CHANGESET in logs:
                 require(COMPLETION not in logs, "initializer_continued_after_rejection")
                 observed = False
-            elif ABORT in logs or "BEGINNING OF CSV FILE ERROR SUMMARY" in logs:
+            elif abort_messages:
                 raise HarnessFailure("unexpected_initializer_abort")
             if COMPLETION in logs:
                 require(not reject, "expected_rejection_did_not_occur")

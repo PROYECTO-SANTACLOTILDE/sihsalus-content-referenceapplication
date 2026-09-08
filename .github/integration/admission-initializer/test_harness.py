@@ -225,6 +225,7 @@ class HarnessContracts(unittest.TestCase):
         self.runtime.docker = Mock(return_value=completed(stdout=logs.encode()))
         self.runtime.effective_strict = Mock()
         self.runtime.bootstrap = Mock(return_value=None)
+        self.runtime.installation_progress = Mock(return_value=(None, None))
 
     def test_bootstrap_http_precedes_lifecycle_and_real_module_checks(self):
         self.setup_lifecycle(harness.COMPLETION)
@@ -270,10 +271,65 @@ class HarnessContracts(unittest.TestCase):
         with self.assertRaisesRegex(HarnessFailure, "^invalid_bootstrap_http_code$"):
             self.runtime.bootstrap("owned")
 
+    def test_installation_progress_extracts_only_boolean_fields_from_fixed_internal_get(self):
+        self.runtime.owned = Mock()
+        self.runtime.docker = Mock()
+        for has_errors, complete in ((False, False), (True, False), (False, True),
+                                     ("false", True), (False, "true")):
+            with self.subTest(has_errors=has_errors, complete=complete):
+                body = {"hasErrors": has_errors, "initializationComplete": complete,
+                        "message": "synthetic-private-message", "errorPage": "synthetic-private-page",
+                        "logLines": ["synthetic-private-log"], "extra": "synthetic-private-value"}
+                self.runtime.docker.return_value = completed(stdout=json.dumps(body).encode() + b"\n200")
+                self.assertEqual(self.runtime.installation_progress("owned"), (
+                    has_errors if isinstance(has_errors, bool) else None,
+                    complete if isinstance(complete, bool) else None))
+        call = self.runtime.docker.call_args
+        self.assertEqual(call.args, ("exec", "-i", "owned", "curl", "--disable", "--config", "-"))
+        config = call.kwargs["data"].decode()
+        self.assertIn('url = "http://127.0.0.1:8080/openmrs/initialsetup?page=progress.vm.ajaxRequest"\n', config)
+        self.assertIn('request = "GET"\n', config)
+        self.assertIn('proxy = ""\nnoproxy = "*"\n', config)
+        self.assertIn("max-time = 5\nmax-redirs = 0\nretry = 0\n", config)
+        for forbidden in ("Authorization", "user =", "cookie", "location", "auto_run_openmrs"):
+            self.assertNotIn(forbidden, config)
+        self.assertEqual(call.kwargs["timeout"], 10)
+        self.assertTrue(call.kwargs["allow_failure"])
+        self.runtime.owned.assert_called_with("container", "owned")
+
+    def test_installation_progress_unavailable_or_malformed_is_never_healthy(self):
+        self.runtime.owned = Mock()
+        self.runtime.docker = Mock()
+        for result in (completed(28, b"000", b"synthetic-private-error"),
+                       completed(stdout=b"synthetic-private-html\n200"),
+                       completed(stdout=b'[]\n200'), completed(stdout=b'{}\n200'),
+                       completed(stdout=b'{"hasErrors":false,"initializationComplete":true}\n404'),
+                       completed(stdout=b'{"hasErrors":false,"initializationComplete":true}\n503'),
+                       completed(stdout=b"synthetic-private-undelimited-response")):
+            with self.subTest(code=result.returncode):
+                self.runtime.docker.return_value = result
+                self.assertEqual(self.runtime.installation_progress("owned"), (None, None))
+
+    def test_reported_installation_error_fails_without_lifecycle_success(self):
+        self.setup_lifecycle("synthetic-private-log")
+        self.runtime.installation_progress = Mock(return_value=(True, False))
+        self.runtime.module_status = Mock(return_value=True)
+        with patch.object(harness.time, "monotonic", side_effect=[0, 0, 0, 31]), \
+                patch.object(harness.time, "sleep") as sleep, patch.object(harness, "emit") as emit:
+            with self.assertRaisesRegex(HarnessFailure, "^installation_reported_errors$"):
+                self.runtime.wait_initializer("owned", "baseline")
+        self.runtime.module_status.assert_not_called()
+        self.runtime.effective_strict.assert_not_called()
+        sleep.assert_not_called()
+        self.assertIs(emit.call_args.kwargs["installation_has_errors"], True)
+        self.assertIs(emit.call_args.kwargs["installation_complete"], False)
+        self.assertEqual(emit.call_args.args, ("baseline", "WAITING"))
+
     def test_bootstrap_200_never_completes_lifecycle_and_progress_is_sanitized_periodic(self):
         self.setup_lifecycle("synthetic-private-log")
         self.runtime.remaining.return_value = 65
         self.runtime.bootstrap = Mock(return_value=200)
+        self.runtime.installation_progress = Mock(return_value=(False, True))
         self.runtime.module_status = Mock(return_value=True)
         clock = {"now": 0}
         def advance(seconds):
@@ -283,6 +339,7 @@ class HarnessContracts(unittest.TestCase):
             with self.assertRaisesRegex(HarnessFailure, "initializer_lifecycle_not_proven"):
                 self.runtime.wait_initializer("owned", "baseline")
         self.assertEqual(self.runtime.bootstrap.call_count, 3)
+        self.assertEqual(self.runtime.installation_progress.call_count, 2)
         self.runtime.module_status.assert_not_called()
         self.runtime.effective_strict.assert_not_called()
         self.assertEqual(emit.call_count, 2)
@@ -292,6 +349,7 @@ class HarnessContracts(unittest.TestCase):
                 "backend_running": True, "bootstrap_http_code": 200,
                 "completion_seen": False, "abort_seen": False,
                 "candidate_marker_seen": False, "csv_error_seen": False,
+                "installation_has_errors": False, "installation_complete": True,
             })
 
     def test_lifecycle_waits_for_real_module_after_completion_log(self):
@@ -312,6 +370,47 @@ class HarnessContracts(unittest.TestCase):
         self.assertEqual(self.runtime.module_status.call_count, 2)
         emit.assert_any_call("reject", "PASSED", initializer_started=False)
         self.assertEqual(sum(call.args[1] == "PASSED" for call in emit.call_args_list), 1)
+
+    def assert_unexpected_loader_abort(self, logs, reject):
+        self.setup_lifecycle(logs)
+        self.runtime.module_status = Mock(return_value=False if reject else True)
+        with patch.object(harness.time, "monotonic", side_effect=[0, 0, 0, 31]), \
+                patch.object(harness.time, "sleep") as sleep, patch.object(harness, "emit") as emit:
+            with self.assertRaisesRegex(HarnessFailure, "^unexpected_initializer_abort$"):
+                self.runtime.wait_initializer("owned", "reject" if reject else "baseline", reject=reject)
+        self.runtime.module_status.assert_not_called()
+        self.runtime.effective_strict.assert_not_called()
+        sleep.assert_not_called()
+        self.assertEqual(emit.call_count, 1)
+        self.assertEqual(emit.call_args.args[1], "WAITING")
+        self.assertTrue(all(isinstance(value, bool) or value is None for value in emit.call_args.kwargs.values()))
+        self.assertNotIn("synthetic-private", json.dumps(emit.call_args.kwargs))
+        return emit.call_args.kwargs
+
+    def test_other_domain_and_preloading_abort_fail_without_waiting_for_timeout(self):
+        for phase, domain in (("loading", "roles"), ("loading", "ocl"),
+                              ("pre-loading", "liquibase"), ("pre-loading", "synthetic-private-domain")):
+            signal = f"The {phase} of the '{domain}' configuration file was aborted:"
+            for reject in (False, True):
+                with self.subTest(phase=phase, domain=domain, reject=reject):
+                    diagnostic = self.assert_unexpected_loader_abort(signal + "\nsynthetic-private-path", reject)
+                    self.assertIs(diagnostic["abort_seen"], True)
+
+    def test_expected_liquibase_rejection_never_masks_another_abort_or_csv_error(self):
+        expected = harness.ABORT + "\n" + guards.CHANGESET
+        for other in ("The loading of the 'ocl' configuration file was aborted:",
+                      "The pre-loading of the 'liquibase' configuration file was aborted:",
+                      "BEGINNING OF CSV FILE ERROR SUMMARY"):
+            for logs in (expected + "\n" + other, other + "\n" + expected):
+                with self.subTest(other=other, expected_first=logs.startswith(expected)):
+                    diagnostic = self.assert_unexpected_loader_abort(logs, reject=True)
+                    self.assertIs(diagnostic["abort_seen"], True)
+                    self.assertIs(diagnostic["candidate_marker_seen"], True)
+
+    def test_liquibase_abort_without_candidate_marker_is_not_expected_rejection(self):
+        diagnostic = self.assert_unexpected_loader_abort(harness.ABORT, reject=True)
+        self.assertIs(diagnostic["abort_seen"], True)
+        self.assertIs(diagnostic["candidate_marker_seen"], False)
 
     def test_rejection_never_accepts_later_completion_or_unavailable_module(self):
         self.setup_lifecycle(harness.ABORT + guards.CHANGESET + harness.COMPLETION)
