@@ -224,6 +224,75 @@ class HarnessContracts(unittest.TestCase):
         self.runtime.owned = Mock(return_value={"State": {"Running": True}})
         self.runtime.docker = Mock(return_value=completed(stdout=logs.encode()))
         self.runtime.effective_strict = Mock()
+        self.runtime.bootstrap = Mock(return_value=None)
+
+    def test_bootstrap_http_precedes_lifecycle_and_real_module_checks(self):
+        self.setup_lifecycle(harness.COMPLETION)
+        events = []
+        self.runtime.bootstrap = Mock(side_effect=lambda backend: events.append("bootstrap") or 200)
+        self.runtime.docker.side_effect = lambda *args: events.append("logs") or completed(stdout=harness.COMPLETION.encode())
+        self.runtime.module_status = Mock(side_effect=lambda backend: events.append("module") or True)
+        with patch.object(harness, "emit"):
+            self.runtime.wait_initializer("owned", "baseline")
+        self.assertEqual(events, ["bootstrap", "logs", "module"])
+
+    def test_bootstrap_request_is_anonymous_loopback_bounded_and_body_free(self):
+        self.runtime.owned = Mock()
+        self.runtime.docker = Mock(return_value=completed(stdout=b"302"))
+        self.assertEqual(self.runtime.bootstrap("owned"), 302)
+        self.runtime.owned.assert_called_once_with("container", "owned")
+        call = self.runtime.docker.call_args
+        self.assertEqual(call.args, ("exec", "-i", "owned", "curl", "--disable", "--config", "-"))
+        config = call.kwargs["data"].decode()
+        self.assertIn('url = "http://127.0.0.1:8080/openmrs/initialsetup"\n', config)
+        self.assertIn('request = "GET"\n', config)
+        self.assertIn('output = "/dev/null"\n', config)
+        self.assertIn('proxy = ""\nnoproxy = "*"\n', config)
+        self.assertIn("connect-timeout = 2\nmax-time = 5\n", config)
+        self.assertIn("max-redirs = 0\nretry = 0\n", config)
+        self.assertNotIn("Authorization", config)
+        self.assertNotIn("user =", config)
+        self.assertNotIn("location", config)
+        self.assertNotIn("?", config)
+        self.assertNotIn("auto_run_openmrs", config)
+        self.assertEqual(call.kwargs["timeout"], 10)
+        self.assertTrue(call.kwargs["allow_failure"])
+
+    def test_bootstrap_reports_only_http_code_or_transport_unavailability(self):
+        self.runtime.owned = Mock()
+        self.runtime.docker = Mock(return_value=completed(28, b"000", b"synthetic-private-error"))
+        self.assertIsNone(self.runtime.bootstrap("owned"))
+        for output in (b"200", b"503"):
+            with self.subTest(output=output):
+                self.runtime.docker.return_value = completed(stdout=output)
+                self.assertEqual(self.runtime.bootstrap("owned"), int(output))
+        self.runtime.docker.return_value = completed(stdout=b"synthetic-private-body\n200")
+        with self.assertRaisesRegex(HarnessFailure, "^invalid_bootstrap_http_code$"):
+            self.runtime.bootstrap("owned")
+
+    def test_bootstrap_200_never_completes_lifecycle_and_progress_is_sanitized_periodic(self):
+        self.setup_lifecycle("synthetic-private-log")
+        self.runtime.remaining.return_value = 65
+        self.runtime.bootstrap = Mock(return_value=200)
+        self.runtime.module_status = Mock(return_value=True)
+        clock = {"now": 0}
+        def advance(seconds):
+            clock["now"] += 30
+        with patch.object(harness.time, "monotonic", side_effect=lambda: clock["now"]), \
+                patch.object(harness.time, "sleep", side_effect=advance), patch.object(harness, "emit") as emit:
+            with self.assertRaisesRegex(HarnessFailure, "initializer_lifecycle_not_proven"):
+                self.runtime.wait_initializer("owned", "baseline")
+        self.assertEqual(self.runtime.bootstrap.call_count, 3)
+        self.runtime.module_status.assert_not_called()
+        self.runtime.effective_strict.assert_not_called()
+        self.assertEqual(emit.call_count, 2)
+        for call in emit.call_args_list:
+            self.assertEqual(call.args, ("baseline", "WAITING"))
+            self.assertEqual(call.kwargs, {
+                "backend_running": True, "bootstrap_http_code": 200,
+                "completion_seen": False, "abort_seen": False,
+                "candidate_marker_seen": False, "csv_error_seen": False,
+            })
 
     def test_lifecycle_waits_for_real_module_after_completion_log(self):
         self.setup_lifecycle(harness.COMPLETION)
@@ -232,7 +301,8 @@ class HarnessContracts(unittest.TestCase):
             self.runtime.wait_initializer("new-container", "upgrade")
         self.assertEqual(self.runtime.module_status.call_count, 2)
         self.runtime.docker.assert_called_with("logs", "--tail", "5000", "new-container")
-        emit.assert_called_once_with("upgrade", "PASSED", initializer_started=True)
+        emit.assert_any_call("upgrade", "PASSED", initializer_started=True)
+        self.assertEqual(sum(call.args[1] == "PASSED" for call in emit.call_args_list), 1)
 
     def test_rejection_requires_current_abort_and_real_module_false(self):
         self.setup_lifecycle(harness.ABORT + guards.CHANGESET)
@@ -240,17 +310,19 @@ class HarnessContracts(unittest.TestCase):
         with patch.object(harness.time, "sleep"), patch.object(harness, "emit") as emit:
             self.runtime.wait_initializer("new-container", "reject", reject=True)
         self.assertEqual(self.runtime.module_status.call_count, 2)
-        emit.assert_called_once_with("reject", "PASSED", initializer_started=False)
+        emit.assert_any_call("reject", "PASSED", initializer_started=False)
+        self.assertEqual(sum(call.args[1] == "PASSED" for call in emit.call_args_list), 1)
 
     def test_rejection_never_accepts_later_completion_or_unavailable_module(self):
         self.setup_lifecycle(harness.ABORT + guards.CHANGESET + harness.COMPLETION)
         self.runtime.module_status = Mock(return_value=False)
-        with self.assertRaisesRegex(HarnessFailure, "initializer_continued_after_rejection"):
+        with patch.object(harness, "emit"), self.assertRaisesRegex(HarnessFailure, "initializer_continued_after_rejection"):
             self.runtime.wait_initializer("new-container", "reject", reject=True)
         self.runtime.module_status.assert_not_called()
         self.setup_lifecycle(harness.ABORT + guards.CHANGESET)
         self.runtime.module_status = Mock(side_effect=HarnessFailure("module_state_unavailable"))
-        with patch.object(harness.time, "sleep"), patch.object(harness.time, "monotonic", side_effect=[0, 0, 31]):
+        with patch.object(harness.time, "sleep"), patch.object(harness.time, "monotonic", side_effect=[0, 0, 0, 31]), \
+                patch.object(harness, "emit"):
             with self.assertRaisesRegex(HarnessFailure, "initializer_lifecycle_not_proven"):
                 self.runtime.wait_initializer("new-container", "reject", reject=True)
 

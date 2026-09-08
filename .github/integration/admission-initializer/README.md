@@ -106,6 +106,26 @@ not an old application log in a restored snapshot. A transient unavailable REST
 endpoint is polled within the deadline; malformed responses, wrong versions or
 missing authentication are not interpreted as a stopped module.
 
+Before reading lifecycle logs in each wait iteration, an anonymous GET reaches
+the fixed internal `http://127.0.0.1:8080/openmrs/initialsetup` endpoint. This
+triggers installation against the disposable synthetic database when the
+image's one-shot startup request occurs before the web filter is ready. It is
+not a read-only health probe: the endpoint can start the configured installation.
+There is no authentication, cookie persistence, query parameter, redirect,
+proxy, curl configuration inheritance or automatic request retry; the request
+has a five-second deadline and its response body is discarded. The root path
+would only redirect, while `/auto_run_openmrs` can invoke a different fallback;
+neither is used. An HTTP 200, redirect or error never satisfies the lifecycle
+assertions. The existing completion/abort, strict-mode and actual module-state
+requirements remain mandatory.
+
+The bootstrap contract follows the pinned Core
+[StartupFilter](https://github.com/openmrs/openmrs-core/blob/4dda0f50a60991a5af9a4b36508e69bb3561c8a6/web/src/main/java/org/openmrs/web/filter/StartupFilter.java)
+and [InitializationFilter](https://github.com/openmrs/openmrs-core/blob/4dda0f50a60991a5af9a4b36508e69bb3561c8a6/web/src/main/java/org/openmrs/web/filter/initialization/InitializationFilter.java).
+Repeated requests do not force a new installation while the filter reports one
+already started. This corrects a harness bootstrap gap; it does not establish
+that the gap was the sole cause of an earlier startup timeout.
+
 Initializer 2.13.0-sihsalus.1 on the pinned backend writes the roles-file MD5
 checksum. Its `LiquibaseLoader2_5` does **not** write XML file checksums, but an
 inherited matching XML checksum could still suppress loading. The harness
@@ -133,6 +153,12 @@ ownership remains a cleanup failure, not a successful cleanup claim.
 Failure or exhaustion is reported as failed, with unresolved owned resources
 left to the disposable runner's teardown. Cleanup never targets an existing
 workspace, broad directory or unlabelled resource.
+
+During lifecycle waits, a sanitized `WAITING` record appears initially and at
+most once per minute. It contains only the observed HTTP code (or `null` for
+transport unavailability), running state, and boolean completion/abort/candidate
+marker/CSV-error signals from the current container. It contains no raw logs,
+response body, credentials or exception text and is not a passing test result.
 
 Pure tests exercise safety and assertion contracts without Docker. Only a
 successful run on the exact candidate SHA supplies the integration evidence

@@ -290,6 +290,23 @@ class Harness:
         require(isinstance(body.get("started"), bool), "initializer_started_state_missing")
         return body["started"]
 
+    def bootstrap(self, backend):
+        """Trigger the synthetic installation filter; HTTP is not a success oracle."""
+        self.owned("container", backend)
+        config = (
+            "silent\nshow-error\nproxy = \"\"\nnoproxy = \"*\"\n"
+            "connect-timeout = 2\nmax-time = 5\nmax-redirs = 0\nretry = 0\n"
+            "url = \"http://127.0.0.1:8080/openmrs/initialsetup\"\nrequest = \"GET\"\n"
+            "output = \"/dev/null\"\nwrite-out = \"%{http_code}\"\n")
+        # --disable is curl's first option: no inherited curlrc, credentials,
+        # cookies, redirects or retry settings. The response body is discarded.
+        result = self.docker("exec", "-i", backend, "curl", "--disable", "--config", "-",
+            data=config.encode(), timeout=10, allow_failure=True)
+        if result.returncode:
+            return None
+        require(re.fullmatch(rb"[1-5][0-9]{2}", result.stdout), "invalid_bootstrap_http_code")
+        return int(result.stdout)
+
     def effective_strict(self, backend):
         values = properties(self.copy_file(backend, "/openmrs/data/openmrs-runtime.properties"))
         require(values.get("initializer.startup.load") == "fail_on_error", "strict_runtime_property_missing")
@@ -302,13 +319,25 @@ class Harness:
         require(env.get("OMRS_JAVA_SERVER_OPTS") == STRICT_JAVA, "strict_system_flags_changed")
 
     def wait_initializer(self, backend, stage, reject=False):
-        deadline = time.monotonic() + self.remaining()
+        started_at = time.monotonic()
+        deadline = started_at + self.remaining()
+        next_diagnostic = started_at
         observed = None
         while time.monotonic() < deadline:
             require(self.owned("container", backend)["State"].get("Running") is True, "backend_exited_before_validation")
+            # The image's one-shot startup request may precede web readiness.
+            # Reach the fixed filter directly, without following root redirects.
+            bootstrap_code = self.bootstrap(backend)
             # Only this new container's stdout; no persisted baseline initializer.log.
             result = self.docker("logs", "--tail", "5000", backend)
             logs = (result.stdout + result.stderr).decode("utf-8", "replace")
+            now = time.monotonic()
+            if now >= next_diagnostic:
+                emit(stage, "WAITING", backend_running=True, bootstrap_http_code=bootstrap_code,
+                     completion_seen=COMPLETION in logs, abort_seen=ABORT in logs,
+                     candidate_marker_seen=CHANGESET in logs,
+                     csv_error_seen="BEGINNING OF CSV FILE ERROR SUMMARY" in logs)
+                next_diagnostic = now + 60
             if reject and ABORT in logs and CHANGESET in logs:
                 require(COMPLETION not in logs, "initializer_continued_after_rejection")
                 observed = False
