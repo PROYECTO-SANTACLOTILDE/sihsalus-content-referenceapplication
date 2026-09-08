@@ -171,8 +171,14 @@ class Harness:
         require(BACKEND in image.get("RepoDigests", []), "backend_digest_mismatch")
         command = " ".join((image["Config"].get("Entrypoint") or []) + (image["Config"].get("Cmd") or []))
         require("startup.sh" in command, "unverified_image_launch_command")
-        probe = self.container("probe", ["--network", "none"], BACKEND, ["true"])
-        self.backend_owner = backend_owner(image["Config"].get("User", ""), self.copy_file(probe, "/etc/passwd"))
+        runtime_user = image["Config"].get("User", "")
+        require(re.fullmatch(r"[1-9][0-9]*(?::[0-9]+)?", runtime_user), "numeric_nonroot_backend_user_required")
+        probe = self.container("probe",
+            ["--network", "none", "--read-only", "--cap-drop", "ALL",
+             "--security-opt", "no-new-privileges", "--entrypoint", "/bin/sh"],
+            BACKEND, ["-ceu", "id -u; id -g"])
+        identity = self.docker("start", "--attach", probe, timeout=30).stdout
+        self.backend_owner = backend_owner(runtime_user, identity)
         self.image_config = self.directory / "image-configuration"
         self.copy_tree(probe, "/openmrs/distribution/openmrs_config", self.image_config, "openmrs_config")
         startup_hash = validate_startup(self.copy_file(probe, "/openmrs/startup-init.sh"))

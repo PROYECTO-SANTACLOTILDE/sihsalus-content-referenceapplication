@@ -50,9 +50,12 @@ must match both a random resource prefix and its ownership label.
   than 1.25.15. A future release does not silently change the approved 58-entry
   admission policy or the required unchanged `roles/roles-core.csv`.
 
-The backend probe is created but never started. Its digest, revision label,
-platform, launch command, actual startup scripts, embedded content version and
-numeric runtime UID/GID are checked before startup or snapshot restoration.
+The backend probe never starts OpenMRS: it overrides the entrypoint with only
+`id -u; id -g`, uses no network, a read-only root filesystem and no capabilities.
+Its digest, revision label, platform, launch command, actual startup scripts,
+embedded content version and numeric runtime UID/GID are checked before
+application startup or snapshot restoration. Numeric users need not appear in
+`/etc/passwd`; their effective identity must match the image's declared user.
 Unverifiable image assumptions fail closed; restore does not assume `1001:0`.
 
 The harness verifies the exact assembly include/exclude contract and every

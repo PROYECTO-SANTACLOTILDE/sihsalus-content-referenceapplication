@@ -222,14 +222,15 @@ def sql_string(value):
     return "CONVERT(0x" + value.encode("utf-8").hex() + " USING utf8mb4)"
 
 
-def backend_owner(runtime_user, passwd):
+def backend_owner(runtime_user, identity):
     require(re.fullmatch(r"[1-9][0-9]*(?::[0-9]+)?", runtime_user), "numeric_nonroot_backend_user_required")
-    if ":" in runtime_user:
-        return runtime_user
-    entries = [line.split(":") for line in passwd.decode().splitlines()]
-    matches = [entry for entry in entries if len(entry) == 7 and entry[2] == runtime_user]
-    require(len(matches) == 1 and re.fullmatch(r"[0-9]+", matches[0][3]), "backend_primary_group_unverified")
-    return runtime_user + ":" + matches[0][3]
+    # Docker supports numeric users absent from /etc/passwd. Verify the actual
+    # effective identity in an isolated id-only probe, never assume its GID.
+    parts = identity.decode("ascii").splitlines()
+    require(len(parts) == 2 and all(re.fullmatch(r"[0-9]+", part) for part in parts), "backend_effective_identity_unverified")
+    declared = runtime_user.split(":")
+    require(parts[0] == declared[0] and (len(declared) == 1 or parts[1] == declared[1]), "backend_effective_identity_mismatch")
+    return parts[0] + ":" + parts[1]
 
 
 def admission_privileges(configuration):

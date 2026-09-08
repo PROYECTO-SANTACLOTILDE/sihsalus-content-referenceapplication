@@ -178,16 +178,19 @@ class HarnessContracts(unittest.TestCase):
         with self.assertRaisesRegex(HarnessFailure, "unreviewed_assembly_excludes"):
             guards.validate_assembly(changed)
 
-    def test_numeric_image_user_and_real_primary_group_required(self):
-        passwd = b"openmrs:x:1001:17:OpenMRS:/openmrs:/bin/bash\n"
-        self.assertEqual(guards.backend_owner("1001", passwd), "1001:17")
-        self.assertEqual(guards.backend_owner("1001:0", b""), "1001:0")
+    def test_numeric_image_user_and_real_effective_group_required(self):
+        identity = b"1001\n17\n"
+        self.assertEqual(guards.backend_owner("1001", identity), "1001:17")
+        self.assertEqual(guards.backend_owner("1001", b"1001\n0\n"), "1001:0")
+        self.assertEqual(guards.backend_owner("1001:0", b"1001\n0\n"), "1001:0")
         for user in ("", "0", "root", "1001:root", "1001;echo"):
             with self.subTest(user=user), self.assertRaises(HarnessFailure):
-                guards.backend_owner(user, passwd)
-        for invalid in (b"", passwd + passwd, passwd.replace(b":17:", b":group:")):
+                guards.backend_owner(user, identity)
+        for invalid in (b"", identity + identity, b"1001\ngroup\n", b"0\n0\n", b"1002\n17\n"):
             with self.subTest(invalid=invalid), self.assertRaises(HarnessFailure):
                 guards.backend_owner("1001", invalid)
+        with self.assertRaisesRegex(HarnessFailure, "backend_effective_identity_mismatch"):
+            guards.backend_owner("1001:0", identity)
 
     def test_runtime_properties_reject_duplicate_overrides(self):
         self.assertEqual(guards.properties(b"# comment\ninitializer.startup.load=fail_on_error\n"),
