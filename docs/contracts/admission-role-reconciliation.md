@@ -61,7 +61,8 @@ son opcionales. Una FK hacia `role` fuera del contrato se rechaza, incluso si
 no contiene datos. No se deshabilitan FKs ni se utiliza `INSERT IGNORE` para
 ocultar incompatibilidades.
 
-Las asignaciones de Patient Flags se deduplican por etiqueta/rol. Los alcances
+Las referencias legadas de Patient Flags se trasladan sin crear duplicados por
+etiqueta/rol; no se eliminan duplicados canónicos preexistentes. Los alcances
 de Stock Management conservan sus identificadores, UUID y demás columnas; solo
 cambia el nombre de rol. La ausencia de FKs desconocidas no prueba la ausencia
 de referencias lógicas o efectos de triggers en módulos personalizados: el
@@ -74,14 +75,23 @@ La revisión del pin de Initializer
 `3077975fb4f58c91ff3113d7fed1e3df88829476` (`2.13.0-sihsalus.1`) confirma que:
 
 - el modo predeterminado de carga es `continue_on_error`;
-- `BaseFileLoader` puede capturar un error, registrar el checksum y continuar;
+- `BaseFileLoader` puede capturar un error y continuar;
 - un CSV sin cambios puede omitirse por checksum;
 - cuando se procesa, `RoleLineProcessor` sustituye los privilegios y herencias
   por los declarados en el CSV, no los une con los anteriores.
 
+En este stack, `LiquibaseLoader2_5` no escribe nuevos checksums de archivo: la
+ejecución de changeSets queda en `liquibasechangelog`. No debe confundirse ese
+historial con los checksums de CSV. El lector sí puede omitir un XML si encuentra
+un checksum de archivo heredado coincidente; no se presume que siempre ejecute
+el changelog ni se borra ese archivo para forzar una prueba.
+
 Fuentes fijadas: [configuración de Initializer](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/InitializerConfig.java),
 [carga y checksums](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/loaders/BaseFileLoader.java)
 y [asignación de roles](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/roles/RoleLineProcessor.java).
+La distinción entre historiales se verifica en
+[LiquibaseLoader2_5](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api-2.5/src/main/java/org/openmrs/module/initializer/api/loaders/LiquibaseLoader2_5.java)
+y [ConfigDirUtil](https://github.com/mekomsolutions/openmrs-module-initializer/blob/3077975fb4f58c91ff3113d7fed1e3df88829476/api/src/main/java/org/openmrs/module/initializer/api/ConfigDirUtil.java).
 
 Por ello, `onFail="HALT"` / `onError="HALT"` en Liquibase no demuestran que
 Initializer ni la aplicación dejen de arrancar. Antes de habilitar esta
@@ -104,6 +114,21 @@ MariaDB `3.5.4`, correspondientes al stack examinado de OpenMRS `2.8.9`.
 Ejecuta el changelog completo sobre un esquema mínimo sintético, con estados
 históricos y fallos inducidos. No inicia OpenMRS, no ejecuta Initializer y no
 valida permisos efectivos de cuentas clínicas.
+
+El ensayo adicional `admission-initializer.yml` usa el backend publicado fijado
+por digest y bases desechables en un runner GitHub hospedado. Conserva la
+configuración ajena al paquete SIH de esa imagen y sustituye únicamente archivos
+propios verificados. Arranca la baseline `1.25.15`, conserva su historial y
+checksums reales y prueba la candidata con el CSV de roles sin cambios. Incluye
+rechazo de una política incompatible, un CSV canario posterior que debe quedar
+sin cargar, reintento sin borrar checksums e idempotencia. La prueba REST acotada
+comprueba lectura, denegación de borrado permanente y anulación de una relación
+sintética activa. Sus resultados deben leerse por fase: definir el ensayo no
+equivale a haberlo aprobado ni sustituye aceptación clínica o revisión operativa.
+
+Consultar el [README del ensayo de Initializer](../../.github/integration/admission-initializer/README.md)
+para los pins, aislamiento, aserciones y límites. No ejecutarlo contra una
+instalación existente ni trasladar sus credenciales sintéticas a otro entorno.
 
 Comprobaciones rápidas desde la raíz:
 

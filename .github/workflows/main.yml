@@ -17,8 +17,11 @@ jobs:
   admission-migration:
     uses: ./.github/workflows/admission-role-reconciliation.yml
 
+  admission-initializer:
+    uses: ./.github/workflows/admission-initializer.yml
+
   build:
-    needs: admission-migration
+    needs: [admission-migration, admission-initializer]
     runs-on: ubuntu-latest
 
     steps:
